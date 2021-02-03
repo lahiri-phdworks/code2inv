@@ -1,3 +1,6 @@
+from code2inv.common.cmd_args import cmd_args
+from code2inv.common.ssa_graph_builder import ProgramGraph
+from code2inv.common.constants import NUM_EDGE_TYPES
 import ctypes
 import numpy as np
 import os
@@ -8,9 +11,6 @@ from torch.autograd import Variable
 
 sys.path.append('%s/../common' % os.path.dirname(os.path.realpath(__file__)))
 
-from constants import NUM_EDGE_TYPES
-from ssa_graph_builder import ProgramGraph
-from cmd_args import cmd_args
 
 class _s2v_lib(object):
 
@@ -21,7 +21,8 @@ class _s2v_lib(object):
         self.lib.n2n_construct.restype = ctypes.c_int
 
         if sys.version_info[0] > 2:
-            args = [arg.encode() for arg in args]  # str -> bytes for each element in args
+            # str -> bytes for each element in args
+            args = [arg.encode() for arg in args]
         arr = (ctypes.c_char_p * len(args))()
         arr[:] = args
         self.lib.Init(len(args), arr)
@@ -41,10 +42,10 @@ class _s2v_lib(object):
         for i in range(NUM_EDGE_TYPES):
             if single_graph is not None:
                 n2n_sp = single_graph.n2n_sp_list[i]
-            else:                
+            else:
                 num_edges = 0
                 for g in s2v_graphs:
-                    num_edges += len(g.typed_edge_list[i])                
+                    num_edges += len(g.typed_edge_list[i])
                 n2n_idxes = torch.LongTensor(2, num_edges)
                 n2n_vals = torch.FloatTensor(num_edges)
 
@@ -52,13 +53,16 @@ class _s2v_lib(object):
                 nnz = 0
                 for j in range(len(s2v_graphs)):
                     g = s2v_graphs[j]
-                    n2n_idxes[:, nnz : nnz + len(g.typed_edge_list[i])] = g.n2n_sp_list[i]._indices() + num_nodes
-                    n2n_vals[nnz : nnz + len(g.typed_edge_list[i])] = g.n2n_sp_list[i]._values()
+                    n2n_idxes[:, nnz: nnz + len(g.typed_edge_list[i])
+                              ] = g.n2n_sp_list[i]._indices() + num_nodes
+                    n2n_vals[nnz: nnz + len(g.typed_edge_list[i])
+                             ] = g.n2n_sp_list[i]._values()
                     num_nodes += g.pg.num_nodes()
                     nnz += len(g.typed_edge_list[i])
                 assert nnz == num_edges
 
-                n2n_sp = torch.sparse.FloatTensor(n2n_idxes, n2n_vals, torch.Size([num_nodes, num_nodes]))
+                n2n_sp = torch.sparse.FloatTensor(
+                    n2n_idxes, n2n_vals, torch.Size([num_nodes, num_nodes]))
             if cmd_args.ctx == 'gpu':
                 n2n_sp = n2n_sp.cuda()
 
@@ -75,17 +79,20 @@ class _s2v_lib(object):
             feat_list = []
             for g in s2v_graphs:
                 feat_list.append(g.node_feat)
-            
+
             feat = torch.cat(feat_list, dim=0)
         if cmd_args.ctx == 'gpu':
             feat = feat.cuda()
         return Variable(feat)
 
-dll_path = '%s/build/dll/libs2v.so' % os.path.dirname(os.path.realpath(__file__))
+
+dll_path = '%s/build/dll/libs2v.so' % os.path.dirname(
+    os.path.realpath(__file__))
 if os.path.exists(dll_path):
     S2VLIB = _s2v_lib(sys.argv)
 else:
     S2VLIB = None
+
 
 class S2VGraph(object):
     def __init__(self, pg, node_type_dict):
@@ -97,53 +104,58 @@ class S2VGraph(object):
 
         for e in self.pg.edge_list:
             self.typed_edge_list[e[2]].append((e[0], e[1]))
-        
+
         self.n2n_sp_list = []
         for i in range(NUM_EDGE_TYPES):
             edges = self.typed_edge_list[i]
             degrees = np.zeros(shape=(pg.num_nodes()), dtype=np.int32)
             for e in edges:
                 degrees[e[1]] += 1
-                            
-            edges.sort(key = lambda x : (x[1], x[0]))
-            
+
+            edges.sort(key=lambda x: (x[1], x[0]))
+
             num_edges = len(edges)
             n2n_idxes = torch.LongTensor(2,  num_edges)
-            n2n_vals = torch.FloatTensor(num_edges) 
+            n2n_vals = torch.FloatTensor(num_edges)
             if num_edges > 0:
-                x, y = zip(*edges)            
+                x, y = zip(*edges)
                 edge_pairs = np.ndarray(shape=(num_edges, 2), dtype=np.int32)
                 edge_pairs[:, 0] = x
                 edge_pairs[:, 1] = y
                 edge_pairs = edge_pairs.flatten()
-                
+
                 S2VLIB.lib.n2n_construct(pg.num_nodes(),
-                                        num_edges,
-                                        ctypes.c_void_p(degrees.ctypes.data), 
-                                        ctypes.c_void_p(edge_pairs.ctypes.data), 
-                                        ctypes.c_void_p(n2n_idxes.numpy().ctypes.data), 
-                                        ctypes.c_void_p(n2n_vals.numpy().ctypes.data), 
-                                        )
-                                        
-                n2n_sp = torch.sparse.FloatTensor(n2n_idxes, n2n_vals, torch.Size([pg.num_nodes(), pg.num_nodes()]))
-                
+                                         num_edges,
+                                         ctypes.c_void_p(degrees.ctypes.data),
+                                         ctypes.c_void_p(
+                                             edge_pairs.ctypes.data),
+                                         ctypes.c_void_p(
+                                             n2n_idxes.numpy().ctypes.data),
+                                         ctypes.c_void_p(
+                                             n2n_vals.numpy().ctypes.data),
+                                         )
+
+                n2n_sp = torch.sparse.FloatTensor(
+                    n2n_idxes, n2n_vals, torch.Size([pg.num_nodes(), pg.num_nodes()]))
+
                 self.n2n_sp_list.append(n2n_sp)
-        
+
         self.node_feat = torch.zeros(pg.num_nodes(), len(node_type_dict))
-        
+
         for i in range(pg.num_nodes()):
             node_type = pg.node_list[i].node_type
             self.node_feat[i, node_type_dict[node_type]] = 1.0
-        
+
+
 if __name__ == '__main__':
     s2v_graphs = []
     with open(cmd_args.data_root + '/list.txt', 'r') as f:
-        for row in f:            
+        for row in f:
             with open(cmd_args.data_root + '/' + row.strip(), 'r') as gf:
                 graph_json = json.load(gf)
                 g = ProgramGraph(graph_json)
 
-                s2v_graphs.append( S2VGraph(g) )
+                s2v_graphs.append(S2VGraph(g))
 
     sp_list = S2VLIB.PrepareMeanField(s2v_graphs[0:2])
 

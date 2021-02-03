@@ -55,4 +55,5 @@ python -u file_solver.py \
     -inv_grammar $(sed "1q;d" $grammar_file)\
     -inv_checker $(sed "2q;d" $grammar_file)\
     -var_format "$(sed '3q;d' $grammar_file)"\
+    -ctx gpu\
     2>&1 | tee $log_file
