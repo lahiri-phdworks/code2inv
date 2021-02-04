@@ -35,7 +35,7 @@ fi
 
 mkdir -p tests/results
 
-log_file=$save_dir/log-sample-${single_sample}-model-${model}-r-${inv_reward_type}-s2v-${s2v_level}-bsize-${rl_batchsize}-att-${att}-ac-${ac}-ce-${ce}.txt
+log_file=$save_dir/log-sample-${single_sample}-model-${model}-${ctx}-r-${inv_reward_type}-s2v-${s2v_level}-bsize-${rl_batchsize}-att-${att}-ac-${ac}-ce-${ce}.txt
 
 python -u file_solver.py \
     -input_graph $input_graph\
@@ -55,5 +55,5 @@ python -u file_solver.py \
     -inv_grammar $(sed "1q;d" $grammar_file)\
     -inv_checker $(sed "2q;d" $grammar_file)\
     -var_format "$(sed '3q;d' $grammar_file)"\
-    -ctx gpu\
+    -ctx gpu \
     2>&1 | tee $log_file
