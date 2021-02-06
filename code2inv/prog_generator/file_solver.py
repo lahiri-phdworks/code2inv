@@ -130,7 +130,7 @@ if __name__ == '__main__':
             print("best_reward:", best_reward, ", best_root:", best_root)
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
-            with open("../../predicted_invariant.txt", mode="a") as file:
+            with open(f"../../results/predicted_invariant_{os.environ['INVPROCESSFILE']}.txt", mode="a") as file:
                 file.write(f"{best_root}\n")
 
             stat_counter.report_global()
