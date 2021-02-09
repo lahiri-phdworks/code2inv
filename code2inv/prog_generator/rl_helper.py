@@ -23,6 +23,7 @@ from code2inv.common.checker import boogie_result, z3_precheck, z3_precheck_expe
 from code2inv.prog_generator.tree_decoder import genExprTree, GeneralDecoder, InvariantTreeNode, fully_expanded_node
 checker_module = importlib.import_module(cmd_args.inv_checker)
 
+
 class RLEnv(object):
     def __init__(self, s2v_graph, decoder):
         self.s2v_graph = s2v_graph
@@ -59,7 +60,7 @@ class RLEnv(object):
     def constraint_satisfied(self):
         return len(self.used_core_vars) == len(self.pg.core_vars)
 
-    def insert_subexpr(self, node, subexpr_node, eps = 0.05):
+    def insert_subexpr(self, node, subexpr_node, eps=0.05):
         if node is None:
             node = genExprTree(RULESET, "S")
             return self.insert_subexpr(node, subexpr_node)
@@ -72,15 +73,15 @@ class RLEnv(object):
         elif node.rule is not None and len(node.children) == 0:
             w = nn.Linear(cmd_args.embedding_size, len(RULESET[node.rule]))
             logits = w(self.decoder.latent_state)
-            
+
             ll = F.log_softmax(logits, dim=1)
 
             if self.use_random:
                 scores = torch.exp(ll) * (1 - eps) + eps / ll.shape[1]
                 picked = torch.multinomial(scores, 1)
-            else:            
+            else:
                 _, picked = torch.max(ll, 1)
-            picked = picked.view(-1)        
+            picked = picked.view(-1)
 
             node = genExprTree(RULESET, node.rule, picked)
             return self.insert_subexpr(node, subexpr_node)
@@ -88,18 +89,19 @@ class RLEnv(object):
         elif len(node.children) > 0:
             last_junct = ""
             for i in range(len(node.children)):
-                node.children[i], node_update = self.insert_subexpr(node.children[i], subexpr_node)
+                node.children[i], node_update = self.insert_subexpr(
+                    node.children[i], subexpr_node)
                 if node_update:
                     return node, node_update
             return node, False
         else:
             return node, False
 
-
     def step(self, subexpr_node, node_embedding, use_random, eps):
         self.use_random = use_random
-        reward = 0.0        
-        self.inv_candidate, updated = self.insert_subexpr(self.inv_candidate, subexpr_node)
+        reward = 0.0
+        self.inv_candidate, updated = self.insert_subexpr(
+            self.inv_candidate, subexpr_node)
         self.root = self.inv_candidate.clone_expanded()
 
         self.terminal = fully_expanded_node(self.inv_candidate)
@@ -120,7 +122,7 @@ class RLEnv(object):
             self.terminal = True
 
         if self.terminal:
-            if not self.trivial_subexpr: #self.constraint_satisfied():
+            if not self.trivial_subexpr:  # self.constraint_satisfied():
                 try:
                     r = boogie_result(self.s2v_graph, self.root)
                     reward += r
@@ -150,6 +152,7 @@ class RLEnv(object):
     def is_finished(self):
         return self.terminal
 
+
 def rollout(g, node_embedding, decoder, use_random, eps):
     nll_list = []
     value_list = []
@@ -158,12 +161,14 @@ def rollout(g, node_embedding, decoder, use_random, eps):
     env = RLEnv(g, decoder)
     while not env.is_finished():
         try:
-            and_or, subexpr_node, nll, vs, latent_state = decoder(env, node_embedding, use_random=use_random, eps = eps)
+            and_or, subexpr_node, nll, vs, latent_state = decoder(
+                env, node_embedding, use_random=use_random, eps=eps)
 
-            reward, trivial = env.step(subexpr_node, node_embedding, use_random, eps)
+            reward, trivial = env.step(
+                subexpr_node, node_embedding, use_random, eps)
             nll_list.append(nll)
             value_list.append(vs)
-            
+
             root = env.root
             reward_list.append(reward)
         except Exception as e:
@@ -174,29 +179,30 @@ def rollout(g, node_embedding, decoder, use_random, eps):
             pass
 
     if not env.trivial_subexpr:
-        if cmd_args.decoder_model == 'AssertAware':            
+        if cmd_args.decoder_model == 'AssertAware':
             assert env.constraint_satisfied()
 
     return nll_list, value_list, reward_list, root, trivial
+
 
 def actor_critic_loss(nll_list, value_list, reward_list):
     r = 0.0
     rewards = []
     for t in range(len(reward_list) - 1, -1, -1):
-        r = r + reward_list[t] # accumulated future reward
+        r = r + reward_list[t]  # accumulated future reward
         rewards.insert(0, r / 10.0)
-            
+
     policy_loss = 0.0
     targets = []
-    for t in range(len(reward_list)):        
-        reward = rewards[t] - value_list[t].data[0, 0]                
+    for t in range(len(reward_list)):
+        reward = rewards[t] - value_list[t].data[0, 0]
         policy_loss += nll_list[t] * reward
-        targets.append(Variable(torch.Tensor([ [rewards[t]] ])))
+        targets.append(Variable(torch.Tensor([[rewards[t]]])))
 
     policy_loss /= len(reward_list)
 
     value_pred = torch.cat(value_list, dim=0)
-    targets = torch.cat(targets, dim=0)    
+    targets = torch.cat(targets, dim=0)
     value_loss = F.mse_loss(value_pred, targets)
 
     loss = policy_loss + value_loss
