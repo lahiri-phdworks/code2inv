@@ -12,9 +12,9 @@ int main()
     int y;
 
     // pre-conditions
-    (sum = 0);
-    (n > 0);
+    assume((n >= 0));
     (i = 0);
+    (sum = 0);
 
     // loop body
     for (; i < n; i++)
@@ -22,7 +22,7 @@ int main()
         int i2 = i * i;
         (y = (i * (i + 1) * (2 * i + 1) / 6));
         assert(sum == y);
-        sum = sum + isqr(i);
+        sum = sum + i2;
     }
 
     // post-condition
