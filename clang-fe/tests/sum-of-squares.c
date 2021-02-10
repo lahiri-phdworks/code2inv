@@ -19,7 +19,7 @@ int main()
     {
         int i2 = i * i;
         (y = (i * (i + 1) * (2 * i + 1) / 6));
-        assert(sum == y);
+        // assert(sum == y);
         sum = sum + i2;
     }
 
