@@ -1,8 +1,13 @@
 #include "assert.h"
 
+/**
+ * Sum of the first "n" natural numbers 
+ * 1, 2, 3, .... n
+ * Only natural numbers strictly.
+*/
+
 int main()
 {
-
     // variable declarations
     int sum;
     int n;
@@ -10,12 +15,12 @@ int main()
     int y;
 
     // pre-conditions
-    assume((n >= 0));
-    (i = 0);
-    (sum = 0);
+    __VERIFIER_assume((n > 0));
+    __VERIFIER_assume((i > 0));
+    __VERIFIER_assume((sum == 0));
 
     // loop body
-    for (; i < n; i++)
+    for (; i <= n; i++)
     {
         int i2 = i * i;
         (y = (i * (i + 1) * (2 * i + 1) / 6));
@@ -24,5 +29,5 @@ int main()
     }
 
     // post-condition
-    assert((sum == (n * (n + 1) * (2 * n + 1) / 6)));
+    __VERIFIER_assert((sum == (n * (n + 1) * (2 * n + 1) / 6)));
 }

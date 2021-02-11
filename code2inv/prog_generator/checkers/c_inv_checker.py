@@ -24,8 +24,10 @@ p["<"] = 2
 p["and"] = 1
 p['or'] = 1
 
+
 def condense(inv_tokens):
-    op_list = ["+", "-", "*", "/", "%", "<", "<=", ">", ">=", "==", "!=", "and", "or"]
+    op_list = ["+", "-", "*", "/", "%", "<",
+               "<=", ">", ">=", "==", "!=", "and", "or"]
     un_op_list = ["+", "-"]
     old_list = list(inv_tokens)
     new_list = list(inv_tokens)
@@ -41,6 +43,7 @@ def condense(inv_tokens):
         else:
             old_list = list(new_list)
     return new_list
+
 
 def infix_postfix(infix_token_list):
     opStack = []
@@ -65,6 +68,7 @@ def infix_postfix(infix_token_list):
         # print(postfix, opStack)
     return postfix
 
+
 def postfix_prefix(postfix_token_list):
     stack = []
     for t in postfix_token_list:
@@ -78,10 +82,11 @@ def postfix_prefix(postfix_token_list):
             op2 = stack.pop(-1)
             sub_stack.append(op2)
             sub_stack.append(op1)
-            
+
             sub_stack.append(")")
             stack.append(sub_stack)
     return stack
+
 
 def stringify_prefix_stack(prefix_stack):
     s = ""
@@ -102,26 +107,27 @@ def inv_checker(vc_file: str, inv: str, assignments):
     for a in t:
         if a.string != "":
             inv_tokenized.append(a.string)
-    
+
     var_list = set()
     for token in inv_tokenized:
         if token[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in ("and", "or"):
             var_list.add(token)
-    
+
     for assignment in assignments:
         v = assignment[0]
         val = assignment[1]
         if v in var_list:
             exec(v + "=" + val)
             var_list.discard(v)
-    
+
     for var in var_list:
-        exec(var +"=1")
+        exec(var + "=1")
 
     try:
         return eval(inv)
     except:
         return False
+
 
 def inv_solver(vc_file: str, inv: str):
     inv = inv.replace("&&", "and", -1)
@@ -132,7 +138,8 @@ def inv_solver(vc_file: str, inv: str):
     for a in t:
         if a.string != "":
             inv_tokenized.append(a.string)
-    inv = stringify_prefix_stack(postfix_prefix(infix_postfix(condense(inv_tokenized))))
+    inv = stringify_prefix_stack(postfix_prefix(
+        infix_postfix(condense(inv_tokenized))))
     inv = inv.replace("==", "=", -1)
 
     sol = z3.Solver()
@@ -178,7 +185,7 @@ def inv_solver(vc_file: str, inv: str):
                         if "_" in v:
                             continue
                         elif v.endswith("!"):
-                            m2[ v[:-1] ] = const
+                            m2[v[:-1]] = const
                         else:
                             m1[v] = const
                     ce = (m1, m2)
@@ -190,7 +197,7 @@ def inv_solver(vc_file: str, inv: str):
                     w = "loop"
                 elif i == 2:
                     w = "post"
-                logging.warning("inv- " + inv + " solution unknown in " + w) 
+                logging.warning("inv- " + inv + " solution unknown in " + w)
                 raise Exception("SOL UNKNOWN")
             else:
                 res.append(None)
@@ -198,6 +205,7 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
     return res
+
 
 '''
 def is_trivial(vc_file : str, pred : str):

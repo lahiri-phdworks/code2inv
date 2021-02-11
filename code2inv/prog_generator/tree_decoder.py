@@ -21,6 +21,7 @@ from code2inv.common.pytorch_util import weights_init, to_num
 
 from code2inv.prog_generator.prog_encoder import LogicEncoder
 
+
 class IDecoder(nn.Module):
     def __init__(self, latent_dim):
         super(IDecoder, self).__init__()
@@ -32,14 +33,14 @@ class IDecoder(nn.Module):
 
         self.and_embedding = Parameter(torch.Tensor(1, latent_dim))
         self.or_embedding = Parameter(torch.Tensor(1, latent_dim))
-        
+
         self.value_pred_w1 = nn.Linear(self.latent_dim, self.latent_dim)
         self.value_pred_w2 = nn.Linear(self.latent_dim, 1)
 
         if cmd_args.attention:
             self.first_att = nn.Linear(self.latent_dim, 1)
-        
-        weights_init(self)     
+
+        weights_init(self)
 
     def choose_action(self, state, cls_w, use_random, eps):
         if type(cls_w) is Variable or type(cls_w) is Parameter or type(cls_w) is torch.Tensor:
@@ -66,71 +67,82 @@ class IDecoder(nn.Module):
         self.latent_state = self.state_gru(input_embedding, self.latent_state)
 
     def recursive_decode(self, pg_node_list, lv, use_random, eps):
-        if lv == 0: # subtree expression root node, decode the first symbol
+        if lv == 0:  # subtree expression root node, decode the first symbol
             # left child, which is a variable
-            picked = self.choose_action(self.latent_state, self.variable_embedding, use_random, eps)
-            self.update_state(torch.index_select(self.variable_embedding, 0, picked))
-            left_node = ExprNode(pg_node_list[ picked.data.cpu()[0] ])
+            picked = self.choose_action(
+                self.latent_state, self.variable_embedding, use_random, eps)
+            self.update_state(torch.index_select(
+                self.variable_embedding, 0, picked))
+            left_node = ExprNode(pg_node_list[picked.data.cpu()[0]])
 
             # recursively construct right child
-            right_node = self.recursive_decode(pg_node_list, 1, use_random, eps)
+            right_node = self.recursive_decode(
+                pg_node_list, 1, use_random, eps)
 
             # root
-            w = self.token_w[0 : len(LIST_PREDICATES), :]            
+            w = self.token_w[0: len(LIST_PREDICATES), :]
             picked = self.choose_action(self.latent_state, w, use_random, eps)
             self.update_state(self.char_embedding(picked))
-            cur_node = ExprNode(LIST_PREDICATES[picked.data.cpu()[0]])            
-            cur_node.children.append( left_node )
-            cur_node.children.append( right_node )            
+            cur_node = ExprNode(LIST_PREDICATES[picked.data.cpu()[0]])
+            cur_node.children.append(left_node)
+            cur_node.children.append(right_node)
         else:
             if lv < MAX_DEPTH:
-                w_op = self.token_w[len(LIST_PREDICATES) : , :]
+                w_op = self.token_w[len(LIST_PREDICATES):, :]
                 classifier = torch.cat((w_op, self.var_const_embedding), dim=0)
-                picked = self.choose_action(self.latent_state, classifier, use_random, eps)
+                picked = self.choose_action(
+                    self.latent_state, classifier, use_random, eps)
                 self.update_state(torch.index_select(classifier, 0, picked))
-                
+
                 idx = picked.data.cpu()[0]
-                if idx < len(LIST_OP): # it is an op node
+                if idx < len(LIST_OP):  # it is an op node
                     cur_node = ExprNode(LIST_OP[idx])
                     # assert binary operator
-                    cur_node.children.append( self.recursive_decode(pg_node_list, lv + 1, use_random, eps) )
-                    cur_node.children.append( self.recursive_decode(pg_node_list, lv + 1, use_random, eps) )
+                    cur_node.children.append(self.recursive_decode(
+                        pg_node_list, lv + 1, use_random, eps))
+                    cur_node.children.append(self.recursive_decode(
+                        pg_node_list, lv + 1, use_random, eps))
                 else:
-                    cur_node = ExprNode(pg_node_list[idx - len(LIST_OP)])                
-            else: # can only choose variable or const
-                picked = self.choose_action(self.latent_state, self.var_const_embedding, use_random, eps)
-                self.update_state(torch.index_select(self.var_const_embedding, 0, picked))
+                    cur_node = ExprNode(pg_node_list[idx - len(LIST_OP)])
+            else:  # can only choose variable or const
+                picked = self.choose_action(
+                    self.latent_state, self.var_const_embedding, use_random, eps)
+                self.update_state(torch.index_select(
+                    self.var_const_embedding, 0, picked))
 
-                cur_node = ExprNode(pg_node_list[ picked.data.cpu()[0] ])
+                cur_node = ExprNode(pg_node_list[picked.data.cpu()[0]])
 
         return cur_node
 
     def embed_tree(self, node_embedding, root):
         raise NotImplementedError()
-    
+
     def forward(self, env, node_embedding, use_random, eps=0.05):
         state_embedding = self.embed_tree(node_embedding, env.root)
         self.latent_state = state_embedding
-        est = self.value_pred_w2( F.relu( self.value_pred_w1(state_embedding) ) )
+        est = self.value_pred_w2(F.relu(self.value_pred_w1(state_embedding)))
 
         self.nll = 0.0
         subexpr_node = None
         if env.root is None:
             act = 1
         else:
-            first_decision = self.choose_action(self.latent_state, self.decision, use_random, eps)
+            first_decision = self.choose_action(
+                self.latent_state, self.decision, use_random, eps)
             act = first_decision.data.cpu()[0]
             if act == 0 or (act == 1 and env.and_budget() == 0) or (act == 2 and env.or_budget() == 0):
                 return None, subexpr_node, self.nll, est
 
-        self.variable_embedding = node_embedding[0 : env.num_vars(), :]
-        self.var_const_embedding = node_embedding[0 : env.num_vars() + env.num_consts(), :]                        
+        self.variable_embedding = node_embedding[0: env.num_vars(), :]
+        self.var_const_embedding = node_embedding[0: env.num_vars(
+        ) + env.num_consts(), :]
 
         if act == 1:
-            self.update_state(self.and_embedding)            
-            
+            self.update_state(self.and_embedding)
+
         self.update_state(self.or_embedding)
-        subexpr_node = self.recursive_decode(env.pg_nodes(), 0, use_random, eps)
+        subexpr_node = self.recursive_decode(
+            env.pg_nodes(), 0, use_random, eps)
 
         if act == 1:
             and_or = '&&'
@@ -145,16 +157,19 @@ class IDecoder(nn.Module):
 
             if type(state) == ExprNode:
                 allnone = checkallnone(state)
-            
+
             if state is None or allnone:
                 logits = self.first_att(node_embedding)
             else:
-                logits = torch.sum( node_embedding * self.latent_state, dim = 1, keepdim=True )
-            weights = F.softmax(logits, dim = 0)
-            init_embedding = torch.sum( weights * node_embedding, dim = 0, keepdim=True)
+                logits = torch.sum(
+                    node_embedding * self.latent_state, dim=1, keepdim=True)
+            weights = F.softmax(logits, dim=0)
+            init_embedding = torch.sum(
+                weights * node_embedding, dim=0, keepdim=True)
         else:
             init_embedding = torch.mean(node_embedding, dim=0, keepdim=True)
         return init_embedding
+
 
 class CFGTreeDecoder(IDecoder):
     def __init__(self, latent_dim):
@@ -166,6 +181,7 @@ class CFGTreeDecoder(IDecoder):
         init_embedding = self.get_init_embedding(node_embedding, root)
         return self.tree_embed(node_embedding, init_embedding, root)
 
+
 class CFGRNNDecoder(IDecoder):
     def __init__(self, latent_dim):
         super(CFGRNNDecoder, self).__init__(latent_dim)
@@ -176,7 +192,8 @@ class CFGRNNDecoder(IDecoder):
         if root is None:
             return init_embedding
         else:
-            return self.latent_state + init_embedding 
+            return self.latent_state + init_embedding
+
 
 class AssertAwareDecoder(IDecoder):
     def __init__(self, latent_dim):
@@ -197,85 +214,96 @@ class AssertAwareDecoder(IDecoder):
 
     def choose_operand(self, env, node_embedding, use_random, eps):
         var_list = env.available_var_indices([])
-        if len(var_list) == env.num_vars(): # can freely choose any variable
+        if len(var_list) == env.num_vars():  # can freely choose any variable
             selector = node_embedding
-        else: # have to choose from core variables
+        else:  # have to choose from core variables
             selector = node_embedding[var_list, :]
 
-        picked = self.choose_action(self.latent_state, selector, use_random, eps)
+        picked = self.choose_action(
+            self.latent_state, selector, use_random, eps)
         self.update_state(torch.index_select(selector, 0, picked))
 
         idx = to_num(picked)
-        if idx < len(var_list): # otherwise, we have chosen a constant
-            idx = var_list[idx]        
+        if idx < len(var_list):  # otherwise, we have chosen a constant
+            idx = var_list[idx]
             env.update_used_core_var(env.pg_nodes()[idx])
-        return ExprNode(env.pg_nodes()[ idx ])
-                
+        return ExprNode(env.pg_nodes()[idx])
+
     def recursive_decode(self, env, lv, use_random, eps):
-        if lv == 0: # subtree expression root node, decode the first symbol
+        if lv == 0:  # subtree expression root node, decode the first symbol
             # left child, which is a variable
-            left_node = self.choose_operand(env, self.variable_embedding, use_random, eps)
-            
-            self.cur_token_used += 1 # occupy one token slot
-            
+            left_node = self.choose_operand(
+                env, self.variable_embedding, use_random, eps)
+
+            self.cur_token_used += 1  # occupy one token slot
+
             # recursively construct right child
             right_node = self.recursive_decode(env, 1, use_random, eps)
 
             assert self.cur_token_used == 2 ** (MAX_DEPTH - 1) + 1
-            # root            
-            w = self.token_w[0 : len(LIST_PREDICATES), :]            
+            # root
+            w = self.token_w[0: len(LIST_PREDICATES), :]
             picked = self.choose_action(self.latent_state, w, use_random, eps)
             self.update_state(self.char_embedding(picked))
             cur_node = ExprNode(LIST_PREDICATES[picked.data.cpu()[0]])
-            cur_node.children.append( left_node )
-            cur_node.children.append( right_node )
+            cur_node.children.append(left_node)
+            cur_node.children.append(right_node)
         else:
             if lv < MAX_DEPTH:
-                # can I just choose a variable, instead of an operator? 
+                # can I just choose a variable, instead of an operator?
                 classifier = None
                 tmp = 2 ** (MAX_DEPTH - lv)
                 if env.core_var_budget(self.cur_token_used + tmp - 1) < 0:
                     decision = 0
-                else:                    
-                    sp = self.choose_action(self.latent_state, self.tree_grow_decision, use_random, eps)
+                else:
+                    sp = self.choose_action(
+                        self.latent_state, self.tree_grow_decision, use_random, eps)
                     decision = to_num(sp)
-                
-                if decision == 0: # op node
-                    classifier = self.token_w[len(LIST_PREDICATES) : , :]
-                    picked = self.choose_action(self.latent_state, classifier, use_random, eps)
-                    self.update_state(torch.index_select(classifier, 0, picked))                    
+
+                if decision == 0:  # op node
+                    classifier = self.token_w[len(LIST_PREDICATES):, :]
+                    picked = self.choose_action(
+                        self.latent_state, classifier, use_random, eps)
+                    self.update_state(
+                        torch.index_select(classifier, 0, picked))
                     idx = to_num(picked)
                     cur_node = ExprNode(LIST_OP[idx])
-                    cur_node.children.append( self.recursive_decode(env, lv + 1, use_random, eps) )
-                    cur_node.children.append( self.recursive_decode(env, lv + 1, use_random, eps) )
-                else: # leaf const/var node
+                    cur_node.children.append(
+                        self.recursive_decode(env, lv + 1, use_random, eps))
+                    cur_node.children.append(
+                        self.recursive_decode(env, lv + 1, use_random, eps))
+                else:  # leaf const/var node
                     self.cur_token_used += 2 ** (MAX_DEPTH - lv) - 1
-                    cur_node = self.choose_operand(env, self.var_const_embedding, use_random, eps)
+                    cur_node = self.choose_operand(
+                        env, self.var_const_embedding, use_random, eps)
                     self.cur_token_used += 1
-            else: # can only choose variable or const
-                cur_node = self.choose_operand(env, self.var_const_embedding, use_random, eps)
+            else:  # can only choose variable or const
+                cur_node = self.choose_operand(
+                    env, self.var_const_embedding, use_random, eps)
 
-                self.cur_token_used += 1 # it is a leaf
+                self.cur_token_used += 1  # it is a leaf
 
         return cur_node
 
     def forward(self, env, node_embedding, use_random, eps=0.05):
         state_embedding = self.embed_tree(node_embedding, env.root)
         self.latent_state = state_embedding
-        est = self.value_pred_w2( F.relu( self.value_pred_w1(state_embedding) ) )
+        est = self.value_pred_w2(F.relu(self.value_pred_w1(state_embedding)))
 
         self.nll = 0.0
         self.cur_token_used = 0
         subexpr_node = None
-        
-        self.variable_embedding = node_embedding[0 : env.num_vars(), :]
-        self.var_const_embedding = node_embedding[0 : env.num_vars() + env.num_consts(), :]
+
+        self.variable_embedding = node_embedding[0: env.num_vars(), :]
+        self.var_const_embedding = node_embedding[0: env.num_vars(
+        ) + env.num_consts(), :]
 
         self.update_state(self.or_embedding)
 
         subexpr_node = self.recursive_decode(env, 0, use_random, eps)
 
         return None, subexpr_node, self.nll, est, self.latent_state
+
 
 class AssertAwareTreeLSTMDecoder(AssertAwareDecoder):
     def __init__(self, latent_dim):
@@ -287,6 +315,7 @@ class AssertAwareTreeLSTMDecoder(AssertAwareDecoder):
         init_embedding = self.get_init_embedding(node_embedding, root)
         return self.tree_embed(node_embedding, init_embedding, root)
 
+
 class AssertAwareRNNDecoder(AssertAwareDecoder):
     def __init__(self, latent_dim):
         super(AssertAwareRNNDecoder, self).__init__(latent_dim)
@@ -296,8 +325,7 @@ class AssertAwareRNNDecoder(AssertAwareDecoder):
         if root is None:
             return init_embedding
         else:
-            return self.latent_state + init_embedding 
-
+            return self.latent_state + init_embedding
 
 
 precedence_order = [("(", ")"), Z3_OP, Z3_CMP, "||", "&&"]
@@ -322,7 +350,7 @@ def lowerPrecedence(op1, op2):
     return True
 
 
-def genExprTree(ruleset : dict, rule : str, ind = -1):
+def genExprTree(ruleset: dict, rule: str, ind=-1):
     rules = ruleset[rule]
     if len(rules) > 1 and ind == -1:
         return InvariantTreeNode("", rule)
@@ -334,28 +362,29 @@ def genExprTree(ruleset : dict, rule : str, ind = -1):
     assert ind < len(rules)
 
     node = InvariantTreeNode("", rule)
-    
+
     if len(rules[ind]) == 1 and rules[ind][0] not in ruleset:
         node.name = rules[ind][0]
         return node
-    
+
     elem_list = []
-    
+
     for element in rules[ind]:
         if element in ruleset:
             elem_list.append(genExprTree(ruleset, element))
         else:
             elem_list.append(InvariantTreeNode(element))
-        
+
     node.children = elem_list
-    
+
     if node.name == "" and len(node.children) == 1:
         node = node.children[0]
 
     return node
 
+
 class InvariantTreeNode(ExprNode):
-    def __init__(self, pg_node, rule = None):
+    def __init__(self, pg_node, rule=None):
         super(InvariantTreeNode, self).__init__(pg_node)
         self.rule = rule
         self.expanded = None
@@ -375,7 +404,7 @@ class InvariantTreeNode(ExprNode):
                     pass
                 else:
                     node.children.append(x)
-        return node        
+        return node
 
     def __repr__(self):
         if self.name == "" and self.rule is not None:
@@ -384,6 +413,7 @@ class InvariantTreeNode(ExprNode):
             else:
                 return " ".join(["(" + str(x) + ")" if len(x.children) > 0 else str(x) for x in self.children])
         return super(InvariantTreeNode, self).__repr__()
+
     def __str__(self):
         if self.name == "" and self.rule is not None:
             if len(self.children) == 0:
@@ -395,7 +425,8 @@ class InvariantTreeNode(ExprNode):
     def expr_str(self):
         if self.name == "" and self.rule is not None:
             if len(self.children) != 0:
-                tmp_list = [" ( " + x.expr_str() + " ) " if len(x.children) > 0 and x.expr_str() != "" else x.expr_str() for x in self.children]
+                tmp_list = [" ( " + x.expr_str() + " ) " if len(x.children) >
+                            0 and x.expr_str() != "" else x.expr_str() for x in self.children]
                 expr_list = []
                 removed_bin = False
                 for i in range(len(tmp_list) - 1, -1, -1):
@@ -417,8 +448,8 @@ class InvariantTreeNode(ExprNode):
             else:
                 return ""
         return self.name
-    
-    def to_expr_node(self, program_graph : ProgramGraph):
+
+    def to_expr_node(self, program_graph: ProgramGraph):
         expr_str = self.expr_str().split()
         infix = []
         for p in expr_str:
@@ -471,7 +502,7 @@ class InvariantTreeNode(ExprNode):
                 if not child.complete_expr():
                     return False
             return True
-    
+
     def check_rep_pred(self):
         if self.name == "":
             if self.rule == "p":
@@ -496,6 +527,7 @@ class InvariantTreeNode(ExprNode):
         else:
             return False
 
+
 def fully_expanded_node(node):
     if node.name == "" and node.rule is not None:
         if node.rule == "p":
@@ -513,6 +545,7 @@ def fully_expanded_node(node):
     else:
         return True
 
+
 class GeneralDecoder(AssertAwareDecoder):
     def embed_tree(self, node_embedding, root):
         init_embedding = self.get_init_embedding(node_embedding, root)
@@ -524,28 +557,34 @@ class GeneralDecoder(AssertAwareDecoder):
         self.start = "p"
         self.ruleset = RULESET
 
-        self.top_act_w = Parameter(torch.Tensor(sum([len(self.ruleset[rule]) for rule in self.ruleset]), latent_dim))
-        self.char_embedding = nn.Embedding(sum([len(self.ruleset[rule]) for rule in self.ruleset]), latent_dim)
+        self.top_act_w = Parameter(torch.Tensor(
+            sum([len(self.ruleset[rule]) for rule in self.ruleset]), latent_dim))
+        self.char_embedding = nn.Embedding(
+            sum([len(self.ruleset[rule]) for rule in self.ruleset]), latent_dim)
         self.tree_embed = LogicEncoder(self.latent_dim)
         weights_init(self)
 
         self.root = genExprTree(self.ruleset, "p")
-        
+
     def forward(self, env, node_embedding, use_random, eps=0.05):
         self.root = genExprTree(self.ruleset, "p")
         state_embedding = self.embed_tree(node_embedding, env.root)
         self.latent_state = state_embedding
-        self.est = self.value_pred_w2( F.relu( self.value_pred_w1(state_embedding) ) )
+        self.est = self.value_pred_w2(
+            F.relu(self.value_pred_w1(state_embedding)))
 
         self.nll = 0.0
         self.cur_token_used = 0
         subexpr_node = None
 
-        self.variable_embedding = node_embedding[0 : env.num_vars(), :]
-        self.var_const_embedding = node_embedding[0 : env.num_vars() + env.num_consts(), :]
-        self.const_embedding = node_embedding[env.num_vars() : env.num_vars() + env.num_consts(), :]
+        self.variable_embedding = node_embedding[0: env.num_vars(), :]
+        self.var_const_embedding = node_embedding[0: env.num_vars(
+        ) + env.num_consts(), :]
+        self.const_embedding = node_embedding[env.num_vars(
+        ): env.num_vars() + env.num_consts(), :]
 
-        self.root = self.updateTreeWRTNode(env, self.root, node_embedding, use_random, eps)
+        self.root = self.updateTreeWRTNode(
+            env, self.root, node_embedding, use_random, eps)
 
         return None, self.root, self.nll, self.est, self.latent_state
 
@@ -556,9 +595,9 @@ class GeneralDecoder(AssertAwareDecoder):
             s = 0
             for rule in self.ruleset:
                 if rule == node.rule:
-                    w = self.top_act_w[s : s + len(self.ruleset[rule]), :]
+                    w = self.top_act_w[s: s + len(self.ruleset[rule]), :]
                     break
-                
+
                 s += len(self.ruleset[rule])
 
             ind = self.choose_action(self.latent_state, w, use_random, eps)
@@ -571,38 +610,44 @@ class GeneralDecoder(AssertAwareDecoder):
                     break
 
             embedidx += ind
-            
+
             node = genExprTree(self.ruleset, node.rule, ind)
             self.update_state(self.char_embedding(embedidx))
-            
+
             if node.name in ("", "var", "const"):
                 return self.updateTreeWRTNode(env, node, node_embedding, use_random, eps, depth+1)
             else:
                 return node
-                
+
         elif node.name == "" and node.rule is not None and node.rule == "var":
             var_list = [var[0] for var in self.ruleset["var"]]
-            
-            node = self.choose_var(env, self.variable_embedding, use_random, eps, var_list)
+
+            node = self.choose_var(
+                env, self.variable_embedding, use_random, eps, var_list)
             node.rule = "var"
             return node
         elif node.name == "var":
             var_list = []
-            node = self.choose_var(env, self.variable_embedding, use_random, eps, var_list)
+            node = self.choose_var(
+                env, self.variable_embedding, use_random, eps, var_list)
             node.rule = "var"
             return node
         elif (node.name == "" and node.rule is not None):
             total_update = False
             for i in range(len(node.children)):
                 if node.children[i].name == "const" or node.children[i].name == "var" or (node.children[i].name == "" and node.children[i].rule == "var"):
-                    node.children[i] = self.updateTreeWRTNode(env, node.children[i], node_embedding, use_random, eps, depth+1)
+                    node.children[i] = self.updateTreeWRTNode(
+                        env, node.children[i], node_embedding, use_random, eps, depth+1)
                 elif node.children[i].rule is not None:
-                    node.children[i] = self.updateTreeWRTNode(env, node.children[i], node_embedding, use_random, eps, depth+1)
-                    
+                    node.children[i] = self.updateTreeWRTNode(
+                        env, node.children[i], node_embedding, use_random, eps, depth+1)
+
             return node
         elif node.name == "const":
-            const_picked = env.num_vars() + self.choose_action(self.latent_state, self.const_embedding, True, 0.05)
-            self.update_state(torch.index_select(self.var_const_embedding, 0, const_picked))
+            const_picked = env.num_vars() + self.choose_action(self.latent_state,
+                                                               self.const_embedding, True, 0.05)
+            self.update_state(torch.index_select(
+                self.var_const_embedding, 0, const_picked))
             node = InvariantTreeNode(env.pg_nodes()[const_picked], "const")
             return node
         elif node.name == "" and node.rule is not None and node.rule == "const":
@@ -615,9 +660,11 @@ class GeneralDecoder(AssertAwareDecoder):
                 selector = self.const_embedding[const_indices, :]
             else:
                 selector = self.const_embedding
-            
-            const_picked = env.num_vars() + self.choose_action(self.latent_state, self.const_embedding, True, 0.05)
-            self.update_state(torch.index_select(self.var_const_embedding, 0, const_picked))
+
+            const_picked = env.num_vars() + self.choose_action(self.latent_state,
+                                                               self.const_embedding, True, 0.05)
+            self.update_state(torch.index_select(
+                self.var_const_embedding, 0, const_picked))
             node = InvariantTreeNode(env.pg_nodes()[const_picked], "const")
             return node
         else:
@@ -627,10 +674,11 @@ class GeneralDecoder(AssertAwareDecoder):
         var_list = env.available_var_indices(var_list)
         selector = node_embedding[var_list, :]
 
-        picked = self.choose_action(self.latent_state, selector, use_random, eps)
+        picked = self.choose_action(
+            self.latent_state, selector, use_random, eps)
         self.update_state(torch.index_select(selector, 0, picked))
 
         idx = to_num(picked)
-        idx = var_list[idx]        
+        idx = var_list[idx]
         env.update_used_core_var(env.pg_nodes()[idx])
-        return InvariantTreeNode(env.pg_nodes()[ idx ])
+        return InvariantTreeNode(env.pg_nodes()[idx])

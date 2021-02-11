@@ -113,7 +113,7 @@ if __name__ == '__main__':
                 loss = total_loss / cmd_args.rl_batchsize
                 loss.backward()
                 optimizer.step()
-                pbar.set_description('avg reward: %.4f' %
+                pbar.set_description('avg reward so far : %.5f' %
                                      (acc_reward / (k + 1)))
 
             g = GraphSample(graph, vc_list, node_type_dict)
@@ -123,6 +123,7 @@ if __name__ == '__main__':
                 _, _, _, root, trivial = rollout(
                     g, node_embedding, decoder, use_random=True, eps=0.0)
                 if trivial == False:
+                    print("Example is not trivial")
                     break
 
             print('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f' % (
@@ -130,7 +131,7 @@ if __name__ == '__main__':
             print("best_reward:", best_reward, ", best_root:", best_root)
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
-            with open(f"../../results/predicted_invariant.txt", mode="a") as file:
+            with open(f"{os.environ['PWD']}/results/invresults.txt", mode="a") as file:
                 file.write('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f \n' % (
                     epoch, acc_reward / 100.0, root, boogie_result(g, root)))
                 file.write("best_reward : %d, best_root :  %s \n" % (best_reward,
