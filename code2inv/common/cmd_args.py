@@ -63,7 +63,7 @@ cmd_opt.add_argument('-learning_rate', default=0.001,
 
 cmd_opt.add_argument('-op_file', default=None, type=str, help='Output File')
 
-# for testing purposes- saves smt version of generated invariant
+# for testing purposes - saves smt version of generated invariant
 cmd_opt.add_argument('-save_smt', default=None, type=str,
                      help='save smt version when invariant generated')
 

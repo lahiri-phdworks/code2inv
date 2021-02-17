@@ -45,6 +45,7 @@ python -u train_test.py \
     -inv_grammar $(sed "1q;d" $grammar_file)\
     -inv_checker $(sed "2q;d" $grammar_file)\
     -var_format "$(sed '3q;d' $grammar_file)"\
+    -ctx gpu\
     2>&1 | tee $log_file
 
 #    -init_model_dump $save_dir/epoch-latest \

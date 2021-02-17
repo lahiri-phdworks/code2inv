@@ -36,19 +36,29 @@ epoch: 17, average reward: -0.2131, Random: ( ( sum < ( n + n ) && n >= ( sum + 
 best_reward : -1, best_root :  ( ( sum < ( n + n ) || n >= ( sum + n ) ) && ( n >= ( 6 + 6 ) || i > ( sum * sum ) ) ) 
 epoch: 18, average reward: -0.2220, Random: ( ( sum < ( n + n ) && n >= ( sum * sum ) ) || n >= ( sum * sum ) || ( i > ( sum * sum ) && n >= ( sum * sum ) ) ), result_r: -1.6365 
 best_reward : -1, best_root :  ( sum < ( n + n ) || ( n >= ( sum + sum ) && i > ( 0 - sum ) ) || i > ( 2 - y ) ) 
-epoch: 19, average reward: -0.1858, Random: ( ( sum < ( n + n ) && n >= ( sum * sum ) ) || n >= ( sum * sum ) || i > ( sum * sum ) ), result_r: -1.6525 
-best_reward : -1, best_root :  ( sum < ( n + n ) && n >= ( i2 * sum ) && i > ( sum * sum ) ) 
-epoch: 20, average reward: -0.2003, Random: ( sum < ( n + n ) && n >= ( sum * sum ) && ( i > ( sum * sum ) || n >= ( sum * sum ) ) ), result_r: -1.6525 
-best_reward : -1, best_root :  ( sum >= ( sum * sum ) && ( n >= ( sum * sum ) || i > ( sum * 6 ) ) && ( i > ( sum * sum ) || n > ( sum + n ) ) ) 
-epoch: 21, average reward: -0.1731, Random: ( sum < ( n + n ) ), result_r: -1.6729 
-best_reward : -1, best_root :  ( sum < ( n + n ) && ( n >= ( sum * sum ) || i > ( sum * sum ) ) && i > ( sum * y ) ) 
-epoch: 22, average reward: -0.2345, Random: ( ( sum < ( n + n ) && n >= ( sum * sum ) ) ), result_r: -1.6525 
-best_reward : -1, best_root :  ( ( i < ( n + n ) && n >= ( sum - sum ) ) || n >= ( sum * sum ) ) 
-epoch: 23, average reward: -0.1796, Random: ( ( sum < ( n + n ) && n >= ( sum * sum ) ) || n >= ( sum * sum ) ), result_r: -1.6525 
-best_reward : -1, best_root :  ( sum < ( n + n ) && n >= ( sum * sum ) && i > sum ) 
-epoch: 24, average reward: -0.2489, Random: ( ( sum < ( n + n ) && n >= ( sum * sum ) ) || ( n >= ( sum * sum ) && i > ( sum + n ) ) ), result_r: -1.6525 
-best_reward : -1, best_root :  ( ( sum <= ( i2 * sum ) || n >= ( sum * sum ) ) ) 
-epoch: 25, average reward: -0.2066, Random: ( sum < ( n + n ) && n >= ( sum * sum ) ), result_r: -1.6525 
-best_reward : -1, best_root :  ( ( sum < ( i2 + n ) || n >= ( sum * sum ) ) && ( n >= ( sum * y ) || i > ( sum + sum ) ) && i > ( sum * sum ) ) 
-epoch: 26, average reward: -0.2104, Random: ( ( sum < ( n + n ) || n >= ( sum * sum ) ) ), result_r: -1.6729 
-best_reward : -1, best_root :  ( ( sum < ( n + n ) || n >= ( sum * sum ) ) && n >= ( sum * sum ) && ( i > ( sum * y ) || n < ( n - n ) ) ) 
+epoch: 0, average reward: -0.5575, Random: ( ( y == ( 2 - i2 ) || i < ( 1 + 0 ) ) && ( n < ( n - 0 ) || y >= n ) && ( i2 == ( 2 - i ) ) ), result_r: -1.9383 
+best_reward : 0, best_root :  ( ( i >= 1 ) ) 
+epoch: 1, average reward: -0.5539, Random: ( ( sum < ( n + n ) ) && ( n >= 1 ) && ( i <= ( n - 2 ) || y > 2 ) ), result_r: -2.0433 
+best_reward : -1, best_root :  ( ( y >= ( 2 - 1 ) || n == ( 1 + 2 ) ) && ( n >= 1 ) ) 
+epoch: 2, average reward: -0.5131, Random: ( ( i2 > 2 || n == 1 ) && ( sum == 1 ) && ( y <= ( n - 2 ) || i <= ( n - 2 ) ) ), result_r: -2.0200 
+best_reward : -1, best_root :  ( ( y >= 1 ) && ( i > ( 1 - 1 ) ) ) 
+epoch: 3, average reward: -0.4924, Random: ( ( n <= n ) ), result_r: -2.0200 
+best_reward : -1, best_root :  ( ( i < ( n + n ) || i2 >= 1 ) ) 
+epoch: 4, average reward: -0.5522, Random: ( ( y >= ( 2 + n ) ) ), result_r: -2.3303 
+best_reward : -1, best_root :  ( ( i < ( n + n ) || n >= ( 2 - y ) ) ) 
+epoch: 5, average reward: -0.4728, Random: ( ( y >= ( 2 - i2 ) || n >= ( 2 + n ) ) && ( n >= ( 1 + 6 ) ) ), result_r: -2.0200 
+best_reward : -1, best_root :  ( ( n == ( sum - 1 ) || n <= ( n + 6 ) ) && ( n >= ( 2 - y ) || n >= ( 2 - i2 ) ) ) 
+epoch: 6, average reward: -0.4373, Random: ( ( n >= ( 2 - y ) ) ), result_r: -1.6770 
+best_reward : -1, best_root :  ( ( i2 >= 1 || n >= ( 2 - y ) ) ) 
+epoch: 7, average reward: -0.4170, Random: ( ( y >= ( 6 - y ) || n >= 1 ) && ( n >= 1 || i2 >= ( 2 - i ) ) ), result_r: -1.6280 
+best_reward : -1, best_root :  ( ( i2 > ( 2 - 2 ) || n >= ( 2 - y ) ) ) 
+epoch: 8, average reward: -0.4134, Random: ( ( y < ( n + 2 ) || n >= ( 0 - i ) ) ), result_r: -1.8240 
+best_reward : -1, best_root :  ( ( y >= ( 2 - y ) || i2 >= 1 ) && ( y >= ( 2 - y ) || n < ( 6 + 6 ) ) && ( i >= 1 ) ) 
+epoch: 9, average reward: -0.3806, Random: ( ( sum < ( 6 + n ) || n >= 1 ) && ( n >= 1 ) ), result_r: -1.6280 
+best_reward : -1, best_root :  ( ( sum < ( sum + n ) ) && ( n >= 1 || sum >= ( 2 - i ) ) ) 
+epoch: 0, average reward: -0.5575, Random: ( ( y == ( 2 - i2 ) || i < ( 1 + 0 ) ) && ( n < ( n - 0 ) || y >= n ) && ( i2 == ( 2 - i ) ) ), result_r: -1.9383 
+best_reward : 0, best_root :  ( ( i >= 1 ) ) 
+epoch: 0, average reward: -0.5575, Random: ( ( y == ( 2 - i2 ) || i < ( 1 + 0 ) ) && ( n < ( n - 0 ) || y >= n ) && ( i2 == ( 2 - i ) ) ), result_r: -1.9383 
+best_reward : 0, best_root :  ( ( i >= 1 ) ) 
+epoch: 0, average reward: -0.5575, Random: ( ( y == ( 2 - i2 ) || i < ( 1 + 0 ) ) && ( n < ( n - 0 ) || y >= n ) && ( i2 == ( 2 - i ) ) ), result_r: -1.9383 
+best_reward : 0, best_root :  ( ( i >= 1 ) ) 

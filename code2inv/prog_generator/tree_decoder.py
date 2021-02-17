@@ -73,7 +73,7 @@ class IDecoder(nn.Module):
                 self.latent_state, self.variable_embedding, use_random, eps)
             self.update_state(torch.index_select(
                 self.variable_embedding, 0, picked))
-            left_node = ExprNode(pg_node_list[picked.data.cpu()[0]])
+            left_node = ExprNode(pg_node_list[picked.data.gpu()[0]])
 
             # recursively construct right child
             right_node = self.recursive_decode(
@@ -83,7 +83,7 @@ class IDecoder(nn.Module):
             w = self.token_w[0: len(LIST_PREDICATES), :]
             picked = self.choose_action(self.latent_state, w, use_random, eps)
             self.update_state(self.char_embedding(picked))
-            cur_node = ExprNode(LIST_PREDICATES[picked.data.cpu()[0]])
+            cur_node = ExprNode(LIST_PREDICATES[picked.data.gpu()[0]])
             cur_node.children.append(left_node)
             cur_node.children.append(right_node)
         else:

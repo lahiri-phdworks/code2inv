@@ -204,6 +204,8 @@ def inv_solver(vc_file: str, inv: str):
         except Exception as e:
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
+    print(f"\nProposed Invariant : (inv) -> {inv}")
+    print(f"Counter Example : (pre, inv, post) -> {res}")
     return res
 
 
