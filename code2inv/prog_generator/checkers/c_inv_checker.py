@@ -130,6 +130,7 @@ def inv_checker(vc_file: str, inv: str, assignments):
 
 
 def inv_solver(vc_file: str, inv: str):
+    print(f"\nProposed Invariant : (inv) -> {inv}")
     inv = inv.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
     b = io.StringIO(inv)
@@ -204,7 +205,6 @@ def inv_solver(vc_file: str, inv: str):
         except Exception as e:
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
-    print(f"\nProposed Invariant : (inv) -> {inv}")
     print(f"Counter Example : (pre, inv, post) -> {res}")
     return res
 
