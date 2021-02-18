@@ -2,6 +2,7 @@ import z3
 import sys
 import tokenize
 import io
+import os
 import logging
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
@@ -130,7 +131,6 @@ def inv_checker(vc_file: str, inv: str, assignments):
 
 
 def inv_solver(vc_file: str, inv: str):
-    print(f"\nProposed Invariant : (inv) -> {inv}")
     inv = inv.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
     b = io.StringIO(inv)
@@ -205,7 +205,12 @@ def inv_solver(vc_file: str, inv: str):
         except Exception as e:
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
-    print(f"Counter Example : (pre, inv, post) -> {res}")
+
+        # COMMENT : Dump proposed invariants and counter-examples.
+        with open(f"{os.environ['PWD']}/results/log_cexs_{os.environ['INVPROCESSFILE']}.txt", mode="a") as file:
+            file.write(f"\nProposed Invariant : (inv) -> {inv}")
+            file.write(f"\nCounter Example : (pre, inv, post) -> {res}")
+
     return res
 
 

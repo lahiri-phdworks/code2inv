@@ -131,7 +131,6 @@ class CounterExample(object):
                                     for k in sorted(self.config[0].keys())]) + ";"
             res += ",".join(["%s=%s" % (k, self.config[1][k])
                              for k in sorted(self.config[1].keys())]) + "}"
-        print(res)
         return res
 
     def parse_boogie_ice(self, src, ice_str):

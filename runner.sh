@@ -9,4 +9,4 @@ then
 fi
 
 export INVPROCESSFILE=$1
-./run_solver_file.sh ../../benchmarks/C_instances/c_graph/${INVPROCESSFILE}.c.json ../../benchmarks/C_instances/c_smt2/${INVPROCESSFILE}.c.smt specs/c_spec -o results/inv_result_${INVPROCESSFILE}.txt
+./run_solver_file.sh ../../benchmarks/C_instances/c_graph/${INVPROCESSFILE}.c.json ../../benchmarks/C_instances/c_smt2/${INVPROCESSFILE}.c.smt specs/c_nl_spec -o results/inv_result_${INVPROCESSFILE}.txt

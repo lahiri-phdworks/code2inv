@@ -131,7 +131,7 @@ if __name__ == '__main__':
             print("best_reward:", best_reward, ", best_root:", best_root)
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
-            with open(f"{os.environ['PWD']}/results/invresults.txt", mode="a") as file:
+            with open(f"{os.environ['PWD']}/results/log_inv_{os.environ['INVPROCESSFILE']}.txt", mode="a") as file:
                 file.write('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f \n' % (
                     epoch, acc_reward / 100.0, root, boogie_result(g, root)))
                 file.write("best_reward : %d, best_root :  %s \n" % (best_reward,
