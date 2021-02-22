@@ -132,10 +132,10 @@ if __name__ == '__main__':
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
             with open(f"{os.environ['PWD']}/results/log_inv_{os.environ['INVPROCESSFILE']}.txt", mode="a") as file:
-                file.write('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f \n' % (
-                    epoch, acc_reward / 100.0, root, boogie_result(g, root)))
-                file.write("best_reward : %d, best_root :  %s \n" % (best_reward,
+                file.write("best_root :  %s \nbest_reward : %d\n" % (best_reward,
                                                                      best_root))
+                file.write('epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \n' % (
+                    epoch, acc_reward / 100.0, root, boogie_result(g, root)))
 
             stat_counter.report_global()
             if cmd_args.save_dir is not None:

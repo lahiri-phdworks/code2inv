@@ -302,6 +302,7 @@ def get_z3_ice(tpl, expr_root):
     if cmd_args.input_vcs is not None:
         input_vcs = cmd_args.input_vcs
     else:
+        # COMMENT : Only if we dont pass a input smt file.
         # very hacky solution for training with the pickles which needs to be improved
         vc_content = ""
         for _t in range(len(tpl)):
@@ -327,8 +328,10 @@ def get_z3_ice(tpl, expr_root):
 
             input_vcs = "tmp_vc.smt2"
     inv = str(expr_root)
-    sol = z3.Solver()
-    sol.set(auto_config=False)
+
+    # COMMENT : Not needed.
+    # sol = z3.Solver()
+    # sol.set(auto_config=False)
 
     keys = ICE_KEYS
     kinds = ["pre", "loop", "post"]
@@ -337,8 +340,9 @@ def get_z3_ice(tpl, expr_root):
     if cmd_args.inv_reward_type == 'any':
         np.random.shuffle(order)
 
+    # COMMENT : Counter Examples used here
     cexs = checker_module.inv_solver(input_vcs, inv)
-    # print("CEX", cexs)
+
     res = []
     for i in order:
         if cexs[i] == "EXCEPT":
@@ -360,6 +364,10 @@ def get_z3_ice(tpl, expr_root):
     if len(res) == 0:
         return (1, None, None)
     return res[0]
+
+
+def get_fuzz_ice():
+    pass
 
 
 def get_boogie_ice(tpl, expr_root):
