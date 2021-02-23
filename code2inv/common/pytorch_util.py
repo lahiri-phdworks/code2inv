@@ -12,8 +12,10 @@ import torch.nn.functional as F
 import torch.optim as optim
 from tqdm import tqdm
 
+
 def get_torch_version():
     return float('.'.join(torch.__version__.split('.')[0:2]))
+
 
 def glorot_uniform(t):
     if len(t.size()) == 2:
@@ -28,6 +30,7 @@ def glorot_uniform(t):
 
     limit = np.sqrt(6.0 / (fan_in + fan_out))
     t.uniform_(-limit, limit)
+
 
 def orthogonal_gru(t):
     assert len(t.size()) == 2
@@ -52,6 +55,7 @@ def orthogonal_gru(t):
     t[hidden_dim:2*hidden_dim, :] = x1
     t[2*hidden_dim:3*hidden_dim, :] = x2
 
+
 def _param_init(m):
     if isinstance(m, Parameter):
         glorot_uniform(m.data)
@@ -62,17 +66,18 @@ def _param_init(m):
         print('a Linear inited')
     elif isinstance(m, nn.GRU):
         for k in range(m.num_layers):
-            getattr(m,'bias_ih_l%d'%k).data.zero_()
-            getattr(m,'bias_hh_l%d'%k).data.zero_()
-            glorot_uniform(getattr(m,'weight_ih_l%d'%k).data)
-            orthogonal_gru(getattr(m,'weight_hh_l%d'%k).data)
+            getattr(m, 'bias_ih_l%d' % k).data.zero_()
+            getattr(m, 'bias_hh_l%d' % k).data.zero_()
+            glorot_uniform(getattr(m, 'weight_ih_l%d' % k).data)
+            orthogonal_gru(getattr(m, 'weight_hh_l%d' % k).data)
         print('a GRU inited')
     elif isinstance(m, nn.GRUCell):
-        getattr(m,'bias_ih').data.zero_()
-        getattr(m,'bias_hh').data.zero_()
-        glorot_uniform(getattr(m,'weight_ih').data)
-        orthogonal_gru(getattr(m,'weight_hh').data)        
+        getattr(m, 'bias_ih').data.zero_()
+        getattr(m, 'bias_hh').data.zero_()
+        glorot_uniform(getattr(m, 'weight_ih').data)
+        orthogonal_gru(getattr(m, 'weight_hh').data)
         print('a GRUCell inited')
+
 
 def weights_init(m):
     for p in m.modules():
@@ -83,8 +88,9 @@ def weights_init(m):
             _param_init(p)
 
     for name, p in m.named_parameters():
-        if not '.' in name: # top-level parameters
+        if not '.' in name:  # top-level parameters
             _param_init(p)
+
 
 class MySpMM(torch.autograd.Function):
 
@@ -95,18 +101,21 @@ class MySpMM(torch.autograd.Function):
         return torch.mm(sp_mat, dense_mat)
 
     @staticmethod
-    def backward(ctx, grad_output):        
+    def backward(ctx, grad_output):
         sp_mat, dense_mat = ctx.saved_variables
         grad_matrix1 = grad_matrix2 = None
 
         assert not ctx.needs_input_grad[0]
         if ctx.needs_input_grad[1]:
-            grad_matrix2 = Variable(torch.mm(sp_mat.data.t(), grad_output.data))
-        
+            grad_matrix2 = Variable(
+                torch.mm(sp_mat.data.t(), grad_output.data))
+
         return grad_matrix1, grad_matrix2
+
 
 def gnn_spmm(sp_mat, dense_mat):
     return MySpMM.apply(sp_mat, dense_mat)
+
 
 def to_num(x):
     version = get_torch_version()

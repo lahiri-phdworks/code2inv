@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int i;
   int sn;
@@ -6,15 +7,14 @@ int main() {
   (sn = 0);
   (i = 1);
   // loop body
-  while ((i <= 8)) {
+  while ((i <= 8))
+  {
     {
-    (i  = (i + 1));
-    (sn  = (sn + 1));
+      (i = (i + 1));
+      (sn = (sn + 1));
     }
-
   }
   // post-condition
-if ( (sn != 0) )
-assert( (sn == 8) );
-
+  if ((sn != 0))
+    assert((sn == 8));
 }
