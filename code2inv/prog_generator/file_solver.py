@@ -109,6 +109,7 @@ if __name__ == '__main__':
                     loss = actor_critic_loss(nll_list, value_list, reward_list)
                     total_loss += loss
 
+                # COMMENT : Typicall training step here.
                 optimizer.zero_grad()
                 loss = total_loss / cmd_args.rl_batchsize
                 loss.backward()
@@ -126,6 +127,7 @@ if __name__ == '__main__':
                     print("Example is not trivial")
                     break
 
+            # COMMENT : Calls to boogie results here.
             print('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f' % (
                 epoch, acc_reward / 100.0, root, boogie_result(g, root)))
             print("best_reward:", best_reward, ", best_root:", best_root)

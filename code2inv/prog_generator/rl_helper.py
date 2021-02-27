@@ -20,7 +20,7 @@ from code2inv.common.ssa_graph_builder import ProgramGraph, GraphNode, ExprNode
 from code2inv.common.constants import *
 from code2inv.common.cmd_args import cmd_args
 from code2inv.common.checker import boogie_result, z3_precheck, z3_precheck_expensive, stat_counter
-from code2inv.prog_generator.tree_decoder import genExprTree, GeneralDecoder, InvariantTreeNode, fully_expanded_node
+from code2inv.prog_generator.tree_decoder import genExprTree, fully_expanded_node, GeneralDecoder, InvariantTreeNode
 checker_module = importlib.import_module(cmd_args.inv_checker)
 
 
@@ -98,6 +98,7 @@ class RLEnv(object):
             return node, False
 
     def step(self, subexpr_node, node_embedding, use_random, eps):
+        # COMMENT : rollout() calls env.step()
         self.use_random = use_random
         reward = 0.0
         self.inv_candidate, updated = self.insert_subexpr(
@@ -113,8 +114,11 @@ class RLEnv(object):
                 if checker_module.is_trivial(cmd_args.input_vcs, str(subexpr_node)):
                     self.trivial_subexpr = True
                 else:
+                    # COMMENT : Generating a compound invariant is rewarding.
                     reward += 0.5
             except Exception as e:
+                # COMMENT : Exception is also rewarding since
+                # it must be complex invariant and bailed out.
                 reward += 0.5
 
         if self.trivial_subexpr:
@@ -132,6 +136,10 @@ class RLEnv(object):
                     reward += -6.0
             else:
                 reward += -4.0
+
+        # COMMENT : Log each step()
+        tqdm.write(
+            f"Immediate Reward : {reward}, Trivial Expr : {self.trivial_subexpr}")
         return reward, self.trivial_subexpr
 
     def available_var_indices(self, list_vars):
@@ -159,6 +167,9 @@ def rollout(g, node_embedding, decoder, use_random, eps):
     reward_list = []
     trivial = False
     env = RLEnv(g, decoder)
+
+    # COMMENT
+    tqdm.write("Roll-Out in Action")
     while not env.is_finished():
         try:
             and_or, subexpr_node, nll, vs, latent_state = decoder(

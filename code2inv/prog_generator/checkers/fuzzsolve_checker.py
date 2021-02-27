@@ -2,27 +2,29 @@
 # then use it to test the invariants.
 
 # AFL/fuzzsolver module.
-import os
 import sys
+import time
+import tokenize
+import io
+import os
+from tqdm import tqdm
+from code2inv.prog_generator.chc_tools.chctools.horndb import *
+from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from subprocess import run, CalledProcessError
 
+set_build = False
 pwd = os.path.dirname(__file__)
-example = sys.argv[1]
-timeout = sys.argv[2]
+example = os.environ['INVPROCESSFILE']
+timeout = 15
 
-filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
+filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
 fuzzbase = os.path.join(pwd, os.pardir, f"fuzz")
 
 
 def get_c_code(inv: str):
-    # Parse SMT and convert to C code.
-
-    # COMMENT : Just using existing proposed INV to check.
-    with open(dump_results, mode="r") as fileptr:
-        inv_c_code = fileptr.readline().strip().split(":")[1]
-
-    return inv_c_code
+    # TODO : Convert inv to c-code.
+    tqdm.write(f"Invariant -> {repr(inv)}")
 
 
 def inv_checker(model, eval_string_inv: str):
@@ -32,6 +34,8 @@ def inv_checker(model, eval_string_inv: str):
 
 
 def call_fuzzsolver():
+    # TODO : Get counter example model out of afl "crash" case.
+    # TODO : Try out for "ssum" case and then extract model for counter examples here.
     try:
         print(f"Running AFL on Example {example}.c")
         output = run(
@@ -40,7 +44,8 @@ def call_fuzzsolver():
     except CalledProcessError as err:
         print(f"Fuzzer Error : {err}")
     else:
-        print(f"Return : {output.returncode}")
+        print(f"Fuzzer Return : {output.returncode}")
+    return output.returncode
 
 
 def init_fuzzbase():
@@ -52,7 +57,7 @@ def init_fuzzbase():
     except CalledProcessError as err:
         print(f"Build Error : {err}")
     else:
-        print(f"Return : {output.returncode}")
+        print(f"Build Return : {output.returncode}")
 
 
 def dump_template(file: str, inv_code: str):
@@ -66,12 +71,20 @@ def process_crashes():
 
 
 def inv_solver(vc_file: str, inv: str):
-    inv_code = get_c_code(str)
-    dump_template(filepath, inv_code)
+    # COMMENT : Gets called in each env.step() iteration.
+    # COMMENT : None of these functions must fail here.
+    tqdm.write("fuzz-inv solver called")
+
+    get_c_code(str)
     init_fuzzbase()
-    call_fuzzsolver()
-    process_crashes()
-    return [None, None, None]
+    res = call_fuzzsolver()
+    vcexspath = os.path.join(os.path.dirname(
+        __file__), os.pardir, "results", f"log_cexs_{os.environ['INVPROCESSFILE']}.txt")
+    with open(vcexspath, mode="a") as file:
+        file.write(f"\nProposed Invariant : (inv) -> {inv}")
+        file.write(
+            f"\nCounter Example : (pre, inv, post) -> {[None, None, None]}")
+    return [res, res, res]
 
 
 if __name__ == '__main__':

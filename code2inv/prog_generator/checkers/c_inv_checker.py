@@ -207,7 +207,9 @@ def inv_solver(vc_file: str, inv: str):
             res.append("EXCEPT")
 
         # COMMENT : Dump proposed invariants and counter-examples.
-        with open(f"{os.environ['PWD']}/results/log_cexs_{os.environ['INVPROCESSFILE']}.txt", mode="a") as file:
+        vcexspath = os.path.join(os.path.dirname(
+            __file__), "results", f"log_cex_{os.environ['INVPROCESSFILE']}.txt")
+        with open(vcexspath, mode="a") as file:
             file.write(f"\nProposed Invariant : (inv) -> {inv}")
             file.write(f"\nCounter Example : (pre, inv, post) -> {res}")
 
