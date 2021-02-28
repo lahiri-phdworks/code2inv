@@ -9,6 +9,7 @@ from pysmt.smtlib.parser import SmtLibZ3Parser, SmtLibCommand
 import pysmt.solvers.z3 as pyz3
 import traceback
 
+
 def validate_rule(rule, model, db):
     inv_args = {}
     for x in model.get_fn_collection():
@@ -32,7 +33,8 @@ def validate_rule(rule, model, db):
         if not rule.is_query():
             try:
                 eval_term = model.eval(rule.head())
-                inv_args[rule.head().decl().name()].append(rule.head().children())
+                inv_args[rule.head().decl().name()].append(
+                    rule.head().children())
             except:
                 if rule.head().decl().name() == db.get_queries()[0].body()[0].decl().name():
                     eval_term = BoolVal(False)
@@ -42,16 +44,19 @@ def validate_rule(rule, model, db):
         res = s.check()
         return res, s, inv_args
 
+
 def find_inv_fn(db: HornClauseDb):
     inv_fun = []
     for rule in db.get_rules():
         head_name = rule.head().decl().name()
-        
+
         for pred in rule.body():
             pred_name = pred.decl().name()
             if pred_name == head_name:
-                inv_fun.append((pred_name, [ str(x)[:str(x).rfind("_")] for x in pred.children() ]))
+                inv_fun.append(
+                    (pred_name, [str(x)[:str(x).rfind("_")] for x in pred.children()]))
     return inv_fun
+
 
 def load_model_from_smt2_str(smt2_str):
     model = FolModel()
@@ -62,8 +67,9 @@ def load_model_from_smt2_str(smt2_str):
             name = cmd.args[0]
             lmbd = define_fun_to_lambda(parser.env, cmd)
             model[name] = lmbd
-            
+
     return model
+
 
 def inv_checker(vc_file: str, inv: str, assignments):
     try:
@@ -75,7 +81,8 @@ def inv_checker(vc_file: str, inv: str, assignments):
         for rel in db.get_rels():
             if rel.name() == inv_fn[0][0]:
                 for i in range(rel.arity()):
-                    inv_fn_string += "( " + "V" + str(i) + " " + str(rel.domain(i)) + " ) "
+                    inv_fn_string += "( " + "V" + str(i) + \
+                        " " + str(rel.domain(i)) + " ) "
                     assignment_found = False
                     for assignment in assignments:
                         if "V" + str(i) == assignment[0]:
@@ -84,14 +91,15 @@ def inv_checker(vc_file: str, inv: str, assignments):
                             break
                     if not assignment_found:
                         assignment_order.append("1")
-                inv_fn_string += ") " + str(rel.range()) + "\n\t" + inv + "\n)\n"
+                inv_fn_string += ") " + \
+                    str(rel.range()) + "\n\t" + inv + "\n)\n"
                 inv_fn_string += "( assert ( " + rel.name() + " "
-                
+
                 for a in assignment_order:
                     inv_fn_string += str(a) + " "
                 inv_fn_string += ") )\n"
                 break
-        # print(inv_fn_string)        
+        # print(inv_fn_string)
         decl = parse_smt2_string(inv_fn_string)
         sol = Solver()
         sol.add(decl)
@@ -100,22 +108,25 @@ def inv_checker(vc_file: str, inv: str, assignments):
         print("Encountered Exception inv_checker", e)
         return False
 
+
 def inv_solver(vc_file: str, inv: str):
     try:
         db = load_horn_db_from_file(vc_file)
-        
+
         inv_fn = find_inv_fn(db)
-        
+
         tmp_inv = str(inv)
         inv_fn_string = "( define-fun " + inv_fn[0][0] + " ( "
         for rel in db.get_rels():
             if rel.name() == inv_fn[0][0]:
                 for i in range(rel.arity()):
-                    inv_fn_string += "( " + "V" + str(i) + " " + str(rel.domain(i)) + " ) "
-                    
-                inv_fn_string += ") " + str(rel.range()) + "\n\t" + tmp_inv + "\n)\n"
+                    inv_fn_string += "( " + "V" + str(i) + \
+                        " " + str(rel.domain(i)) + " ) "
+
+                inv_fn_string += ") " + \
+                    str(rel.range()) + "\n\t" + tmp_inv + "\n)\n"
                 break
-            
+
         model = load_model_from_smt2_str(inv_fn_string)
 
         res = []
@@ -123,7 +134,7 @@ def inv_solver(vc_file: str, inv: str):
             try:
                 if len(rule.body()) > 0:
                     r, s, inv_args = validate_rule(rule, model, db)
-                    
+
                     inv_fn = list(inv_args.keys())[0]
                     if r == sat:
                         m = s.model()
@@ -146,7 +157,7 @@ def inv_solver(vc_file: str, inv: str):
                         else:
                             m1 = {}
                             idx = 0
-                            
+
                             for arg in inv_args[inv_fn][0]:
                                 val = str(m[arg])
                                 if val != "None":

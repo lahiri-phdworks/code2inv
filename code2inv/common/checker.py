@@ -341,7 +341,7 @@ def get_z3_ice(tpl, expr_root):
         np.random.shuffle(order)
 
     # COMMENT : Counter Examples used here
-    tqdm.write("----------- Checker -----------")
+    # tqdm.write("----------- Checker -----------")
     cexs = checker_module.inv_solver(input_vcs, inv)
 
     res = []

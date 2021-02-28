@@ -169,7 +169,7 @@ def rollout(g, node_embedding, decoder, use_random, eps):
     env = RLEnv(g, decoder)
 
     # COMMENT
-    tqdm.write("Roll-Out in Action")
+    # tqdm.write("Roll-Out in Action")
     while not env.is_finished():
         try:
             and_or, subexpr_node, nll, vs, latent_state = decoder(
