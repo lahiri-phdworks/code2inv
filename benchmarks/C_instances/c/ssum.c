@@ -10,7 +10,9 @@ int main()
     // pre-conditions
     (sum = 0);
     (i = 1);
+    (i2 = 0);
     assume((n > 0));
+    assume((n < 500000));
 
     // loop body
     for (i = 1; i <= n; i++)
