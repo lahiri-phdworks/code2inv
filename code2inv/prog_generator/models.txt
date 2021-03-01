@@ -1,0 +1,4 @@
+
+Model : 
+sum : 0, n : 101, i : 1, y : 0, i2 : 0
+ssum: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/ssum.c:22: check: Assertion `0' failed.

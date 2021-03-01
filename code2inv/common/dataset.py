@@ -19,16 +19,18 @@ class GraphSample(S2VGraph):
         self.sample_index = sample_index
         self.db = db
 
+
 class SeqSample(object):
     def __init__(self, sample_index, db, pg, node_type_dict):
         self.pg = pg
         self.sample_index = sample_index
-        self.db = db        
+        self.db = db
 
         self.token_idx = []
         for t in pg.raw_token_list:
             assert t in node_type_dict
-            self.token_idx.append( node_type_dict[t] )
+            self.token_idx.append(node_type_dict[t])
+
 
 class Dataset(object):
     def __init__(self):
@@ -41,7 +43,7 @@ class Dataset(object):
     def load_pg_list(self, fname):
         with open(cmd_args.data_root + '/graph/' + fname + '.json', 'r') as gf:
             graph_json = json.load(gf)
-            self.pg_list.append( ProgramGraph(graph_json) )
+            self.pg_list.append(ProgramGraph(graph_json))
 
     def setup(self, classname):
         print("running setup")
@@ -57,28 +59,29 @@ class Dataset(object):
                     else:
                         with open(cmd_args.data_root + '/boogie/' + row.strip() + '.bpl.%d' % i, 'r') as gf:
                             tpl.append(gf.read())
-                self.ordered_pre_post.append( tpl )
+                self.ordered_pre_post.append(tpl)
 
         self.build_node_type_dict()
 
         for i in range(len(self.pg_list)):
             g = self.pg_list[i]
-            self.sample_graphs.append( classname(i, self, g, self.node_type_dict) )
- 
+            self.sample_graphs.append(
+                classname(i, self, g, self.node_type_dict))
+
         self.sample_idxes = list(range(len(self.sample_graphs)))
         random.shuffle(self.sample_idxes)
         self.sample_pos = 0
 
     def build_node_type_dict(self):
         self.node_type_dict = {}
-        
+
         for g in self.pg_list:
             for node in g.node_list:
                 if not node.node_type in self.node_type_dict:
                     v = len(self.node_type_dict)
-                    self.node_type_dict[node.node_type] = v        
+                    self.node_type_dict[node.node_type] = v
 
-    def sample_minibatch(self, num_samples, replacement=False):        
+    def sample_minibatch(self, num_samples, replacement=False):
         if cmd_args.single_sample is not None:
             return [self.sample_graphs[cmd_args.single_sample]]
 
@@ -86,7 +89,7 @@ class Dataset(object):
         if replacement:
             for i in range(num_samples):
                 idx = np.random.randint(len(self.sample_graphs))
-                g_list.append( self.sample_graphs[idx] )
+                g_list.append(self.sample_graphs[idx])
         else:
             assert num_samples <= len(self.sample_idxes)
             if num_samples == len(self.sample_idxes):
@@ -97,24 +100,25 @@ class Dataset(object):
                 self.sample_pos = 0
 
             for i in range(self.sample_pos, self.sample_pos + num_samples):
-                g_list.append( self.sample_graphs[ self.sample_idxes[i] ] )
+                g_list.append(self.sample_graphs[self.sample_idxes[i]])
             self.sample_pos == num_samples
 
         return g_list
-    
+
+
 class SeqGraphDataset(Dataset):
     def __init__(self):
         self.pg_list = []
         self.sample_graphs = []
         self.file_names = []
         self.ordered_pre_post = []
-        
+
         self.setup(SeqSample)
 
     def load_pg_list(self, fname):
         with open(cmd_args.data_root + '/token_files/' + fname + '.token', 'r') as gf:
             graph_json = json.load(gf)
-            self.pg_list.append( SeqTokenGraph(graph_json) )
+            self.pg_list.append(SeqTokenGraph(graph_json))
 
     def build_node_type_dict(self):
         self.node_type_dict = {}
@@ -123,9 +127,10 @@ class SeqGraphDataset(Dataset):
             for token in g.raw_token_list:
                 if not token in self.node_type_dict:
                     v = len(self.node_type_dict)
-                    self.node_type_dict[token] = v    
+                    self.node_type_dict[token] = v
 
         print(self.node_type_dict)
+
 
 class PickleDataset(object):
     def __init__(self):
@@ -149,24 +154,27 @@ class PickleDataset(object):
                     with gzip.open(filename, 'rb') as f:
                         loaded_object = pickle.load(f)
                     num_samples = len(loaded_object)
-                    num_train = int( num_samples * cmd_args.train_frac )
+                    num_train = int(num_samples * cmd_args.train_frac)
                     local_idx = 0
                     for x in loaded_object:
                         local_idx += 1
                         if local_idx <= num_train:
-                            self.train_indices.append( len(self.pg_list) )
+                            self.train_indices.append(len(self.pg_list))
                             if cmd_args.single_sample is not None and cmd_args.single_sample == cur_sample_idx:
-                                self.single_sample_train.append( len(self.pg_list) )
+                                self.single_sample_train.append(
+                                    len(self.pg_list))
                         else:
-                            self.test_indices.append( len(self.pg_list) )
+                            self.test_indices.append(len(self.pg_list))
                             if cmd_args.single_sample is not None and cmd_args.single_sample == cur_sample_idx:
-                                self.single_sample_test.append( len(self.pg_list) )
+                                self.single_sample_test.append(
+                                    len(self.pg_list))
                         graph_json = json.loads(x[0])
-                        self.pg_list.append( ProgramGraph(graph_json))
-                        self.ordered_pre_post.append( x[1] )
+                        self.pg_list.append(ProgramGraph(graph_json))
+                        self.ordered_pre_post.append(x[1])
                 cur_sample_idx += 1
         if cmd_args.single_sample is not None:
-            assert len(self.single_sample_test) and len(self.single_sample_train)
+            assert len(self.single_sample_test) and len(
+                self.single_sample_train)
             self.train_indices = self.single_sample_train
             self.test_indices = self.single_sample_test
 
@@ -174,16 +182,17 @@ class PickleDataset(object):
 
         for i in range(len(self.pg_list)):
             g = self.pg_list[i]
-            self.sample_graphs.append( GraphSample(i, self, g, self.node_type_dict) )
+            self.sample_graphs.append(GraphSample(
+                i, self, g, self.node_type_dict))
 
         if cmd_args.phase == 'train':
             self.sample_idxes = self.train_indices
         else:
             self.sample_idxes = self.test_indices
-            
+
         random.shuffle(self.sample_idxes)
         self.sample_pos = 0
-    
+
     def build_node_type_dict(self):
         self.node_type_dict = {}
 
@@ -191,14 +200,14 @@ class PickleDataset(object):
             for node in g.node_list:
                 if not node.node_type in self.node_type_dict:
                     v = len(self.node_type_dict)
-                    self.node_type_dict[node.node_type] = v        
+                    self.node_type_dict[node.node_type] = v
 
     def sample_minibatch(self, num_samples, replacement=False):
         g_list = []
         if replacement:
             for i in range(num_samples):
                 idx = np.random.randint(len(self.sample_idxes))
-                g_list.append( self.sample_graphs[ self.sample_idxes[idx] ] )
+                g_list.append(self.sample_graphs[self.sample_idxes[idx]])
         else:
             assert num_samples <= len(self.sample_idxes)
 
@@ -207,7 +216,7 @@ class PickleDataset(object):
                 self.sample_pos = 0
 
             for i in range(self.sample_pos, self.sample_pos + num_samples):
-                g_list.append( self.sample_graphs[ self.sample_idxes[i] ] )
+                g_list.append(self.sample_graphs[self.sample_idxes[i]])
             self.sample_pos == num_samples
 
         return g_list

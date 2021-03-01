@@ -20,14 +20,14 @@ fi
 
 if [ -z $3 ]; 
 then
-    TORCHTIME=150
+    TORCHTIME=50
     echo "Using TORCH default timeout"
 else
     TORCHTIME=$3
 fi
 
 # TODO : Choose to automate it later on with full file build
-timeout $TORCHTIME ./run_solver_file.sh ../../benchmarks/C_instances/c_graph/${INVPROCESSFILE}.c.json ../../benchmarks/C_instances/c_smt2/${INVPROCESSFILE}.c.smt specs/c_nl_spec -o results/inv_result_${INVPROCESSFILE}.txt
+timeout $TORCHTIME ./run_solver_file.sh ../../benchmarks/C_instances/c_graph/${INVPROCESSFILE}.c.json ../../benchmarks/C_instances/c_smt2/${INVPROCESSFILE}.c.smt specs/fuzz_spec -o results/inv_result_${INVPROCESSFILE}.txt
 
 # echo "AFL Fuzz Checker"
 

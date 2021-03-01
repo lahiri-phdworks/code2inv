@@ -1,0 +1,4 @@
+best_root :  ( i > ( 2 - n ) || ( sum < ( sum - 1 ) && i >= ( 2 - 500000 ) ) || i > ( n - i ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5433, 
+Random: ( sum < ( sum - 0 ) ), result_r: -2.0200 
