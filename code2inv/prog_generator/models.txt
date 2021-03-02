@@ -1,4 +1,7 @@
-
-Model : 
-sum : 0, n : 101, i : 1, y : 0, i2 : 0
-ssum: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/ssum.c:22: check: Assertion `0' failed.
+Pre : sum : 0, n : 101, i : 1, y : 0, i2 : 0
+Loop : sum : 0, n : 101, i : 1, y : 1, i2 : 1
+Loop : sum : 1, n : 101, i : 2, y : 5, i2 : 4
+Loop : sum : 5, n : 101, i : 3, y : 14, i2 : 9
+Loop : sum : 14, n : 101, i : 4, y : 30, i2 : 16
+Loop : sum : 30, n : 101, i : 5, y : 55, i2 : 25
+ssum: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/ssum.c:31: loopcheck: Assertion `0' failed.

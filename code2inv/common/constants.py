@@ -1,11 +1,12 @@
+from code2inv.common.cmd_args import cmd_args
 import re
 
 AST_EDGE_TYPE = 0
 CONTROL_EDGE_TYPE = 2
 VAR_LINK_TYPE = 4
 
-NUM_EDGE_TYPES = 6 # 3 edge types x 2 directions
-
+NUM_EDGE_TYPES = 6  # 3 edge types x 2 directions
+AFL_CALLS = 0
 
 # boogie results
 AC_CODE = 0
@@ -19,7 +20,6 @@ ALWAYS_TRUE_EXPR_CODE = 3
 ALWAYS_FALSE_EXPR_CODE = 4
 NORMAL_EXPR_CODE = 5
 
-from code2inv.common.cmd_args import cmd_args
 
 Z3_CMP = ("<", ">", "<=", ">=", "==")
 Z3_OP = ("+", "-", "/", "*")
@@ -56,8 +56,6 @@ else:
             PATTERN = re.compile(r'''((?:[^\|"']|"[^"]*"|'[^']*')+)''')
             rule_rhs = []
 
-
-
             for rule_exp in PATTERN.split(data)[1:-1:2]:
                 rule_exp_list = []
                 for el in rule_exp.split():
@@ -65,11 +63,11 @@ else:
                         rule_exp_list.append("||")
                     else:
                         rule_exp_list.append(el)
-                
+
                 if len(rule_exp_list) > MAX_CHILD:
                     MAX_CHILD = len(rule_exp_list)
                 rule_rhs.append(rule_exp_list)
-                
+
             for i in range(len(rule_rhs)):
                 if len(rule_rhs[i]) == 1 and rule_rhs[i][0] in op_mapping:
                     rule_rhs[i][0] = op_mapping[rule_rhs[i][0]]

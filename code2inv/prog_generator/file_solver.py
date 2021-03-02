@@ -134,7 +134,7 @@ if __name__ == '__main__':
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
             resultpath = os.path.join(os.path.dirname(
-                __file__), "results", f"log_inv_{os.environ['INVPROCESSFILE']}.txt")
+                __file__), "results", f"log_inv_{cmd_args.example}.txt")
             with open(resultpath, mode="w") as file:
                 file.write("best_root :  %s \nbest_reward : %d\n" % (best_root,
                                                                      best_reward))

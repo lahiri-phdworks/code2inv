@@ -1,6 +1,7 @@
 # Customizing Code2Inv for other inputs
 
 Code2Inv allows you to customize the input language provided it is supplied with 3 major components-
+
 1. The inputs (a graph file and verification condition file)
 2. The specification file
 3. A python module to check the invariant supplied and return the counter examples (we will call this the checker module)
@@ -18,6 +19,7 @@ This program graph will include nodes and control flows.
 
 Each node represents an instruction and the usage of the variable in that instruction.
 For example, consider a snippet of code-
+
 ```c
 ...
 assert(x > y);
@@ -26,6 +28,7 @@ y = y + 1;
 ```
 
 The corresponding nodes in the JSON object would be written as-
+
 ```
 {
     "nodes": {
@@ -54,15 +57,15 @@ The corresponding nodes in the JSON object would be written as-
 
 There are several keys which can be used for each node object.
 
-| Key | Stands for | Notes |
-|-----|-------|--|
-| `cmd` | Command | Denotes the role of the node. For example, `"cmd" : "Assert"` indicates that the node is an assertion node. Each node must have a `cmd` if it denotes an expression or an instruction.|
-| `lval` | Left Value | Denotes the left value for relevant commands (like assign) |
-| `rval` | Right Value | Denotes the right value for relevant commands (like assign) or any other associated value (like the assertion expression for assert commands). Compulsory if there is any associated value with the node.|
-| `OP` | Operator | Denotes any associated operator |
-| `Var` | Variable | Denotes that the value is a variable which must be considered in the invariant |
-| `Const` | Constant | Denotes that the value is a constant which must be considered in the invariant |
-| `argn` | Argument n | Denotes the nth argument |
+| Key     | Stands for  | Notes                                                                                                                                                                                                     |
+| ------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cmd`   | Command     | Denotes the role of the node. For example, `"cmd" : "Assert"` indicates that the node is an assertion node. Each node must have a `cmd` if it denotes an expression or an instruction.                    |
+| `lval`  | Left Value  | Denotes the left value for relevant commands (like assign)                                                                                                                                                |
+| `rval`  | Right Value | Denotes the right value for relevant commands (like assign) or any other associated value (like the assertion expression for assert commands). Compulsory if there is any associated value with the node. |
+| `OP`    | Operator    | Denotes any associated operator                                                                                                                                                                           |
+| `Var`   | Variable    | Denotes that the value is a variable which must be considered in the invariant                                                                                                                            |
+| `Const` | Constant    | Denotes that the value is a constant which must be considered in the invariant                                                                                                                            |
+| `argn`  | Argument n  | Denotes the nth argument                                                                                                                                                                                  |
 
 While these are the important keys, any other key can be used.
 Only the variables denoted under the `Var` key and constants in the `Const` key will be considered in the invariant generation.
@@ -73,6 +76,7 @@ The control flows are defined as an array of pairs, each pair being an array of 
 To denote a control flow from `node_1` to `node_2`, the pair will be written as `["node_1", "node_2"]`.
 
 Once we add the control flows to the previously discussed example, we will get the final JSON object as-
+
 ```
 {
     "nodes": {
@@ -133,9 +137,10 @@ The invariant grammar is a combination of grammar productions as such:-<br>
 NT `::=` production_rule_1 `|` production_rule_2 `|` ...
 
 Restrictions:<br>
-* There are fixed terminals to denote variables and constants, namely `var` and `const` respectively. These terminals must be used in the invariant grammar wherever variables and constants are expected. They will be populated by some of the variables and constants denoted by `Var` and `Const` in the grammar file as discussed before.
-* The start symbol for the grammar is always `S` and so every invariant grammar must include the `S` non terminal.
-* Each invariant is considered to have an expression in terms of atomic predicates whose grammar is given by the non-terminal `p`. So every invariant grammar must include the `p` non terminal, and the non terminals `S` and `p` should relate to each other through production rules.
+
+- There are fixed terminals to denote variables and constants, namely `var` and `const` respectively. These terminals must be used in the invariant grammar wherever variables and constants are expected. They will be populated by some of the variables and constants denoted by `Var` and `Const` in the grammar file as discussed before.
+- The start symbol for the grammar is always `S` and so every invariant grammar must include the `S` non terminal.
+- Each invariant is considered to have an expression in terms of atomic predicates whose grammar is given by the non-terminal `p`. So every invariant grammar must include the `p` non terminal, and the non terminals `S` and `p` should relate to each other through production rules.
 
 An example of a valid invariant grammar is:
 

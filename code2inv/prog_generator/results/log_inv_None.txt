@@ -1,0 +1,4 @@
+best_root :  ( ( i2 == ( y - sum ) && n < i2 ) || n > i2 ) 
+best_reward : 0
+epoch: 0, average reward: -3.0650, 
+Random: ( ( i2 < y && y == y ) ), result_r: -3.0000 

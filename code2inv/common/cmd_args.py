@@ -24,7 +24,9 @@ cmd_opt.add_argument('-only_use_z3', default=None,
                      type=bool, help='check everything use z3')
 cmd_opt.add_argument('-aggressive_check', default=0, type=int,
                      help='penalize verbose/unnecessary sub expression')
-cmd_opt.add_argument('-ctx', default='cpu', help='cpu/gpu')
+
+# COMMENT : Default is "gpu" now.
+cmd_opt.add_argument('-ctx', default='gpu', help='cpu/gpu')
 cmd_opt.add_argument('-inv_reward_type', default='any', help='any/ordered')
 cmd_opt.add_argument('-phase', default='test', help='train/test')
 cmd_opt.add_argument('-train_frac', default=0.9,
@@ -66,6 +68,12 @@ cmd_opt.add_argument('-op_file', default=None, type=str, help='Output File')
 # for testing purposes - saves smt version of generated invariant
 cmd_opt.add_argument('-save_smt', default=None, type=str,
                      help='save smt version when invariant generated')
+
+# COMMENT : Extra Options for Fuzz Verification
+cmd_opt.add_argument('-example', default=None, type=str,
+                     help='Example code to run')
+cmd_opt.add_argument('-afl_timeout', default=15, type=int,
+                     help='Timeout to run afl with')
 
 cmd_args, _ = cmd_opt.parse_known_args()
 

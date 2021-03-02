@@ -26,6 +26,7 @@ model=AssertAwareTreeLSTM
 att=1
 ac=0
 ce=1
+afl_timeout=10
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 if [ ! -e $save_dir ];
@@ -36,6 +37,8 @@ fi
 mkdir -p tests/results
 
 log_file=$save_dir/log-sample-${single_sample}-model-${model}-${ctx}-r-${inv_reward_type}-s2v-${s2v_level}-bsize-${rl_batchsize}-att-${att}-ac-${ac}-ce-${ce}.txt
+
+# COMMENT : Z3 used for this flag
 
 python -u file_solver.py \
     -input_graph $input_graph\
@@ -51,7 +54,8 @@ python -u file_solver.py \
     -embedding_size $embedding \
     -rl_batchsize $rl_batchsize \
     -inv_reward_type $inv_reward_type \
-    -op_file "$op_file"\
+    -op_file "$op_file" \
+    -afl_timeout $afl_timeout \
     -inv_grammar $(sed "1q;d" $grammar_file)\
     -inv_checker $(sed "2q;d" $grammar_file)\
     -var_format "$(sed '3q;d' $grammar_file)"\

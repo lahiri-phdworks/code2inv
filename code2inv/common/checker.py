@@ -119,6 +119,8 @@ class CounterExample(object):
         self.ice_str = self.to_ice_str()
 
     def to_ice_str(self):
+        # COMMENT : Z3 Processing string
+        tqdm.write("to_ice_str")
         res = None
         if self.kind == "pre":
             res = "T:{" + ",".join(["%s=%s" % (k, self.config[k])
@@ -299,6 +301,8 @@ class CEHolder(object):
 
 
 def get_z3_ice(tpl, expr_root):
+    # COMMENT : Z3 Processing string
+    tqdm.write("get_z3_ice")
     if cmd_args.input_vcs is not None:
         input_vcs = cmd_args.input_vcs
     else:
@@ -466,6 +470,8 @@ def report_ice_stats(g, best_expr=None):
 
 
 def reward_0(holder, lambda_holder_eval, lambda_new_ce, scores):
+    # COMMENT : Reward Updation
+    tqdm.write("reward_0")
     try:
         # always query boogie
         status, key, ce = lambda_new_ce()
@@ -500,6 +506,8 @@ def reward_0(holder, lambda_holder_eval, lambda_new_ce, scores):
 
 
 def reward_1(sample_index, holder, lambda_holder_eval, lambda_new_ice):
+    # COMMENT : Reward Updation
+    tqdm.write("reward_1")
     ct = 0
     s = 0
     scores = []

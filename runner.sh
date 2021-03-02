@@ -20,7 +20,7 @@ fi
 
 if [ -z $3 ]; 
 then
-    TORCHTIME=50
+    TORCHTIME=250
     echo "Using TORCH default timeout"
 else
     TORCHTIME=$3
