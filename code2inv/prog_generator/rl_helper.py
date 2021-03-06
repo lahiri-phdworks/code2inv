@@ -138,8 +138,7 @@ class RLEnv(object):
                 reward += -4.0
 
         # COMMENT : Log each step()
-        tqdm.write(
-            f"Immediate Reward : {reward}, Trivial Expr : {self.trivial_subexpr}")
+        # tqdm.write(f"Immediate Reward : {reward}, Trivial Expr : {self.trivial_subexpr}")
         return reward, self.trivial_subexpr
 
     def available_var_indices(self, list_vars):

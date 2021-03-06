@@ -34,6 +34,9 @@ class GraphSample(S2VGraph):
         self.vc_list = vc_list
 
 
+if cmd_args.example is None:
+    cmd_args.example = "ssum"  # COMMENT : Default
+
 if __name__ == '__main__':
     random.seed(cmd_args.seed)
     np.random.seed(cmd_args.seed)
@@ -134,8 +137,8 @@ if __name__ == '__main__':
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
             resultpath = os.path.join(os.path.dirname(
-                __file__), "results", f"log_inv_{cmd_args.example}.txt")
-            with open(resultpath, mode="w") as file:
+                __file__), "results", f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt")
+            with open(resultpath, mode="a") as file:
                 file.write("best_root :  %s \nbest_reward : %d\n" % (best_root,
                                                                      best_reward))
                 file.write('epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \n' % (

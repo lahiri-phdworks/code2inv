@@ -5,13 +5,15 @@
 #include <stdarg.h>
 #include <ssum.h>
 
-#define fail(cond) \
-    if (!cond)     \
+#define aflcrash(cond) \
+    if (!cond)         \
         assert(0);
 
-#define exitpass(cond) \
-    if (!cond)         \
-        exit(-1);
+// Guide AFL to proper values
+// exit(0) is not a crash
+#define assume(cond) \
+    if (!cond)       \
+        exit(0);
 
 #define INV(sum, n, i, y) PHI
 
@@ -20,7 +22,7 @@ void precheck(long long int sum, int n, int i, int y, int i2)
 {
     char buffer[30];
     fprintf(stderr, "Pre : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
-    fail(INV(sum, n, i, y));
+    aflcrash(INV(sum, n, i, y));
 }
 
 // TODO : Automate generation of this snippet
@@ -28,7 +30,7 @@ void loopcheck(long long int sum, int n, int i, int y, int i2)
 {
     char buffer[30];
     fprintf(stderr, "Loop : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
-    fail(INV(sum, n, i, y));
+    aflcrash(INV(sum, n, i, y));
 }
 
 // TODO : Automate generation of this snippet
@@ -36,7 +38,7 @@ void postcheck(long long int sum, int n, int i, int y, int i2)
 {
     char buffer[30];
     fprintf(stderr, "Post : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
-    fail(INV(sum, n, i, y));
+    aflcrash(INV(sum, n, i, y));
 }
 
 int main()
@@ -44,10 +46,10 @@ int main()
 
     // variable declarations
     long long int sum;
+    long long int i2;
     int n;
     int i;
     int y;
-    int i2;
 
     freopen("models.txt", "w", stderr);
 
@@ -56,10 +58,7 @@ int main()
     (i2 = 0LL);
     (i = 1LL);
 
-    scanf("%d", &n);
-
-    // restrict value of "n"
-    exitpass((n > 0 && n < 6000))
+    assume((n > 0 && n < 100000))
 
         precheck(sum, n, i, y, i2);
 

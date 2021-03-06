@@ -43,7 +43,9 @@ cmd_opt.add_argument('-single_sample', default=None,
                      type=int, help='tune single program')
 cmd_opt.add_argument('-replay_memsize', default=100,
                      type=int, help='replay memsize')
-cmd_opt.add_argument('-num_epochs', default=10000, type=int, help='num epochs')
+
+# COMMENT : num_epochs default 10000
+cmd_opt.add_argument('-num_epochs', default=2, type=int, help='num epochs')
 cmd_opt.add_argument('-embedding_size', default=128,
                      type=int, help='embedding size')
 cmd_opt.add_argument('-s2v_level', default=10, type=int,
@@ -74,6 +76,8 @@ cmd_opt.add_argument('-example', default=None, type=str,
                      help='Example code to run')
 cmd_opt.add_argument('-afl_timeout', default=15, type=int,
                      help='Timeout to run afl with')
+cmd_opt.add_argument('-spec_type', default="c_spec", type=str,
+                     help='Spec type')
 
 cmd_args, _ = cmd_opt.parse_known_args()
 

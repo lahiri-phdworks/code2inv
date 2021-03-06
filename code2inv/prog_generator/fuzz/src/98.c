@@ -1,28 +1,46 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
-#include <base.h>
-#include <98.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <ssum.h>
 
-#define INV(i, j, x, y) PHI
+#define fail(cond) \
+  if (!cond)       \
+    assert(0);
 
-void pre_check(int i, int j, int x, int y)
+#define exitpass(cond) \
+  if (!cond)           \
+    exit(-1);
+
+#define assume(cond) \
+  if (!cond)         \
+    exit(0);
+
+#define INV(sum, n, i, y) PHI
+
+// TODO : Automate generation of this snippet
+void precheck(long long int sum, int n, int i, int y, int i2)
 {
   char buffer[30];
-  logModel(buffer, "%c : %d, %c : %d, %c : %d, %c : %d", "i", i, "j", j, "x", x, "y", y);
-  __assert(buffer, INV(i, j, x, y), -1);
+  fprintf(stderr, "Pre : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
+  fail(INV(sum, n, i, y));
 }
 
-void loop_check(int i, int j, int x, int y)
+// TODO : Automate generation of this snippet
+void loopcheck(long long int sum, int n, int i, int y, int i2)
 {
   char buffer[30];
-  logModel(buffer, "%c : %d, %c : %d, %c : %d, %c : %d", "i", i, "j", j, "x", x, "y", y);
-  __assert(buffer, INV(i, j, x, y), -2);
+  fprintf(stderr, "Loop : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
+  fail(INV(sum, n, i, y));
 }
 
-void post_check(int i, int j, int x, int y)
+// TODO : Automate generation of this snippet
+void postcheck(long long int sum, int n, int i, int y, int i2)
 {
-  assume(INV(i, j, x, y));
+  char buffer[30];
+  fprintf(stderr, "Post : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
+  assume(INV(sum, n, i, y));
 }
 
 int main()

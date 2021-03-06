@@ -2,15 +2,13 @@
 # then use it to test the invariants.
 
 # AFL/fuzzsolver module.
-import sys
-import time
-import tokenize
 import io
 import os
+import tokenize
 from tqdm import tqdm
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
-from code2inv.common.cmd_args import cmd_args, tic, toc
+from code2inv.common.cmd_args import cmd_args
 from subprocess import run, CalledProcessError
 from code2inv.common.constants import AFL_CALLS
 
@@ -34,6 +32,8 @@ modelsfile = os.path.join(pwd, os.pardir, "models.txt")
 
 
 def inv_checker(vc_file: str, inv: str, assignments):
+    # COMMENT : Same as for c_inv_checker file.
+    # assignments come from counter example model that we get from fuzzing.
     inv = inv.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
     b = io.StringIO(inv)
@@ -123,9 +123,9 @@ def process_crashes():
     # COMMENT : iterate over all crashes inputs and extract test failures
     with open(modelsfile, mode="r") as fileptr:
         models = fileptr.readlines()
-        if models is not None:
+        if models is not None and "failed" in models[-1].strip():
             results = process_model_string(models[-2].strip())
-            tqdm.write(f"Type : {results[0]}, Model : {results[1]}")
+            tqdm.write(f"{models[-1]}")
     if results is not None:
         if results[0] == "Pre":
             return [results[1], None, None]
@@ -140,11 +140,11 @@ def process_crashes():
 def inv_solver(vc_file: str, inv: str):
     # COMMENT : Gets called in each env.step() iteration.
     # COMMENT : None of these functions must fail here.
-    tqdm.write(f"fuzz-inv solver called : {inv}")
+    # tqdm.write(f"fuzz-inv solver called : {inv}")
 
     dump_template(filepath, inv)
     init_fuzzbase()
     call_fuzzsolver()
     res = process_crashes()
-    tqdm.write(f"{res}")
+    # tqdm.write(f"{res}")
     return res
