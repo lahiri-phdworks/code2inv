@@ -1,0 +1,16 @@
+best_root :  ( ( x > 1 ) && ( x <= ( x + 1 ) ) ) 
+best_reward : -2
+epoch: 0, average reward: -2.0910, 
+Random: ( ( n >= 1 || n < ( n - n ) ) && ( n > ( 1 + 0 ) ) && ( n >= ( 1 + 0 ) ) ), result_r: -3.0000 
+best_root :  ( ( n < x || n > ( 1 + 0 ) ) && ( n < ( x - n ) ) && ( n > 1 || n <= ( 1 - 1 ) ) ) 
+best_reward : -2
+epoch: 1, average reward: -1.7000, 
+Random: ( ( n <= ( 0 + 0 ) ) && ( n == ( 1 + 0 ) || n < ( 1 + 0 ) ) && ( n < ( 1 + 0 ) ) ), result_r: -3.0000 
+best_root :  ( ( n == ( x + 0 ) || x <= ( 1 - n ) ) && ( x >= 0 ) && ( n == ( 1 - n ) ) ) 
+best_reward : -2
+epoch: 2, average reward: -1.7325, 
+Random: ( ( n > n || x >= 1 ) && ( x >= 1 || x < ( 0 - 1 ) ) ), result_r: -3.0000 
+best_root :  ( ( x == ( x - 1 ) || x < ( n + n ) ) ) 
+best_reward : -2
+epoch: 3, average reward: -1.6185, 
+Random: ( ( x == ( n + 1 ) || x > ( 1 + n ) ) && ( x <= 0 || n <= ( 0 - 1 ) ) && ( x > ( n + n ) ) ), result_r: -3.0000 

@@ -1,0 +1,27 @@
+start_time        : 1615140354
+last_update       : 1615140355
+fuzzer_pid        : 2872762
+cycles_done       : 2
+execs_done        : 3529
+execs_per_sec     : 2000.00
+paths_total       : 2
+paths_favored     : 2
+paths_found       : 1
+paths_imported    : 0
+max_depth         : 2
+cur_path          : 1
+pending_favs      : 0
+pending_total     : 0
+variable_paths    : 0
+stability         : 100.00%
+bitmap_cvg        : 0.01%
+unique_crashes    : 0
+unique_hangs      : 0
+last_path         : 1615140354
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 3529
+exec_timeout      : 20
+afl_banner        : 98
+afl_version       : 2.49b
+command_line      : /home/ha-useast-service/afl/afl-fuzz -i tests/98 -o output/98 -m 10G build/98

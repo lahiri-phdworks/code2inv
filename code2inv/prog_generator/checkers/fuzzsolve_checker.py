@@ -120,7 +120,7 @@ def inv_solver(vc_file: str, inv: str):
     call_fuzzsolver()
     res = process_crashes()
 
-    tqdm.write(f"{res}")
+    # tqdm.write(f"{res}")
     # new_res = c_inv_solver(vc_file, inv)
     # tqdm.write(f"{new_res}")
 
