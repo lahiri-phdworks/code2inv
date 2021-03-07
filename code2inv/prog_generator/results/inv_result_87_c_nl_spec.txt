@@ -1,0 +1,2 @@
+( ( lock == 1 && y >= ( 1 * y ) ) || ( y >= ( x + 1 ) && y >= ( x - lock ) ) )
+z3_report time: 276.71 pid: 0 stats: Counter({'ce-T:': 20481, 'ce-I:': 17109, 'ce-F:': 9231, 'boogie_result': 4680, 'actual_z3': 41})

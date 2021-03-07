@@ -1,0 +1,2 @@
+( ( y == 2 ) && ( i <= ( j + j ) || y < ( 1 + 2 ) ) && ( y >= ( 1 + 2 ) || y <= 2 ) )
+z3_report time: 43.54 pid: 0 stats: Counter({'ce-I:': 5779, 'ce-T:': 4787, 'ce-F:': 1647, 'boogie_result': 716, 'actual_z3': 25})

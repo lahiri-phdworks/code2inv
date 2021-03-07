@@ -1,0 +1,32 @@
+best_root :  ( ( x >= ( 1 - 1 ) || n > 1 ) && ( x >= x ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.6469, 
+Random: ( ( n == ( y + x ) || n == ( n + 0 ) ) && ( y > ( 0 + n ) || n <= ( 1 + x ) ) ), result_r: -2.0200 
+best_root :  ( ( x <= ( 0 + 1 ) || y < ( 0 + 1 ) ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.6015, 
+Random: ( ( x >= n || n > ( 0 + n ) ) && ( y <= ( 0 + 0 ) ) && ( n == ( n - 0 ) || x >= n ) ), result_r: -1.8362 
+best_root :  ( ( y <= ( 0 + 0 ) || x == ( n + 0 ) ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.6160, 
+Random: ( ( n <= ( 0 + 0 ) || n >= ( n + x ) ) && ( n >= y ) && ( n == ( n + x ) ) ), result_r: -2.0200 
+best_root :  ( ( n <= ( 0 + 1 ) ) && ( x >= ( y + x ) || x <= ( 0 + 1 ) ) ) 
+best_reward : -1
+epoch: 3, average reward: -0.6373, 
+Random: ( ( y < ( 0 + 1 ) || y == ( 1 + x ) ) ), result_r: -1.9587 
+best_root :  ( ( x <= y || y <= ( 0 + 0 ) ) ) 
+best_reward : -1
+epoch: 4, average reward: -0.6247, 
+Random: ( ( x < ( 1 + x ) ) ), result_r: -2.0200 
+best_root :  ( ( y > ( 1 + x ) || x <= ( 0 + x ) ) && ( x == ( n - 0 ) || y <= 0 ) ) 
+best_reward : -1
+epoch: 5, average reward: -0.6017, 
+Random: ( ( y == y ) && ( n <= 0 ) && ( y >= ( n + x ) || x < ( 0 - 0 ) ) ), result_r: -1.8975 
+best_root :  ( ( x <= ( y - 0 ) || y <= 0 ) && ( y >= 0 || y >= ( 0 + 1 ) ) && ( n < ( 1 - 0 ) || n > ( 1 - x ) ) ) 
+best_reward : -1
+epoch: 6, average reward: -0.6435, 
+Random: ( ( y > ( 1 + x ) || x == ( x + x ) ) ), result_r: -1.9587 
+best_root :  ( ( n <= ( 1 - y ) || x == ( 0 + 1 ) ) && ( x < ( 1 + x ) ) ) 
+best_reward : -1
+epoch: 7, average reward: -0.6014, 
+Random: ( ( x >= ( n + x ) ) && ( y == ( 1 + 0 ) || x >= ( n + x ) ) && ( n == ( 1 + 1 ) || y == ( 1 - 1 ) ) ), result_r: -2.0200 

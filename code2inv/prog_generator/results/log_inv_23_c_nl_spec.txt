@@ -1,0 +1,32 @@
+best_root :  ( j <= j ) 
+best_reward : 0
+epoch: 0, average reward: -0.5586, 
+Random: ( j < j || j <= 2 || i > ( i * 1 ) ), result_r: -2.0200 
+best_root :  ( ( i > j || i >= ( 20 - j ) ) && ( i == 1 || i == ( 1 + 13 ) ) && i < ( 13 + 13 ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.5364, 
+Random: ( j > ( 20 + j ) && ( i <= ( j - 1 ) || j == 2 ) ), result_r: -2.0200 
+best_root :  ( ( j < ( 1 * 13 ) || i <= j ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.4954, 
+Random: ( ( i <= j && i < 13 ) ), result_r: -1.7867 
+best_root :  ( j >= 13 && j >= ( i * i ) && ( i < ( j - 13 ) || i == 2 ) ) 
+best_reward : -1
+epoch: 3, average reward: -0.5126, 
+Random: ( ( j <= 13 && i >= 13 ) || j <= ( j * 20 ) ), result_r: -2.0413 
+best_root :  ( ( j == 1 || i < 13 ) && ( j < ( j * 1 ) || j > 13 ) && j >= ( i * i ) ) 
+best_reward : -1
+epoch: 4, average reward: -0.5153, 
+Random: ( ( j > ( i + 2 ) || j == 20 ) ), result_r: -1.5865 
+best_root :  ( ( j >= ( 20 * i ) || j <= ( 1 + 2 ) ) ) 
+best_reward : -1
+epoch: 5, average reward: -0.5322, 
+Random: ( ( j < ( 1 * 1 ) || j <= j ) && ( j > ( i + j ) || i <= 2 ) && i < ( 13 * 13 ) ), result_r: -1.6619 
+best_root :  ( ( j == 20 && i < ( 13 * 1 ) ) || ( i < ( 2 + 2 ) && j > ( i + 2 ) ) ) 
+best_reward : -1
+epoch: 6, average reward: -0.5148, 
+Random: ( ( j == 2 || j > ( i * j ) ) ), result_r: -2.0765 
+best_root :  ( ( j > ( i + 2 ) || j == ( i - 1 ) ) && ( j >= ( i * i ) || i == ( 13 - 13 ) ) && ( i > ( 20 - j ) || j >= ( 20 * j ) ) ) 
+best_reward : -1
+epoch: 7, average reward: -0.4846, 
+Random: ( j < ( 13 * 1 ) ), result_r: -2.0200 

@@ -1,0 +1,16 @@
+best_root :  ( ( k >= ( j + i ) || k <= ( k + 1 ) ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5168, 
+Random: ( ( j == j ) && ( i >= ( 1 - j ) ) ), result_r: -2.0200 
+best_root :  ( ( j >= i || i < ( 2 - 2 ) ) && ( i <= j || i >= ( n + j ) ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.5028, 
+Random: ( ( i > ( n + 1 ) ) ), result_r: -2.0200 
+best_root :  ( ( i >= ( j - j ) ) && ( n >= ( i - j ) || j >= ( i - j ) ) && ( n >= ( i - j ) ) ) 
+best_reward : 0
+epoch: 2, average reward: -0.4523, 
+Random: ( ( i < ( n - 2 ) || j > i ) && ( n <= 1 ) ), result_r: -2.3404 
+best_root :  ( ( n >= ( i - i ) || j < ( n - 2 ) ) && ( n >= ( i - n ) || i >= ( i - j ) ) ) 
+best_reward : -1
+epoch: 3, average reward: -0.5005, 
+Random: ( ( n > ( 2 - 2 ) ) && ( j < ( n - 2 ) || i >= ( 2 + k ) ) && ( j < ( n - 2 ) || j == ( 0 + k ) ) ), result_r: -2.0200 

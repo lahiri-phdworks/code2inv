@@ -45,7 +45,7 @@ cmd_opt.add_argument('-replay_memsize', default=100,
                      type=int, help='replay memsize')
 
 # COMMENT : num_epochs default 10000
-cmd_opt.add_argument('-num_epochs', default=2, type=int, help='num epochs')
+cmd_opt.add_argument('-num_epochs', default=5, type=int, help='num epochs')
 cmd_opt.add_argument('-embedding_size', default=128,
                      type=int, help='embedding size')
 cmd_opt.add_argument('-s2v_level', default=10, type=int,

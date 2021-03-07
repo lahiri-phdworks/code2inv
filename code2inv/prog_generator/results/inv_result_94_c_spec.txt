@@ -1,0 +1,2 @@
+( ( i <= ( 0 + k ) || n < ( n + 1 ) ) && ( k >= ( i - j ) ) && ( n <= ( n + i ) ) )
+z3_report time: 334.58 pid: 0 stats: Counter({'ce-I:': 55367, 'ce-T:': 24023, 'ce-F:': 7557, 'boogie_result': 4937, 'actual_z3': 35})

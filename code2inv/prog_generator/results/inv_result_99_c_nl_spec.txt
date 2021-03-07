@@ -1,0 +1,2 @@
+( x >= ( 1 + x ) || n == ( x + y ) )
+z3_report time: 267.55 pid: 0 stats: Counter({'ce-I:': 31606, 'ce-T:': 11922, 'ce-F:': 8333, 'boogie_result': 4169, 'actual_z3': 28})

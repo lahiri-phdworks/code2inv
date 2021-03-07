@@ -1,0 +1,2 @@
+( ( y <= ( y + 20 ) && x < ( 20 + y ) ) )
+z3_report time: 2.18 pid: 0 stats: Counter({'ce-T:': 174, 'boogie_result': 36, 'ce-F:': 33, 'actual_z3': 11})

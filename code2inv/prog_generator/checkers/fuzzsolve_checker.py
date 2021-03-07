@@ -11,6 +11,8 @@ from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from code2inv.common.cmd_args import cmd_args
 from subprocess import run, CalledProcessError
 from code2inv.common.constants import AFL_CALLS
+from code2inv.prog_generator.checkers.c_inv_checker import inv_checker as c_inv_checker
+from code2inv.prog_generator.checkers.c_inv_checker import inv_solver as c_inv_solver
 
 set_build = False
 pwd = os.path.dirname(__file__)
@@ -23,7 +25,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 5
+    timeout = 10
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -32,36 +34,7 @@ modelsfile = os.path.join(pwd, os.pardir, "models.txt")
 
 
 def inv_checker(vc_file: str, inv: str, assignments):
-    # COMMENT : Same as for c_inv_checker file.
-    # assignments come from counter example model that we get from fuzzing.
-    inv = inv.replace("&&", "and", -1)
-    inv = inv.replace("||", "or", -1)
-    b = io.StringIO(inv)
-    t = tokenize.generate_tokens(b.readline)
-    inv_tokenized = []
-    for a in t:
-        if a.string != "":
-            inv_tokenized.append(a.string)
-
-    var_list = set()
-    for token in inv_tokenized:
-        if token[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" and token not in ("and", "or"):
-            var_list.add(token)
-
-    for assignment in assignments:
-        v = assignment[0]
-        val = assignment[1]
-        if v in var_list:
-            exec(v + "=" + str(val))
-            var_list.discard(v)
-
-    for var in var_list:
-        exec(var + "=1")
-
-    try:
-        return eval(inv)
-    except:
-        return False
+    c_inv_checker(vc_file, inv, assignments)
 
 
 def process_model_string(model: str):
@@ -82,7 +55,7 @@ def process_model_string(model: str):
             decls.append(elems.strip())
     vals.pop(0)
     for key, values in zip(decls, vals):
-        model_val[f"{key}"] = int(values)
+        model_val[f"{key}"] = values
     return [cex_type, model_val]
 
 
@@ -123,9 +96,9 @@ def process_crashes():
     # COMMENT : iterate over all crashes inputs and extract test failures
     with open(modelsfile, mode="r") as fileptr:
         models = fileptr.readlines()
-        if models is not None and "failed" in models[-1].strip():
+        if models is not None:
             results = process_model_string(models[-2].strip())
-            tqdm.write(f"{models[-1]}")
+            # tqdm.write(f"{models[-1].strip()}")
     if results is not None:
         if results[0] == "Pre":
             return [results[1], None, None]
@@ -141,10 +114,14 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : Gets called in each env.step() iteration.
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
-
     dump_template(filepath, inv)
+
     init_fuzzbase()
     call_fuzzsolver()
     res = process_crashes()
-    # tqdm.write(f"{res}")
+
+    tqdm.write(f"{res}")
+    # new_res = c_inv_solver(vc_file, inv)
+    # tqdm.write(f"{new_res}")
+
     return res

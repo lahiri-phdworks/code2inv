@@ -1,0 +1,28 @@
+best_root :  ( ( z >= ( z - 1 ) || z <= ( 0 - x ) ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.6004, 
+Random: ( ( y > 5 ) ), result_r: -1.9656 
+best_root :  ( ( z >= ( y - z ) || y <= ( y - x ) ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.4939, 
+Random: ( ( z >= ( z - z ) ) && ( x == ( y - z ) ) ), result_r: -1.9220 
+best_root :  ( ( y <= ( y - x ) || z > ( x - 5 ) ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.5896, 
+Random: ( ( x < ( 5 - x ) ) && ( y == ( z - z ) || y <= ( 1 - x ) ) ), result_r: -1.6803 
+best_root :  ( ( y < 5 || z == ( z - x ) ) && ( x == ( z + x ) || x < ( 5 - x ) ) ) 
+best_reward : -1
+epoch: 3, average reward: -0.5198, 
+Random: ( ( z <= ( 5 - x ) || z == 0 ) ), result_r: -2.0985 
+best_root :  ( ( z == ( x - x ) || x <= ( 5 - x ) ) ) 
+best_reward : -1
+epoch: 4, average reward: -0.5018, 
+Random: ( ( y == ( y + x ) || z > x ) && ( x <= ( 5 - x ) ) ), result_r: -1.6431 
+best_root :  ( ( z > ( x - 5 ) || z >= ( x - x ) ) ) 
+best_reward : -1
+epoch: 5, average reward: -0.5583, 
+Random: ( ( x <= ( 5 - x ) ) ), result_r: -1.6054 
+best_root :  ( ( x <= ( 5 + x ) || y < ( 5 - x ) ) && ( y < ( 5 - x ) || z == ( z + z ) ) ) 
+best_reward : -1
+epoch: 6, average reward: -0.4767, 
+Random: ( ( y > ( x - 1 ) ) ), result_r: -1.7585 

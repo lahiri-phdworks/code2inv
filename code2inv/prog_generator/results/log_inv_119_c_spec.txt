@@ -1,0 +1,32 @@
+best_root :  ( ( sn <= ( sn - 0 ) || sn < ( i + 0 ) ) && ( i == ( 1 + sn ) ) && ( i > ( 1 - 1 ) || sn == ( 1 - sn ) ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5755, 
+Random: ( ( sn == ( sn - 0 ) ) && ( size > ( 1 + 1 ) || i >= ( sn + sn ) ) ), result_r: -1.8975 
+best_root :  ( ( i >= ( sn + i ) || size > ( 1 - sn ) ) && ( size <= size || size >= ( sn + i ) ) && ( i > 0 ) ) 
+best_reward : 0
+epoch: 1, average reward: -0.6430, 
+Random: ( ( sn <= ( sn + 1 ) || i <= ( sn + 1 ) ) && ( i <= ( sn + 1 ) || i <= 0 ) ), result_r: -1.8567 
+best_root :  ( ( sn >= ( i + sn ) || size <= ( 1 + 1 ) ) && ( size >= ( size + sn ) || size < ( 1 - i ) ) && ( i == ( 1 + sn ) ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.6158, 
+Random: ( ( size > ( sn - 1 ) || size < ( 1 + 1 ) ) && ( size >= ( i + sn ) ) && ( size < ( sn + 1 ) || sn >= ( sn + sn ) ) ), result_r: -1.9710 
+best_root :  ( ( i == ( 1 - sn ) || size == ( 0 + 1 ) ) && ( i == ( 1 + 1 ) || sn < ( sn + 1 ) ) && ( sn < ( 1 + 1 ) ) ) 
+best_reward : -1
+epoch: 3, average reward: -0.6394, 
+Random: ( ( sn < ( sn + 1 ) || i < ( 1 + 1 ) ) ), result_r: -2.0200 
+best_root :  ( ( i >= ( i + sn ) || sn < ( size + 1 ) ) && ( i == ( 1 + sn ) ) ) 
+best_reward : 0
+epoch: 4, average reward: -0.6023, 
+Random: ( ( size < 1 || sn == ( i + i ) ) && ( size == ( 1 - sn ) || sn == ( sn + sn ) ) && ( i < 1 || i == ( i + sn ) ) ), result_r: -1.9220 
+best_root :  ( ( i == ( 1 - sn ) ) ) 
+best_reward : -1
+epoch: 5, average reward: -0.6334, 
+Random: ( ( size > ( 1 - sn ) || size == ( size + 1 ) ) && ( i <= ( 1 + 1 ) || i == ( size + size ) ) ), result_r: -1.9220 
+best_root :  ( ( i == ( 1 - sn ) || sn == ( sn + 1 ) ) && ( sn == 0 || sn == ( i + i ) ) && ( sn == ( sn + 1 ) || i == ( sn + 1 ) ) ) 
+best_reward : -1
+epoch: 6, average reward: -0.6431, 
+Random: ( ( size > ( 1 - sn ) || i <= ( 1 - sn ) ) ), result_r: -1.8730 
+best_root :  ( ( size < ( sn + 1 ) || i == ( 1 - sn ) ) && ( i == ( 1 - sn ) ) ) 
+best_reward : -1
+epoch: 7, average reward: -0.5430, 
+Random: ( ( size >= ( sn + sn ) ) && ( i == ( 1 - i ) ) && ( size >= ( sn + sn ) ) ), result_r: -2.0200 

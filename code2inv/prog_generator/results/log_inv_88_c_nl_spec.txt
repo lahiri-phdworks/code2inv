@@ -1,0 +1,4 @@
+best_root :  ( lock >= ( lock * lock ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.6799, 
+Random: ( x > ( x * 0 ) || x < ( 0 * lock ) ), result_r: -1.9383 

@@ -1,0 +1,32 @@
+best_root :  ( ( x == ( 1 - lock ) && y == ( 1 - lock ) ) || lock <= 1 || x > ( x - 0 ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.6175, 
+Random: ( ( y <= ( x * 1 ) && x >= 0 ) || ( y <= ( x * 0 ) && x >= 1 ) || x >= ( 1 - lock ) ), result_r: -2.3467 
+best_root :  ( ( lock == 0 && x < y ) || ( lock > ( 0 * lock ) && lock < y ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.6616, 
+Random: ( x < ( 1 - 1 ) || y > ( x - 1 ) ), result_r: -2.0200 
+best_root :  ( ( lock >= ( lock * lock ) || lock == y ) && ( lock > ( x - 1 ) || lock > ( lock * y ) ) && ( lock > ( 1 - x ) || lock <= ( lock + lock ) ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.6417, 
+Random: ( lock <= ( 1 - 0 ) && ( x == ( y + 1 ) || x >= ( lock - lock ) ) && ( x >= ( lock * lock ) || x < ( 1 + x ) ) ), result_r: -2.0200 
+best_root :  ( ( x <= ( y * lock ) && y >= ( 1 - x ) ) || ( y < ( 0 - lock ) && lock <= ( y * lock ) ) || y == ( 1 + x ) ) 
+best_reward : -1
+epoch: 3, average reward: -0.5891, 
+Random: ( ( y == ( 1 - y ) || y == ( 1 + y ) ) && x >= ( 1 - x ) && ( lock == ( 1 * lock ) || y > ( x - 0 ) ) ), result_r: -2.0200 
+best_root :  ( ( lock == ( x - 0 ) && y == ( x - 0 ) ) || ( y <= y && y > ( x - 0 ) ) ) 
+best_reward : -1
+epoch: 4, average reward: -0.6256, 
+Random: ( x >= x ), result_r: -2.0200 
+best_root :  ( ( lock <= ( y * y ) && y <= ( y * lock ) ) || y > ( x - 0 ) ) 
+best_reward : -1
+epoch: 5, average reward: -0.6224, 
+Random: ( x <= x && ( y >= ( 1 - y ) || y <= ( y * y ) ) ), result_r: -2.0200 
+best_root :  ( ( lock == 1 && lock == ( lock * lock ) ) || y < ( y - y ) || y > ( x - 0 ) ) 
+best_reward : 0
+epoch: 6, average reward: -0.6764, 
+Random: ( ( x > ( x - 0 ) && lock <= ( lock - lock ) ) ), result_r: -2.0200 
+best_root :  ( ( x < y && x <= ( x * y ) ) || ( lock == ( 1 - lock ) && x < ( 0 * 0 ) ) || ( y == ( lock * lock ) && lock == ( y * lock ) ) ) 
+best_reward : -1
+epoch: 7, average reward: -0.6234, 
+Random: ( ( x < ( 0 * 0 ) || lock == ( 1 - y ) ) && ( y < ( 0 * 0 ) || y == ( y * y ) ) && lock == ( 1 + lock ) ), result_r: -2.0200 

@@ -1,0 +1,2 @@
+( ( x == ( n - y ) ) && ( n <= ( y + n ) ) && ( y <= ( y + x ) || y == n ) )
+z3_report time: 356.93 pid: 0 stats: Counter({'ce-F:': 21092, 'ce-I:': 16006, 'ce-T:': 11341, 'boogie_result': 5674, 'actual_z3': 30})

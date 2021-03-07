@@ -1,0 +1,2 @@
+( ( x >= 0 && n == ( y + x ) ) || ( y > ( 0 * y ) && y == 0 ) )
+z3_report time: 432.10 pid: 0 stats: Counter({'ce-I:': 39362, 'ce-T:': 21749, 'ce-F:': 16440, 'boogie_result': 7256, 'actual_z3': 40})

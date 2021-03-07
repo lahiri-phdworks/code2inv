@@ -1,0 +1,4 @@
+best_root :  ( n >= ( 0 * m ) || x >= 0 ) 
+best_reward : 0
+epoch: 0, average reward: -0.5254, 
+Random: ( ( n <= 0 && n == ( n - 0 ) ) || ( m <= 0 && m <= ( x + m ) ) || ( m == ( n + 0 ) && m < ( 1 * 0 ) ) ), result_r: -2.1017 

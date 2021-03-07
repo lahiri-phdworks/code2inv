@@ -1,0 +1,2 @@
+( ( sn > 0 || sn <= 0 ) && ( sn == ( x - 0 ) ) )
+z3_report time: 6.02 pid: 0 stats: Counter({'ce-F:': 252, 'ce-I:': 190, 'boogie_result': 83, 'ce-T:': 81, 'actual_z3': 28})

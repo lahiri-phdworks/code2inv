@@ -1,0 +1,4 @@
+best_root :  ( ( x <= 10 && y >= ( 10 - 10 ) ) || ( y == y && y <= 1 ) || x > ( 10 + 10 ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.6134, 
+Random: ( y >= ( 10 + 1 ) ), result_r: -2.0445 

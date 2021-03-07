@@ -1,0 +1,32 @@
+best_root :  ( x < ( 1 * 0 ) || n >= ( x + 0 ) ) 
+best_reward : 0
+epoch: 0, average reward: -1.1241, 
+Random: ( n < ( x * 1 ) && ( x > ( 1 * 0 ) || x <= ( x + x ) ) && n >= ( x + 0 ) ), result_r: -2.5100 
+best_root :  ( ( x < ( x + n ) || x > ( x + x ) ) && n >= ( x - 1 ) ) 
+best_reward : -1
+epoch: 1, average reward: -1.0671, 
+Random: ( n <= ( x * 1 ) && x < ( x * n ) ), result_r: -2.2160 
+best_root :  ( ( x < ( x * 0 ) && x == ( 1 * n ) ) || ( n == 1 && x == 1 ) || ( n >= ( 1 * 1 ) && n >= ( 1 + 0 ) ) ) 
+best_reward : -1
+epoch: 2, average reward: -1.0783, 
+Random: ( ( n > ( 1 * n ) && x >= ( 1 + 0 ) ) || x > ( 1 * n ) || x < ( 1 * 1 ) ), result_r: -2.8040 
+best_root :  ( ( n <= ( x - 0 ) && x > ( n + n ) ) || x > 0 || ( x > ( n - n ) && x == ( n - 0 ) ) ) 
+best_reward : -1
+epoch: 3, average reward: -1.0319, 
+Random: ( n <= ( x - 1 ) ), result_r: -2.5100 
+best_root :  ( ( n > ( 0 - n ) || x > ( n + x ) ) ) 
+best_reward : -1
+epoch: 4, average reward: -1.0446, 
+Random: ( n < ( x + x ) && x > ( 1 + 1 ) ), result_r: -2.4120 
+best_root :  ( n < ( x - x ) || n < ( x * n ) || ( x >= n && x > ( x - x ) ) ) 
+best_reward : -1
+epoch: 5, average reward: -1.0378, 
+Random: ( n < ( x * n ) || ( x == ( x - 1 ) && x < ( x + x ) ) ), result_r: -2.2160 
+best_root :  ( ( n > 0 && x < ( x * n ) ) || x < ( x * n ) || ( x <= ( x * 1 ) && n > ( 0 - x ) ) ) 
+best_reward : -1
+epoch: 6, average reward: -0.9039, 
+Random: ( n > ( 1 * 1 ) ), result_r: -2.3140 
+best_root :  ( ( x > 0 && x <= ( x * n ) ) || x < ( x - x ) || ( x >= ( 1 + 1 ) && n < ( x - x ) ) ) 
+best_reward : -1
+epoch: 7, average reward: -1.0020, 
+Random: ( n > ( 0 + 1 ) || x > ( 1 * 0 ) || n > ( x - x ) ), result_r: -2.2160 

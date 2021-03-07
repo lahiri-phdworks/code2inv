@@ -58,7 +58,8 @@ int main()
     (i2 = 0LL);
     (i = 1LL);
 
-    assume((n > 0 && n < 100000))
+    scanf("%d", &n);
+    assume((n > 0 && n < 50000))
 
         precheck(sum, n, i, y, i2);
 

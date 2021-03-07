@@ -1,0 +1,2 @@
+( x == ( 10 + x ) || ( x <= ( y - 20 ) && x >= x ) || y >= ( x - 10 ) )
+z3_report time: 20.37 pid: 0 stats: Counter({'ce-T:': 1660, 'ce-I:': 721, 'boogie_result': 340, 'ce-F:': 337, 'actual_z3': 13})

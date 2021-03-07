@@ -1,0 +1,2 @@
+( ( x > ( -5000 + y ) && x < ( y + y ) ) || ( y >= ( x + 1 ) && x >= ( x - 0 ) ) || x < 0 )
+z3_report time: 26.05 pid: 0 stats: Counter({'ce-T:': 2422, 'ce-F:': 1046, 'ce-I:': 903, 'boogie_result': 423, 'actual_z3': 16})

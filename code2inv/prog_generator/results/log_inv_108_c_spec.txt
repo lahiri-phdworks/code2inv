@@ -1,0 +1,32 @@
+best_root :  ( ( j < 1 || a > 1 ) ) 
+best_reward : 0
+epoch: 0, average reward: -1.0424, 
+Random: ( ( a < ( a + c ) || m > j ) ), result_r: -2.5100 
+best_root :  ( ( c == 1 || m > ( 0 + c ) ) && ( c <= 0 || k <= 1 ) ) 
+best_reward : -1
+epoch: 1, average reward: -1.0092, 
+Random: ( ( a >= ( j + 0 ) || j > ( j + 0 ) ) ), result_r: -2.5100 
+best_root :  ( ( c == ( j - 1 ) || k < ( 0 + c ) ) && ( j < ( 1 + c ) || k > ( j - 1 ) ) && ( k >= ( j + 0 ) || j >= ( j + 0 ) ) ) 
+best_reward : -1
+epoch: 2, average reward: -1.0253, 
+Random: ( ( j < ( 1 + m ) ) ), result_r: -2.2650 
+best_root :  ( ( m > c || c == ( j + 1 ) ) ) 
+best_reward : -1
+epoch: 3, average reward: -1.0402, 
+Random: ( ( j <= ( a + 1 ) ) ), result_r: -2.5100 
+best_root :  ( ( c == ( j - 1 ) || j < ( 0 + c ) ) && ( c < ( 1 + c ) ) && ( j == ( c - 1 ) ) ) 
+best_reward : -1
+epoch: 4, average reward: -1.0114, 
+Random: ( ( j <= 0 ) && ( c > ( m - 1 ) || a == ( 1 + m ) ) ), result_r: -2.4050 
+best_root :  ( ( c > ( j + 0 ) || c < ( 0 + m ) ) ) 
+best_reward : -1
+epoch: 5, average reward: -1.0423, 
+Random: ( ( k == ( c + 0 ) || a == ( c + 0 ) ) && ( c > m || m > ( m + 0 ) ) ), result_r: -2.5100 
+best_root :  ( ( m >= ( c + 0 ) || k <= ( 1 + m ) ) && ( k == ( c - 1 ) ) ) 
+best_reward : -1
+epoch: 6, average reward: -1.0582, 
+Random: ( ( k == ( a - 1 ) || j > ( m + 0 ) ) ), result_r: -2.5100 
+best_root :  ( ( m > ( j - 1 ) ) && ( j < ( 0 - c ) || j < ( 0 + c ) ) ) 
+best_reward : -1
+epoch: 7, average reward: -0.9526, 
+Random: ( ( k >= ( m - 1 ) ) && ( j < ( 1 - 1 ) ) && ( m < ( 0 + c ) || k > ( j + 1 ) ) ), result_r: -2.5100 
