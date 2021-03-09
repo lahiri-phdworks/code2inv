@@ -1,0 +1,27 @@
+start_time        : 1615252819
+last_update       : 1615252819
+fuzzer_pid        : 3580222
+cycles_done       : 0
+execs_done        : 16
+execs_per_sec     : 1600.00
+paths_total       : 2
+paths_favored     : 1
+paths_found       : 0
+paths_imported    : 0
+max_depth         : 1
+cur_path          : 0
+pending_favs      : 1
+pending_total     : 2
+variable_paths    : 0
+stability         : 100.00%
+bitmap_cvg        : 0.02%
+unique_crashes    : 0
+unique_hangs      : 0
+last_path         : 0
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 16
+exec_timeout      : 20
+afl_banner        : 75
+afl_version       : 2.49b
+command_line      : /home/ha-useast-service/afl/afl-fuzz -i /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/checkers/../fuzz/tests/75 -o /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/checkers/../fuzz/output/75 -m 10G /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/checkers/../fuzz/build/75

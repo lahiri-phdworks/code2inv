@@ -205,8 +205,6 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
     # COMMENT : Print Z3 Model
-
-    print(f"{res}\n")
     return res
 
 

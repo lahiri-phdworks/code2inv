@@ -30,3 +30,27 @@ best_root :  ( z >= ( 1 * y ) || ( y >= 1 && x >= ( y * 0 ) ) )
 best_reward : -1
 epoch: 7, average reward: -0.5178, 
 Random: ( z >= ( 1 * size ) || ( y >= 1 && x >= ( y * y ) ) || y == ( y * 1 ) ), result_r: -2.0200 
+best_root :  ( ( x >= ( 1 - 0 ) || y <= y ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5478, 
+Random: ( ( x == 1 || z == ( 1 * z ) ) ), result_r: -2.0200 
+best_root :  ( ( y == ( 1 * z ) && y == ( size * z ) ) || ( z <= ( 1 + 1 ) && z == ( size * 1 ) ) || y >= ( x * 1 ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.5584, 
+Random: ( z >= ( 1 - 1 ) && z == z ), result_r: -1.6770 
+best_root :  ( ( y == ( z * z ) && size <= y ) || z == ( z * z ) || y > ( 0 * z ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.5412, 
+Random: ( ( y >= x && size < ( y + 0 ) ) ), result_r: -1.8864 
+best_root :  ( ( x >= ( 1 - 0 ) || y <= y ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5478, 
+Random: ( ( x == 1 || z == ( 1 * z ) ) ), result_r: -2.0200 
+best_root :  ( ( y == ( 1 * z ) && y == ( size * z ) ) || ( z <= ( 1 + 1 ) && z == ( size * 1 ) ) || y >= ( x * 1 ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.5584, 
+Random: ( z >= ( 1 - 1 ) && z == z ), result_r: -1.6770 
+best_root :  ( ( y == ( z * z ) && size <= y ) || z == ( z * z ) || y > ( 0 * z ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.5412, 
+Random: ( ( y >= x && size < ( y + 0 ) ) ), result_r: -1.8864 

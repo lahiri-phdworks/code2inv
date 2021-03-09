@@ -1,0 +1,12 @@
+best_root :  ( ( x > j || j <= 1 ) && ( y > ( j - j ) ) ) 
+best_reward : -2
+epoch: 0, average reward: -1.4635, 
+Random: ( ( x <= ( x - 2 ) ) ), result_r: -3.0000 
+best_root :  ( ( i > ( i + j ) ) ) 
+best_reward : -2
+epoch: 1, average reward: -1.5255, 
+Random: ( ( i > 0 || x == ( y - i ) ) ), result_r: -3.0000 
+best_root :  ( ( j >= ( y + y ) ) && ( y == ( 1 + y ) ) && ( j <= 1 || j > i ) ) 
+best_reward : -2
+epoch: 2, average reward: -1.5025, 
+Random: ( ( y <= 1 ) ), result_r: -3.0000 

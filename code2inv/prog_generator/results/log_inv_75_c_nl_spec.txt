@@ -30,3 +30,27 @@ best_root :  ( ( z < ( z + 4608 ) || c >= ( 1 + 127 ) ) && y >= ( 1 + 36 ) && ( 
 best_reward : -1
 epoch: 7, average reward: -0.5219, 
 Random: ( c > ( 1 + c ) || ( y >= ( 1 + c ) && y < ( z + 36 ) ) ), result_r: -1.8453 
+best_root :  ( ( y >= 36 || c >= ( 1 + c ) ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5370, 
+Random: ( z < c && y >= 0 ), result_r: -2.0200 
+best_root :  ( z > ( 36 - 4608 ) && y > ( 36 * c ) && z >= ( 1 + c ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.5547, 
+Random: ( c > ( 127 - c ) || z == y ), result_r: -2.0577 
+best_root :  ( ( z <= 0 || c >= ( z * c ) ) && y > ( 127 - y ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.5944, 
+Random: ( y == ( y - 127 ) ), result_r: -2.0200 
+best_root :  ( ( y >= 36 || c >= ( 1 + c ) ) ) 
+best_reward : 0
+epoch: 0, average reward: -0.5370, 
+Random: ( z < c && y >= 0 ), result_r: -2.0200 
+best_root :  ( z > ( 36 - 4608 ) && y > ( 36 * c ) && z >= ( 1 + c ) ) 
+best_reward : -1
+epoch: 1, average reward: -0.5547, 
+Random: ( c > ( 127 - c ) || z == y ), result_r: -2.0577 
+best_root :  ( ( z <= 0 || c >= ( z * c ) ) && y > ( 127 - y ) ) 
+best_reward : -1
+epoch: 2, average reward: -0.5944, 
+Random: ( y == ( y - 127 ) ), result_r: -2.0200 

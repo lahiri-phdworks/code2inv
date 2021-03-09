@@ -25,7 +25,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 10
+    timeout = 5
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -60,8 +60,7 @@ def process_model_string(model: str):
 
 
 def call_fuzzsolver():
-    # TODO : Get counter example model out of afl "crash" case.
-    # TODO : Try out for "ssum" case and then extract model for counter examples here.
+    # TODO : Now we have to make three parallel calls for pre, loop and post as per new sampling technique.
     try:
         # print(f"Running AFL on Example {example}.c")
         output = run(
