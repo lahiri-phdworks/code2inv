@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-cd code2inv/prog_generator
+cd ../code2inv/prog_generator
 sudo fuzz/afl-init.sh
 
 # Arguments for AFL
