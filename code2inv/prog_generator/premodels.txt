@@ -1,2 +1,1 @@
-Pre : n : 0, v1 : 0, v2 : 0, v3 : 0, x : 0
-32: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/precheck/32.c:79: main: Assertion `(x == 1)' failed.
+deleted

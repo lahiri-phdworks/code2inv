@@ -106,21 +106,22 @@ def process_crashes(fileName):
             results = process_model_string(models[-2].strip())
             # tqdm.write(f"{models[-1].strip()}")
     if results is not None:
-        if results[0] == "Pre":
-            return [results[1], None, None]
-        elif results[0] == "Post":
-            return [None, None, results[1]]
-        else:
-            return [None, results[1], None]
+        # if results[0] == "Pre":
+        #     return [results[1], None, None]
+        # elif results[0] == "Post":
+        #     return [None, None, results[1]]
+        # else:
+        #     return [None, results[1], None]
+        return results[1]
     else:
-        return [None, None, None]
+        return None
 
 
 def mergeModels():
     preModel = process_crashes(premodelsfile)
     loopModel = process_crashes(loopmodelsfile)
     postModel = process_crashes(postmodelsfile)
-    return [preModel[0], loopModel[1], postModel[2]]
+    return [preModel, loopModel, postModel]
     # TODO : Merge Models here.
 
 
@@ -138,7 +139,7 @@ def inv_solver(vc_file: str, inv: str):
         )
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
-        time.sleep(0.2)
+        time.sleep(0.3)
 
     for index, worker in enumerate(executeBuildThreads):
         worker.join()
@@ -147,6 +148,8 @@ def inv_solver(vc_file: str, inv: str):
     open(premodelsfile, 'w').close()
     open(loopmodelsfile, 'w').close()
     open(postmodelsfile, 'w').close()
+
+    time.sleep(0.5)
 
     executeBuildThreads = []
     for i in range(3):
@@ -163,7 +166,7 @@ def inv_solver(vc_file: str, inv: str):
 
     res = mergeModels()
 
-    tqdm.write(f"{res}")
+    # tqdm.write(f"{res}")
     # new_res = c_inv_solver(vc_file, inv)
     # tqdm.write(f"{new_res}")
 
