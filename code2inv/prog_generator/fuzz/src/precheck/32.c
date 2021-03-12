@@ -73,8 +73,4 @@ int main()
       (x = (x - 1));
     }
   }
-
-  // post-condition
-  if ((n >= 0))
-    assert((x == 1));
 }

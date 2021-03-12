@@ -118,56 +118,56 @@ def process_crashes(fileName):
 
 
 def mergeModels():
+    # TODO : Merge Models here.
     preModel = process_crashes(premodelsfile)
     loopModel = process_crashes(loopmodelsfile)
     postModel = process_crashes(postmodelsfile)
     return [preModel, loopModel, postModel]
-    # TODO : Merge Models here.
 
 
 def inv_solver(vc_file: str, inv: str):
     # COMMENT : Gets called in each env.step() iteration.
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
-    dump_template(filepath, inv)
+    # dump_template(filepath, inv)
 
-    executeBuildThreads = []
-    for i in range(3):
-        worker_thread = threading.Thread(
-            target=init_fuzzbase,
-            args=(i,)
-        )
-        executeBuildThreads.append(worker_thread)
-        worker_thread.start()
-        time.sleep(0.3)
+    # executeBuildThreads = []
+    # for i in range(3):
+    #     worker_thread = threading.Thread(
+    #         target=init_fuzzbase,
+    #         args=(i,)
+    #     )
+    #     executeBuildThreads.append(worker_thread)
+    #     worker_thread.start()
+    #     time.sleep(0.3)
 
-    for index, worker in enumerate(executeBuildThreads):
-        worker.join()
+    # for index, worker in enumerate(executeBuildThreads):
+    #     worker.join()
 
-    # Side-effect : Delete all contents of the file.
-    open(premodelsfile, 'w').close()
-    open(loopmodelsfile, 'w').close()
-    open(postmodelsfile, 'w').close()
+    # # Side-effect : Delete all contents of the file.
+    # open(premodelsfile, 'w').close()
+    # open(loopmodelsfile, 'w').close()
+    # open(postmodelsfile, 'w').close()
 
-    time.sleep(0.5)
+    # time.sleep(0.5)
 
-    executeBuildThreads = []
-    for i in range(3):
-        worker_thread = threading.Thread(
-            target=call_fuzzsolver,
-            args=(i,)
-        )
-        executeBuildThreads.append(worker_thread)
-        worker_thread.start()
-        time.sleep(0.3)
+    # executeBuildThreads = []
+    # for i in range(3):
+    #     worker_thread = threading.Thread(
+    #         target=call_fuzzsolver,
+    #         args=(i,)
+    #     )
+    #     executeBuildThreads.append(worker_thread)
+    #     worker_thread.start()
+    #     time.sleep(0.3)
 
-    for index, worker in enumerate(executeBuildThreads):
-        worker.join()
+    # for index, worker in enumerate(executeBuildThreads):
+    #     worker.join()
 
-    res = mergeModels()
+    # res = mergeModels()
 
     # tqdm.write(f"{res}")
     # new_res = c_inv_solver(vc_file, inv)
     # tqdm.write(f"{new_res}")
 
-    return res
+    return [None, None, None]

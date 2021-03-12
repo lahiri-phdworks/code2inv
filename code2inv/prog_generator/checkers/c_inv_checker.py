@@ -3,6 +3,7 @@ import sys
 import tokenize
 import io
 import logging
+import tqdm
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from code2inv.prog_generator.chc_tools.chctools.chcmodel import load_model_from_file, define_fun_to_lambda
@@ -205,15 +206,19 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
     # COMMENT : Print Z3 Model
+
+    # print(f"{res}\n")
+
     return res
 
 
 '''
-def is_trivial(vc_file : str, pred : str):
+def is_trivial(vc_file: str, pred: str):
     inv = pred.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
     tmp_token_exclusive__b = io.StringIO(inv)
-    tmp_token_exclusive__t = tokenize.generate_tokens(tmp_token_exclusive__b.readline)
+    tmp_token_exclusive__t = tokenize.generate_tokens(
+        tmp_token_exclusive__b.readline)
     inv_tokenized = []
     for tmp_token_exclusive__a in tmp_token_exclusive__t:
         if tmp_token_exclusive__a.string != "":
@@ -223,13 +228,13 @@ def is_trivial(vc_file : str, pred : str):
     for token in inv_tokenized:
         if token[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in ("and", "or"):
             var_list.add(str(token))
-    
+
     # inv = stringify_prefix_stack(postfix_prefix(infix_postfix(inv_tokenized)))
     # inv = inv.replace("==", "=", -1)
-    
+
     for v in var_list:
         exec("%s = z3.Int('%s')" % (v, v))
-    
+
     try:
         __tmp_x_for_eval__ = eval(inv)
         if __tmp_x_for_eval__ == True or __tmp_x_for_eval__ == False:

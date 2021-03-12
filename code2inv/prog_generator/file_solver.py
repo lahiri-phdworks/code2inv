@@ -18,7 +18,7 @@ from code2inv.common.ssa_graph_builder import ProgramGraph, GraphNode
 from code2inv.common.constants import *
 from code2inv.common.cmd_args import cmd_args, tic, toc
 from code2inv.common.checker import stat_counter, boogie_result
-
+from code2inv.simplify_tactic.simplifier import getExpr
 from code2inv.graph_encoder.embedding import EmbedMeanField, LSTMEmbed, ParamEmbed
 from code2inv.prog_generator.rl_helper import rollout, actor_critic_loss
 from code2inv.prog_generator.tree_decoder import GeneralDecoder
@@ -133,14 +133,16 @@ if __name__ == '__main__':
             # COMMENT : Calls to boogie results here.
             print('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f' % (
                 epoch, acc_reward / 100.0, root, boogie_result(g, root)))
-            print("best_reward:", best_reward, ", best_root:", best_root)
+            print("best_reward:", best_reward,
+                  ", best_root:", best_root)
+            print("Simpify : ", getExpr(best_root))
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
             resultpath = os.path.join(os.path.dirname(
                 __file__), "results", f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt")
             with open(resultpath, mode="w") as file:
-                file.write("best_root :  %s \nbest_reward : %d\n" % (best_root,
-                                                                     best_reward))
+                file.write("best_root :  %s \nsimplify : %s\nbest_reward : %d\n" % (best_root, getExpr(best_root),
+                                                                                    best_reward))
                 file.write('epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \n' % (
                     epoch, acc_reward / 100.0, root, boogie_result(g, root)))
 

@@ -73,7 +73,4 @@ int main()
     }
     loopcheck(n, v1, v2, v3, x);
   }
-
-  if ((n >= 0))
-    assert((x == 1));
 }

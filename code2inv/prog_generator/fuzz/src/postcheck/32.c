@@ -77,5 +77,10 @@ int main()
 
   postcheck(n, v1, v2, v3, x);
   if ((n >= 0))
-    assert((x == 1));
+  {
+    char buffer[30];
+    fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
+    aflcrash((x == 1));
+  }
 }
