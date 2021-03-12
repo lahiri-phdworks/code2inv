@@ -13,9 +13,7 @@ export CC=$HOME/afl/afl-gcc
 export CXX=$HOME/afl/afl-g++
 export AFL=$HOME/afl/afl-fuzz
 
-rm -rf build/ output/ graph/
-
-while getopts "b:o:t:e:" flag; do
+while getopts "b:o:t:e:c:" flag; do
   case "$flag" in
     b ) 
         buildDir=$OPTARG
@@ -28,6 +26,9 @@ while getopts "b:o:t:e:" flag; do
         ;;
     e ) 
         RUNNER=$OPTARG
+        ;;
+    c ) 
+        CHECK=$OPTARG
         ;;
     \? ) 
         usagePrompt
@@ -42,6 +43,9 @@ done
 shift $((OPTIND -1))    
 
 export RUNNER=$RUNNER
+export CHECK=$CHECK
+
+rm -rf build/$CHECK/* output/$CHECK/* graph/$CHECK/*
 
 if [ $OPTIND -eq 1 ]; 
     then 
@@ -50,13 +54,13 @@ if [ $OPTIND -eq 1 ];
 fi
 
 # Build Directory
-mkdir -p "$buildDir" 
+mkdir -p "$buildDir/$CHECK" 
 
 # Start Build
-cd "$buildDir"
-CC=$CC CXX=$CXX cmake -DCMAKE_CXX_FLAGS="-w" ..
+cd "$buildDir/$CHECK"
+CC=$CC CXX=$CXX cmake -DCMAKE_CXX_FLAGS="-w" ../../
 make -j 12
-cd ../
+cd ../../
 
 # Output Directory
-mkdir -p "$outputDir/$RUNNER" 
+mkdir -p "$outputDir/$CHECK/$RUNNER" 

@@ -13,7 +13,7 @@ export CC=$HOME/afl/afl-gcc
 export CXX=$HOME/afl/afl-g++
 export AFL=$HOME/afl/afl-fuzz
 
-while getopts "b:o:t:e:m:" flag; do
+while getopts "b:o:t:e:m:c:" flag; do
   case "$flag" in
     b ) 
         buildDir=$OPTARG
@@ -29,6 +29,9 @@ while getopts "b:o:t:e:m:" flag; do
         ;;
     m ) 
         MEMORY=$OPTARG
+        ;;
+    c ) 
+        CHECK=$OPTARG
         ;;
     \? ) 
         usagePrompt
@@ -49,4 +52,4 @@ if [[ ! -d $testDir/$RUNNER ]]; then
     echo "Test : $testDir not found !!" 1>&2
 fi
 
-$AFL -i "$testDir/$RUNNER" -o "$outputDir/$RUNNER" -m $MEMORY "$buildDir"/$RUNNER
+$AFL -i "$testDir/$RUNNER" -o "$outputDir/$CHECK/$RUNNER" -m $MEMORY "$buildDir/$CHECK/$RUNNER"
