@@ -27,7 +27,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 7
+    timeout = 5
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -71,7 +71,8 @@ def call_fuzzsolver(index):
     try:
         # print(f"Running AFL on Example {example}.c")
         output = run(
-            f'timeout {timeout} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}',
+            f'timeout {timeout} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
+                -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}',
             shell=True, capture_output=True, text=True)
     except CalledProcessError as err:
         print(f"Fuzzer Error : {err}")
@@ -84,7 +85,8 @@ def init_fuzzbase(index):
     try:
         # print(f"Initialized AFL run on Example {example}.c")
         output = run(
-            f'{fuzzbase}/start.sh -b {fuzzbase}/build -t {fuzzbase}/tests -c {checkList[index]} -o {fuzzbase}/output -e {example}',
+            f'{fuzzbase}/start.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
+                -c {checkList[index]} -o {fuzzbase}/output -e {example}',
             shell=True, capture_output=True, text=True)
     except CalledProcessError as err:
         print(f"Build Error : {err}")
@@ -100,18 +102,16 @@ def dump_template(file, inv_code):
 
 def process_crashes(fileName):
     # COMMENT : iterate over all crashes inputs and extract test failures
+    results = None
     with open(fileName, mode="r") as fileptr:
         models = fileptr.readlines()
-        if models is not None:
-            results = process_model_string(models[-2].strip())
+        if len(models) >= 2:
+            if "failed" in models[-1].strip():
+                results = process_model_string(models[-2].strip())
+            else:
+                pass
             # tqdm.write(f"{models[-1].strip()}")
     if results is not None:
-        # if results[0] == "Pre":
-        #     return [results[1], None, None]
-        # elif results[0] == "Post":
-        #     return [None, None, results[1]]
-        # else:
-        #     return [None, results[1], None]
         return results[1]
     else:
         return None
@@ -129,45 +129,41 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : Gets called in each env.step() iteration.
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
-    # dump_template(filepath, inv)
+    dump_template(filepath, inv)
 
-    # executeBuildThreads = []
-    # for i in range(3):
-    #     worker_thread = threading.Thread(
-    #         target=init_fuzzbase,
-    #         args=(i,)
-    #     )
-    #     executeBuildThreads.append(worker_thread)
-    #     worker_thread.start()
-    #     time.sleep(0.3)
+    executeBuildThreads = []
+    for i in range(3):
+        worker_thread = threading.Thread(
+            target=init_fuzzbase,
+            args=(i,)
+        )
+        executeBuildThreads.append(worker_thread)
+        worker_thread.start()
 
-    # for index, worker in enumerate(executeBuildThreads):
-    #     worker.join()
+    for index, worker in enumerate(executeBuildThreads):
+        worker.join()
 
-    # # Side-effect : Delete all contents of the file.
-    # open(premodelsfile, 'w').close()
-    # open(loopmodelsfile, 'w').close()
-    # open(postmodelsfile, 'w').close()
+    # Side-effect : Delete all contents of the file.
+    open(premodelsfile, 'w').close()
+    open(loopmodelsfile, 'w').close()
+    open(postmodelsfile, 'w').close()
 
-    # time.sleep(0.5)
+    executeBuildThreads = []
+    for i in range(3):
+        worker_thread = threading.Thread(
+            target=call_fuzzsolver,
+            args=(i,)
+        )
+        executeBuildThreads.append(worker_thread)
+        worker_thread.start()
 
-    # executeBuildThreads = []
-    # for i in range(3):
-    #     worker_thread = threading.Thread(
-    #         target=call_fuzzsolver,
-    #         args=(i,)
-    #     )
-    #     executeBuildThreads.append(worker_thread)
-    #     worker_thread.start()
-    #     time.sleep(0.3)
+    for index, worker in enumerate(executeBuildThreads):
+        worker.join()
 
-    # for index, worker in enumerate(executeBuildThreads):
-    #     worker.join()
+    res = mergeModels()
 
-    # res = mergeModels()
-
-    # tqdm.write(f"{res}")
+    tqdm.write(f"{res}")
     # new_res = c_inv_solver(vc_file, inv)
     # tqdm.write(f"{new_res}")
 
-    return [None, None, None]
+    return res

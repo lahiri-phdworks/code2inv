@@ -79,8 +79,7 @@ int main()
   if ((n >= 0))
   {
     char buffer[30];
-    fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
-            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
-    aflcrash((x == 1));
+    fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
+    assert((x == 1));
   }
 }
