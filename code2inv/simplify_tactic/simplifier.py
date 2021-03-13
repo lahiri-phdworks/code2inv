@@ -34,4 +34,8 @@ def getExpr(inv):
 
 
 if __name__ == '__main__':
-    getExpr(inv)
+    ret = getExpr(inv)
+    if len(ret) > 0:
+        print(ret[0])
+    else:
+        print(ret)
