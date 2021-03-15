@@ -1,2 +1,0 @@
-( ( x < ( y + 4 ) ) )
-z3_report time: 118.48 pid: 0 stats: Counter({'ce-T:': 11163, 'ce-I:': 8761, 'boogie_result': 1885, 'ce-F:': 1879, 'actual_z3': 30})

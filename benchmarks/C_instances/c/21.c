@@ -5,7 +5,7 @@ int main()
     int x = 1;
     int m = 1;
     int n;
-
+    assume((-10000 <= n && n < 10000));
     while (x < n)
     {
         if (unknown())

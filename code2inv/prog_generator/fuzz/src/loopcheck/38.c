@@ -53,32 +53,20 @@ int main()
     int n;
     int c;
 
-    freopen("models.txt", "w", stderr);
+    freopen("loopmodels.txt", "w", stderr);
 
     scanf("%d", &n);
     scanf("%d", &c);
 
-    assume((n > 0 && n <= 10000))
-        assume((c > 0 && n <= 10000))
-
-            precheck(n, c);
-    while (unknown())
-    {
-        if (c == n)
-        {
-            c = 1;
-        }
-        else
-        {
-            c = c + 1;
-        }
-        loopcheck(n, c);
-    }
-
-    postcheck(n, c);
+    assume(INV(n, c));
+    // loop-cond : unknown()
     if (c == n)
     {
-        assert(c >= 0);
-        //assert(c <= n);
+        c = 1;
     }
+    else
+    {
+        c = c + 1;
+    }
+    loopcheck(n, c);
 }

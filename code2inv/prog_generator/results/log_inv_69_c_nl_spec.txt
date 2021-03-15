@@ -1,4 +1,0 @@
-best_root :  ( n <= n || x > 0 ) 
-best_reward : 0
-epoch: 0, average reward: -0.5754, 
-Random: ( ( n < ( x - x ) && x > ( y * 1 ) ) ), result_r: -1.9656 

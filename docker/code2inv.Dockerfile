@@ -21,4 +21,4 @@ ARG CACHEBUST=1
 RUN git clone https://github.com/PL-ML/code2inv.git
 RUN cd /code2inv; pip install -e .
 RUN cd /code2inv/clang-fe; make
-WORKDIR code2inv
+WORKDIR /code2inv

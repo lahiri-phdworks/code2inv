@@ -1,2 +1,0 @@
-( ( i == ( 0 + 57 ) && i > ( 48 + 48 ) ) || i >= ( 0 * 57 ) )
-z3_report time: 25.71 pid: 0 stats: Counter({'ce-T:': 1703, 'ce-F:': 288, 'boogie_result': 268, 'ce-I:': 126, 'actual_z3': 11})

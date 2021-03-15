@@ -1,2 +1,0 @@
-( x >= 0 && ( y > ( 0 * 0 ) || y >= 0 ) && ( y == 0 || x == x ) )
-z3_report time: 0.32 pid: 0 stats: Counter({'boogie_result': 3, 'actual_z3': 3, 'ce-T:': 2, 'ce-F:': 1})

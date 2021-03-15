@@ -44,7 +44,7 @@ void postcheck(int x, int size, int y, int z)
 int main()
 {
 
-   freopen("models.txt", "w", stderr);
+   freopen("postmodels.txt", "w", stderr);
 
    int x;
    int size;
@@ -54,22 +54,22 @@ int main()
    (x = 0);
 
    scanf("%d", &size);
-   assume((size >= 0 && size <= 10000))
-       precheck(x, size, y, z);
+   assume((-10000 <= size && size <= 10000));
 
-   while (x < size)
+   x += 1;
+   if (z <= y)
    {
-      x += 1;
-      if (z <= y)
-      {
-         y = z;
-      }
-      loopcheck(x, size, y, z);
+      y = z;
    }
 
-   postcheck(x, size, y, z);
+   // post-condition
+   assume(INV(x, size, y, z));
+   assume(!(x < size));
+
    if (size > 0)
    {
+      char buffer[30];
+      fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d\n", "x", x, "size", size, "y", y, "z", z);
       assert(z >= y);
    }
 }

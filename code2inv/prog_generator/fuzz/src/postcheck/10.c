@@ -29,7 +29,7 @@ void precheck(int x, int y)
 void loopcheck(int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
+  fprintf(stderr, "Loop : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
 }
 
@@ -37,7 +37,7 @@ void loopcheck(int x, int y)
 void postcheck(int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
+  fprintf(stderr, "Post : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
 }
 
@@ -54,29 +54,21 @@ int main()
   int x;
   int y;
 
-  freopen("models.txt", "w", stderr);
+  freopen("postmodels.txt", "w", stderr);
   scanf("%d", &x);
   scanf("%d", &y);
 
-  // pre-conditions
-  assume((x >= 0));
-  assume((x <= 2));
-  assume((y <= 2));
-  assume((y >= 0));
-
-  precheck(x, y);
   // loop body
-  while (unknown())
-  {
-    {
-      (x = (x + 2));
-      (y = (y + 2));
-    }
-    loopcheck(x, y);
-  }
+  (x = (x + 2));
+  (y = (y + 2));
 
-  postcheck(x, y);
   // post-condition
+  assume(INV(x, y));
+  // assume(!(loop-cond))
   if ((y == 0))
+  {
+    char buffer[30];
+    fprintf(stderr, "Post : %s : %d, %s : %d\n", "x", x, "y", y);
     assert((x != 4));
+  }
 }

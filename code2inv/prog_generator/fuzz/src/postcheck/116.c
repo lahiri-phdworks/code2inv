@@ -57,7 +57,7 @@ int main()
   int v3;
   int x;
 
-  freopen("models.txt", "w", stderr);
+  freopen("postmodels.txt", "w", stderr);
 
   scanf("%d", &sn);
   scanf("%d", &x);
@@ -65,19 +65,17 @@ int main()
   // pre-conditions
   (sn = 0);
   (x = 0);
-  precheck(sn, v1, v2, v3, x);
-  // loop body
-  while (unknown())
-  {
-    {
-      (x = (x + 1));
-      (sn = (sn + 1));
-    }
-    loopcheck(sn, v1, v2, v3, x);
-  }
 
-  postcheck(sn, v1, v2, v3, x);
+  // loop body
+  (x = (x + 1));
+  (sn = (sn + 1));
+
   // post-condition
+  assume(INV(sn, v1, v2, v3, x));
   if ((sn != x))
+  {
+    char buffer[30];
+    fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n", "n", sn, "v1", v1, "v2", v2, "v3", v3, "x", x);
     assert((sn == -1));
+  }
 }

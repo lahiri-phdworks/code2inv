@@ -29,7 +29,7 @@ void precheck(int i, int j, int c, int t)
 void loopcheck(int i, int j, int c, int t)
 {
     char buffer[30];
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "c", c, "t", t);
+    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "c", c, "t", t);
     aflcrash(INV(i, j, c, t));
 }
 
@@ -37,7 +37,7 @@ void loopcheck(int i, int j, int c, int t)
 void postcheck(int i, int j, int c, int t)
 {
     char buffer[30];
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "c", c, "t", t);
+    fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "c", c, "t", t);
     aflcrash(INV(i, j, c, t));
 }
 
@@ -55,28 +55,14 @@ int main()
     int c;
     int t;
 
-    // pre-conditions
-    (i = 0);
+    freopen("premodels.txt", "w", stderr);
     scanf("%d", &c);
 
-    assume((c >= 40 && c <= 60))
-        precheck(i, j, c, t);
+    // pre-conditions
+    (i = 0);
 
-    while (unknown())
-    {
-        if (c > 48)
-        {
-            if (c < 57)
-            {
-                j = i + i;
-                t = c - 48;
-                i = j + t;
-            }
-        }
-        loopcheck(i, j, c, t);
-    }
+    assume((i == 0));
+    assume((c >= 40 && c <= 60));
 
-    postcheck(i, j, c, t);
-    // post-condition
-    assert(i >= 0);
+    precheck(i, j, c, t);
 }

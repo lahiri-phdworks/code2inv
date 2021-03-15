@@ -1,27 +1,33 @@
 {
 	"nodes": {
-		"4_2": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "i_2"
-			},
+		"1_1": {
+			"cmd": "Assert",
 			"rval": {
-				"OP": "phi_merge",
+				"OP": ">",
 				"arg0": {
-					"Var": "i_1"
+					"OP": "+",
+					"arg0": {
+						"Var": "i_2"
+					},
+					"arg1": {
+						"OP": "+",
+						"arg0": {
+							"Var": "j_2"
+						},
+						"arg1": {
+							"Var": "k_0"
+						}
+					}
 				},
 				"arg1": {
-					"Var": "i_3"
+					"OP": "*",
+					"arg0": {
+						"Const": "2"
+					},
+					"arg1": {
+						"Var": "n_0"
+					}
 				}
-			}
-		},
-		"5_4": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "j_1"
-			},
-			"rval": {
-				"Const": "0"
 			}
 		},
 		"3_1": {
@@ -57,8 +63,20 @@
 		"4_1": {
 			"cmd": "Loop"
 		},
-		"EXIT": {
-			"cmd": "SKIP"
+		"4_2": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "i_2"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "i_1"
+				},
+				"arg1": {
+					"Var": "i_3"
+				}
+			}
 		},
 		"4_3": {
 			"cmd": "Phi",
@@ -75,48 +93,6 @@
 				}
 			}
 		},
-		"5_2": {
-			"cmd": "Assume",
-			"rval": {
-				"OP": ">=",
-				"arg0": {
-					"Var": "n_0"
-				},
-				"arg1": {
-					"Const": "0"
-				}
-			}
-		},
-		"1_1": {
-			"cmd": "Assert",
-			"rval": {
-				"OP": ">",
-				"arg0": {
-					"OP": "+",
-					"arg0": {
-						"Var": "i_2"
-					},
-					"arg1": {
-						"OP": "+",
-						"arg0": {
-							"Var": "j_2"
-						},
-						"arg1": {
-							"Var": "k_0"
-						}
-					}
-				},
-				"arg1": {
-					"OP": "*",
-					"arg0": {
-						"Const": "2"
-					},
-					"arg1": {
-						"Var": "n_0"
-					}
-				}
-			}
-		},
 		"4_4": {
 			"cmd": "if",
 			"rval": {
@@ -129,23 +105,11 @@
 				}
 			}
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
 		"4_5": {
 			"cmd": "TrueBranch"
 		},
 		"4_6": {
 			"cmd": "FalseBranch"
-		},
-		"5_3": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "i_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
 		},
 		"5_1": {
 			"cmd": "Assume",
@@ -158,6 +122,42 @@
 					"Const": "0"
 				}
 			}
+		},
+		"5_2": {
+			"cmd": "Assume",
+			"rval": {
+				"OP": ">=",
+				"arg0": {
+					"Var": "n_0"
+				},
+				"arg1": {
+					"Const": "0"
+				}
+			}
+		},
+		"5_3": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "i_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
+		},
+		"5_4": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "j_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

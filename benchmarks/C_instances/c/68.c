@@ -1,15 +1,19 @@
 
-int main() {
-    int n,y;
+int main()
+{
+    int n, y;
     int x = 1;
 
-    while (x <= n) {
+    assume((-10000 <= n && n <= 10000));
+    while (x <= n)
+    {
         y = n - x;
-        x = x +1;
+        x = x + 1;
     }
 
-    if (n > 0) {
+    if (n > 0)
+    {
         //assert (y >= 0);
-        assert (y <= n);
+        assert(y <= n);
     }
 }

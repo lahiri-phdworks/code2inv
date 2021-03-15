@@ -1,7 +1,16 @@
 {
 	"nodes": {
-		"4_1": {
-			"cmd": "Loop"
+		"1_1": {
+			"cmd": "Assert",
+			"rval": {
+				"OP": "==",
+				"arg0": {
+					"Var": "x_2"
+				},
+				"arg1": {
+					"Const": "0"
+				}
+			}
 		},
 		"3_1": {
 			"cmd": "assign",
@@ -18,8 +27,8 @@
 				}
 			}
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
+		"4_1": {
+			"cmd": "Loop"
 		},
 		"4_2": {
 			"cmd": "Phi",
@@ -36,10 +45,10 @@
 				}
 			}
 		},
-		"1_1": {
-			"cmd": "Assert",
+		"4_3": {
+			"cmd": "if",
 			"rval": {
-				"OP": "==",
+				"OP": ">",
 				"arg0": {
 					"Var": "x_2"
 				},
@@ -47,9 +56,6 @@
 					"Const": "0"
 				}
 			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
 		},
 		"4_4": {
 			"cmd": "TrueBranch"
@@ -66,17 +72,11 @@
 				"Const": "100"
 			}
 		},
-		"4_3": {
-			"cmd": "if",
-			"rval": {
-				"OP": ">",
-				"arg0": {
-					"Var": "x_2"
-				},
-				"arg1": {
-					"Const": "0"
-				}
-			}
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

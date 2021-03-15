@@ -54,22 +54,14 @@ int main()
   int n;
   int x;
 
+  freopen("premodels.txt", "w", stderr);
+  scanf("%d", &n);
+
   // pre-conditions
   (x = 0);
-  scanf("%d", &n);
+
+  assume((x == 0));
   assume((n >= 0));
 
   precheck(n, x);
-  // loop body
-  while ((x < n))
-  {
-    {
-      (x = (x + 1));
-    }
-    loopcheck(n, x);
-  }
-
-  postcheck(n, x);
-  // post-condition
-  assert((x == n));
 }

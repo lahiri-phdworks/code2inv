@@ -1,4 +1,4 @@
-#include <116.h>
+#include <120.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -54,7 +54,7 @@ int main()
   int i;
   int sn;
 
-  freopen("models.txt", "w", stderr);
+  freopen("postmodels.txt", "w", stderr);
 
   scanf("%d", &sn);
   scanf("%d", &i);
@@ -62,20 +62,19 @@ int main()
   // pre-conditions
   (sn = 0);
   (i = 1);
-  precheck(i, sn);
 
   // loop body
-  while ((i <= 8))
-  {
-    {
-      (i = (i + 1));
-      (sn = (sn + 1));
-    }
-    loopcheck(i, sn);
-  }
+  (i = (i + 1));
+  (sn = (sn + 1));
 
-  postcheck(i, sn);
   // post-condition
+  assume(INV(i, sn));
+  assume(!(i <= 8));
+
   if ((sn != 8))
+  {
+    char buffer[30];
+    fprintf(stderr, "Post : %s : %d, %s : %d\n", "i", i, "sn", sn);
     assert((sn == 0));
+  }
 }

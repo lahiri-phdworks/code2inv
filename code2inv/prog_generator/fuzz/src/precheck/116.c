@@ -57,7 +57,7 @@ int main()
   int v3;
   int x;
 
-  freopen("models.txt", "w", stderr);
+  freopen("premodels.txt", "w", stderr);
 
   scanf("%d", &sn);
   scanf("%d", &x);
@@ -65,19 +65,9 @@ int main()
   // pre-conditions
   (sn = 0);
   (x = 0);
-  precheck(sn, v1, v2, v3, x);
-  // loop body
-  while (unknown())
-  {
-    {
-      (x = (x + 1));
-      (sn = (sn + 1));
-    }
-    loopcheck(sn, v1, v2, v3, x);
-  }
 
-  postcheck(sn, v1, v2, v3, x);
-  // post-condition
-  if ((sn != x))
-    assert((sn == -1));
+  assume((sn == 0));
+  assume((x == 0));
+
+  precheck(sn, v1, v2, v3, x);
 }

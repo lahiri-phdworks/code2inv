@@ -1,2 +1,0 @@
-( ( x >= ( 0 - x ) ) && ( x >= ( x - 100 ) || x == ( 0 - 100 ) ) )
-z3_report time: 1.27 pid: 0 stats: Counter({'boogie_result': 12, 'actual_z3': 12, 'ce-T:': 11, 'ce-I:': 8})

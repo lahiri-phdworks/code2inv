@@ -1,29 +1,33 @@
-int main() {
+int main()
+{
   // variable declarations
   int c;
   int n;
   // pre-conditions
   (c = 0);
   assume((n > 0));
+  assume((-10000 <= n && n <= 10000));
   // loop body
-  while (unknown()) {
+  while (unknown())
+  {
     {
-      if ( unknown() ) {
-        if ( (c > n) )
+      if (unknown())
+      {
+        if ((c > n))
         {
-        (c  = (c + 1));
-        }
-      } else {
-        if ( (c == n) )
-        {
-        (c  = 1);
+          (c = (c + 1));
         }
       }
-
+      else
+      {
+        if ((c == n))
+        {
+          (c = 1);
+        }
+      }
     }
-
   }
   // post-condition
-if ( (c != n) )
-assert( (c <= n) );
+  if ((c != n))
+    assert((c <= n));
 }

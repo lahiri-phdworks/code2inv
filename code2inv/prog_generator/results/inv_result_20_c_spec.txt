@@ -1,2 +1,0 @@
-( ( x > ( 0 - 1 ) ) && ( m >= n || m <= ( m + m ) ) && ( x <= ( m + m ) || m >= ( 0 + 0 ) ) )
-z3_report time: 444.97 pid: 0 stats: Counter({'ce-I:': 72541, 'ce-T:': 28663, 'boogie_result': 7169, 'ce-F:': 7151, 'actual_z3': 18})

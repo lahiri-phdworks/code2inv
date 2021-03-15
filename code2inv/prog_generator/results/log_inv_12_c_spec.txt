@@ -1,8 +1,0 @@
-best_root :  ( ( y == y ) ) 
-best_reward : 0
-epoch: 0, average reward: -0.6142, 
-Random: ( ( x < ( 20 - y ) ) && ( x < ( 10 + 0 ) || x >= ( x - 0 ) ) ), result_r: -1.8975 
-best_root :  ( ( x < ( x - 0 ) || y >= ( x - 10 ) ) && ( x == ( x + 10 ) || x <= 20 ) ) 
-best_reward : -1
-epoch: 1, average reward: -0.5950, 
-Random: ( ( y == ( 0 + x ) ) ), result_r: -1.8240 

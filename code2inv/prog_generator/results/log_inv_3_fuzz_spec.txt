@@ -1,4 +1,0 @@
-best_root :  ( ( z >= ( z - 1 ) || z <= ( 0 - x ) ) ) 
-best_reward : 0
-epoch: 0, average reward: -0.5344, 
-Random: ( ( x >= ( 0 + z ) ) && ( z <= ( 5 - y ) ) && ( z > x ) ), result_r: -2.0200 

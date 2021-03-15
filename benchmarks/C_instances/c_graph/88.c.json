@@ -1,29 +1,5 @@
 {
 	"nodes": {
-		"3_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_4"
-			},
-			"rval": {
-				"Var": "y_2"
-			}
-		},
-		"3_3": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "y_4"
-			},
-			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "y_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
-		},
 		"1_1": {
 			"cmd": "Assert",
 			"rval": {
@@ -33,84 +9,6 @@
 				},
 				"arg1": {
 					"Const": "1"
-				}
-			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"4_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "lock_3"
-			},
-			"rval": {
-				"Const": "1"
-			}
-		},
-		"6_2": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "lock_2"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "lock_1"
-				},
-				"arg1": {
-					"Var": "lock_4"
-				}
-			}
-		},
-		"6_1": {
-			"cmd": "Loop"
-		},
-		"6_4": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "y_2"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "y_1"
-				},
-				"arg1": {
-					"Var": "y_3"
-				}
-			}
-		},
-		"5_2": {
-			"cmd": "if",
-			"rval": {
-				"UNK": "UNK_VAL"
-			}
-		},
-		"6_6": {
-			"cmd": "TrueBranch"
-		},
-		"6_7": {
-			"cmd": "FalseBranch"
-		},
-		"5_3": {
-			"cmd": "TrueBranch"
-		},
-		"5_4": {
-			"cmd": "FalseBranch"
-		},
-		"6_3": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "x_1"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "x_0"
-				},
-				"arg1": {
-					"Var": "x_3"
 				}
 			}
 		},
@@ -168,6 +66,108 @@
 				"Const": "0"
 			}
 		},
+		"3_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_4"
+			},
+			"rval": {
+				"Var": "y_2"
+			}
+		},
+		"3_3": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "y_4"
+			},
+			"rval": {
+				"OP": "+",
+				"arg0": {
+					"Var": "y_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
+		},
+		"4_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "lock_3"
+			},
+			"rval": {
+				"Const": "1"
+			}
+		},
+		"4_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_2"
+			},
+			"rval": {
+				"Var": "y_2"
+			}
+		},
+		"5_2": {
+			"cmd": "if",
+			"rval": {
+				"UNK": "UNK_VAL"
+			}
+		},
+		"5_3": {
+			"cmd": "TrueBranch"
+		},
+		"5_4": {
+			"cmd": "FalseBranch"
+		},
+		"6_1": {
+			"cmd": "Loop"
+		},
+		"6_2": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "lock_2"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "lock_1"
+				},
+				"arg1": {
+					"Var": "lock_4"
+				}
+			}
+		},
+		"6_3": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "x_1"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "x_0"
+				},
+				"arg1": {
+					"Var": "x_3"
+				}
+			}
+		},
+		"6_4": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "y_2"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "y_1"
+				},
+				"arg1": {
+					"Var": "y_3"
+				}
+			}
+		},
 		"6_5": {
 			"cmd": "if",
 			"rval": {
@@ -180,17 +180,11 @@
 				}
 			}
 		},
-		"4_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_2"
-			},
-			"rval": {
-				"Var": "y_2"
-			}
+		"6_6": {
+			"cmd": "TrueBranch"
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
+		"6_7": {
+			"cmd": "FalseBranch"
 		},
 		"7_1": {
 			"cmd": "assign",
@@ -215,6 +209,12 @@
 			"rval": {
 				"Const": "0"
 			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

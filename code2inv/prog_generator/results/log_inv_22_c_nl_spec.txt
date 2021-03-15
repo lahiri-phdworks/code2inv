@@ -1,8 +1,0 @@
-best_root :  ( n >= ( m - 1 ) || x <= 1 || ( m > ( 1 * n ) && n == n ) ) 
-best_reward : 0
-epoch: 0, average reward: -0.5467, 
-Random: ( ( m <= ( 1 * 1 ) && x <= ( n * m ) ) || m > ( x - 1 ) || ( m > ( x - 1 ) && m == ( 1 + 1 ) ) ), result_r: -1.7082 
-best_root :  ( m == ( 1 * 1 ) && ( n == x || x == ( 1 * 1 ) ) && ( n == ( n * m ) || m == ( 1 * 1 ) ) ) 
-best_reward : -1
-epoch: 1, average reward: -0.5373, 
-Random: ( n >= 1 || n >= x ), result_r: -2.1425 

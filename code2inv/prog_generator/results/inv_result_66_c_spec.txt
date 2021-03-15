@@ -1,2 +1,0 @@
-( ( y <= ( y + x ) ) && ( x < 100 || y <= 1 ) && ( y <= y ) )
-z3_report time: 4.91 pid: 0 stats: Counter({'ce-T:': 300, 'boogie_result': 67, 'ce-F:': 61, 'actual_z3': 18, 'ce-I:': 4})

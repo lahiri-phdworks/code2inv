@@ -29,7 +29,7 @@ void precheck(int x, int y)
 void loopcheck(int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
+  fprintf(stderr, "Loop : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
 }
 
@@ -37,38 +37,26 @@ void loopcheck(int x, int y)
 void postcheck(int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
+  fprintf(stderr, "Post : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
 }
 
 int main()
 {
 
-  freopen("models.txt", "w", stderr);
+  freopen("premodels.txt", "w", stderr);
 
   // variable declarations
   int x;
   int y;
 
   // pre-conditions
+  scanf("%d", &y);
   (x = 1);
   (y = 0);
 
-  scanf("%d", &y);
-  assume((y > 0 && y <= 100000))
+  assume((x == 1));
+  assume((y == 0));
 
-      precheck(x, y);
-
-  // loop body
-  while ((y < 100000))
-  {
-    {
-      (x = (x + y));
-      (y = (y + 1));
-    }
-    loopcheck(x, y);
-  }
-  // post-condition
-  postcheck(x, y);
-  assert((x >= y));
+  precheck(x, y);
 }

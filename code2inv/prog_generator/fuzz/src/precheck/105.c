@@ -57,25 +57,14 @@ int main()
   int v3;
   int x;
 
-  freopen("models.txt", "w", stderr);
+  freopen("premodels.txt", "w", stderr);
 
   // pre-conditions
-  (x = 0);
   scanf("%d", &n);
-  assume((n >= 0 && n <= 15000))
+  (x = 0);
 
-      precheck(n, v1, v2, v3, x);
-  // loop body
-  while ((x < n))
-  {
-    {
-      (x = (x + 1));
-    }
-    loopcheck(n, v1, v2, v3, x);
-  }
+  assume((x == 0));
+  assume((-10000 <= n && n <= 10000));
 
-  postcheck(n, v1, v2, v3, x);
-  // post-condition
-  if ((n >= 0))
-    assert((x == n));
+  precheck(n, v1, v2, v3, x);
 }

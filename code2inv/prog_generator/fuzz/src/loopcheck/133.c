@@ -54,22 +54,16 @@ int main()
   int n;
   int x;
 
+  freopen("loopmodels.txt", "w", stderr);
+
   // pre-conditions
   (x = 0);
   scanf("%d", &n);
   assume((n >= 0));
 
-  precheck(n, x);
   // loop body
-  while ((x < n))
-  {
-    {
-      (x = (x + 1));
-    }
-    loopcheck(n, x);
-  }
-
-  postcheck(n, x);
-  // post-condition
-  assert((x == n));
+  assume(INV(n, x));
+  assume((x < n));
+  (x = (x + 1));
+  loopcheck(n, x);
 }

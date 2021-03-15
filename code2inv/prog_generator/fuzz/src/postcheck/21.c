@@ -53,29 +53,28 @@ int main()
     int x;
     int m;
     int n;
-    freopen("models.txt", "w", stderr);
+    freopen("postmodels.txt", "w", stderr);
 
     (x = 1);
     (m = 1);
     scanf("%d", &n);
 
-    assume((n >= 0 && n < 10000))
-        precheck(x, m, n);
+    assume((-10000 <= n && n <= 10000));
 
-    while (x < n)
+    if (unknown())
     {
-        if (unknown())
-        {
-            m = x;
-        }
-        x = x + 1;
-        loopcheck(x, m, n);
+        m = x;
     }
+    x = x + 1;
 
-    postcheck(x, m, n);
+    // post-condition
+    assume(INV(x, m, n));
+    assume(!(x < n));
+
     if (n > 1)
     {
+        char buffer[30];
+        fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n", "x", x, "m", m, "n", n);
         assert(m < n);
-        // assert (m >= 1);
     }
 }

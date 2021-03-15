@@ -1,4 +1,0 @@
-best_root :  ( ( x == x ) ) 
-best_reward : 0
-epoch: 0, average reward: -0.5507, 
-Random: ( ( x < ( 1 + 1 ) || x <= ( y - 1 ) ) && ( y == ( y + 100 ) ) && ( x < ( 1 + 0 ) || y >= ( y - 1 ) ) ), result_r: -2.0200 

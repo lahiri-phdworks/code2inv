@@ -65,12 +65,9 @@ int main()
 
   // loop body
   assume(INV(n, v1, v2, v3, x));
-  while ((x > 1))
+  assume((x > 1))
   {
-    assume((x > 1))
-    {
-      (x = (x - 1));
-    }
-    loopcheck(n, v1, v2, v3, x);
+    (x = (x - 1));
   }
+  loopcheck(n, v1, v2, v3, x);
 }

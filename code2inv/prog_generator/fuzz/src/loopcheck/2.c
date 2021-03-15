@@ -44,31 +44,23 @@ void postcheck(int x, int y)
 int main()
 {
 
-  freopen("models.txt", "w", stderr);
+  freopen("loopmodels.txt", "w", stderr);
 
   // variable declarations
   int x;
   int y;
 
   // pre-conditions
+  scanf("%d", &y);
   (x = 1);
   (y = 0);
 
-  scanf("%d", &y);
-  assume((y > 0 && y <= 1000))
-
-      precheck(x, y);
-
   // loop body
-  while ((y < 1000))
+  assume(INV(x, y));
+  assume((y < 1000));
   {
-    {
-      (x = (x + y));
-      (y = (y + 1));
-    }
-    loopcheck(x, y);
+    (x = (x + y));
+    (y = (y + 1));
   }
-  // post-condition
-  postcheck(x, y);
-  assert((x >= y));
+  loopcheck(x, y);
 }

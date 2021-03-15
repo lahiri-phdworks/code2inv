@@ -9,15 +9,13 @@
   if (!cond)           \
     assert(0);
 
-// Guide AFL to proper values
-// exit(0) is not a crash
 #define assume(cond) \
   if (!cond)         \
     exit(0);
 
 #define INV(x, y) PHI
 
-// TODO : Automate generation of this snippet
+// COMMENT : precheck template
 void precheck(int x, int y)
 {
   char buffer[30];
@@ -25,50 +23,38 @@ void precheck(int x, int y)
   aflcrash(INV(x, y));
 }
 
-// TODO : Automate generation of this snippet
+// COMMENT : loopcheck template
 void loopcheck(int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
+  fprintf(stderr, "Loop : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
 }
 
-// TODO : Automate generation of this snippet
-void postcheck(int x, int y)
+// COMMENT : postcheck template
+void post(int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
+  fprintf(stderr, "Post : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
 }
 
 int main()
 {
 
-  freopen("models.txt", "w", stderr);
+  freopen("premodels.txt", "w", stderr);
 
   // variable declarations
   int x;
   int y;
 
   // pre-conditions
+  scanf("%d", &y);
   (x = 1);
   (y = 0);
 
-  scanf("%d", &y);
-  assume((y > 0 && y <= 1000))
+  assume((x == 1));
+  assume((y == 0));
 
-      precheck(x, y);
-
-  // loop body
-  while ((y < 1000))
-  {
-    {
-      (x = (x + y));
-      (y = (y + 1));
-    }
-    loopcheck(x, y);
-  }
-  // post-condition
-  postcheck(x, y);
-  assert((x >= y));
+  precheck(x, y);
 }

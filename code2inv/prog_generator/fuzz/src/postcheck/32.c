@@ -63,19 +63,14 @@ int main()
   scanf("%d", &n);
   (x = n);
 
-  // loop body
-  while ((x > 1))
-  {
-    {
-      (x = (x - 1));
-    }
-  }
+  assume((-10000 <= x && x <= 10000));
+
+  (x = (x - 1));
 
   // post-condition
   assume(INV(n, v1, v2, v3, x));
   assume(!(x > 1));
 
-  postcheck(n, v1, v2, v3, x);
   if ((n >= 0))
   {
     char buffer[30];

@@ -1,13 +1,13 @@
 {
 	"nodes": {
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
-		"2_2": {
-			"cmd": "TrueBranch"
-		},
-		"2_3": {
-			"cmd": "FalseBranch"
+		"10_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "c_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
 		},
 		"1_1": {
 			"cmd": "Assert",
@@ -21,10 +21,7 @@
 				}
 			}
 		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"7_1": {
+		"2_1": {
 			"cmd": "if",
 			"rval": {
 				"OP": "!=",
@@ -36,8 +33,11 @@
 				}
 			}
 		},
-		"7_2": {
+		"2_2": {
 			"cmd": "TrueBranch"
+		},
+		"2_3": {
+			"cmd": "FalseBranch"
 		},
 		"3_1": {
 			"cmd": "Phi",
@@ -55,6 +55,15 @@
 				"arg2": {
 					"Var": "c_5"
 				}
+			}
+		},
+		"4_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "c_5"
+			},
+			"rval": {
+				"Const": "1"
 			}
 		},
 		"5_1": {
@@ -75,16 +84,22 @@
 		"5_3": {
 			"cmd": "FalseBranch"
 		},
-		"4_1": {
+		"6_1": {
 			"cmd": "assign",
 			"lval": {
-				"Var": "c_5"
+				"Var": "c_3"
 			},
 			"rval": {
-				"Const": "1"
+				"OP": "+",
+				"arg0": {
+					"Var": "c_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
 			}
 		},
-		"2_1": {
+		"7_1": {
 			"cmd": "if",
 			"rval": {
 				"OP": "!=",
@@ -95,6 +110,12 @@
 					"Const": "40"
 				}
 			}
+		},
+		"7_2": {
+			"cmd": "TrueBranch"
+		},
+		"7_3": {
+			"cmd": "FalseBranch"
 		},
 		"8_2": {
 			"cmd": "if",
@@ -107,15 +128,6 @@
 		},
 		"8_4": {
 			"cmd": "FalseBranch"
-		},
-		"10_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "c_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
 		},
 		"9_1": {
 			"cmd": "Loop"
@@ -135,24 +147,6 @@
 				}
 			}
 		},
-		"7_3": {
-			"cmd": "FalseBranch"
-		},
-		"6_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "c_3"
-			},
-			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "c_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
-		},
 		"9_4": {
 			"cmd": "if",
 			"rval": {
@@ -164,6 +158,12 @@
 		},
 		"9_6": {
 			"cmd": "FalseBranch"
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

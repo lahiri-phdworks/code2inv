@@ -1,2 +1,0 @@
-( ( x < y || x < ( -50 * 0 ) ) )
-z3_report time: 0.36 pid: 0 stats: Counter({'ce-T:': 15, 'boogie_result': 7, 'actual_z3': 7, 'ce-F:': 3})

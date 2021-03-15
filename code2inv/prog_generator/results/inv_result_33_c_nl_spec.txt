@@ -1,2 +1,0 @@
-( ( n == n && x >= 1 ) || x >= ( 0 * n ) || ( n < ( 1 + x ) && x == x ) )
-z3_report time: 2.41 pid: 0 stats: Counter({'ce-T:': 174, 'boogie_result': 50, 'ce-F:': 49, 'ce-I:': 39, 'actual_z3': 13})

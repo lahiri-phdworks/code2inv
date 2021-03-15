@@ -29,7 +29,7 @@ void precheck(int i, int j, int x, int y)
 void loopcheck(int i, int j, int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "x", x, "y", y);
+  fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "x", x, "y", y);
   aflcrash(INV(i, j, x, y));
 }
 
@@ -37,7 +37,7 @@ void loopcheck(int i, int j, int x, int y)
 void postcheck(int i, int j, int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "x", x, "y", y);
+  fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "x", x, "y", y);
   aflcrash(INV(i, j, x, y));
 }
 
@@ -49,7 +49,7 @@ int main()
   int x;
   int y;
 
-  freopen("models.txt", "w", stderr);
+  freopen("loopmodels.txt", "w", stderr);
 
   scanf("%d", &x);
   scanf("%d", &y);
@@ -59,22 +59,10 @@ int main()
   (i = 0);
   (y = 2);
 
-  assume((x >= 0 && x <= 1000))
-      assume((y >= 0 && y <= 1000))
-          precheck(i, j, x, y);
-
   // loop body
-  while ((i <= x))
-  {
-    {
-      (i = (i + 1));
-      (j = (j + y));
-    }
-    loopcheck(i, j, x, y);
-  }
-
-  // post-condition
-  postcheck(i, j, x, y);
-  if ((i != j))
-    assert((y != 1));
+  assume(INV(i, j, x, y));
+  assume((i <= x));
+  (i = (i + 1));
+  (j = (j + y));
+  loopcheck(i, j, x, y);
 }

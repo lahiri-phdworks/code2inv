@@ -58,30 +58,20 @@ int main()
   int y;
   int z;
 
-  freopen("models.txt", "w", stderr);
+  freopen("postmodels.txt", "w", stderr);
   scanf("%d", &y);
 
   // pre-conditions
-  assume((y >= 0));
-  assume((y >= 127));
   (c = 0);
   (z = (36 * y));
 
-  precheck(c, x1, x2, x3, y, z);
-
-  // loop body
-  while (unknown())
-  {
-    if ((c < 36))
-    {
-      (z = (z + 1));
-      (c = (c + 1));
-    }
-    loopcheck(c, x1, x2, x3, y, z);
-  }
-
-  postcheck(c, x1, x2, x3, y, z);
   // post-condition
+  assume(INV(c, x1, x2, x3, y, z));
+
   if ((c < 36))
+  {
+    char buffer[30];
+    fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n", "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
     assert((z < 4608));
+  }
 }

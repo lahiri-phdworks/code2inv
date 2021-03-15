@@ -1,4 +1,0 @@
-best_root :  ( ( i2 >= ( i - 1 ) || y == ( sum - 6 ) ) ) 
-best_reward : 0
-epoch: 0, average reward: -0.5531, 
-Random: ( ( i >= ( sum - 0 ) || n < 2 ) && ( y <= ( 500000 - 0 ) ) && ( n >= sum || i < 500000 ) ), result_r: -1.8450 

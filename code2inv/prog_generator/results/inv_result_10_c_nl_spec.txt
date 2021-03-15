@@ -1,2 +1,0 @@
-( ( x >= ( x + 0 ) || y == ( x - 0 ) ) && ( x < y || x <= ( 2 + y ) ) )
-z3_report time: 19.59 pid: 0 stats: Counter({'ce-T:': 936, 'ce-I:': 371, 'boogie_result': 209, 'ce-F:': 206, 'actual_z3': 14})

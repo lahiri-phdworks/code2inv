@@ -57,22 +57,21 @@ int main()
   int z2;
   int z3;
 
+  freopen("postmodels.txt", "w", stderr);
+
   // pre-conditions
   (x = 1);
   scanf("%d", &y);
-  assume((y >= 0 && y <= 10000))
+  assume((-10000 <= y && y <= 10000));
 
-      precheck(x, y, z1, z2, z3);
   // loop body
-  while ((x < y))
-  {
-    {
-      (x = (x + x));
-    }
-    loopcheck(x, y, z1, z2, z3);
-  }
+  (x = (x + x));
 
-  postcheck(x, y, z1, z2, z3);
   // post-condition
+  assume(INV(x, y, z1, z2, z3));
+  assume(!(x < y));
+
+  char buffer[30];
+  fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n", "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);
   assert((x >= 1));
 }

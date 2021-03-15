@@ -43,28 +43,19 @@ void postcheck(int n, int y, int x)
 
 int main()
 {
+    // variable declarations
     int n;
     int y;
     int x;
 
-    freopen("models.txt", "w", stderr);
+    freopen("premodels.txt", "w", stderr);
 
     // pre-conditions
-    (x = 1);
     scanf("%d", &n);
 
-    precheck(n, y, x);
-    while (x <= n)
-    {
-        y = n - x;
-        x = x + 1;
-        loopcheck(n, y, x);
-    }
+    (x = 1);
 
-    postcheck(n, y, x);
-    if (n > 0)
-    {
-        // assert(y >= 0);
-        assert(y <= n);
-    }
+    assume((x == 1));
+    assume((-10000 <= n && n <= 10000));
+    precheck(n, y, x);
 }

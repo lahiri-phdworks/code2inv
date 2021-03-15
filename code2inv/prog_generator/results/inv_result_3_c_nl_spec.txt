@@ -1,2 +1,0 @@
-( ( x >= ( x * x ) || z > ( y - 1 ) ) )
-z3_report time: 377.40 pid: 0 stats: Counter({'ce-T:': 52369, 'ce-I:': 41211, 'ce-F:': 11892, 'boogie_result': 5966, 'actual_z3': 24})

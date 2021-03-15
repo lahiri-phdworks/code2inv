@@ -54,24 +54,16 @@ int main()
   int x;
   int y;
 
-  freopen("models.txt", "w", stderr);
+  freopen("loopmodels.txt", "w", stderr);
 
   // pre-conditions
   scanf("%d", &x);
   (x = -5000);
-  precheck(x, y);
 
   // loop body
-  while ((x < 0))
-  {
-    {
-      (x = (x + y));
-      (y = (y + 1));
-    }
-    loopcheck(x, y);
-  }
-
-  postcheck(x, y);
-  // post-condition
-  assert((y > 0));
+  assume(INV(x, y));
+  assume((x < 0));
+  (x = (x + y));
+  (y = (y + 1));
+  loopcheck(x, y);
 }

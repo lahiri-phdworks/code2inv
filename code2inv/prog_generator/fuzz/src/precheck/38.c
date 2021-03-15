@@ -50,35 +50,18 @@ int unknown()
 
 int main()
 {
+    // variable declarations
     int n;
     int c;
 
-    freopen("models.txt", "w", stderr);
+    freopen("premodels.txt", "w", stderr);
 
     scanf("%d", &n);
     scanf("%d", &c);
 
-    assume((n > 0 && n <= 10000))
-        assume((c > 0 && n <= 10000))
+    // pre-conditions
+    assume((-10000 <= n && n <= 10000));
+    assume((-10000 <= c && c <= 10000));
 
-            precheck(n, c);
-    while (unknown())
-    {
-        if (c == n)
-        {
-            c = 1;
-        }
-        else
-        {
-            c = c + 1;
-        }
-        loopcheck(n, c);
-    }
-
-    postcheck(n, c);
-    if (c == n)
-    {
-        assert(c >= 0);
-        //assert(c <= n);
-    }
+    precheck(n, c);
 }

@@ -1,5 +1,0 @@
-best_root :  ( ( y <= ( 1 + 1 ) ) && ( x <= ( 1 - 1 ) || x > 0 ) ) 
-simplify : [y <= 2]
-best_reward : -1
-epoch: 4, average reward: -0.4140, 
-Random: ( ( x < 1 || x >= y ) && ( x < ( 1 + 0 ) ) && ( x == ( 1 - y ) ) ), result_r: -2.0527 

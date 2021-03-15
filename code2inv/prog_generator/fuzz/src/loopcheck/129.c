@@ -57,22 +57,15 @@ int main()
   int z2;
   int z3;
 
+  freopen("loopmodels.txt", "w", stderr);
+
   // pre-conditions
   (x = 1);
   scanf("%d", &y);
-  assume((y >= 0 && y <= 10000))
 
-      precheck(x, y, z1, z2, z3);
   // loop body
-  while ((x < y))
-  {
-    {
-      (x = (x + x));
-    }
-    loopcheck(x, y, z1, z2, z3);
-  }
-
-  postcheck(x, y, z1, z2, z3);
-  // post-condition
-  assert((x >= 1));
+  assume(INV(x, y, z1, z2, z3));
+  assume((x < y));
+  (x = (x + x));
+  loopcheck(x, y, z1, z2, z3);
 }

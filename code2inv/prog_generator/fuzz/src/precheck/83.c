@@ -54,24 +54,11 @@ int main()
   int x;
   int y;
 
-  freopen("models.txt", "w", stderr);
+  freopen("premodels.txt", "w", stderr);
+  scanf("%d", &x);
 
   // pre-conditions
-  scanf("%d", &x);
   (x = -5000);
+  assume((x == -5000));
   precheck(x, y);
-
-  // loop body
-  while ((x < 0))
-  {
-    {
-      (x = (x + y));
-      (y = (y + 1));
-    }
-    loopcheck(x, y);
-  }
-
-  postcheck(x, y);
-  // post-condition
-  assert((y > 0));
 }

@@ -1,47 +1,44 @@
 {
 	"nodes": {
-		"5_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_1"
-			},
+		"1_1": {
+			"cmd": "Assert",
 			"rval": {
-				"Var": "n_0"
-			}
-		},
-		"5_3": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "y_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
-		},
-		"5_1": {
-			"cmd": "Assume",
-			"rval": {
-				"OP": ">=",
+				"OP": "==",
 				"arg0": {
-					"Var": "n_0"
+					"Var": "y_2"
 				},
 				"arg1": {
-					"Const": "0"
+					"Var": "n_0"
 				}
 			}
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
-		"4_4": {
-			"cmd": "if",
+		"3_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "y_3"
+			},
 			"rval": {
-				"OP": ">",
+				"OP": "+",
+				"arg0": {
+					"Var": "y_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
+		},
+		"3_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_3"
+			},
+			"rval": {
+				"OP": "-",
 				"arg0": {
 					"Var": "x_2"
 				},
 				"arg1": {
-					"Const": "0"
+					"Const": "1"
 				}
 			}
 		},
@@ -78,53 +75,56 @@
 				}
 			}
 		},
+		"4_4": {
+			"cmd": "if",
+			"rval": {
+				"OP": ">",
+				"arg0": {
+					"Var": "x_2"
+				},
+				"arg1": {
+					"Const": "0"
+				}
+			}
+		},
 		"4_5": {
 			"cmd": "TrueBranch"
 		},
 		"4_6": {
 			"cmd": "FalseBranch"
 		},
-		"3_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "y_3"
-			},
+		"5_1": {
+			"cmd": "Assume",
 			"rval": {
-				"OP": "+",
+				"OP": ">=",
 				"arg0": {
-					"Var": "y_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
-		},
-		"3_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_3"
-			},
-			"rval": {
-				"OP": "-",
-				"arg0": {
-					"Var": "x_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
-		},
-		"1_1": {
-			"cmd": "Assert",
-			"rval": {
-				"OP": "==",
-				"arg0": {
-					"Var": "y_2"
-				},
-				"arg1": {
 					"Var": "n_0"
+				},
+				"arg1": {
+					"Const": "0"
 				}
 			}
+		},
+		"5_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_1"
+			},
+			"rval": {
+				"Var": "n_0"
+			}
+		},
+		"5_3": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "y_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
 		},
 		"EXIT": {
 			"cmd": "SKIP"

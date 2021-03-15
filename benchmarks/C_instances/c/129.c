@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int x;
   int y;
@@ -7,13 +8,14 @@ int main() {
   int z3;
   // pre-conditions
   (x = 1);
+  assume((-10000 <= y && y <= 10000));
   // loop body
-  while ((x < y)) {
+  while ((x < y))
+  {
     {
-    (x  = (x + x));
+      (x = (x + x));
     }
-
   }
   // post-condition
-assert( (x >= 1) );
+  assert((x >= 1));
 }

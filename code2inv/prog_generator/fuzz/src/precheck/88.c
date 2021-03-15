@@ -29,7 +29,7 @@ void precheck(int lock, int x, int y)
 void loopcheck(int lock, int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
+  fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
   aflcrash(INV(lock, x, y));
 }
 
@@ -37,7 +37,7 @@ void loopcheck(int lock, int x, int y)
 void postcheck(int lock, int x, int y)
 {
   char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
+  fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
   aflcrash(INV(lock, x, y));
 }
 
@@ -55,38 +55,15 @@ int main()
   int x;
   int y;
 
-  freopen("models.txt", "w", stderr);
+  freopen("premodels.txt", "w", stderr);
+  scanf("%d", &x);
 
   // pre-conditions
-  scanf("%d", &x);
   (y = (x + 1));
   (lock = 0);
 
-  precheck(lock, x, y);
-  // loop body
-  while ((x != y))
-  {
-    {
-      if (unknown())
-      {
-        {
-          (lock = 1);
-          (x = y);
-        }
-      }
-      else
-      {
-        {
-          (lock = 0);
-          (x = y);
-          (y = (y + 1));
-        }
-      }
-    }
-    loopcheck(lock, x, y);
-  }
+  assume((y == (x + 1)));
+  assume((lock == 0));
 
-  postcheck(lock, x, y);
-  // post-condition
-  assert((lock == 1));
+  precheck(lock, x, y);
 }

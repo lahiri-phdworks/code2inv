@@ -54,22 +54,21 @@ int main()
   int n;
   int x;
 
+  freopen("postmodels.txt", "w", stderr);
+
   // pre-conditions
   (x = 0);
   scanf("%d", &n);
   assume((n >= 0));
 
-  precheck(n, x);
   // loop body
-  while ((x < n))
-  {
-    {
-      (x = (x + 1));
-    }
-    loopcheck(n, x);
-  }
+  (x = (x + 1));
 
-  postcheck(n, x);
   // post-condition
+  assume(INV(n, x));
+  assume(!(x < n));
+
+  char buffer[30];
+  fprintf(stderr, "Post : %s : %d, %s : %d\n", "n", n, "x", x);
   assert((x == n));
 }

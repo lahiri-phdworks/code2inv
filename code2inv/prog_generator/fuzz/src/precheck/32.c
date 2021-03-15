@@ -61,16 +61,11 @@ int main()
 
   // pre-conditions
   scanf("%d", &n);
+
   (x = n);
 
-  assume((n >= 0 && n <= 10000))
+  assume((x == n));
+  assume((-10000 <= x && x <= 10000));
 
-      precheck(n, v1, v2, v3, x);
-  // loop body
-  while ((x > 1))
-  {
-    {
-      (x = (x - 1));
-    }
-  }
+  precheck(n, v1, v2, v3, x);
 }
