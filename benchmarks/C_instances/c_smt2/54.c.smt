@@ -20,11 +20,23 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( c Int )( n Int )( tmp Int )( c_0 Int )( c_1 Int )( c_2 Int )( c_3 Int )( c_4 Int )( c_5 Int )( n_0 Int ) ) Bool
-	( and
-		( = c c_1 )
-		( = n n_0 )
-		( = c_1 0 )
-		( > n_0 0 )
+	( or
+		( and
+			( = c c_1 )
+			( = n n_0 )
+			( <= -10000 n_0 )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+			( = c_1 0 )
+			( > n_0 0 )
+		)
+		( and
+			( = c c_1 )
+			( = n n_0 )
+			( not ( <= -10000 n_0 ) )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+			( = c_1 0 )
+			( > n_0 0 )
+		)
 	)
 )
 

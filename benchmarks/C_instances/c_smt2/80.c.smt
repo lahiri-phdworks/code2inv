@@ -22,14 +22,29 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( i Int )( x Int )( y Int )( tmp Int )( i_0 Int )( i_1 Int )( i_2 Int )( i_3 Int )( i_4 Int )( x_0 Int )( y_0 Int ) ) Bool
-	( and
-		( = i i_1 )
-		( = x x_0 )
-		( = y y_0 )
-		( = i_1 0 )
-		( >= x_0 0 )
-		( >= y_0 0 )
-		( >= x_0 y_0 )
+	( or
+		( and
+			( = i i_1 )
+			( = x x_0 )
+			( = y y_0 )
+			( <= -10000 y_0 )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( = i_1 0 )
+			( >= x_0 0 )
+			( >= y_0 0 )
+			( >= x_0 y_0 )
+		)
+		( and
+			( = i i_1 )
+			( = x x_0 )
+			( = y y_0 )
+			( not ( <= -10000 y_0 ) )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( = i_1 0 )
+			( >= x_0 0 )
+			( >= y_0 0 )
+			( >= x_0 y_0 )
+		)
 	)
 )
 

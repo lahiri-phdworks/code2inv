@@ -18,9 +18,21 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( x Int )( y Int )( x_0 Int )( x_1 Int )( x_2 Int )( x_3 Int )( y_0 Int )( y_1 Int )( y_2 Int ) ) Bool
-	( and
-		( = x x_1 )
-		( = x_1 -15000 )
+	( or
+		( and
+			( = x x_1 )
+			( = y y_0 )
+			( <= -10000 y_0 )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( = x_1 -15000 )
+		)
+		( and
+			( = x x_1 )
+			( = y y_0 )
+			( not ( <= -10000 y_0 ) )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( = x_1 -15000 )
+		)
 	)
 )
 

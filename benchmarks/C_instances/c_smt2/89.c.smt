@@ -31,12 +31,25 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( lock Int )( x Int )( y Int )( tmp Int )( lock_0 Int )( lock_1 Int )( lock_2 Int )( lock_3 Int )( lock_4 Int )( lock_5 Int )( x_0 Int )( x_1 Int )( x_2 Int )( x_3 Int )( x_4 Int )( x_5 Int )( y_0 Int )( y_1 Int )( y_2 Int )( y_3 Int ) ) Bool
-	( and
-		( = lock lock_1 )
-		( = x x_1 )
-		( = y y_0 )
-		( = x_1 y_0 )
-		( = lock_1 1 )
+	( or
+		( and
+			( = lock lock_1 )
+			( = x x_1 )
+			( = y y_0 )
+			( <= -10000 y_0 )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( = x_1 y_0 )
+			( = lock_1 1 )
+		)
+		( and
+			( = lock lock_1 )
+			( = x x_1 )
+			( = y y_0 )
+			( not ( <= -10000 y_0 ) )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( = x_1 y_0 )
+			( = lock_1 1 )
+		)
 	)
 )
 

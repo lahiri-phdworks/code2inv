@@ -23,19 +23,19 @@
 					"Const": "10"
 				},
 				"arg1": {
-					"Var": "x_1"
+					"Var": "x_2"
 				}
 			}
 		},
 		"3_2": {
 			"cmd": "assign",
 			"lval": {
-				"Var": "x_2"
+				"Var": "x_3"
 			},
 			"rval": {
 				"OP": "+",
 				"arg0": {
-					"Var": "x_1"
+					"Var": "x_2"
 				},
 				"arg1": {
 					"Const": "1"
@@ -48,15 +48,15 @@
 		"4_2": {
 			"cmd": "Phi",
 			"lval": {
-				"Var": "x_1"
+				"Var": "x_2"
 			},
 			"rval": {
 				"OP": "phi_merge",
 				"arg0": {
-					"Var": "x_0"
+					"Var": "x_1"
 				},
 				"arg1": {
-					"Var": "x_2"
+					"Var": "x_3"
 				}
 			}
 		},
@@ -80,7 +80,7 @@
 			"rval": {
 				"OP": "<=",
 				"arg0": {
-					"Var": "x_1"
+					"Var": "x_2"
 				},
 				"arg1": {
 					"Const": "10"
@@ -96,7 +96,7 @@
 		"5_1": {
 			"cmd": "assign",
 			"lval": {
-				"Var": "x_0"
+				"Var": "x_1"
 			},
 			"rval": {
 				"Const": "1"

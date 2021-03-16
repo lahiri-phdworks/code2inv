@@ -24,9 +24,21 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( size Int )( x Int )( y Int )( z Int )( size_0 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( y_1 Int )( y_2 Int )( y_3 Int )( z_0 Int ) ) Bool
-	( and
-		( = x x_0 )
-		( = x_0 0 )
+	( or
+		( and
+			( = size size_0 )
+			( = x x_0 )
+			( = x_0 0 )
+			( <= -10000 size_0 )
+			( and ( <= -10000 size_0 ) ( <= size_0 10000 ) )
+		)
+		( and
+			( = size size_0 )
+			( = x x_0 )
+			( = x_0 0 )
+			( not ( <= -10000 size_0 ) )
+			( and ( <= -10000 size_0 ) ( <= size_0 10000 ) )
+		)
 	)
 )
 
@@ -78,7 +90,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	( or
 		( not
 			( and
-				( = size size_0 )
+				( = size size_0)
 				( = x x_1)
 				( = y y_1)
 				( = z z_0 )

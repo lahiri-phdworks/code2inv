@@ -24,6 +24,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = y y_1 )
 		( = x_1 1 )
 		( = y_1 0 )
+		( = x_1 1 )
+		( = y_1 0 )
 	)
 )
 

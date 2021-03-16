@@ -16,9 +16,21 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( n Int )( x Int )( n_0 Int )( x_0 Int )( x_1 Int )( x_2 Int )( x_3 Int ) ) Bool
-	( and
-		( = x x_1 )
-		( = x_1 0 )
+	( or
+		( and
+			( = n n_0 )
+			( = x x_1 )
+			( <= -10000 n_0 )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+			( = x_1 0 )
+		)
+		( and
+			( = n n_0 )
+			( = x x_1 )
+			( not ( <= -10000 n_0 ) )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+			( = x_1 0 )
+		)
 	)
 )
 
@@ -45,7 +57,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	( or
 		( not
 			( and
-				( = n n_0 )
+				( = n n_0)
 				( = x x_2)
 			)
 		)

@@ -19,11 +19,23 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( i Int )( sn Int )( i_0 Int )( i_1 Int )( i_2 Int )( i_3 Int )( sn_0 Int )( sn_1 Int )( sn_2 Int )( sn_3 Int ) ) Bool
-	( and
-		( = i i_1 )
-		( = sn sn_1 )
-		( = sn_1 0 )
-		( = i_1 1 )
+	( or
+		( and
+			( = i i_1 )
+			( = sn sn_1 )
+			( <= -10000 i_0 )
+			( and ( <= -10000 i_0 ) ( <= i_0 10000 ) )
+			( = sn_1 0 )
+			( = i_1 1 )
+		)
+		( and
+			( = i i_1 )
+			( = sn sn_1 )
+			( not ( <= -10000 i_0 ) )
+			( and ( <= -10000 i_0 ) ( <= i_0 10000 ) )
+			( = sn_1 0 )
+			( = i_1 1 )
+		)
 	)
 )
 
