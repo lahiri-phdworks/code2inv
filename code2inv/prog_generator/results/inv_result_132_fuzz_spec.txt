@@ -1,0 +1,2 @@
+( ( j <= ( i + 57 ) || t > ( i + 48 ) ) )
+z3_report time: 31.32 pid: 0 stats: Counter({'boogie_result': 6, 'actual_z3': 6, 'ce-T:': 5})

@@ -1,0 +1,6 @@
+best_root :  ( ( d1 < ( x3 + d3 ) || d3 >= ( d1 + 0 ) ) && ( d1 >= ( 1 + 0 ) || d2 > ( 10000 + 0 ) ) && ( d2 >= d2 ) ) 
+simplify : [Or(Not(x3 + d3 <= d1), d3 >= d1),
+ Or(d1 >= 1, Not(d2 <= 10000))]
+best_reward : -1
+epoch: 4, average reward: -0.5121, 
+Random: ( ( x1 > ( 10000 + 0 ) || d1 >= ( 1 + 0 ) ) && ( d1 < ( x2 + 0 ) ) && ( d2 <= ( d1 - 10000 ) ) ), result_r: -2.0200 

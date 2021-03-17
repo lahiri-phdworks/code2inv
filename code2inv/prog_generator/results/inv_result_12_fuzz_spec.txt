@@ -1,0 +1,2 @@
+( ( y == y ) )
+z3_report time: 13.19 pid: 0 stats: Counter({'ce-T:': 9, 'boogie_result': 6, 'actual_z3': 6})

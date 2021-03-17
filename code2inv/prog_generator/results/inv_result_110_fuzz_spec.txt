@@ -1,0 +1,2 @@
+( ( i == ( sn - 1 ) || n <= ( i + n ) ) )
+z3_report time: 5.22 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

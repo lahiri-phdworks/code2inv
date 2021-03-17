@@ -1,0 +1,2 @@
+( ( i == ( 1 + sn ) && sn <= 8 ) || sn < ( sn * 1 ) )
+z3_report time: 280.01 pid: 0 stats: Counter({'ce-I:': 48363, 'ce-F:': 12699, 'boogie_result': 4278, 'ce-T:': 4273, 'actual_z3': 18})

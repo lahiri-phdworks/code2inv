@@ -1,0 +1,5 @@
+best_root :  ( ( i == 1 || i2 >= 1 ) ) 
+simplify : [Or(i == 1, i2 >= 1)]
+best_reward : 0
+epoch: 4, average reward: -0.5511, 
+Random: ( ( sum <= ( n + n ) && y > ( 6 + 6 ) ) ), result_r: -2.0445 

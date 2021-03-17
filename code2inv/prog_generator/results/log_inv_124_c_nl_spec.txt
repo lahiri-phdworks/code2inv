@@ -1,0 +1,5 @@
+best_root :  ( ( y == ( x + 0 ) || x < ( x + x ) ) ) 
+simplify : [Or(Not(x <= 0), y == x)]
+best_reward : -1
+epoch: 4, average reward: -0.5828, 
+Random: ( j <= ( -10000 + -10000 ) || ( j < ( 0 + j ) && i < ( 0 + i ) ) ), result_r: -2.0200 
