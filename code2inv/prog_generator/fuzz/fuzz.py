@@ -17,6 +17,7 @@ premodelsfile = os.path.join(pwd, "premodels.txt")
 loopmodelsfile = os.path.join(pwd, "loopmodels.txt")
 postmodelsfile = os.path.join(pwd, "postmodels.txt")
 
+files = [premodelsfile, loopmodelsfile, postmodelsfile]
 checkList = ["precheck", "loopcheck", "postcheck"]
 
 
@@ -46,6 +47,7 @@ def call_fuzzsolver(index):
     # TODO : Now we have to make three parallel calls for pre, loop and post as per new sampling technique.
     try:
         # print(f"Running AFL on Example {example}.c")
+        open(files[index], "w").close()
         output = run(
             f"timeout {timeout} ./fuzz.sh -b ./build -t ./tests \
                 -c {checkList[index]} -m 3G -o ./output -e {example}",
@@ -63,6 +65,7 @@ def call_fuzzsolver(index):
 def init_fuzzbase(index):
     try:
         # print(f"Initialized AFL run on Example {example}.c")
+        open(files[index], "w").close()
         output = run(
             f"./start.sh -b ./build -t ./tests -c {checkList[index]} \
                 -o ./output -e {example}",
@@ -108,7 +111,8 @@ if __name__ == "__main__":
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(target=init_fuzzbase, args=(i,))
+        worker_thread = threading.Thread(
+            target=init_fuzzbase, args=(i,))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
@@ -122,7 +126,8 @@ if __name__ == "__main__":
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(target=call_fuzzsolver, args=(i,))
+        worker_thread = threading.Thread(
+            target=call_fuzzsolver, args=(i,))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
@@ -130,5 +135,4 @@ if __name__ == "__main__":
         worker.join()
 
     res = mergeModels()
-
     print(res)

@@ -27,4 +27,4 @@ fi
 ./run_solver_file.sh \
 ../../benchmarks/C_instances/c_graph/${INVPROCESSFILE}.c.json \
 ../../benchmarks/C_instances/c_smt2/${INVPROCESSFILE}.c.smt specs/$SPEC \
--o results/inv_result_${INVPROCESSFILE}.txt ${INVPROCESSFILE} $SPEC
+-o results/inv_result_${INVPROCESSFILE}_${SPEC}.txt ${INVPROCESSFILE} $SPEC

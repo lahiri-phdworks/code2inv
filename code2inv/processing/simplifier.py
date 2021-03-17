@@ -28,7 +28,7 @@ def call_ToSmt(inv):
 def getExpr(inv):
     call_ToSmt(inv)
     f = z3.parse_smt2_file(filePath)
-    simplifyTactic = Tactic('simplify')
+    simplifyTactic = Then('simplify', 'propagate-values', 'ctx-simplify')
     for expr in f:
         return simplifyTactic(expr)[0]
 

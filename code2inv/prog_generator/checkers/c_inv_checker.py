@@ -212,6 +212,11 @@ def inv_solver(vc_file: str, inv: str):
     return res
 
 
+if __name__ == "__main__":
+    vcfile = sys.argv[1]
+    inv = sys.argv[2]
+    print(inv_solver(vc_file=vcfile, inv=inv))
+
 '''
 def is_trivial(vc_file: str, pred: str):
     inv = pred.replace("&&", "and", -1)

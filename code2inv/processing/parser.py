@@ -127,4 +127,4 @@ def invtosmt(inv: str):
 
 if __name__ == '__main__':
     print(invtosmt(sys.argv[1]))
-    print("(apply (then simplify solve-eqs))")
+    print("(apply (then simplify propagate-values ctx-simplify solve-eqs))")
