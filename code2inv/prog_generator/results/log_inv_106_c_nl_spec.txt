@@ -1,0 +1,5 @@
+best_root :  ( m < 0 || ( a == a && k < ( j * j ) ) ) 
+simplify : [Or(Not(0 <= m), Not(j*j <= k))]
+best_reward : -1
+epoch: 4, average reward: -0.6468, 
+Random: ( a == ( -10000 * m ) ), result_r: -2.0200 

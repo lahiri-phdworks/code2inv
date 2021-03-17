@@ -1,0 +1,5 @@
+best_root :  ( ( sn >= ( 1 - 1 ) ) && ( sn <= ( i - 1 ) ) && ( i > ( 0 - sn ) ) ) 
+simplify : [sn >= 0, sn <= -1 + i, Not(i <= -1*sn)]
+best_reward : -1
+epoch: 3, average reward: -0.6119, 
+Random: ( ( i > ( 0 - sn ) ) && ( sn == ( sn - 1 ) || n >= ( 1 - 1 ) ) ), result_r: -1.9360 

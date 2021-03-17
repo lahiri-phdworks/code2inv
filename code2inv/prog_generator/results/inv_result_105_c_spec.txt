@@ -1,0 +1,2 @@
+( ( x <= n || x == 0 ) )
+z3_report time: 11.05 pid: 0 stats: Counter({'ce-T:': 632, 'ce-F:': 243, 'boogie_result': 161, 'ce-I:': 150, 'actual_z3': 13})

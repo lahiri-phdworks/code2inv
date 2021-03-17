@@ -1,0 +1,2 @@
+( ( j < ( m + 10000 ) ) && ( a == ( k + 10000 ) || k >= ( 1 - 10000 ) ) )
+z3_report time: 10.47 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-T:': 1})

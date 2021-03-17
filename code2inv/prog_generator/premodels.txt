@@ -1,0 +1,2 @@
+Pre : x : 0, y : 0
+10: /home/clustfuzz/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/precheck/10.c:25: precheck: Assertion `0' failed.

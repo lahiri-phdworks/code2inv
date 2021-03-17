@@ -1,0 +1,5 @@
+best_root :  ( ( j == ( m + 1 ) || m <= ( 1 - 0 ) ) ) 
+simplify : [Or(j == 1 + m, m <= 1)]
+best_reward : -1
+epoch: 4, average reward: -0.5074, 
+Random: ( ( j <= ( 1 + 1 ) || j <= ( 1 - 0 ) ) ), result_r: -2.0200 

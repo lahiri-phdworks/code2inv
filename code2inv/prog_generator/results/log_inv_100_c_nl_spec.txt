@@ -1,0 +1,5 @@
+best_root :  ( y < ( n * n ) || ( n <= ( 10000 - n ) && y < ( n + n ) ) ) 
+simplify : [Or(Not(n*n <= y), And(n <= 5000, Not(2*n <= y)))]
+best_reward : -1
+epoch: 4, average reward: -0.5010, 
+Random: ( y >= ( 10000 - n ) && ( n < ( 10000 * n ) || n >= ( y - -10000 ) ) && y < ( 10000 * n ) ), result_r: -2.0200 

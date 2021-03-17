@@ -1,0 +1,2 @@
+( ( y <= ( y + 0 ) && x < ( 4 + y ) ) )
+z3_report time: 2.70 pid: 0 stats: Counter({'ce-T:': 121, 'ce-I:': 53, 'boogie_result': 36, 'ce-F:': 33, 'actual_z3': 11})

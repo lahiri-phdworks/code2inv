@@ -1,0 +1,2 @@
+( ( j <= ( a + 10000 ) ) )
+z3_report time: 36.65 pid: 0 stats: Counter({'boogie_result': 7, 'actual_z3': 7, 'ce-T:': 6})
