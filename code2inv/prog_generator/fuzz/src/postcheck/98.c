@@ -62,10 +62,6 @@ int main()
   assume((x >= 0 && x <= 1000));
   assume((y >= 0 && y <= 1000));
 
-  // loop body
-  (i = (i + 1));
-  (j = (j + y));
-
   // post-condition
   assume(INV(i, j, x, y));
   assume(!(i <= x));

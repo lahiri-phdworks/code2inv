@@ -18,14 +18,6 @@
 #define INV(x, y) PHI
 
 // TODO : Automate generation of this snippet
-void precheck(int x, int y)
-{
-  char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
-  aflcrash(INV(x, y));
-}
-
-// TODO : Automate generation of this snippet
 void loopcheck(int x, int y)
 {
   char buffer[30];
@@ -39,6 +31,13 @@ void postcheck(int x, int y)
   char buffer[30];
   fprintf(stderr, "Pre : %s : %d, %s : %d\n", "x", x, "y", y);
   aflcrash(INV(x, y));
+}
+
+int choices[] = {1, -1, 1, -1, 1, 1, -1, 1, -2, -1, 0, 0, 0, 1, 1, -1, 1, 0, 1, -1, 1, 1, 2, 1};
+int unknown()
+{
+  int nums = sizeof(choices) / sizeof(choices[0]);
+  return choices[(rand() % nums) - 1];
 }
 
 int main()

@@ -60,10 +60,6 @@ int main()
   scanf("%d", &x);
   (x = -5000);
 
-  // loop body
-  (x = (x + y));
-  (y = (y + 1));
-
   // post-condition
   assume(INV(x, y));
   assume(!(x < 0));

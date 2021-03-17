@@ -18,14 +18,6 @@
 #define INV(n, c) PHI
 
 // TODO : Automate generation of this snippet
-void precheck(int n, int c)
-{
-  char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d\n", "n", n, "c", c);
-  aflcrash(INV(n, c));
-}
-
-// TODO : Automate generation of this snippet
 void loopcheck(int n, int c)
 {
   char buffer[30];

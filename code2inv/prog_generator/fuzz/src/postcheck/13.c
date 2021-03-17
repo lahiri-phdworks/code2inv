@@ -67,10 +67,6 @@ int main()
   assume((y <= 2));
   assume((y >= 0));
 
-  // loop body
-  (x = (x + 2));
-  (y = (y + 2));
-
   // post-condition
   assume(INV(x, y));
   // assume(!(loop-cond))

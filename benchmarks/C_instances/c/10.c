@@ -1,22 +1,30 @@
-int main() {
+int main()
+{
   // variable declarations
   int x;
   int y;
+
+  // scanf("%d", &y);
+  // scanf("%d", &x);
   // pre-conditions
   assume((x >= 0));
   assume((x <= 2));
   assume((y <= 2));
   assume((y >= 0));
+  // precheck
+  // loopcond : unknown()
+  // loopstart
+  while (unknown())
   // loop body
-  while (unknown()) {
+  {
     {
-    (x  = (x + 2));
-    (y  = (y + 2));
+      (x = (x + 2));
+      (y = (y + 2));
     }
-
   }
+  // loopend
   // post-condition
-if ( (y == 0) )
-assert( (x != 4) );
-
+  // postcheck
+  if ((y == 0))
+    assert((x != 4));
 }

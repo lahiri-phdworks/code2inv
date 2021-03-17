@@ -9,32 +9,28 @@
     if (!cond)         \
         assert(0);
 
-// Guide AFL to proper values
-// exit(0) is not a crash
 #define assume(cond) \
     if (!cond)       \
         exit(0);
 
 #define INV(x, m, n) PHI
 
-// TODO : Automate generation of this snippet
+// COMMENT : precheck template
 void precheck(int x, int m, int n)
 {
     char buffer[30];
     fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n", "x", x, "m", m, "n", n);
     aflcrash(INV(x, m, n));
 }
-
-// TODO : Automate generation of this snippet
+// COMMENT : loopcheck template
 void loopcheck(int x, int m, int n)
 {
     char buffer[30];
     fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d\n", "x", x, "m", m, "n", n);
     aflcrash(INV(x, m, n));
 }
-
-// TODO : Automate generation of this snippet
-void postcheck(int x, int m, int n)
+// COMMENT : postcheck template
+void post(int x, int m, int n)
 {
     char buffer[30];
     fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n", "x", x, "m", m, "n", n);
@@ -54,17 +50,14 @@ int main()
     int m;
     int n;
 
+    scanf("%d", &x);
+    scanf("%d", &n);
     freopen("premodels.txt", "w", stderr);
 
     // pre-conditions
-    scanf("%d", &n);
-
+    assume((-10000 <= n && n < 10000));
     (x = 1);
     (m = 1);
-
-    assume((x == 1));
-    assume((m == 1));
-    assume((-10000 <= n && n < 10000));
 
     precheck(x, m, n);
 }

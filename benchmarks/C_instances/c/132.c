@@ -3,7 +3,7 @@ int main()
 {
     int i = 0;
     int j, c, t;
-    assume((c >= 40 && c <= 60));
+
     while (unknown())
     {
         if (c > 48)

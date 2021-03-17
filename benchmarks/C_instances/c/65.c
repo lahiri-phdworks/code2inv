@@ -1,13 +1,24 @@
 
-int main() {
-    int x = 1;
+int main()
+{
+    // variable declarations
+    int x;
     int y;
 
-    while (x <= 100) {
+    // scanf("%d", &x);
+    // pre-conditions
+    (x = 1);
+    // precheck
+    // loopcond : (x <= 100)
+    // loopstart
+    while (x <= 100)
+    // loop body
+    {
         y = 100 - x;
-        x = x +1;
+        x = x + 1;
     }
-
-    assert (y >= 0);
-    //assert (y < 100);
+    // loopend
+    // postcheck
+    // post-condition
+    assert(y >= 0);
 }

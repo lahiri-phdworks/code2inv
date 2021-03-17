@@ -1,17 +1,32 @@
+int main()
+{
+  // variable declarations
+  int n;
+  int v1;
+  int v2;
+  int v3;
+  int x;
+  int y;
 
-
-int main() {
-    int n, v1, v2, v3;
-    int x = 1;
-    int y;
-
-    while (x <= n) {
-        y = n - x;
-        x = x +1;
-    }
-
-    if (n > 0) {
-      //assert (y >= 0);
-      assert (y < n);
-    }
+  // scanf("%d", &n);
+  // scanf("%d", &v1);
+  // pre-conditions
+  (x = 1);
+  // precheck
+  // loopcond : (x <= n)
+  // loopstart
+  while (x <= n)
+  // loop body
+  {
+    y = n - x;
+    x = x + 1;
+  }
+  // loopend
+  // postcheck
+  // post-condition
+  if (n > 0)
+  {
+    // assert (y >= 0);
+    assert(y < n);
+  }
 }

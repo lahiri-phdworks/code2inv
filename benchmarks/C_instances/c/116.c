@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int sn;
   int v1;
@@ -9,15 +10,14 @@ int main() {
   (sn = 0);
   (x = 0);
   // loop body
-  while (unknown()) {
+  while (unknown())
+  {
     {
-    (x  = (x + 1));
-    (sn  = (sn + 1));
+      (x = (x + 1));
+      (sn = (sn + 1));
     }
-
   }
   // post-condition
-if ( (sn != x) )
-assert( (sn == -1) );
-
+  if ((sn != x))
+    assert((sn == -1));
 }

@@ -8,7 +8,6 @@ int main()
   int x;
   // pre-conditions
   (x = 0);
-  assume((-10000 <= n && n <= 10000));
   // loop body
   while ((x < n))
   {

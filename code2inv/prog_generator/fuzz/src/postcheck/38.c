@@ -61,18 +61,9 @@ int main()
     assume((-10000 <= n && n <= 10000));
     assume((-10000 <= c && c <= 10000));
 
-    if (c == n)
-    {
-        c = 1;
-    }
-    else
-    {
-        c = c + 1;
-    }
-
     // post-condition
     assume(INV(n, c));
-
+    // assume !loopcond unknown()
     if (c == n)
     {
         char buffer[30];

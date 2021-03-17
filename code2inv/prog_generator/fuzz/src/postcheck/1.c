@@ -55,9 +55,6 @@ int main()
   (x = 1);
   (y = 0);
 
-  (x = (x + y));
-  (y = (y + 1));
-
   // post-condition
   assume(INV(x, y));
   assume(!(y < 100000));

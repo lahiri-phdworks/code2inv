@@ -18,14 +18,6 @@
 #define INV(x, y, z1, z2, z3) PHI
 
 // TODO : Automate generation of this snippet
-void precheck(int x, int y, int z1, int z2, int z3)
-{
-  char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n", "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);
-  aflcrash(INV(x, y, z1, z2, z3));
-}
-
-// TODO : Automate generation of this snippet
 void loopcheck(int x, int y, int z1, int z2, int z3)
 {
   char buffer[30];

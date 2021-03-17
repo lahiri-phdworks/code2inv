@@ -18,14 +18,6 @@
 #define INV(n, v1, v2, v3, x) PHI
 
 // TODO : Automate generation of this snippet
-void precheck(int n, int v1, int v2, int v3, int x)
-{
-  char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
-  aflcrash(INV(n, v1, v2, v3, x));
-}
-
-// TODO : Automate generation of this snippet
 void loopcheck(int n, int v1, int v2, int v3, int x)
 {
   char buffer[30];

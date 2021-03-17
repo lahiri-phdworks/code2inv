@@ -61,9 +61,6 @@ int main()
   scanf("%d", &n);
   assume((n >= 0));
 
-  // loop body
-  (x = (x + 1));
-
   // post-condition
   assume(INV(n, x));
   assume(!(x < n));

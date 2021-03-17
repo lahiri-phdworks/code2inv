@@ -61,12 +61,6 @@ int main()
     scanf("%d", &n);
     assume((n >= 0 && n <= 10000));
 
-    // loop body
-    i2 = i * i;
-    (y = (i * (i + 1) * (2 * i + 1) / 6));
-    // assert(sum == y);
-    sum += i2;
-
     // Post Conditions
     assume(INV(sum, n, i, y, i2));
     assume(!(i <= n));

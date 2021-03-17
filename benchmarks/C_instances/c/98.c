@@ -10,9 +10,6 @@ int main()
   (i = 0);
   (y = 2);
   // loop body
-  assume((-10000 <= x && x <= 10000));
-  assume((-10000 <= y && y <= 10000));
-
   while ((i <= x))
   {
     {

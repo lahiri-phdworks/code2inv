@@ -63,10 +63,6 @@ int main()
   (sn = 0);
   (i = 1);
 
-  // loop body
-  (i = (i + 1));
-  (sn = (sn + 1));
-
   // post-condition
   assume(INV(i, sn));
   assume(!(i <= 8));

@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int lock;
   int x;
@@ -7,24 +8,26 @@ int main() {
   (y = (x + 1));
   (lock = 0);
   // loop body
-  while ((x != y)) {
+  while ((x != y))
+  {
     {
-      if ( unknown() ) {
+      if (unknown())
+      {
         {
-        (lock  = 1);
-        (x  = y);
-        }
-      } else {
-        {
-        (lock  = 0);
-        (x  = y);
-        (y  = (y + 1));
+          (lock = 1);
+          (x = y);
         }
       }
-
+      else
+      {
+        {
+          (lock = 0);
+          (x = y);
+          (y = (y + 1));
+        }
+      }
     }
-
   }
   // post-condition
-assert( (lock == 1) );
+  assert((lock == 1));
 }

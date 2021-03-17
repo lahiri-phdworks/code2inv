@@ -64,9 +64,6 @@ int main()
   scanf("%d", &y);
   assume((-10000 <= y && y <= 10000));
 
-  // loop body
-  (x = (x + x));
-
   // post-condition
   assume(INV(x, y, z1, z2, z3));
   assume(!(x < y));

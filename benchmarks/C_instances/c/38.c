@@ -5,9 +5,6 @@ int main()
     int c = 0;
     assume(n > 0);
 
-    assume((-10000 <= n && n <= 10000));
-    assume((-10000 <= c && c <= 10000));
-
     while (unknown())
     {
         if (c == n)

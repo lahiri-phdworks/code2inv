@@ -62,16 +62,6 @@ int main()
     scanf("%d", &c);
     assume((c >= 40 && c <= 60));
 
-    if (c > 48)
-    {
-        if (c < 57)
-        {
-            j = i + i;
-            t = c - 48;
-            i = j + t;
-        }
-    }
-
     // post-condition
     assume(INV(i, j, c, t));
     // loop-cond : unknown()

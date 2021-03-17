@@ -56,12 +56,6 @@ int main()
    scanf("%d", &size);
    assume((-10000 <= size && size <= 10000));
 
-   x += 1;
-   if (z <= y)
-   {
-      y = z;
-   }
-
    // post-condition
    assume(INV(x, size, y, z));
    assume(!(x < size));

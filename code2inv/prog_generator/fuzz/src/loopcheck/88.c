@@ -18,14 +18,6 @@
 #define INV(lock, x, y) PHI
 
 // TODO : Automate generation of this snippet
-void precheck(int lock, int x, int y)
-{
-  char buffer[30];
-  fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
-  aflcrash(INV(lock, x, y));
-}
-
-// TODO : Automate generation of this snippet
 void loopcheck(int lock, int x, int y)
 {
   char buffer[30];

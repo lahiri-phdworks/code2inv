@@ -37,19 +37,26 @@ void post(int x, int y, int z)
    aflcrash(INV(x, y, z));
 }
 
+int choices[] = {1, -1, 1, -1, 1, 1, -1, 1, -2, -1, 0, 0, 0, 1, 1, -1, 1, 0, 1, -1, 1, 1, 2, 1};
+int unknown()
+{
+   int nums = sizeof(choices) / sizeof(choices[0]);
+   return choices[(rand() % nums) - 1];
+}
+
 int main()
 {
+   // variable declarations
    int x = 0;
-   int y, z;
+   int y;
+   int z;
 
-   while (x < 500)
-   {
-      x += 1;
-      if (z <= y)
-      {
-         y = z;
-      }
-   }
+   scanf("%d", &y);
+   scanf("%d", &z);
+   freopen("premodels.txt", "w", stderr);
 
-   assert(z >= y);
+   // pre-conditions
+   assume((-10000 <= y && y <= 10000));
+   assume((-10000 <= z && z <= 10000));
+   precheck(x, y, z);
 }

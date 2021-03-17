@@ -66,10 +66,6 @@ int main()
   (sn = 0);
   (x = 0);
 
-  // loop body
-  (x = (x + 1));
-  (sn = (sn + 1));
-
   // post-condition
   assume(INV(sn, v1, v2, v3, x));
   if ((sn != x))

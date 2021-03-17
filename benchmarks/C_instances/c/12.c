@@ -1,25 +1,32 @@
-int main() {
+int main()
+{
   // variable declarations
   int x;
   int y;
   int z1;
   int z2;
   int z3;
+
+  // scanf("%d", &x);
+  // scanf("%d", &y);
   // pre-conditions
   assume((x >= 0));
   assume((x <= 10));
   assume((y <= 10));
   assume((y >= 0));
+  // precheck
+  // loopcond : unknown()
+  // loopstart
+  while (unknown())
   // loop body
-  while (unknown()) {
+  {
     {
-    (x  = (x + 10));
-    (y  = (y + 10));
+      (x = (x + 10));
+      (y = (y + 10));
     }
-
   }
-  // post-condition
-if ( (y == 0) )
-assert( (x != 20) );
-
+  // loopend
+  // postcheck
+  if ((y == 0))
+    assert((x != 20));
 }

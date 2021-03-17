@@ -18,14 +18,6 @@
 #define INV(sum, n, i, y, i2) PHI
 
 // TODO : Automate generation of this snippet
-void precheck(long long int sum, int n, int i, int y, int i2)
-{
-    char buffer[30];
-    fprintf(stderr, "Pre : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
-    aflcrash(INV(sum, n, i, y, i2));
-}
-
-// TODO : Automate generation of this snippet
 void loopcheck(long long int sum, int n, int i, int y, int i2)
 {
     char buffer[30];
@@ -39,6 +31,13 @@ void postcheck(long long int sum, int n, int i, int y, int i2)
     char buffer[30];
     fprintf(stderr, "Post : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
     aflcrash(INV(sum, n, i, y, i2));
+}
+
+int choices[] = {1, -1, 1, -1, 1, 1, -1, 1, -2, -1, 0, 0, 0, 1, 1, -1, 1, 0, 1, -1, 1, 1, 2, 1};
+int unknown()
+{
+    int nums = sizeof(choices) / sizeof(choices[0]);
+    return choices[(rand() % nums) - 1];
 }
 
 int main()
