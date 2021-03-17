@@ -1,0 +1,2 @@
+( ( y >= ( i2 - i2 ) || sum < ( i + 6 ) ) && ( i >= ( 2 - n ) || i < ( n - n ) ) && ( i <= 1 || n >= 500000 ) )
+z3_report time: 1904.04 pid: 0 stats: Counter({'boogie_result': 366, 'actual_z3': 366, 'ce-T:': 365})
