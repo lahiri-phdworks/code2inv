@@ -18,7 +18,7 @@ from code2inv.common.ssa_graph_builder import ProgramGraph, GraphNode
 from code2inv.common.constants import *
 from code2inv.common.cmd_args import cmd_args, tic, toc
 from code2inv.common.checker import stat_counter, boogie_result
-from code2inv.simplify_tactic.simplifier import getExpr
+from code2inv.processing.simplifier import getExpr
 from code2inv.graph_encoder.embedding import EmbedMeanField, LSTMEmbed, ParamEmbed
 from code2inv.prog_generator.rl_helper import rollout, actor_critic_loss
 from code2inv.prog_generator.tree_decoder import GeneralDecoder
@@ -37,7 +37,7 @@ class GraphSample(S2VGraph):
 if cmd_args.example is None:
     cmd_args.example = "ssum"  # COMMENT : Default
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     random.seed(cmd_args.seed)
     np.random.seed(cmd_args.seed)
     torch.manual_seed(cmd_args.seed)
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     node_type_dict = {}
     vc_list = []
 
-    with open(cmd_args.input_graph, 'r') as graph_file:
+    with open(cmd_args.input_graph, "r") as graph_file:
         graph = ProgramGraph(json.load(graph_file))
         for node in graph.node_list:
             if not node.node_type in node_type_dict:
@@ -56,31 +56,28 @@ if __name__ == '__main__':
                 node_type_dict[node.node_type] = v
 
     if graph is not None:
-        if cmd_args.encoder_model == 'GNN':
-            encoder = EmbedMeanField(cmd_args.embedding_size, len(
-                node_type_dict), max_lv=cmd_args.s2v_level)
-        elif cmd_args.encoder_model == 'LSTM':
+        if cmd_args.encoder_model == "GNN":
+            encoder = EmbedMeanField(
+                cmd_args.embedding_size, len(node_type_dict), max_lv=cmd_args.s2v_level
+            )
+        elif cmd_args.encoder_model == "LSTM":
             encoder = LSTMEmbed(cmd_args.embedding_size, len(node_type_dict))
-        elif cmd_args.encoder_model == 'Param':
+        elif cmd_args.encoder_model == "Param":
             g_list = GraphSample(graph, vc_list, node_type_dict)
-            encoder = ParamEmbed(cmd_args.embedding_size,
-                                 g_list.pg.num_nodes())
+            encoder = ParamEmbed(cmd_args.embedding_size, g_list.pg.num_nodes())
         else:
             raise NotImplementedError
 
         decoder = GeneralDecoder(cmd_args.embedding_size)
 
         if cmd_args.init_model_dump is not None:
-            encoder.load_state_dict(torch.load(
-                cmd_args.init_model_dump + '.encoder'))
-            decoder.load_state_dict(torch.load(
-                cmd_args.init_model_dump + '.decoder'))
+            encoder.load_state_dict(torch.load(cmd_args.init_model_dump + ".encoder"))
+            decoder.load_state_dict(torch.load(cmd_args.init_model_dump + ".decoder"))
 
         params.append(encoder.parameters())
         params.append(decoder.parameters())
 
-        optimizer = optim.Adam(chain.from_iterable(
-            params), lr=cmd_args.learning_rate)
+        optimizer = optim.Adam(chain.from_iterable(params), lr=cmd_args.learning_rate)
 
         for epoch in range(cmd_args.num_epochs):
             best_reward = -5.0
@@ -101,7 +98,8 @@ if __name__ == '__main__':
                     g = GraphSample(graph, vc_list, node_type_dict)
                     node_embedding = node_embedding_batch
                     nll_list, value_list, reward_list, root, _ = rollout(
-                        g, node_embedding, decoder, use_random=True, eps=0.05)
+                        g, node_embedding, decoder, use_random=True, eps=0.05
+                    )
 
                     tested_roots.append(root)
                     if reward_list[-1] > best_reward:
@@ -117,42 +115,58 @@ if __name__ == '__main__':
                 loss = total_loss / cmd_args.rl_batchsize
                 loss.backward()
                 optimizer.step()
-                pbar.set_description('avg reward so far : %.5f' %
-                                     (acc_reward / (k + 1)))
+                pbar.set_description(
+                    "avg reward so far : %.5f" % (acc_reward / (k + 1))
+                )
 
             g = GraphSample(graph, vc_list, node_type_dict)
             node_embedding = encoder(g)
 
             while True:
                 _, _, _, root, trivial = rollout(
-                    g, node_embedding, decoder, use_random=True, eps=0.0)
+                    g, node_embedding, decoder, use_random=True, eps=0.0
+                )
                 if trivial == False:
                     print("Example is not trivial")
                     break
 
             # COMMENT : Calls to boogie results here.
-            print('epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f' % (
-                epoch, acc_reward / 100.0, root, boogie_result(g, root)))
-            print("best_reward:", best_reward,
-                  ", best_root:", best_root)
+            print(
+                "epoch: %d, average reward: %.4f, Random: %s, result_r: %.4f"
+                % (epoch, acc_reward / 100.0, root, boogie_result(g, root))
+            )
+            print("best_reward:", best_reward, ", best_root:", best_root)
             print("Simpify : ", getExpr(best_root))
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
-            resultpath = os.path.join(os.path.dirname(
-                __file__), "results", f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt")
+            resultpath = os.path.join(
+                os.path.dirname(__file__),
+                "results",
+                f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt",
+            )
             with open(resultpath, mode="w") as file:
-                file.write("best_root :  %s \nsimplify : %s\nbest_reward : %d\n" % (best_root, getExpr(best_root),
-                                                                                    best_reward))
-                file.write('epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \n' % (
-                    epoch, acc_reward / 100.0, root, boogie_result(g, root)))
+                file.write(
+                    "best_root :  %s \nsimplify : %s\nbest_reward : %d\n"
+                    % (best_root, getExpr(best_root), best_reward)
+                )
+                file.write(
+                    "epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \n"
+                    % (epoch, acc_reward / 100.0, root, boogie_result(g, root))
+                )
 
             stat_counter.report_global()
             if cmd_args.save_dir is not None:
-                torch.save(encoder.state_dict(), cmd_args.save_dir +
-                           '/epoch-%d.encoder' % epoch)
-                torch.save(decoder.state_dict(), cmd_args.save_dir +
-                           '/epoch-%d.decoder' % epoch)
-                torch.save(encoder.state_dict(),
-                           cmd_args.save_dir + '/epoch-latest.encoder')
-                torch.save(decoder.state_dict(),
-                           cmd_args.save_dir + '/epoch-latest.decoder')
+                torch.save(
+                    encoder.state_dict(),
+                    cmd_args.save_dir + "/epoch-%d.encoder" % epoch,
+                )
+                torch.save(
+                    decoder.state_dict(),
+                    cmd_args.save_dir + "/epoch-%d.decoder" % epoch,
+                )
+                torch.save(
+                    encoder.state_dict(), cmd_args.save_dir + "/epoch-latest.encoder"
+                )
+                torch.save(
+                    decoder.state_dict(), cmd_args.save_dir + "/epoch-latest.decoder"
+                )

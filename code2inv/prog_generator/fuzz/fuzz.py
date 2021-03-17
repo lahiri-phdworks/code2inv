@@ -47,9 +47,12 @@ def call_fuzzsolver(index):
     try:
         # print(f"Running AFL on Example {example}.c")
         output = run(
-            f'timeout {timeout} ./fuzz.sh -b ./build -t ./tests \
-                -c {checkList[index]} -m 3G -o ./output -e {example}',
-            shell=True, capture_output=True, text=True)
+            f"timeout {timeout} ./fuzz.sh -b ./build -t ./tests \
+                -c {checkList[index]} -m 3G -o ./output -e {example}",
+            shell=True,
+            capture_output=True,
+            text=True,
+        )
     except CalledProcessError as err:
         print(f"Fuzzer Error : {err}")
     # else:
@@ -61,9 +64,12 @@ def init_fuzzbase(index):
     try:
         # print(f"Initialized AFL run on Example {example}.c")
         output = run(
-            f'./start.sh -b ./build -t ./tests -c {checkList[index]} \
-                -o ./output -e {example}',
-            shell=True, capture_output=True, text=True)
+            f"./start.sh -b ./build -t ./tests -c {checkList[index]} \
+                -o ./output -e {example}",
+            shell=True,
+            capture_output=True,
+            text=True,
+        )
     except CalledProcessError as err:
         print(f"Build Error : {err}")
     # else:
@@ -96,16 +102,13 @@ def mergeModels():
     return [preModel, loopModel, postModel]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # tqdm.write(f"fuzz-inv solver called : {inv}")
     # dump_template(filepath, inv)
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(
-            target=init_fuzzbase,
-            args=(i,)
-        )
+        worker_thread = threading.Thread(target=init_fuzzbase, args=(i,))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
@@ -113,16 +116,13 @@ if __name__ == '__main__':
         worker.join()
 
     # Side-effect : Delete all contents of the file.
-    open(premodelsfile, 'w').close()
-    open(loopmodelsfile, 'w').close()
-    open(postmodelsfile, 'w').close()
+    open(premodelsfile, "w").close()
+    open(loopmodelsfile, "w").close()
+    open(postmodelsfile, "w").close()
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(
-            target=call_fuzzsolver,
-            args=(i,)
-        )
+        worker_thread = threading.Thread(target=call_fuzzsolver, args=(i,))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
