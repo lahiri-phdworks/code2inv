@@ -7,7 +7,7 @@ from code2inv.prog_generator.checkers.c_inv_checker import inv_solver
 pwd = os.path.dirname(__file__)
 benchmark = os.path.join(pwd, os.pardir, "benchmarks", "C_instances", "c_smt2")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fileName = sys.argv[1]
     resultFile = fileName.strip().split("/")[-1]
     inv = ""
@@ -24,7 +24,14 @@ if __name__ == '__main__':
     else:
         pass
 
-    vc_file = os.path.join(benchmark, f'{example}.c.smt')
+    if "inv_result" in fileName:
+        converged = "Yes"
+    elif "log_inv" in fileName:
+        converged = "No"
+    else:
+        pass
+
+    vc_file = os.path.join(benchmark, f"{example}.c.smt")
 
     with open(fileName, mode="r") as fileptr:
         lines = fileptr.readlines()
@@ -38,8 +45,10 @@ if __name__ == '__main__':
     res = inv_solver(vc_file, str(inv))
 
     if res == [None, None, None]:
-        failed = False
+        check = "Passed"
     else:
-        failed = True
+        check = "Failed"
 
-    print(f'{example}, {invType}, {str(inv)}, {str(failed)}, "{(getExpr(str(inv)))}"')
+    print(
+        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{(getExpr(str(inv)))}"'
+    )
