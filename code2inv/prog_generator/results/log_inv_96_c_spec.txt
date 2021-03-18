@@ -1,0 +1,5 @@
+best_root :  ( ( y >= ( 1 - x ) || i >= ( j + 0 ) ) ) 
+simplify : [Or(y >= 1 + -1*x, i >= j)]
+best_reward : -1
+epoch: 4, average reward: -0.4884, 
+Random: ( ( y > i ) ), result_r: -2.0690 

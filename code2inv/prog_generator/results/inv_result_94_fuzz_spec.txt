@@ -1,0 +1,2 @@
+( ( i < 10000 ) )
+z3_report time: 30.44 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2})

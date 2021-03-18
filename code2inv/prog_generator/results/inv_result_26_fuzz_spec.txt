@@ -1,0 +1,2 @@
+( ( x > ( 10000 - -10000 ) || x >= ( -10000 - 0 ) ) && ( x <= n ) )
+z3_report time: 91.24 pid: 0 stats: Counter({'ce-T:': 8, 'boogie_result': 6, 'actual_z3': 6})

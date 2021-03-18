@@ -1,0 +1,5 @@
+best_root :  ( ( k <= ( n + n ) || k <= ( k + n ) ) && i <= ( 10000 * n ) && ( n == n || j <= ( 0 * n ) ) ) 
+simplify : [Or(0 <= n, k <= 2*n), i <= 10000*n]
+best_reward : -1
+epoch: 4, average reward: -0.5765, 
+Random: ( j <= ( 0 * n ) && ( k <= ( 0 * n ) || k < ( 0 - 1 ) ) && k < ( 2 - 0 ) ), result_r: -2.2212 

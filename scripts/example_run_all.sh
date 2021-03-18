@@ -8,7 +8,7 @@ export CC=$HOME/afl/afl-gcc
 export CXX=$HOME/afl/afl-g++
 export AFL=$HOME/afl/afl-fuzz
 
-for var in 1 2 4 5 12 13 23 24 26 35 37 65 80 83 89 94 96;
+for var in 51;
 do 
     ./run_solver_file.sh \
     ../../benchmarks/C_instances/c_graph/${var}.c.json \
