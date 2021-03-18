@@ -124,6 +124,8 @@ if __name__ == "__main__":
     open(loopmodelsfile, "w").close()
     open(postmodelsfile, "w").close()
 
+    time.sleep(0.5)
+
     executeBuildThreads = []
     for i in range(3):
         worker_thread = threading.Thread(

@@ -555,7 +555,6 @@ def boogie_result(g, expr_root):
     if res > 0:
         tqdm.write("found a solution for " + str(g.sample_index) +
                    " , sol: " + str(expr_root))
-        tqdm.write("Simpify : " + getExpr(str(expr_root)))
         # saving the expr_root object in a pickle
         # stat_counter.report_once(g.sample_index)
         r = stat_counter.report_str_once(g.sample_index)
@@ -572,7 +571,6 @@ def boogie_result(g, expr_root):
                 tqdm.write("Writing logs to " + filename)
                 with open(filename, 'w') as inv_file:
                     inv_file.write(str(expr_root) + "\n" + r + "\n")
-                    inv_file.write(("Simpify : " + getExpr(str(expr_root))))
 
             exit()
 

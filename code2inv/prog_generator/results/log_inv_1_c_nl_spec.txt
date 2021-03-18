@@ -1,0 +1,5 @@
+best_root :  ( x > ( y + y ) || ( y > ( x + 0 ) && y <= ( 0 * 100000 ) ) ) 
+simplify : [Or(Not(x <= 2*y), And(Not(y <= x), y <= 0))]
+best_reward : -1
+epoch: 4, average reward: -0.4367, 
+Random: ( ( y == ( x - y ) || y < ( 100000 - y ) ) && y < ( 100000 - 0 ) && ( y <= ( 0 * 100000 ) || y > y ) ), result_r: -1.6074 
