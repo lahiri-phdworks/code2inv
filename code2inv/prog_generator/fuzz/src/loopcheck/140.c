@@ -58,6 +58,7 @@ int main()
     (i = 1LL);
 
     scanf("%d", &n);
+    assume((n >= 0 && n <= 10000));
 
     // loop body
     assume(INV(sum, n, i, y, i2));

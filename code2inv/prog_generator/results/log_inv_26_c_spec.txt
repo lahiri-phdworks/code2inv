@@ -1,5 +1,0 @@
-best_root :  ( ( x <= ( 10000 + n ) ) && ( x < ( n - x ) || x < ( n + n ) ) && ( n >= ( -10000 - x ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 4, average reward: -1.0046, 
-Random: ( ( n <= ( n + 0 ) || n >= ( -10000 + n ) ) && ( x > ( x - x ) ) && ( n == ( n - 0 ) ) ), result_r: -2.2650 

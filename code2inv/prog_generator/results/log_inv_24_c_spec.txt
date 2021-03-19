@@ -1,5 +1,0 @@
-best_root :  ( ( j <= j || j > 2 ) && ( j > 2 ) && ( j > ( 2 + 6 ) || j == ( j + i ) ) ) 
-simplify : [Not(j <= 2), Or(Not(j <= 8), 0 == i)]
-best_reward : -1
-epoch: 4, average reward: -0.4364, 
-Random: ( ( j == 1 ) && ( i == ( 6 + i ) ) && ( i < ( j + 2 ) || i <= j ) ), result_r: -2.0200 

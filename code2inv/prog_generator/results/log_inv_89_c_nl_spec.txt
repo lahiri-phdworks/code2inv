@@ -1,7 +1,0 @@
-best_root :  ( x < ( y * y ) || ( y > ( 1 - 10000 ) && y >= ( 1 - y ) ) || lock == ( 1 - x ) ) 
-simplify : [Or(And(Not(y <= -9999), y >= 1),
-    lock == 1 + -1*x,
-    Not(y*y <= x))]
-best_reward : 0
-epoch: 4, average reward: -0.5460, 
-Random: ( lock == ( 1 - x ) ), result_r: -1.9383 

@@ -1,5 +1,0 @@
-best_root :  ( ( j >= ( n - n ) ) ) 
-simplify : [j >= 0]
-best_reward : -1
-epoch: 4, average reward: -0.5141, 
-Random: ( ( j < ( n + -10000 ) || i >= ( n - j ) ) && ( i > ( 2 + 10000 ) ) ), result_r: -2.0200 

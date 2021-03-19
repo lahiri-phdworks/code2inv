@@ -22,12 +22,12 @@ pwd = os.path.dirname(__file__)
 if cmd_args.example:
     example = cmd_args.example
 else:
-    example = "2"
+    example = "32"
 
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 5
+    timeout = 8
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -38,6 +38,9 @@ loopmodelsfile = os.path.join(pwd, os.pardir, "loopmodels.txt")
 postmodelsfile = os.path.join(pwd, os.pardir, "postmodels.txt")
 
 checkList = ["precheck", "loopcheck", "postcheck"]
+modelFilesList = [premodelsfile, loopmodelsfile, postmodelsfile]
+fuzzThreadsReturns = [None, None, None]
+returncodes = [None, None, None]
 
 
 def inv_checker(vc_file: str, inv: str, assignments):
@@ -70,6 +73,8 @@ def call_fuzzsolver(index):
     # TODO : Now we have to make three parallel calls for pre, loop and post as per new sampling technique.
     try:
         # print(f"Running AFL on Example {example}.c")
+        # COMMENT : Start fresh fuzzing and clean previous model written.
+        open(modelFilesList[index], mode="w").close()
         output = run(
             f'timeout {timeout} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
                 -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}',
@@ -78,6 +83,9 @@ def call_fuzzsolver(index):
         print(f"Fuzzer Error : {err}")
     # else:
     #     print(f"Fuzzer Return : {output.returncode}")
+    if output.returncode is not 0:
+        fuzzThreadsReturns[index] = "EXCEPT"
+    returncodes[index] = output.returncode
     return output.returncode
 
 
@@ -162,8 +170,10 @@ def inv_solver(vc_file: str, inv: str):
 
     res = mergeModels()
 
-    tqdm.write(f"{res}")
-    # new_res = c_inv_solver(vc_file, inv)
-    # tqdm.write(f"{new_res}")
+    for index, elems in enumerate(res):
+        if elems is None:
+            res[index] = fuzzThreadsReturns[index]
 
+    tqdm.write(f'{returncodes}')
+    tqdm.write(f"{res}")
     return res

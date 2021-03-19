@@ -1,7 +1,0 @@
-best_root :  ( ( n > ( 1 - n ) || y > ( n + 1 ) ) && ( n <= 1 || x >= ( y - n ) ) && ( n < 10000 ) ) 
-simplify : [Or(Not(n <= 0), Not(y <= 1 + n)),
- Or(n <= 1, x >= y + -1*n),
- Not(10000 <= n)]
-best_reward : -1
-epoch: 4, average reward: -0.6190, 
-Random: ( ( x >= ( y - n ) ) && ( n <= 10000 || y > ( -10000 + n ) ) ), result_r: -1.7750 

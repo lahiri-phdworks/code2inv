@@ -1,2 +1,0 @@
-( ( x > ( x + x ) || y == y ) )
-z3_report time: 152.15 pid: 0 stats: Counter({'boogie_result': 10, 'actual_z3': 10, 'ce-T:': 9})

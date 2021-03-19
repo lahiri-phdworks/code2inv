@@ -1,5 +1,0 @@
-best_root :  ( ( x <= ( x + z ) || x >= ( 10000 * x ) ) ) 
-simplify : [Or(0 <= z, x <= 0)]
-best_reward : -1
-epoch: 2, average reward: -0.4958, 
-Random: ( y > ( 500 * 1 ) ), result_r: -2.2279 

@@ -1,2 +1,0 @@
-( ( d1 <= ( 1 + 1 ) || x3 <= ( x1 + 1 ) ) )
-z3_report time: 20.91 pid: 0 stats: Counter({'boogie_result': 4, 'actual_z3': 4, 'ce-T:': 4})

@@ -1,5 +1,0 @@
-best_root :  ( ( m <= ( 1 + 1 ) || j >= ( -10000 * c ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 4, average reward: -0.5213, 
-Random: ( ( k >= ( m + -10000 ) && j <= ( -10000 + 1 ) ) || k == ( 10000 + 1 ) ), result_r: -2.0200 

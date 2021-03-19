@@ -1,5 +1,0 @@
-best_root :  ( i <= 8 ) 
-simplify : [i <= 8]
-best_reward : -1
-epoch: 3, average reward: -0.5628, 
-Random: ( ( i > ( sn + 1 ) || sn <= ( sn * sn ) ) && ( sn == ( sn + sn ) || sn <= ( 0 * 8 ) ) && ( sn <= ( 0 * 0 ) || sn == ( sn + sn ) ) ), result_r: -1.8158 

@@ -65,7 +65,6 @@ int main()
     assume(INV(sum, n, i, y, i2));
     assume(!(i <= n));
 
-    char buffer[30];
     fprintf(stderr, "Post : %s : %lld, %s : %d, %s : %d, %s : %d, %s : %d\n", "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
     assert((sum == ((n * (n + 1) * (2 * n + 1)) / 6)));
 

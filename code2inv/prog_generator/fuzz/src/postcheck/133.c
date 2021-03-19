@@ -59,13 +59,14 @@ int main()
   // pre-conditions
   (x = 0);
   scanf("%d", &n);
+
+  assume((x == 0));
   assume((n >= 0));
 
   // post-condition
   assume(INV(n, x));
   assume(!(x < n));
 
-  char buffer[30];
   fprintf(stderr, "Post : %s : %d, %s : %d\n", "n", n, "x", x);
   assert((x == n));
 }

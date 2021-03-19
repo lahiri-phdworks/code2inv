@@ -1,5 +1,0 @@
-best_root :  ( ( d1 == d3 && x1 > ( 0 * x1 ) ) ) 
-simplify : [d1 == d3, Not(x1 <= 0)]
-best_reward : -1
-epoch: 4, average reward: -0.5568, 
-Random: ( ( x3 == d3 || d1 >= ( d2 * d1 ) ) && ( d2 > ( 0 * d2 ) || x1 > ( 0 - d1 ) ) ), result_r: -1.9343 

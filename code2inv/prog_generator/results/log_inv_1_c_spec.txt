@@ -1,6 +1,0 @@
-best_root :  ( ( y <= ( x - 100000 ) || y < ( 100000 - y ) ) && ( y == 1 || y > ( x - 100000 ) ) ) 
-simplify : [Or(Not(y >= 50000), y <= -100000 + x),
- Or(y == 1, Not(y <= -100000 + x))]
-best_reward : -1
-epoch: 4, average reward: -0.4945, 
-Random: ( ( y <= ( 0 + 0 ) ) ), result_r: -1.6165 

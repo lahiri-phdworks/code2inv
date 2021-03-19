@@ -59,10 +59,6 @@ int main()
     (i2 = 0LL);
     (i = 1LL);
 
-    assume((sum == 0LL));
-    assume((i2 == 0LL));
-    assume((i == 1LL));
-
     assume((n >= 0 && n <= 10000));
     precheck(sum, n, i, y, i2);
 }

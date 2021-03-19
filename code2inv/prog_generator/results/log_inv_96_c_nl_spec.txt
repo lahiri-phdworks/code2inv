@@ -1,5 +1,0 @@
-best_root :  ( ( y < ( x - j ) || i >= ( 0 - j ) ) && i > ( j - 1 ) ) 
-simplify : [Or(Not(x + -1*j <= y), i >= -1*j), Not(i <= -1 + j)]
-best_reward : -1
-epoch: 4, average reward: -0.5588, 
-Random: ( ( j == ( 0 + i ) && i < ( x - j ) ) || i < y || i >= ( 0 * j ) ), result_r: -2.0472 

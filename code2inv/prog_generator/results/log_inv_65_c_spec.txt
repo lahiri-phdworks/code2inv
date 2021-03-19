@@ -1,5 +1,0 @@
-best_root :  ( ( x == y || x > ( x - x ) ) && ( x < ( 100 + 1 ) || y == 0 ) ) 
-simplify : [Or(Not(x <= 0), x == y), Or(Not(101 <= x), y == 0)]
-best_reward : -1
-epoch: 1, average reward: -0.5940, 
-Random: ( ( x < ( x + y ) ) && ( x >= ( y + 1 ) || y == ( 0 + y ) ) ), result_r: -1.8217 

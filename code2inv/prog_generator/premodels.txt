@@ -1,1 +1,2 @@
-Pre : c : 0
+Pre : n : 1111111111, x : 0
+133: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/precheck/133.c:25: precheck: Assertion `0' failed.
