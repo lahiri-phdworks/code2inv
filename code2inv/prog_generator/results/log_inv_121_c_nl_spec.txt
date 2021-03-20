@@ -1,0 +1,6 @@
+best_root :  ( ( sn <= 10000 || i < ( 10000 + i ) ) && ( i < ( 0 * 0 ) || i < ( 8 - 1 ) ) && ( i < 8 || i <= 8 ) ) 
+simplify : [Or(Not(0 <= i), Not(7 <= i)), Or(Not(8 <= i), i <= 8)]
+best_reward : -1
+epoch: 6, average reward: -0.5413, 
+Random: ( sn <= i && ( i < ( 10000 + i ) || i < ( 8 + 0 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 88612, 'ce-F:': 19490, 'boogie_result': 6876, 'ce-T:': 6874, 'actual_z3': 23})

@@ -1,0 +1,6 @@
+best_root :  ( ( i > 0 || i == ( 1 - i ) ) && ( i > ( i * sn ) || n > ( 1 * sn ) ) ) 
+simplify : [Not(i <= 0), Or(Not(n <= sn), Not(i <= i*sn))]
+best_reward : -1
+epoch: 6, average reward: -0.5397, 
+Random: ( ( sn >= ( sn - i ) || i > ( sn - 1 ) ) && ( sn >= ( i - sn ) || sn < ( sn * 1 ) ) && ( sn > ( sn - sn ) || i < ( sn - 1 ) ) ), result_r: -2.2160 
+stats : Counter({'ce-T:': 34256, 'ce-F:': 31443, 'ce-I:': 25152, 'boogie_result': 6901, 'actual_z3': 15})

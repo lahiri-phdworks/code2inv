@@ -27,7 +27,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 8
+    timeout = 10
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -176,8 +176,12 @@ def inv_solver(vc_file: str, inv: str):
     # # All the three threads timeout so we double the timeout
     # # and check if the INV still holds.
 
+    # # COMMENT : This is the truly what we need.
+    # while not all(x == None for x in res):
+    #     pass
+
     for i in range(3):
-        if returncodes[i] == 124:
+        if res[i] is None:
             tqdm.write(f'Fuzzing : {i} again')
             call_fuzzsolver(i, timeout * 2)
 
@@ -188,4 +192,12 @@ def inv_solver(vc_file: str, inv: str):
     #         res[index] = fuzzThreadsReturns[index]
 
     tqdm.write(f"Final {returncodes} : {res}")
+
+    if not os.path.isdir("models"):
+        os.mkdir("models")
+
+    # COMMENT : Print Fuzz Model
+    with open(os.path.join("models", f'fuzz_models_{cmd_args.example}.txt'), mode="a") as file:
+        file.write(f'{res}\n')
+
     return res

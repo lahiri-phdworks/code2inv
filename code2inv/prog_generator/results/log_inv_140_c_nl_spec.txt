@@ -1,0 +1,8 @@
+best_root :  ( i <= ( n + 0 ) || i2 == n || ( i2 < ( 6 * i2 ) && n < ( 500000 - sum ) ) ) 
+simplify : [Or(i <= n,
+    i2 == n,
+    And(Not(i2 <= 0), Not(-1*sum <= -500000 + n)))]
+best_reward : -1
+epoch: 6, average reward: -0.5451, 
+Random: ( n <= ( n + 500000 ) && i2 <= ( 6 * 6 ) ), result_r: -2.0423 
+stats : Counter({'ce-I:': 111539, 'ce-T:': 74943, 'ce-F:': 13796, 'boogie_result': 6955, 'actual_z3': 36})

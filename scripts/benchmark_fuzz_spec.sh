@@ -17,6 +17,6 @@ do
         ./run_solver_file.sh \
         ../../benchmarks/C_instances/c_graph/${var}.c.json \
         ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \
-        -o results/inv_result_${var}_$1.txt ${var} fuzz_spec
+        -o results/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec
     fi
 done

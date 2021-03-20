@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int x;
   int y;
@@ -8,15 +9,14 @@ int main() {
   assume((y <= 10));
   assume((y >= 0));
   // loop body
-  while (unknown()) {
+  while (unknown())
+  {
     {
-    (x  = (x + 10));
-    (y  = (y + 10));
+      (x = (x + 10));
+      (y = (y + 10));
     }
-
   }
   // post-condition
-if ( (y == 0) )
-assert( (x != 20) );
-
+  if ((y == 0))
+    assert((x != 20));
 }

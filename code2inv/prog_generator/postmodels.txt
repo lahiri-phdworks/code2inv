@@ -1,0 +1,2 @@
+Post : x : 4, y : 0
+10: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/postcheck/10.c:68: main: Assertion `(x != 4)' failed.
