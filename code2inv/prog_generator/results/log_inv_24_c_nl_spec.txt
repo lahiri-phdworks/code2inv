@@ -1,0 +1,5 @@
+best_root :  ( ( i < ( j - 1 ) && j > ( 6 - 1 ) ) ) 
+simplify : [Not(j <= 1 + i), Not(j <= 5)]
+best_reward : -1
+epoch: 6, average reward: -0.5563, 
+Random: ( i <= ( 10 - j ) ), result_r: -2.4320 

@@ -27,7 +27,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 8
+    timeout = 4
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -76,9 +76,12 @@ def call_fuzzsolver(index):
         # COMMENT : Start fresh fuzzing and clean previous model written.
         open(modelFilesList[index], mode="w").close()
         output = run(
-            f'timeout {timeout} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
-                -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}',
-            shell=True, capture_output=True, text=True)
+            f"timeout {timeout} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
+                -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}",
+            shell=True,
+            capture_output=True,
+            text=True,
+        )
     except CalledProcessError as err:
         print(f"Fuzzer Error : {err}")
     # else:
@@ -93,9 +96,12 @@ def init_fuzzbase(index):
     try:
         # print(f"Initialized AFL run on Example {example}.c")
         output = run(
-            f'{fuzzbase}/start.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
-                -c {checkList[index]} -o {fuzzbase}/output -e {example}',
-            shell=True, capture_output=True, text=True)
+            f"{fuzzbase}/start.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
+                -c {checkList[index]} -o {fuzzbase}/output -e {example}",
+            shell=True,
+            capture_output=True,
+            text=True,
+        )
     except CalledProcessError as err:
         print(f"Build Error : {err}")
     # else:
@@ -141,10 +147,7 @@ def inv_solver(vc_file: str, inv: str):
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(
-            target=init_fuzzbase,
-            args=(i,)
-        )
+        worker_thread = threading.Thread(target=init_fuzzbase, args=(i,))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
@@ -152,16 +155,13 @@ def inv_solver(vc_file: str, inv: str):
         worker.join()
 
     # Side-effect : Delete all contents of the file.
-    open(premodelsfile, 'w').close()
-    open(loopmodelsfile, 'w').close()
-    open(postmodelsfile, 'w').close()
+    open(premodelsfile, "w").close()
+    open(loopmodelsfile, "w").close()
+    open(postmodelsfile, "w").close()
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(
-            target=call_fuzzsolver,
-            args=(i,)
-        )
+        worker_thread = threading.Thread(target=call_fuzzsolver, args=(i,))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
@@ -174,6 +174,5 @@ def inv_solver(vc_file: str, inv: str):
         if elems is None:
             res[index] = fuzzThreadsReturns[index]
 
-    tqdm.write(f'{returncodes}')
-    tqdm.write(f"{res}")
+    tqdm.write(f"{returncodes} : {res}")
     return res

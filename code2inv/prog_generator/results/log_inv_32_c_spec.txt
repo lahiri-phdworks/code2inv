@@ -1,0 +1,5 @@
+best_root :  ( ( n > ( 1 - 1 ) || n < ( 0 - n ) ) ) 
+simplify : [Or(Not(n <= 0), Not(n >= 0))]
+best_reward : -1
+epoch: 6, average reward: -0.4866, 
+Random: ( ( x < ( 0 - 0 ) ) && ( n < ( 0 - n ) ) && ( n >= 0 || n >= 1 ) ), result_r: -2.0200 

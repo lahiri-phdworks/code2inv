@@ -1,0 +1,7 @@
+best_root :  ( ( i <= ( 10 + 1 ) || j > ( 1 + i ) ) && ( j > ( 2 + 1 ) ) && ( i < ( j - i ) || i <= ( 2 - 6 ) ) ) 
+simplify : [Or(Not(j <= 1 + i), i <= 11),
+ Not(j <= 3),
+ Or(Not(j + -2*i <= 0), i <= -4)]
+best_reward : -1
+epoch: 6, average reward: -0.3599, 
+Random: ( ( j > ( 2 + i ) || i < ( j + 10 ) ) ), result_r: -2.0200 

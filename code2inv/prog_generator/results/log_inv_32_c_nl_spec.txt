@@ -1,0 +1,7 @@
+best_root :  ( ( n > 0 && x < ( x * n ) ) || x < ( x * n ) || ( x <= ( x * 1 ) && n > ( 0 - x ) ) ) 
+simplify : [Or(Not(n*x <= x),
+    And(Not(n <= 0), Not(n*x <= x)),
+    Not(n <= -1*x))]
+best_reward : -1
+epoch: 6, average reward: -0.9039, 
+Random: ( n > ( 1 * 1 ) ), result_r: -2.3140 

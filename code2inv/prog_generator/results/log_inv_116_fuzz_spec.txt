@@ -1,0 +1,5 @@
+best_root :  ( ( x > ( 1 - x ) || x < ( sn + sn ) ) ) 
+simplify : [Or(Not(x <= 0), Not(2*sn <= x))]
+best_reward : -2
+epoch: 4, average reward: -1.6245, 
+Random: ( ( sn < ( x - sn ) ) && ( sn >= 1 ) ), result_r: -3.0000 

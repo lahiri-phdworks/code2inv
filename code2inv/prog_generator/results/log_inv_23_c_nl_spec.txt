@@ -1,0 +1,5 @@
+best_root :  ( ( i <= j || i < ( j * 20 ) ) && j >= 13 && i < ( 1 + 2 ) ) 
+simplify : [Or(Not(20*j <= i), i <= j), j >= 13, Not(3 <= i)]
+best_reward : -1
+epoch: 6, average reward: -0.4900, 
+Random: ( j >= 13 && i <= ( 13 * 20 ) && ( i >= ( 13 + 2 ) || j <= ( 2 + 2 ) ) ), result_r: -2.0200 

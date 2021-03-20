@@ -1,0 +1,5 @@
+best_root :  ( ( n <= ( 1 - 10000 ) ) ) 
+simplify : [n <= -9999]
+best_reward : -2
+epoch: 6, average reward: -1.6140, 
+Random: ( ( x == 10000 ) && ( y <= ( y + y ) ) ), result_r: -3.0000 

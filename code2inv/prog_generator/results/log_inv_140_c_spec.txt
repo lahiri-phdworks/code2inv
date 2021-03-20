@@ -1,0 +1,7 @@
+best_root :  ( ( n >= 1 ) && ( i >= sum || y > ( sum - y ) ) && ( i2 >= sum || n >= ( sum - y ) ) ) 
+simplify : [n >= 1,
+ Or(Not(2*y <= sum), i >= sum),
+ Or(i2 >= sum, n >= sum + -1*y)]
+best_reward : -1
+epoch: 6, average reward: -0.4699, 
+Random: ( ( sum >= ( sum + 1 ) ) ), result_r: -2.0200 

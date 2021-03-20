@@ -5,3 +5,5 @@ for files in ../code2inv/prog_generator/results/*.txt;
 do
     python3 parse.py $files >> compile_results.csv
 done
+
+cat compile_results.csv | grep c_

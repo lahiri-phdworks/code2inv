@@ -1,0 +1,5 @@
+best_root :  ( ( x >= ( 1 - n ) || y > ( 1 + n ) ) && ( y > ( -10000 - n ) || n <= n ) ) 
+simplify : None
+best_reward : -1
+epoch: 6, average reward: -0.6422, 
+Random: ( ( y >= ( 1 - n ) || y == ( 10000 + 1 ) ) && ( y == y ) && ( n <= 10000 || y > ( y + 10000 ) ) ), result_r: -2.0200 

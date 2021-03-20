@@ -1,0 +1,5 @@
+best_root :  ( k >= ( -10000 - -10000 ) && m < ( j * -10000 ) ) 
+simplify : None
+best_reward : -1
+epoch: 6, average reward: -0.5627, 
+Random: ( k == 0 || m == ( a * 1 ) || ( k > ( 0 * a ) && k == ( k - k ) ) ), result_r: -1.8567 

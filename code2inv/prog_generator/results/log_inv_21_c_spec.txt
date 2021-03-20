@@ -1,0 +1,5 @@
+best_root :  ( ( x <= 1 || x > m ) ) 
+simplify : [Or(Not(x <= m), x <= 1)]
+best_reward : -1
+epoch: 1, average reward: -0.6095, 
+Random: ( ( x <= ( n + m ) || n < -10000 ) ), result_r: -2.3385 
