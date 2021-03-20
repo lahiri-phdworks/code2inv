@@ -76,6 +76,7 @@ class StatsCounter(object):
             for k in c:
                 t[k] += c[k]
         tqdm.write('z3_global_stats: %s' % str(t))
+        return str(t)
 
 
 stat_counter = StatsCounter()

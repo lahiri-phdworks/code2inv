@@ -36,6 +36,7 @@ if __name__ == "__main__":
     with open(fileName, mode="r") as fileptr:
         lines = fileptr.readlines()
 
+    stats = lines[-1].strip().split(":")[-1].strip()[:-2]
     if len(lines) > 0:
         if "best_root" in lines[0]:
             inv = lines[0].strip().split(":")[1].strip()
@@ -50,5 +51,5 @@ if __name__ == "__main__":
         check = "Failed"
 
     print(
-        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{(getExpr(str(inv)))}"'
+        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{(getExpr(str(inv)))}", {stats}'
     )

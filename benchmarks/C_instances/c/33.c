@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int n;
   int v1;
@@ -8,14 +9,13 @@ int main() {
   // pre-conditions
   (x = n);
   // loop body
-  while ((x > 0)) {
+  while ((x > 0))
+  {
     {
-    (x  = (x - 1));
+      (x = (x - 1));
     }
-
   }
   // post-condition
-if ( (x != 0) )
-assert( (n < 0) );
-
+  if ((x != 0))
+    assert((n < 0));
 }

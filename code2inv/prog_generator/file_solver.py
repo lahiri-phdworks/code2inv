@@ -64,20 +64,24 @@ if __name__ == "__main__":
             encoder = LSTMEmbed(cmd_args.embedding_size, len(node_type_dict))
         elif cmd_args.encoder_model == "Param":
             g_list = GraphSample(graph, vc_list, node_type_dict)
-            encoder = ParamEmbed(cmd_args.embedding_size, g_list.pg.num_nodes())
+            encoder = ParamEmbed(cmd_args.embedding_size,
+                                 g_list.pg.num_nodes())
         else:
             raise NotImplementedError
 
         decoder = GeneralDecoder(cmd_args.embedding_size)
 
         if cmd_args.init_model_dump is not None:
-            encoder.load_state_dict(torch.load(cmd_args.init_model_dump + ".encoder"))
-            decoder.load_state_dict(torch.load(cmd_args.init_model_dump + ".decoder"))
+            encoder.load_state_dict(torch.load(
+                cmd_args.init_model_dump + ".encoder"))
+            decoder.load_state_dict(torch.load(
+                cmd_args.init_model_dump + ".decoder"))
 
         params.append(encoder.parameters())
         params.append(decoder.parameters())
 
-        optimizer = optim.Adam(chain.from_iterable(params), lr=cmd_args.learning_rate)
+        optimizer = optim.Adam(chain.from_iterable(
+            params), lr=cmd_args.learning_rate)
 
         for epoch in range(cmd_args.num_epochs):
             best_reward = -5.0
@@ -137,6 +141,7 @@ if __name__ == "__main__":
             )
             print("best_reward:", best_reward, ", best_root:", best_root)
             print("Simpify : ", getExpr(best_root))
+            stats = stat_counter.report_global()
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
             resultpath = os.path.join(
@@ -150,11 +155,10 @@ if __name__ == "__main__":
                     % (best_root, getExpr(best_root), best_reward)
                 )
                 file.write(
-                    "epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \n"
-                    % (epoch, acc_reward / 100.0, root, boogie_result(g, root))
+                    "epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \nstats : %s\n"
+                    % (epoch, acc_reward / 100.0, root, boogie_result(g, root), stats)
                 )
 
-            stat_counter.report_global()
             if cmd_args.save_dir is not None:
                 torch.save(
                     encoder.state_dict(),

@@ -97,3 +97,6 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 4, c_nl_spec, ( ( x <= ( x + z ) || x >= ( 10000 * x ) ) ), Failed, No, "[Or(0 <= z, x <= 0)]"
 4, c_spec, ( ( x <= ( 500 - x ) || z > ( 1 - y ) ) ), Failed, No, "[Or(x <= 250, Not(z <= 1 + -1*y))]"
 5, c_spec, ( ( z >= ( y - 0 ) || z < ( y - x ) ) ), Failed, No, "[Or(z >= y, Not(y + -1*x <= z))]"
+32, fuzz_spec, ( ( x >= ( n - 1 ) ) && ( x <= ( 10000 + x ) ) && ( x >= ( 0 - 0 ) ) ), Failed, No, "[x >= -1 + n, x >= 0]", 219
+32, c_nl_spec, ( ( x < ( x + 10000 ) && n > ( n - x ) ) || ( x > ( 1 - x ) && x == ( 1 - 0 ) ) || x < ( n * n ) ), Failed, No, "[Or(Not(n*n <= x), Not(x <= 0), And(Not(x <= 0), x == 1))]", 12
+32, c_spec, ( ( x > ( n + n ) || x >= 1 ) ), Failed, No, "[Or(Not(x <= 2*n), x >= 1)]", 8

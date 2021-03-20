@@ -55,6 +55,8 @@ int main()
   scanf("%d", &n);
   (x = n);
 
+  assume((-10000 <= x && x <= 10000));
+
   // loop body
   assume(INV(n, v1, v2, v3, x));
   assume((x > 1))

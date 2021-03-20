@@ -162,7 +162,7 @@ def inv_solver(vc_file: str, inv: str):
         tpl.append(vc_sections[1] + vc_sections[i])
     res = []
     for i in range(3):
-        s = tpl[0] + inv + tpl[i+1]
+        s = tpl[0] + inv + tpl[i + 1]
         sol.reset()
         try:
             sol.set("timeout", 10000)

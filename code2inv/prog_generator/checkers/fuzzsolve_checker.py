@@ -27,7 +27,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 4
+    timeout = 10
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -69,14 +69,14 @@ def process_model_string(model: str):
     return [cex_type, model_val]
 
 
-def call_fuzzsolver(index):
+def call_fuzzsolver(index, time):
     # TODO : Now we have to make three parallel calls for pre, loop and post as per new sampling technique.
     try:
         # print(f"Running AFL on Example {example}.c")
         # COMMENT : Start fresh fuzzing and clean previous model written.
         open(modelFilesList[index], mode="w").close()
         output = run(
-            f"timeout {timeout} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
+            f"timeout {time} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
                 -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}",
             shell=True,
             capture_output=True,
@@ -161,7 +161,8 @@ def inv_solver(vc_file: str, inv: str):
 
     executeBuildThreads = []
     for i in range(3):
-        worker_thread = threading.Thread(target=call_fuzzsolver, args=(i,))
+        worker_thread = threading.Thread(
+            target=call_fuzzsolver, args=(i, timeout, ))
         executeBuildThreads.append(worker_thread)
         worker_thread.start()
 
@@ -170,9 +171,29 @@ def inv_solver(vc_file: str, inv: str):
 
     res = mergeModels()
 
-    for index, elems in enumerate(res):
-        if elems is None:
-            res[index] = fuzzThreadsReturns[index]
+    # # COMMENT :
+    # # All the three threads timeout so we double the timeout
+    # # and check if the INV still holds.
+    # if res == [None, None, None]:
+    #     timeout *= 2
+    #     executeBuildThreads = []
+    #     for i in range(3):
+    #         worker_thread = threading.Thread(
+    #             target=call_fuzzsolver, args=(i, timeout, ))
+    #         executeBuildThreads.append(worker_thread)
+    #         worker_thread.start()
+
+    #     for index, worker in enumerate(executeBuildThreads):
+    #         worker.join()
+
+    # for i in range(3):
+    #     if returncodes[i] == 124:
+    #         call_fuzzsolver(i, timeout)
+    # res = mergeModels()
+
+    # for index, elems in enumerate(res):
+    #     if elems is None:
+    #         res[index] = fuzzThreadsReturns[index]
 
     tqdm.write(f"{returncodes} : {res}")
     return res
