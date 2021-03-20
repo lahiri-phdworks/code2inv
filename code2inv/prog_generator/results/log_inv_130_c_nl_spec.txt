@@ -1,5 +1,0 @@
-best_root :  ( d1 <= d3 && d2 == d3 && d1 > ( 1 - d1 ) ) 
-simplify : [d1 <= d3, Not(d1 <= 0)]
-best_reward : 0
-epoch: 6, average reward: -0.5236, 
-Random: ( ( d1 == ( 0 - 10000 ) || d2 > ( x1 + d2 ) ) && d2 >= ( x2 + x2 ) && ( x1 > ( 10000 - d1 ) || x3 < ( 0 - 10000 ) ) ), result_r: -2.0200 

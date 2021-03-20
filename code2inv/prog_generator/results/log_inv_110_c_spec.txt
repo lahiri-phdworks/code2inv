@@ -1,5 +1,0 @@
-best_root :  ( ( i >= ( 1 + sn ) ) && ( i <= ( sn + i ) || i <= ( sn + sn ) ) && ( i > 0 ) ) 
-simplify : [i >= 1 + sn, Or(0 <= sn, i <= 2*sn), Not(i <= 0)]
-best_reward : -1
-epoch: 6, average reward: -0.6094, 
-Random: ( ( i > n ) && ( sn <= ( i + 1 ) ) ), result_r: -2.2160 

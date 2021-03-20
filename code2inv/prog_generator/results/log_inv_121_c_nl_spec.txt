@@ -1,5 +1,0 @@
-best_root :  ( sn > ( i - 8 ) && i < ( 8 - sn ) ) 
-simplify : [Not(sn <= -8 + i), Not(-1*sn <= -8 + i)]
-best_reward : -1
-epoch: 4, average reward: -0.5389, 
-Random: ( ( i < ( 1 - sn ) && i < ( 10000 - i ) ) || i == ( 8 * 0 ) ), result_r: -2.0550 

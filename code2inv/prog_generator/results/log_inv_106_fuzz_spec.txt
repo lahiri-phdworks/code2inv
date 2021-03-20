@@ -1,7 +1,0 @@
-best_root :  ( ( k >= ( 1 - m ) || m == 1 ) && ( j >= ( 1 - m ) ) && ( j >= ( a - 1 ) || k > ( 0 - 1 ) ) ) 
-simplify : [Or(k >= 1 + -1*m, m == 1),
- j >= 1 + -1*m,
- Or(j >= -1 + a, Not(k <= -1))]
-best_reward : -2
-epoch: 6, average reward: -1.5525, 
-Random: ( ( m >= ( 1 - j ) || j == 1 ) && ( k <= ( a + a ) ) && ( a <= ( a + j ) || k <= ( k - j ) ) ), result_r: -3.0000 

@@ -1,5 +1,0 @@
-best_root :  ( ( y > ( 4 - y ) || x < ( y + 4 ) ) && ( x == 0 ) ) 
-simplify : [Or(Not(y <= 2), Not(y <= -4))]
-best_reward : -2
-epoch: 6, average reward: -1.5510, 
-Random: ( ( y < 2 ) ), result_r: -3.0000 

@@ -1,5 +1,0 @@
-best_root :  ( x < ( x * x ) ) 
-simplify : [Not(x*x <= x)]
-best_reward : -1
-epoch: 6, average reward: -0.9799, 
-Random: ( x > ( 0 - x ) && x < ( x * x ) && x > ( n + x ) ), result_r: -2.5100 

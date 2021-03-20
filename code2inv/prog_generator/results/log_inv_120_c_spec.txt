@@ -1,5 +1,0 @@
-best_root :  ( ( sn > 1 || sn >= ( sn - 8 ) ) && ( i == ( sn + 1 ) || i <= ( i - i ) ) && ( i <= ( 8 + 0 ) ) ) 
-simplify : [Or(i == 1 + sn, i <= 0), i <= 8]
-best_reward : -1
-epoch: 1, average reward: -0.5522, 
-Random: ( ( sn < ( sn + 1 ) ) && ( sn == ( sn + 1 ) ) && ( sn <= ( 0 + 1 ) || sn == ( sn + 1 ) ) ), result_r: -2.0200 

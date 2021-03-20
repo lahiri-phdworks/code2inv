@@ -1,5 +1,0 @@
-best_root :  ( ( z >= ( y - 0 ) || z < ( y - x ) ) ) 
-simplify : [Or(z >= y, Not(y + -1*x <= z))]
-best_reward : 0
-epoch: 6, average reward: -0.5464, 
-Random: ( ( z >= ( y - 10000 ) ) ), result_r: -2.0200 

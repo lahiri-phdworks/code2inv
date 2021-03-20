@@ -1,5 +1,0 @@
-best_root :  ( ( k < k || k <= ( 10000 + 1 ) ) && ( m <= ( 1 + 1 ) || m == ( j + 1 ) ) && ( m <= ( 0 + 1 ) ) ) 
-simplify : [k <= 10001, Or(m <= 2, m == 1 + j), m <= 1]
-best_reward : -1
-epoch: 6, average reward: -0.5608, 
-Random: ( ( k == ( j + 1 ) || k > ( a + m ) ) ), result_r: -2.3875 

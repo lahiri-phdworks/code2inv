@@ -1,5 +1,0 @@
-best_root :  ( ( x > y && y == 0 ) || y <= ( 1000 - y ) ) 
-simplify : [Or(And(Not(x <= y), y == 0), y <= 500)]
-best_reward : -1
-epoch: 6, average reward: -0.3914, 
-Random: ( x <= ( 1000 * 0 ) && ( y == ( y * y ) || y < 1000 ) && y == ( 0 * 0 ) ), result_r: -2.0812 

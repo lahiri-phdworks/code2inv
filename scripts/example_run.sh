@@ -25,6 +25,3 @@ do
     ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \
     -o results/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec
 done 
-
-pkill afl
-pkill afl-fuzz

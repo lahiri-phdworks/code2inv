@@ -27,7 +27,7 @@ else:
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 10
+    timeout = 8
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -86,7 +86,7 @@ def call_fuzzsolver(index, time):
         print(f"Fuzzer Error : {err}")
     # else:
     #     print(f"Fuzzer Return : {output.returncode}")
-    if output.returncode is not 0:
+    if output.returncode != 0:
         fuzzThreadsReturns[index] = "EXCEPT"
     returncodes[index] = output.returncode
     return output.returncode
@@ -170,30 +170,22 @@ def inv_solver(vc_file: str, inv: str):
         worker.join()
 
     res = mergeModels()
+    tqdm.write(f"{returncodes} : {res}")
 
     # # COMMENT :
     # # All the three threads timeout so we double the timeout
     # # and check if the INV still holds.
-    # if res == [None, None, None]:
-    #     timeout *= 2
-    #     executeBuildThreads = []
-    #     for i in range(3):
-    #         worker_thread = threading.Thread(
-    #             target=call_fuzzsolver, args=(i, timeout, ))
-    #         executeBuildThreads.append(worker_thread)
-    #         worker_thread.start()
 
-    #     for index, worker in enumerate(executeBuildThreads):
-    #         worker.join()
+    for i in range(3):
+        if returncodes[i] == 124:
+            tqdm.write(f'Fuzzing : {i} again')
+            call_fuzzsolver(i, timeout * 2)
 
-    # for i in range(3):
-    #     if returncodes[i] == 124:
-    #         call_fuzzsolver(i, timeout)
-    # res = mergeModels()
+    res = mergeModels()
 
     # for index, elems in enumerate(res):
     #     if elems is None:
     #         res[index] = fuzzThreadsReturns[index]
 
-    tqdm.write(f"{returncodes} : {res}")
+    tqdm.write(f"Final {returncodes} : {res}")
     return res

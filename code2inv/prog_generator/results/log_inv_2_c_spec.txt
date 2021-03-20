@@ -1,5 +1,0 @@
-best_root :  ( ( x <= 1 || y < ( y + 10000 ) ) && ( x <= ( 1 - -10000 ) || x == ( -10000 - 1 ) ) && ( y >= ( y + y ) || y < ( 1000 - y ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 6, average reward: -0.4466, 
-Random: ( ( y <= ( x - -10000 ) ) ), result_r: -2.0200 

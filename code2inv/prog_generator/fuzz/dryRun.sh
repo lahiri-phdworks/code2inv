@@ -12,7 +12,7 @@ do
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
     echo Processing $var
     if [[ -n $var ]]; then 
-        python3 fuzz.py $var 5 
+        python3 fuzz.py $var 10
     fi
 done
 

@@ -1,2 +1,0 @@
-( ( x <= n || x >= ( x + x ) ) )
-z3_report time: 3.63 pid: 0 stats: Counter({'ce-T:': 310, 'boogie_result': 69, 'ce-F:': 65, 'ce-I:': 64, 'actual_z3': 9})

@@ -9,7 +9,8 @@ export CXX=$HOME/afl/afl-g++
 export AFL=$HOME/afl/afl-fuzz
 
 for file_index in fuzz/src/loopcheck/*.c;
-do 
+do
+    sleep 2
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
     echo $var
     if [[ -n $var ]]; then 
@@ -19,6 +20,3 @@ do
         -o results/inv_result_${var}_$1.txt ${var} fuzz_spec
     fi
 done
-
-pkill afl
-pkill afl-fuzz
