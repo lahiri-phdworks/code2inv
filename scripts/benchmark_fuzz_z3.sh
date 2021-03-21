@@ -12,7 +12,7 @@ for file_index in fuzz/src/loopcheck/*.c;
 do 
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
     echo $var
-    if [[ -n $var ]]; then 
+    if [[ -n $var ]] && [[ $var -ne 32 ]]; then 
         ./run_solver_file.sh \
         ../../benchmarks/C_instances/c_graph/${var}.c.json \
         ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \

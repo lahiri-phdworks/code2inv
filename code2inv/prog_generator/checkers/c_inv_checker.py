@@ -207,12 +207,12 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
 
-    if not os.path.isdir("models"):
-        os.mkdir("models")
+    # if not os.path.isdir("models"):
+    #     os.mkdir("models")
 
-    # COMMENT : Print Fuzz Model
-    with open(os.path.join("models", f'z3_models_{cmd_args.example}.txt'), mode="a") as file:
-        file.write(f'{res}\n')
+    # # COMMENT : Print Fuzz Model
+    # with open(os.path.join("models", f'z3_models_{cmd_args.example}.txt'), mode="a") as file:
+    #     file.write(f'{res}\n')
 
     return res
 

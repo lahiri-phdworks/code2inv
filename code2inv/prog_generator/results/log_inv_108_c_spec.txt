@@ -1,0 +1,6 @@
+best_root :  ( ( c == -10000 || j == ( k + k ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 5, average reward: -1.0333, 
+Random: ( ( k > ( j - 1 ) || k == ( k + j ) ) && ( k == ( k - j ) || j < ( k + j ) ) && ( j >= 1 ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 17875, 'ce-F:': 17858, 'boogie_result': 5962, 'actual_z3': 12})

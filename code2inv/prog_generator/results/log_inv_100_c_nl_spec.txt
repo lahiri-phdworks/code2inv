@@ -1,0 +1,6 @@
+best_root :  ( n >= x && ( y <= ( n * n ) || n >= ( 10000 - n ) ) ) 
+simplify : [n >= x, Or(y <= n*n, n >= 5000)]
+best_reward : -1
+epoch: 5, average reward: -0.5467, 
+Random: ( ( n >= y || n < ( 10000 * n ) ) ), result_r: -1.7633 
+stats : Counter({'ce-T:': 40945, 'ce-I:': 12459, 'ce-F:': 11689, 'boogie_result': 5956, 'actual_z3': 12})

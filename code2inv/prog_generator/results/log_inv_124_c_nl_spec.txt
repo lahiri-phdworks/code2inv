@@ -1,0 +1,6 @@
+best_root :  ( y < ( j + 10000 ) && ( y == x || y < ( x + i ) ) ) 
+simplify : [Not(j <= -10000 + y), Or(Not(x + i <= y), y == x)]
+best_reward : -1
+epoch: 5, average reward: -0.6063, 
+Random: ( j >= 1 ), result_r: -2.0200 
+stats : Counter({'ce-T:': 46452, 'ce-I:': 37666, 'ce-F:': 19418, 'boogie_result': 5955, 'actual_z3': 19})

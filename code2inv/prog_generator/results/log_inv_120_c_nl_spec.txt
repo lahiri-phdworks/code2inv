@@ -1,0 +1,6 @@
+best_root :  ( i < 8 || i <= 1 || ( i <= 8 && i >= ( 0 + i ) ) ) 
+simplify : [Or(Not(8 <= i), i <= 1, i <= 8)]
+best_reward : -1
+epoch: 5, average reward: -0.5126, 
+Random: ( i >= ( sn * sn ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 67335, 'ce-F:': 17442, 'boogie_result': 5859, 'ce-T:': 5854, 'actual_z3': 17})

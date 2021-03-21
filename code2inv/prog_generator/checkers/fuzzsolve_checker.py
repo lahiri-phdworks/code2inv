@@ -170,7 +170,7 @@ def inv_solver(vc_file: str, inv: str):
         worker.join()
 
     res = mergeModels()
-    tqdm.write(f"{returncodes} : {res}")
+    # tqdm.write(f"{returncodes} : {res}")
 
     # # COMMENT :
     # # All the three threads timeout so we double the timeout
@@ -182,7 +182,7 @@ def inv_solver(vc_file: str, inv: str):
 
     for i in range(3):
         if res[i] is None:
-            tqdm.write(f'Fuzzing : {i} again')
+            # tqdm.write(f'Fuzzing : {i} again')
             call_fuzzsolver(i, timeout * 2)
 
     res = mergeModels()
@@ -193,11 +193,11 @@ def inv_solver(vc_file: str, inv: str):
 
     tqdm.write(f"Final {returncodes} : {res}")
 
-    if not os.path.isdir("models"):
-        os.mkdir("models")
+    # if not os.path.isdir("models"):
+    #     os.mkdir("models")
 
-    # COMMENT : Print Fuzz Model
-    with open(os.path.join("models", f'fuzz_models_{cmd_args.example}.txt'), mode="a") as file:
-        file.write(f'{res}\n')
+    # # COMMENT : Print Fuzz Model
+    # with open(os.path.join("models", f'fuzz_models_{cmd_args.example}.txt'), mode="a") as file:
+    #     file.write(f'{res}\n')
 
     return res
