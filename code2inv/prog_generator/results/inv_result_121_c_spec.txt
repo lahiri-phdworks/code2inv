@@ -1,2 +1,0 @@
-( ( i == ( 1 + sn ) ) && ( i <= ( 1 + 8 ) || sn == ( i + 8 ) ) )
-z3_report time: 122.17 pid: 0 stats: Counter({'ce-I:': 18416, 'ce-F:': 6371, 'boogie_result': 1658, 'ce-T:': 1657, 'actual_z3': 38})

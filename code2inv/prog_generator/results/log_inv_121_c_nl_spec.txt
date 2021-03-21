@@ -1,6 +1,0 @@
-best_root :  ( i >= 10000 || sn >= ( i - 1 ) ) 
-simplify : [Or(i >= 10000, sn >= -1 + i)]
-best_reward : 0
-epoch: 0, average reward: -0.5421, 
-Random: ( ( sn >= ( i - 10000 ) || i < 10000 ) && i == ( i + i ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 8437, 'ce-F:': 1832, 'boogie_result': 990, 'ce-T:': 988, 'actual_z3': 20})

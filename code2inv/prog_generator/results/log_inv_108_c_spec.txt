@@ -1,6 +1,0 @@
-best_root :  ( ( a <= m || k == c ) ) 
-simplify : [Or(a <= m, k == c)]
-best_reward : 0
-epoch: 0, average reward: -1.0534, 
-Random: ( ( a <= a || a < ( m - j ) ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 2992, 'ce-F:': 2975, 'boogie_result': 1001, 'actual_z3': 12})
