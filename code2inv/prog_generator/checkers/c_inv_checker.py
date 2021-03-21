@@ -4,7 +4,7 @@ import tokenize
 import io
 import logging
 import tqdm
-from code2inv.common.cmd_args import cmd_args
+# from code2inv.common.cmd_args import cmd_args
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from code2inv.prog_generator.chc_tools.chctools.chcmodel import load_model_from_file, define_fun_to_lambda
@@ -218,9 +218,10 @@ def inv_solver(vc_file: str, inv: str):
 
 
 if __name__ == "__main__":
-    vcfile = sys.argv[1]
-    inv = sys.argv[2]
-    print(inv_solver(vc_file=vcfile, inv=inv))
+    # vcfile = sys.argv[1]
+    # inv = sys.argv[2]
+    # print(inv_solver(vc_file=vcfile, inv=inv))
+    pass
 
 '''
 def is_trivial(vc_file: str, pred: str):

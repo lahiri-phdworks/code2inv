@@ -50,6 +50,12 @@ if __name__ == "__main__":
     else:
         check = "Failed"
 
+    simpleExpr = getExpr(str(inv))
+    if isinstance(simpleExpr, list):
+        simpleStr = ".".join(x for x in simpleExpr)
+    else:
+        simpleStr = str(simpleExpr)
+
     print(
-        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{(getExpr(str(inv)))}", {stats}'
+        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{simpleStr}", {stats}'
     )
