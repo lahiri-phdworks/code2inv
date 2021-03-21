@@ -62,8 +62,7 @@ int main()
   // pre-conditions
   scanf("%d", &n);
 
-  (x = n);
   assume((-10000 <= x && x <= 10000));
-  assume((x == n));
+  (x = n);
   precheck(n, v1, v2, v3, x);
 }

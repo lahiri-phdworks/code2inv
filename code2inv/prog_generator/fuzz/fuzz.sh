@@ -52,4 +52,6 @@ if [[ ! -d $testDir/$RUNNER ]]; then
     echo "Test : $testDir not found !!" 1>&2
 fi
 
-$AFL -i "$testDir/$RUNNER" -o "$outputDir/$CHECK/$RUNNER" -m $MEMORY "$buildDir/$CHECK/$RUNNER"
+file="models.txt"
+> $file
+$AFL -i "$testDir/$RUNNER" -o "$outputDir/$CHECK/$RUNNER" -m $MEMORY "$buildDir/$CHECK/$RUNNER" "$file"

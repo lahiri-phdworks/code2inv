@@ -61,7 +61,7 @@ int main()
 
   // pre-conditions
   scanf("%d", &n);
-  (x = n);
+  // (x = n);
 
   assume((-10000 <= x && x <= 10000));
 
@@ -75,3 +75,7 @@ int main()
     assert((x == 1));
   }
 }
+
+// x != 1
+// Post model
+// Failed
