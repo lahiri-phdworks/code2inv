@@ -1,6 +1,8 @@
-best_root :  ( ( i == ( i2 + 1 ) && i2 <= ( i + 6 ) ) || ( y > ( 1 * y ) && y <= ( 500000 + i ) ) ) 
-simplify : []
+best_root :  ( i <= ( n + 0 ) || i2 == n || ( i2 < ( 6 * i2 ) && n < ( 500000 - sum ) ) ) 
+simplify : [Or(i <= n,
+    i2 == n,
+    And(Not(i2 <= 0), Not(-1*sum <= -500000 + n)))]
 best_reward : -1
-epoch: 5, average reward: -0.5256, 
-Random: ( ( i2 > ( 1 - 0 ) || i > y ) && ( y >= ( sum - 0 ) || y > ( 0 - 0 ) ) && ( y <= ( n + 2 ) || y == 500000 ) ), result_r: -1.9850 
-stats : Counter({'ce-I:': 90353, 'ce-T:': 63063, 'ce-F:': 11816, 'boogie_result': 5965, 'actual_z3': 35})
+epoch: 6, average reward: -0.5451, 
+Random: ( n <= ( n + 500000 ) && i2 <= ( 6 * 6 ) ), result_r: -2.0423 
+stats : Counter({'ce-I:': 111539, 'ce-T:': 74943, 'ce-F:': 13796, 'boogie_result': 6955, 'actual_z3': 36})

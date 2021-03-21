@@ -1,6 +1,6 @@
-best_root :  ( ( d3 >= d1 ) && ( d1 >= ( 1 + 0 ) || x3 == ( 1 + d3 ) ) ) 
-simplify : [d3 >= d1, Or(d1 >= 1, x3 == 1 + d3)]
-best_reward : -1
-epoch: 5, average reward: -0.5028, 
-Random: ( ( x3 == 1 ) && ( d1 >= ( 1 - 0 ) || d1 <= ( x3 + 0 ) ) && ( d1 >= ( 1 + 0 ) || d1 < ( x3 + 0 ) ) ), result_r: -2.1833 
-stats : Counter({'ce-T:': 35270, 'ce-F:': 28037, 'ce-I:': 17032, 'boogie_result': 5956, 'actual_z3': 15})
+best_root :  ( ( d3 == 1 ) ) 
+simplify : []
+best_reward : 0
+epoch: 0, average reward: -0.5747, 
+Random: ( ( x1 == ( 10000 + d1 ) || x2 > ( 10000 + 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 5540, 'ce-F:': 3262, 'ce-I:': 2167, 'boogie_result': 1001, 'actual_z3': 15})
