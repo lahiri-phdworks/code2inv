@@ -1,0 +1,2 @@
+( y >= 2 || ( j == ( 0 - j ) && j < ( 0 - 1 ) ) )
+z3_report time: 3.72 pid: 0 stats: Counter({'ce-I:': 184, 'ce-T:': 171, 'boogie_result': 59, 'ce-F:': 52, 'actual_z3': 10})

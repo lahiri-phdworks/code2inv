@@ -1,0 +1,6 @@
+best_root :  ( ( y > ( 1 + lock ) || lock > ( x + 1 ) ) && ( y == y ) ) 
+simplify : [Or(Not(lock <= 1 + x), Not(y <= 1 + lock))]
+best_reward : -1
+epoch: 3, average reward: -0.5703, 
+Random: ( ( y == ( 0 + 0 ) ) && ( y > lock ) && ( x >= ( 0 + -10000 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 24190, 'ce-F:': 7590, 'ce-I:': 7461, 'boogie_result': 3985, 'actual_z3': 11})

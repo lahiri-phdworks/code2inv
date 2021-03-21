@@ -1,0 +1,6 @@
+best_root :  ( ( n <= ( n + 0 ) ) && ( n < ( x - n ) || n < ( x + x ) ) && ( n == ( n - 0 ) || n >= ( -10000 - n ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 5, average reward: -0.9608, 
+Random: ( ( x <= ( n - 0 ) ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 35274, 'boogie_result': 5900, 'ce-F:': 5894, 'actual_z3': 7})

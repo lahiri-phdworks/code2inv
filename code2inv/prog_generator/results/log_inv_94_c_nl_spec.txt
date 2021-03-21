@@ -1,0 +1,8 @@
+best_root :  ( ( k >= ( 0 * 1 ) && i == ( j * 1 ) ) || ( n == ( n - i ) && n > ( 0 - 0 ) ) || j > ( 10000 - 2 ) ) 
+simplify : [Or(And(k >= 0, i == j),
+    Not(j <= 9998),
+    And(i == 0, Not(n <= 0)))]
+best_reward : -1
+epoch: 5, average reward: -0.6105, 
+Random: ( ( j == 1 || k > ( 10000 - 1 ) ) && k == ( n * n ) && ( n > ( 2 - 0 ) || n < 10000 ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 44554, 'ce-T:': 40997, 'ce-F:': 16644, 'boogie_result': 5957, 'actual_z3': 20})

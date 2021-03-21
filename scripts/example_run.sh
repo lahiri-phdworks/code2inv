@@ -10,7 +10,7 @@ export AFL=$HOME/afl/afl-fuzz
 
 var=$1;
 
-for var in 1 2 4 5 37 18 21 24 26 30 32 63 65 68 70 83 85 88 89 94 95 96 98 99 100 105 104 106;
+for var in 100 105 ;
 do
     ./run_solver_file.sh \
     ../../benchmarks/C_instances/c_graph/${var}.c.json \

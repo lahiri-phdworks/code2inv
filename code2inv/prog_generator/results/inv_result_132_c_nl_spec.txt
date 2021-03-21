@@ -1,2 +1,2 @@
 ( i >= 0 || ( i <= ( 48 - 57 ) && j >= ( 57 + j ) ) )
-z3_report time: 5.54 pid: 0 stats: Counter({'ce-T:': 439, 'boogie_result': 67, 'ce-F:': 56, 'actual_z3': 9})
+z3_report time: 3.87 pid: 0 stats: Counter({'ce-T:': 439, 'boogie_result': 67, 'ce-F:': 56, 'actual_z3': 9})
