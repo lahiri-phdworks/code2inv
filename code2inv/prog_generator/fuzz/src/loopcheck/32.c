@@ -79,7 +79,6 @@ int unknown()
 int main(int argc, const char **argv)
 {
 
-  __AFL_INIT();
   unsigned char *buf = __AFL_FUZZ_TESTCASE_BUF;
 
   // variable declarations
@@ -87,52 +86,56 @@ int main(int argc, const char **argv)
   int v1;
   int v2;
   int v3;
-  int x;
   int choice;
 
   // int preflag = 0, loopflag = 0, postflag = 0;
   freopen("models.txt", "a", stdout);
+  // printf("Fuzzing Starts\n");
 
-  printf("Fuzzing Starts\n");
+  read(0, &n, sizeof(int));
+  read(0, &choice, sizeof(int));
 
-  while (__AFL_LOOP(UINT_MAX))
+  __AFL_INIT();
+  while (__AFL_LOOP(1000000000))
   {
 
-    // freopen("models.txt", "a", stdout);
     int len = __AFL_FUZZ_TESTCASE_LEN;
 
     // pre-conditions
-    read(0, &n, sizeof(int));
-    read(0, &choice, sizeof(int));
+    // n = 0;
+    // choice = 0;
 
     // AFL Sanity
-    assume((-10000 <= n && n <= 10000));
+    // assume((-10000 <= n && n <= 10000));
 
-    printf("Fuzzing Loop\n");
+    // printf("Fuzzing Loop\n");
+    // printf("n : %d, choice : %d\n", n, choice);
+    int x;
 
     if (choice > 0)
     {
-      printf("Pre-body\n");
+      // printf("Pre-body\n");
       assume((preflag == 0));
       x = n;
       precheck(n, v1, v2, v3, x, preflag);
     }
     else
     {
-      assume((loopflag + postflag < 2));
+      // We try this optimization later.
+      // assume((loopflag + postflag < 2));
       assume(INV(n, v1, v2, v3, x));
 
       // Loop Condition.
       if (x > 1)
       {
-        printf("Loop-body\n");
+        // printf("Loop-body\n");
         assume((loopflag == 0));
         x -= 1;
         loopcheck(n, v1, v2, v3, x, loopflag);
       }
       else
       {
-        printf("Post-body\n");
+        // printf("Post-body\n");
         assume((postflag == 0));
         if ((n >= 0))
         {
