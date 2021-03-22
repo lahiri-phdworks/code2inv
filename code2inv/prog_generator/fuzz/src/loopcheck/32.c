@@ -1,21 +1,43 @@
-#include <32.h>
+// #include <32.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include <signal.h>
+#include <string.h>
+
+/* this lets the source compile without afl-clang-fast/lto */
+#ifndef __AFL_FUZZ_TESTCASE_LEN
+
+ssize_t fuzz_len;
+unsigned char fuzz_buf[1024000];
+
+#define __AFL_FUZZ_TESTCASE_LEN fuzz_len
+#define __AFL_FUZZ_TESTCASE_BUF fuzz_buf
+#define __AFL_FUZZ_INIT() void sync(void);
+#define __AFL_LOOP(x) \
+  ((fuzz_len = read(0, fuzz_buf, sizeof(fuzz_buf))) > 0 ? 1 : 0)
+#define __AFL_INIT() sync()
+
+#endif
+
+__AFL_FUZZ_INIT();
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
-    flag = 1;
+  {                          \
+    flag = 1;                \
+  }
 
 // Guide AFL to proper values
 // exit(0) is not a crash
 #define assume(cond) \
   if (!cond)         \
-    exit(0);
+    continue;
 
-#define INV(n, v1, v2, v3, x) PHI
+#define INV(n, v1, v2, v3, x) (x < (10000 - 1) || (n > (-10000 + n) && n == (10000 * n)) || n <= (n - x))
 
 int preflag = 0, loopflag = 0, postflag = 0;
 
@@ -25,20 +47,20 @@ void precheck(int n, int v1, int v2, int v3, int x, int preflag)
   int f = preflag;
   aflcrash(INV(n, v1, v2, v3, x), preflag);
   if (f == 0 && preflag == 1)
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\npreflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, preflag);
+    printf("Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\npreflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, preflag);
 }
 
 // TODO : Automate generation of this snippet
 void loopcheck(int n, int v1, int v2, int v3, int x, int loopflag)
 {
-  fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\nloopflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, loopflag);
+  printf("Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\nloopflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, loopflag);
   aflcrash(INV(n, v1, v2, v3, x), loopflag);
 }
 
 // TODO : Automate generation of this snippet
 void postcheck(int n, int v1, int v2, int v3, int x, int postflag)
 {
-  fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\npostflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, postflag);
+  printf("Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\npostflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, postflag);
   aflcrash(INV(n, v1, v2, v3, x), postflag);
 }
 
@@ -49,8 +71,17 @@ int unknown()
   return choices[(rand() % nums) - 1];
 }
 
+/* To ensure checks are not optimized out it is recommended to disable
+   code optimization for the fuzzer harness main() */
+#pragma clang optimize off
+#pragma GCC optimize("O0")
+
 int main(int argc, const char **argv)
 {
+
+  __AFL_INIT();
+  unsigned char *buf = __AFL_FUZZ_TESTCASE_BUF;
+
   // variable declarations
   int n;
   int v1;
@@ -60,10 +91,16 @@ int main(int argc, const char **argv)
   int choice;
 
   // int preflag = 0, loopflag = 0, postflag = 0;
-  freopen(argv[1], "a", stderr);
+  freopen("models.txt", "a", stdout);
 
-  // while (__AFL_LOOP(1000))
+  printf("Fuzzing Starts\n");
+
+  while (__AFL_LOOP(UINT_MAX))
   {
+
+    // freopen("models.txt", "a", stdout);
+    int len = __AFL_FUZZ_TESTCASE_LEN;
+
     // pre-conditions
     read(0, &n, sizeof(int));
     read(0, &choice, sizeof(int));
@@ -71,8 +108,11 @@ int main(int argc, const char **argv)
     // AFL Sanity
     assume((-10000 <= n && n <= 10000));
 
+    printf("Fuzzing Loop\n");
+
     if (choice > 0)
     {
+      printf("Pre-body\n");
       assume((preflag == 0));
       x = n;
       precheck(n, v1, v2, v3, x, preflag);
@@ -85,20 +125,26 @@ int main(int argc, const char **argv)
       // Loop Condition.
       if (x > 1)
       {
+        printf("Loop-body\n");
         assume((loopflag == 0));
         x -= 1;
         loopcheck(n, v1, v2, v3, x, loopflag);
       }
       else
       {
+        printf("Post-body\n");
         assume((postflag == 0));
         if ((n >= 0))
         {
           aflcrash((x == 1), postflag);
           if (postflag == 1)
           {
-            fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\npostflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, postflag);
+            printf("Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\npostflag : %d\n", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, postflag);
           }
+        }
+        if ((postflag + loopflag + preflag >= 3))
+        {
+          assert(0);
         }
       }
     }

@@ -9,9 +9,13 @@ usagePrompt() {
 }
 
 # Arguments for running specific file
-export CC=$HOME/afl/afl-gcc
-export CXX=$HOME/afl/afl-g++
-export AFL=$HOME/afl/afl-fuzz
+# export CC=$HOME/afl/afl-gcc
+# export CXX=$HOME/afl/afl-g++
+# export AFL=$HOME/afl/afl-fuzz
+
+export CC=$(which afl-clang)
+export CXX=$(which afl-clang++)
+export AFL=$(which afl-fuzz)
 
 while getopts "b:o:t:e:m:c:" flag; do
   case "$flag" in
