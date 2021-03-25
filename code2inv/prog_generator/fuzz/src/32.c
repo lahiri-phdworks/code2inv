@@ -57,13 +57,6 @@ void loopcheck(int n, int v1, int v2, int v3, int x)
   \ 
 }
 
-int choices[] = {1, -1, 1, -1, 1, 1, -1, 1, -2, -1, 0, 0, 0, 1, 1, -1, 1, 0, 1, -1, 1, 1, 2, 1};
-int unknown()
-{
-  int nums = sizeof(choices) / sizeof(choices[0]);
-  return choices[(rand() % nums) - 1];
-}
-
 int main()
 {
   // variable declarations
