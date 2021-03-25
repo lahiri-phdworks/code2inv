@@ -32,6 +32,8 @@ else:
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
 fuzzbase = os.path.join(pwd, os.pardir, f"fuzz")
+outputFile = os.path.join(pwd, "models.txt")
+collection_semantic = [None, None, None]
 
 # premodelsfile = os.path.join(pwd, os.pardir, "premodels.txt")
 # loopmodelsfile = os.path.join(pwd, os.pardir, "loopmodels.txt")
@@ -115,21 +117,29 @@ def process_crashes(fileName):
     results = None
     with open(fileName, mode="r") as fileptr:
         models = fileptr.readlines()
-        if len(models) >= 2:
-            if "failed" in models[-1].strip():
-                results = process_model_string(models[-2].strip())
-            else:
-                pass
-            # tqdm.write(f"{models[-1].strip()}")
-    if results is not None:
-        return results[1]
-    else:
-        return None
+        if isinstance(models, list) and len(models) > 0:
+            for lines in models:
+                if "Pre :" in lines:
+                    collection_semantic[0] = lines.strip()
+                if "Loop :" in lines:
+                    collection_semantic[1] = lines.strip()
+                if "Post :" in lines:
+                    collection_semantic[2] = lines.strip()
+        else:
+            return None
 
 
 def mergeModels():
-    # TODO : Merge Models here.
-    pass
+    results = []
+    if all(x is None for x in collection_semantic):
+        return collection_semantic
+    for x in collection_semantic:
+        if x is not None:
+            results.append(process_model_string(x)[1])
+        else:
+            results.append(None)
+
+    return results
 
 
 def inv_solver(vc_file: str, inv: str):
@@ -137,10 +147,11 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
     dump_template(filepath, inv)
+
     init_fuzzbase()
     call_fuzzsolver(timeout)
-
+    process_crashes(outputFile)
     res = mergeModels()
-    tqdm.write(f"{res}")
 
+    tqdm.write(f"{res}")
     return res

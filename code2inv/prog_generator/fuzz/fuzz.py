@@ -11,6 +11,8 @@ timeout = sys.argv[2]
 
 filepath = os.path.join(pwd, f"include/{example}.h")
 fuzzbase = os.path.join(pwd)
+outputFile = os.path.join(pwd, "models.txt")
+collection_semantic = [None, None, None]
 
 # premodelsfile = os.path.join(pwd, "premodels.txt")
 # loopmodelsfile = os.path.join(pwd, "loopmodels.txt")
@@ -85,22 +87,29 @@ def process_crashes(fileName):
     results = None
     with open(fileName, mode="r") as fileptr:
         models = fileptr.readlines()
-        if len(models) >= 2:
-            if "failed" in models[-1].strip():
-                results = process_model_string(models[-2].strip())
-            else:
-                pass
-            # tqdm.write(f"{models[-1].strip()}")
-    if results is not None:
-        return results[1]
-    else:
-        return None
+        if isinstance(models, list) and len(models) > 0:
+            for lines in models:
+                if "Pre :" in lines:
+                    collection_semantic[0] = lines.strip()
+                if "Loop :" in lines:
+                    collection_semantic[1] = lines.strip()
+                if "Post :" in lines:
+                    collection_semantic[2] = lines.strip()
+        else:
+            return None
 
 
 def mergeModels():
+    results = []
+    if all(x is None for x in collection_semantic):
+        return collection_semantic
+    for x in collection_semantic:
+        if x is not None:
+            results.append(process_model_string(x)[1])
+        else:
+            results.append(None)
 
-    # TODO : Merge Models here.
-    pass
+    return results
 
 
 if __name__ == '__main__':
@@ -108,5 +117,6 @@ if __name__ == '__main__':
     # dump_template(filepath, inv)
     init_fuzzbase()
     call_fuzzsolver(timeout)
-    res = []
+    process_crashes(outputFile)
+    res = mergeModels()
     print(res)
