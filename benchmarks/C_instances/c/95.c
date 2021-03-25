@@ -1,3 +1,8 @@
+int incr1(int a, int b)
+{
+  return b + a;
+}
+
 int main()
 {
   // variable declarations
@@ -19,7 +24,7 @@ int main()
   // loop body
   {
     {
-      (i = (i + 1));
+      (i = incr1(i, 1));
       (j = (j + y));
     }
   }

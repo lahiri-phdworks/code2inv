@@ -52,7 +52,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			( = i_2 i )
 			( = j_2 j )
 			( <= i_2 x_0 )
-			( = i_3 ( + i_2 1 ) )
+			( = i_3  )
 			( = j_3 ( + j_2 y_1 ) )
 			( = i_3 i! )
 			( = j_3 j! )

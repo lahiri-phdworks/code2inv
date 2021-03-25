@@ -1,0 +1,6 @@
+best_root :  ( ( x <= n || x < ( y - 0 ) ) ) 
+simplify : [Or(x <= n, Not(y <= x))]
+best_reward : 0
+epoch: 0, average reward: -0.7407, 
+Random: ( y == (var >= f) || n < ( 10000 - y ) || x >= 1 ), result_r: -2.0200 
+stats : Counter({'ce-T:': 5867, 'ce-F:': 1306, 'boogie_result': 998, 'ce-I:': 966, 'actual_z3': 44})

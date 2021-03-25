@@ -36,7 +36,7 @@
 				"Var": "i_3"
 			},
 			"rval": {
-				"OP": "+",
+				"func_call": "incr1",
 				"arg0": {
 					"Var": "i_2"
 				},
