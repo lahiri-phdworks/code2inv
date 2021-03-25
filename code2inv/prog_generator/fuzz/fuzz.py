@@ -8,7 +8,6 @@ from subprocess import run, CalledProcessError
 pwd = os.path.dirname(__file__)
 example = sys.argv[1]
 timeout = sys.argv[2]
-# check = sys.argv[3]
 
 filepath = os.path.join(pwd, f"include/{example}.h")
 fuzzbase = os.path.join(pwd)
@@ -17,8 +16,10 @@ fuzzbase = os.path.join(pwd)
 # loopmodelsfile = os.path.join(pwd, "loopmodels.txt")
 # postmodelsfile = os.path.join(pwd, "postmodels.txt")
 
-# files = [premodelsfile, loopmodelsfile, postmodelsfile]
 # checkList = ["precheck", "loopcheck", "postcheck"]
+# modelFilesList = [premodelsfile, loopmodelsfile, postmodelsfile]
+# fuzzThreadsReturns = [None, None, None]
+# returncodes = [None, None, None]
 
 
 def process_model_string(model: str):
@@ -43,14 +44,13 @@ def process_model_string(model: str):
     return [cex_type, model_val]
 
 
-def call_fuzzsolver(index):
+def call_fuzzsolver(time):
     # TODO : Now we have to make three parallel calls for pre, loop and post as per new sampling technique.
     try:
         # print(f"Running AFL on Example {example}.c")
-        open("models.txt", "w").close()
+        # COMMENT : Start fresh fuzzing and clean previous model written.
         output = run(
-            f"timeout {timeout} ./fuzz.sh -b ./build -t ./tests \
-                -c loopcheck -m 3G -o ./output -e {example}",
+            f"timeout {time} ./fuzz.sh -b ./bin -o ./output -t ./tests -e {example}",
             shell=True,
             capture_output=True,
             text=True,
@@ -62,12 +62,13 @@ def call_fuzzsolver(index):
     return output.returncode
 
 
-def init_fuzzbase(index):
+def init_fuzzbase():
+    # TODO : Now we have to make three parallel calls for pre, loop and post as per new sampling technique.
     try:
-        # print(f"Initialized AFL run on Example {example}.c")
+        # print(f"Running AFL on Example {example}.c")
+        # COMMENT : Start fresh fuzzing and clean previous model written.
         output = run(
-            f"./start.sh -b ./build -t ./tests -c loopcheck \
-                -o ./output -e {example}",
+            f"./start.sh -b ./bin/ -o ./output/ -t ./tests/ -e {example}",
             shell=True,
             capture_output=True,
             text=True,
@@ -97,45 +98,15 @@ def process_crashes(fileName):
 
 
 def mergeModels():
+
     # TODO : Merge Models here.
-    # preModel = process_crashes(premodelsfile)
-    loopModel = process_crashes("models.txt")
-    # postModel = process_crashes(postmodelsfile)
-    return [loopModel]
+    pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # tqdm.write(f"fuzz-inv solver called : {inv}")
     # dump_template(filepath, inv)
-
-    # executeBuildThreads = []
-    # for i in range(3):
-    #     worker_thread = threading.Thread(
-    #         target=init_fuzzbase, args=(i,))
-    #     executeBuildThreads.append(worker_thread)
-    #     worker_thread.start()
-
-    # for index, worker in enumerate(executeBuildThreads):
-    #     worker.join()
-
-    init_fuzzbase(1)
-    # Side-effect : Delete all contents of the file.
-    # open(premodelsfile, "w").close()
-    # open(loopmodelsfile, "w").close()
-    # open(postmodelsfile, "w").close()
-
-    # time.sleep(0.5)
-
-    # executeBuildThreads = []
-    # for i in range(3):
-    #     worker_thread = threading.Thread(
-    #         target=call_fuzzsolver, args=(i,))
-    #     executeBuildThreads.append(worker_thread)
-    #     worker_thread.start()
-
-    # for index, worker in enumerate(executeBuildThreads):
-    #     worker.join()
-    call_fuzzsolver(1)
-
-    res = mergeModels()
+    init_fuzzbase()
+    call_fuzzsolver(timeout)
+    res = []
     print(res)

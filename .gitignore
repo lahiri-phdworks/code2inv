@@ -143,6 +143,7 @@ cython_debug/
 
 output/
 build/
+bin/
 .vscode/
 
 code2inv/new.smt2

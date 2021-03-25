@@ -33,14 +33,14 @@ dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
 fuzzbase = os.path.join(pwd, os.pardir, f"fuzz")
 
-premodelsfile = os.path.join(pwd, os.pardir, "premodels.txt")
-loopmodelsfile = os.path.join(pwd, os.pardir, "loopmodels.txt")
-postmodelsfile = os.path.join(pwd, os.pardir, "postmodels.txt")
+# premodelsfile = os.path.join(pwd, os.pardir, "premodels.txt")
+# loopmodelsfile = os.path.join(pwd, os.pardir, "loopmodels.txt")
+# postmodelsfile = os.path.join(pwd, os.pardir, "postmodels.txt")
 
-checkList = ["precheck", "loopcheck", "postcheck"]
-modelFilesList = [premodelsfile, loopmodelsfile, postmodelsfile]
-fuzzThreadsReturns = [None, None, None]
-returncodes = [None, None, None]
+# checkList = ["precheck", "loopcheck", "postcheck"]
+# modelFilesList = [premodelsfile, loopmodelsfile, postmodelsfile]
+# fuzzThreadsReturns = [None, None, None]
+# returncodes = [None, None, None]
 
 
 def inv_checker(vc_file: str, inv: str, assignments):
@@ -74,10 +74,9 @@ def call_fuzzsolver(index, time):
     try:
         # print(f"Running AFL on Example {example}.c")
         # COMMENT : Start fresh fuzzing and clean previous model written.
-        open(modelFilesList[index], mode="w").close()
         output = run(
-            f"timeout {time} {fuzzbase}/fuzz.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
-                -c {checkList[index]} -m 3G -o {fuzzbase}/output -e {example}",
+            f"timeout {time} {fuzzbase}/fuzz.sh -b {fuzzbase}/bin -t {fuzzbase}/tests \
+                -o {fuzzbase}/output -e {example}",
             shell=True,
             capture_output=True,
             text=True,
@@ -86,18 +85,15 @@ def call_fuzzsolver(index, time):
         print(f"Fuzzer Error : {err}")
     # else:
     #     print(f"Fuzzer Return : {output.returncode}")
-    if output.returncode != 0:
-        fuzzThreadsReturns[index] = "EXCEPT"
-    returncodes[index] = output.returncode
     return output.returncode
 
 
-def init_fuzzbase(index):
+def init_fuzzbase():
     try:
         # print(f"Initialized AFL run on Example {example}.c")
         output = run(
-            f"{fuzzbase}/start.sh -b {fuzzbase}/build -t {fuzzbase}/tests \
-                -c {checkList[index]} -o {fuzzbase}/output -e {example}",
+            f"{fuzzbase}/start.sh -b {fuzzbase}/bin -t {fuzzbase}/tests \
+                -o {fuzzbase}/output -e {example}",
             shell=True,
             capture_output=True,
             text=True,
@@ -133,10 +129,7 @@ def process_crashes(fileName):
 
 def mergeModels():
     # TODO : Merge Models here.
-    preModel = process_crashes(premodelsfile)
-    loopModel = process_crashes(loopmodelsfile)
-    postModel = process_crashes(postmodelsfile)
-    return [preModel, loopModel, postModel]
+    pass
 
 
 def inv_solver(vc_file: str, inv: str):
@@ -144,60 +137,10 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
     dump_template(filepath, inv)
-
-    executeBuildThreads = []
-    for i in range(3):
-        worker_thread = threading.Thread(target=init_fuzzbase, args=(i,))
-        executeBuildThreads.append(worker_thread)
-        worker_thread.start()
-
-    for index, worker in enumerate(executeBuildThreads):
-        worker.join()
-
-    # Side-effect : Delete all contents of the file.
-    open(premodelsfile, "w").close()
-    open(loopmodelsfile, "w").close()
-    open(postmodelsfile, "w").close()
-
-    executeBuildThreads = []
-    for i in range(3):
-        worker_thread = threading.Thread(
-            target=call_fuzzsolver, args=(i, timeout, ))
-        executeBuildThreads.append(worker_thread)
-        worker_thread.start()
-
-    for index, worker in enumerate(executeBuildThreads):
-        worker.join()
+    init_fuzzbase()
+    call_fuzzsolver(timeout)
 
     res = mergeModels()
-    # tqdm.write(f"{returncodes} : {res}")
-
-    # # COMMENT :
-    # # All the three threads timeout so we double the timeout
-    # # and check if the INV still holds.
-
-    # # COMMENT : This is the truly what we need.
-    # while not all(x == None for x in res):
-    #     pass
-
-    for i in range(3):
-        if res[i] is None:
-            # tqdm.write(f'Fuzzing : {i} again')
-            call_fuzzsolver(i, timeout * 2)
-
-    res = mergeModels()
-
-    # for index, elems in enumerate(res):
-    #     if elems is None:
-    #         res[index] = fuzzThreadsReturns[index]
-
-    tqdm.write(f"Final {returncodes} : {res}")
-
-    # if not os.path.isdir("models"):
-    #     os.mkdir("models")
-
-    # # COMMENT : Print Fuzz Model
-    # with open(os.path.join("models", f'fuzz_models_{cmd_args.example}.txt'), mode="a") as file:
-    #     file.write(f'{res}\n')
+    tqdm.write(f"{res}")
 
     return res

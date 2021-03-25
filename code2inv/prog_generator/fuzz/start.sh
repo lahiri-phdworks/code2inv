@@ -3,21 +3,11 @@ set -e
 set -u
 set -o pipefail
 
-# Usage Prompt
-usagePrompt() {
-    echo "Usage: ./start.sh [-b] <build_dir> [-o] <output_dir> [-t] <test_dir> [-e] <EXAMPLE CODE>"
-}
+export CC=$(which hfuzz-clang)
+export CXX=$(which hfuzz-clang++)
+export AFL=$(which honggfuzz)
 
-# Arguments for running specific file
-# export CC=$HOME/afl/afl-gcc
-# export CXX=$HOME/afl/afl-g++
-# export AFL=$HOME/afl/afl-fuzz
-
-export CC=$(which afl-gcc)
-export CXX=$(which afl-g++)
-export AFL=$(which afl-fuzz)
-
-while getopts "b:o:t:e:c:" flag; do
+while getopts "b:o:t:e:" flag; do
   case "$flag" in
     b ) 
         buildDir=$OPTARG
@@ -30,9 +20,6 @@ while getopts "b:o:t:e:c:" flag; do
         ;;
     e ) 
         RUNNER=$OPTARG
-        ;;
-    c ) 
-        CHECK=$OPTARG
         ;;
     \? ) 
         usagePrompt
@@ -47,9 +34,8 @@ done
 shift $((OPTIND -1))    
 
 export RUNNER=$RUNNER
-export CHECK=$CHECK
 
-rm -rf build/$CHECK/* output/$CHECK/* graph/$CHECK/*
+rm -rf bin/* output/* graph/*
 
 if [ $OPTIND -eq 1 ]; 
     then 
@@ -58,13 +44,21 @@ if [ $OPTIND -eq 1 ];
 fi
 
 # Build Directory
-mkdir -p "$buildDir/$CHECK" 
+mkdir -p "$buildDir" 
 
 # Start Build
-cd "$buildDir/$CHECK"
-CC=$CC CXX=$CXX cmake -DCMAKE_CXX_FLAGS="-w" ../../
+cd "$buildDir"
+CC=$CC CXX=$CXX cmake -DCMAKE_CXX_FLAGS="-w" ../
 make -j 12
-cd ../../
+cd ../
+
+# Some random seeds
+dd if=/dev/random of=tests/input01.txt bs=32 count=1
+dd if=/dev/random of=tests/input02.txt bs=32 count=1
+dd if=/dev/random of=tests/input03.txt bs=32 count=1
+head -c 32 /dev/zero > tests/input04.txt
+dd if=/dev/random of=tests/input05.txt bs=32 count=1
+head -c 32 /dev/zero > tests/input06.txt
 
 # Output Directory
-mkdir -p "$outputDir/$CHECK/$RUNNER" 
+mkdir -p "$outputDir" 

@@ -3,19 +3,9 @@ set -e
 set -u
 set -o pipefail
 
-# Usage Prompt
-usagePrompt() {
-    echo "Usage: ./fuzz.sh [-b] <build_dir> [-o] <output_dir> [-t] <test_dir> [-e] <EXAMPLE CODE>"
-}
-
-# Arguments for running specific file
-# export CC=$HOME/afl/afl-gcc
-# export CXX=$HOME/afl/afl-g++
-# export AFL=$HOME/afl/afl-fuzz
-
-export CC=$(which afl-clang)
-export CXX=$(which afl-clang++)
-export AFL=$(which afl-fuzz)
+export CC=$(which hfuzz-clang)
+export CXX=$(which hfuzz-clang++)
+export AFL=$(which honggfuzz)
 
 while getopts "b:o:t:e:m:c:" flag; do
   case "$flag" in
@@ -52,10 +42,11 @@ shift $((OPTIND -1))
 export RUNNER=$RUNNER
 
 # Test Directory
-if [[ ! -d $testDir/$RUNNER ]]; then
+if [[ ! -d $testDir ]]; then
     echo "Test : $testDir not found !!" 1>&2
 fi
 
 file="models.txt"
 > $file
-$AFL -i "$testDir/$RUNNER" -o "$outputDir/$CHECK/$RUNNER" -m $MEMORY "$buildDir/$CHECK/$RUNNER" "$file"
+
+$AFL -i $testDir -o $outputDir -P -- $buildDir/$RUNNER
