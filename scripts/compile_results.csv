@@ -3,7 +3,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 101, c_spec, ( ( x >= ( -10000 + n ) ) && ( x >= ( x + 0 ) || n > x ) && ( x <= ( n + 0 ) || x == 0 ) ), Passed, Yes, "None", 10
 105, c_nl_spec, ( ( x <= n || x >= ( x + x ) ) ), Passed, Yes, "[Or(x <= n, x <= 0)]", 9
 105, c_spec, ( ( x <= n || x == 0 ) ), Passed, Yes, "[Or(x <= n, x == 0)]", 13
-10, c_nl_spec, ( ( y <= ( y + 0 ) && x < ( 4 + y ) ) ), Passed, Yes, "[Not(y <= -4 + x)]", 11
+10, c_nl_spec, ( y > ( x - 4 ) && ( y <= ( 2 * y ) || x == ( y + x ) ) && x <= ( y + x ) ), Passed, Yes, "[Not(y <= -4 + x), Or(0 == y, y >= 0), 0 <= y]", 26
 10, c_spec, ( ( x >= ( x - 0 ) || x == ( y - 0 ) ) && ( x < ( y + 4 ) || x <= ( 0 + y ) ) ), Passed, Yes, "[Or(Not(y <= -4 + x), x <= y)]", 31
 116, c_nl_spec, ( sn == x ), Passed, Yes, "[]", 14
 116, c_spec, ( ( x == sn ) ), Passed, Yes, "[]", 17
@@ -93,10 +93,11 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
  Or(Not(j <= 1 + i), i <= -6 + j)]", 33
 24, c_spec, ( ( i >= 2 || j >= ( i - 2 ) ) && ( i <= j || i <= ( 1 + 6 ) ) && ( j > 6 ) ), Failed, No, "[Or(i >= 2, j >= -2 + i), Or(i <= j, i <= 7), Not(j <= 6)]", 31
 26, c_spec, ( ( n <= ( n + 0 ) ) && ( n < ( x - n ) || n < ( x + x ) ) && ( n == ( n - 0 ) || n >= ( -10000 - n ) ) ), Failed, No, "None", 7
-2, c_nl_spec, ( x >= ( x + y ) || y < 1000 ), Failed, No, "[Or(0 >= y, Not(1000 <= y))]", 25
+2, c_nl_spec, ( y < 1000 || y <= ( 1000 - x ) ), Failed, No, "[Or(Not(1000 <= y), y <= 1000 + -1*x)]", 40
 2, c_spec, ( ( x == 1 ) && ( y >= ( y - y ) ) && ( y == 1 || x <= ( 1 - y ) ) ), Failed, No, "[y >= 0, Or(y <= 0, y == 1)]", 58
 32, c_nl_spec, ( ( x >= ( 1 * 1 ) || n < ( n - x ) ) ), Failed, No, "[Or(Not(x >= 0), x >= 1)]", 12
 32, c_spec, ( ( x > ( n + n ) || x >= 1 ) ), Failed, No, "[Or(Not(x <= 2*n), x >= 1)]", 8
+32, fuzz_spec, ( x == ( -10000 * n ) || n <= ( n * 1 ) ), Failed, No, "None", 7
 4, c_nl_spec, ( ( x <= ( x + z ) || x >= ( 10000 * x ) ) ), Failed, No, "[Or(0 <= z, x <= 0)]", 21
 4, c_spec, ( ( x <= ( 500 - x ) || z > ( 1 - y ) ) ), Failed, No, "[Or(x <= 250, Not(z <= 1 + -1*y))]", 16
 5, c_nl_spec, ( ( y > 1 && z <= ( y + 1 ) ) || x <= ( size * size ) ), Failed, No, "[Or(x <= size*size, And(Not(y <= 1), z <= 1 + y))]", 12
@@ -115,8 +116,9 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
     Not(j <= 9998),
     And(i == 0, Not(n <= 0)))]", 20
 94, c_spec, ( ( n < j || i >= ( i - j ) ) && ( i >= ( i - i ) ) ), Failed, No, "[Or(Not(j <= n), j >= 0), i >= 0]", 27
-95, c_nl_spec, ( ( j == ( 0 * i ) && i >= ( 1 - 1 ) ) || x >= ( j - i ) || x >= ( 1 - 1 ) ), Failed, No, "[Or(x >= j + -1*i, And(j == 0, i >= 0), x >= 0)]", 25
+95, c_nl_spec, ( ( j == ( 0 * i ) && i >= ( 1 - 1 ) ) || x >= ( j - i ) || x >= ( 1 - 1 ) ), Failed, No, "[Or(x >= 0, x >= j + -1*i, And(j == 0, i >= 0))]", 25
 95, c_spec, ( ( j == 0 || y >= ( 1 - x ) ) ), Failed, No, "[Or(j == 0, y >= 1 + -1*x)]", 22
 96, c_nl_spec, ( ( y <= 1 && i >= ( j + j ) ) || i < ( x + i ) ), Failed, No, "[Or(And(y <= 1, i >= 2*j), Not(x <= 0))]", 25
 96, c_spec, ( ( y >= ( 1 - x ) || i >= ( 0 + 0 ) ) && ( y >= ( 1 - x ) || j <= 0 ) ), Failed, No, "[Or(i >= 0, y >= 1 + -1*x), Or(j <= 0, y >= 1 + -1*x)]", 30
+99, c_nl_spec, ( ( x <= n || x < ( y - 0 ) ) ), Failed, No, "[Or(x <= n, Not(y <= x))]", 44
 99, c_spec, ( ( y >= ( x - n ) ) && ( x >= n ) && ( x < ( 1 + 10000 ) ) ), Failed, No, "[y >= x + -1*n, x >= n, Not(10001 <= x)]", 15
