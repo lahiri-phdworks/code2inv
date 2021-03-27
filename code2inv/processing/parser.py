@@ -22,21 +22,20 @@ p["=="] = 2
 p["<="] = 2
 p["<"] = 2
 p["and"] = 1
-p['or'] = 1
+p["or"] = 1
 
 
 def condense(inv_tokens):
-    op_list = ["+", "-", "*", "/", "%", "<",
-               "<=", ">", ">=", "==", "!=", "and", "or"]
+    op_list = ["+", "-", "*", "/", "%", "<", "<=", ">", ">=", "==", "!=", "and", "or"]
     un_op_list = ["+", "-"]
     old_list = list(inv_tokens)
     new_list = list(inv_tokens)
     while True:
         for idx in range(len(old_list)):
             if old_list[idx] in un_op_list:
-                if idx == 0 or old_list[idx-1] in op_list or old_list[idx-1] == "(":
-                    new_list[idx] = old_list[idx] + old_list[idx+1]
-                    new_list[idx+1:] = old_list[idx+2:]
+                if idx == 0 or old_list[idx - 1] in op_list or old_list[idx - 1] == "(":
+                    new_list[idx] = old_list[idx] + old_list[idx + 1]
+                    new_list[idx + 1 :] = old_list[idx + 2 :]
                     break
         if old_list == new_list:
             break
@@ -102,8 +101,7 @@ def invtosmt(inv: str):
     inv = inv.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
     tmp_token_exclusive__b = io.StringIO(inv)
-    tmp_token_exclusive__t = tokenize.generate_tokens(
-        tmp_token_exclusive__b.readline)
+    tmp_token_exclusive__t = tokenize.generate_tokens(tmp_token_exclusive__b.readline)
     inv_tokenized = []
     for tmp_token_exclusive__a in tmp_token_exclusive__t:
         if tmp_token_exclusive__a.string != "":
@@ -111,7 +109,12 @@ def invtosmt(inv: str):
 
     var_list = set()
     for token in inv_tokenized:
-        if token[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in ("and", "or"):
+        if token[
+            0
+        ] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in (
+            "and",
+            "or",
+        ):
             var_list.add(str(token))
 
     inv = stringify_prefix_stack(postfix_prefix(infix_postfix(inv_tokenized)))
@@ -125,6 +128,6 @@ def invtosmt(inv: str):
     return inv
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(invtosmt(sys.argv[1]))
     print("(apply (then simplify propagate-values ctx-simplify solve-eqs))")

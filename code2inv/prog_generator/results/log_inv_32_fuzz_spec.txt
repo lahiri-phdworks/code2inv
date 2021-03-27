@@ -1,6 +1,6 @@
-best_root :  ( x == ( -10000 * n ) || n <= ( n * 1 ) ) 
-simplify : None
+best_root :  ( n < ( x - n ) ) 
+simplify : [Not(x + -2*n <= 0)]
 best_reward : -2
-epoch: 5, average reward: -1.5435, 
-Random: ( ( n == 1 && n >= ( -10000 + 0 ) ) || n == ( n + 1 ) || n >= ( -10000 + 0 ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 35506, 'boogie_result': 5922, 'actual_z3': 7})
+epoch: 1, average reward: -1.5460, 
+Random: ( n >= ( n * 0 ) || x > x || x <= ( n * -10000 ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 11855, 'boogie_result': 1980, 'actual_z3': 8})

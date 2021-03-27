@@ -22,12 +22,12 @@ pwd = os.path.dirname(__file__)
 if cmd_args.example:
     example = cmd_args.example
 else:
-    example = "32"
+    example = "12"
 
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 8
+    timeout = 10
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -76,6 +76,7 @@ def call_fuzzsolver(time):
     try:
         # print(f"Running AFL on Example {example}.c")
         # COMMENT : Start fresh fuzzing and clean previous model written.
+        open(outputFile, mode="w").close()
         output = run(
             f"timeout {time} {fuzzbase}/fuzz.sh -b {fuzzbase}/bin -t {fuzzbase}/tests \
                 -o {fuzzbase}/output -e {example}",
@@ -115,18 +116,18 @@ def dump_template(file, inv_code):
 def process_crashes(fileName):
     # COMMENT : iterate over all crashes inputs and extract test failures
     results = None
+    # collection_semantic = [None, None, None]
     with open(fileName, mode="r") as fileptr:
         models = fileptr.readlines()
         if isinstance(models, list) and len(models) > 0:
             for lines in models:
-                if "Pre :" in lines:
-                    collection_semantic[0] = lines.strip()
-                if "Loop :" in lines:
-                    collection_semantic[1] = lines.strip()
-                if "Post :" in lines:
-                    collection_semantic[2] = lines.strip()
-        else:
-            return None
+                for index, x in enumerate(["Pre :", "Loop :", "Post :"]):
+                    if x in lines:
+                        collection_semantic[index] = lines.strip()
+                    else:
+                        collection_semantic[index] = None
+            else:
+                return None
 
 
 def mergeModels():
@@ -147,9 +148,13 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
     dump_template(filepath, inv)
+    open(outputFile, mode="w").close()
 
     init_fuzzbase()
     call_fuzzsolver(timeout)
+
+    time.sleep(0.3)
+
     process_crashes(outputFile)
     res = mergeModels()
 

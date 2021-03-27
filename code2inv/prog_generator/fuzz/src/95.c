@@ -4,37 +4,72 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <libhfuzz/libhfuzz.h>
+#include <inttypes.h>
 
-#define aflcrash(cond) \
-  if (!cond)           \
-    assert(0);
+#define UNROLL_LIMIT 10
+
+#define aflcrash(cond, flag) \
+  if (!cond)                 \
+    flag = 1;
 
 #define assume(cond) \
   if (!cond)         \
-    exit(0);
+    continue;
 
 #define INV(i, j, x, y) PHI
 
-// COMMENT : loopcheck template
-void loopcheck(int i, int j, int x, int y)
+int preflag = 0, loopflag = 0, postflag = 0;
+
+// COMMENT : Precheck template
+void precheck(int i, int j, int x, int y)
 {
-  char buffer[30];
-  fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "x", x, "y", y);
-  aflcrash(INV(i, j, x, y));
-}
-// COMMENT : postcheck template
-void post(int i, int j, int x, int y)
-{
-  char buffer[30];
-  fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d\n", "i", i, "j", j, "x", x, "y", y);
-  aflcrash(INV(i, j, x, y));
+  int f = preflag;
+  aflcrash(INV(i, j, x, y), preflag);
+  if (f == 0 && preflag == 1)
+  {
+    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d\n",
+            "i", i, "j", j, "x", x, "y", y);
+    fflush(stderr);
+  }
 }
 
-int choices[] = {1, -1, 1, -1, 1, 1, -1, 1, -2, -1, 0, 0, 0, 1, 1, -1, 1, 0, 1, -1, 1, 1, 2, 1};
-int unknown()
+// COMMENT : Loopcheck template
+void loopcheck(int i, int j, int x, int y)
 {
-  int nums = sizeof(choices) / sizeof(choices[0]);
-  return choices[(rand() % nums) - 1];
+  int f = loopflag;
+  aflcrash(INV(i, j, x, y), loopflag);
+  if (f == 0 && loopflag == 1)
+  {
+    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d\n",
+            "i", i, "j", j, "x", x, "y", y);
+    fflush(stderr);
+  }
+}
+
+// COMMENT : Postcheck template
+#define postcheck(cond, i, j, x, y)        \
+  \ 
+{                                       \
+    \ 
+    int f = postflag;                      \
+    \ 
+   aflcrash(cond, postflag);               \
+    \ 
+    if (f == 0 && postflag == 1)           \
+    {                                      \
+      \ 
+       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
+ "i",                                      \
+               i, "j", j, "x", x, "y", y); \
+      fflush(stderr);                      \
+    \ 
+}                                     \
+  }
+
+int incr1(int a, int b)
+{
+  return b + a;
 }
 
 int main()
@@ -45,25 +80,66 @@ int main()
   int x;
   int y;
 
-  scanf("%d", &i);
-  scanf("%d", &y);
-  freopen("loopmodels.txt", "w", stderr);
+  freopen("models.txt", "w", stderr);
 
-  // pre-conditions
-  (j = 0);
-  (i = 0);
-  (y = 1);
-
-  // loopcond : (i <= x)
-  // loop-check program
-  assume(INV(i, j, x, y));
-  assume((i <= x));
-  // loop body
+  for (;;)
   {
+    size_t len;
+    const int8_t *buf;
+
+    HF_ITER(&buf, &len);
+
+    int choices = buf[0];
+    i = buf[1];
+    y = buf[2];
+    // pre-conditions
+    // precheck
+    // loopcond : (i <= x)
+
+    if (choices > 25)
     {
-      (i = (i + 1));
-      (j = (j + y));
+      //pre-conditions
+      assume((preflag == 0));
+      (j = 0);
+      (i = 0);
+      (y = 1);
+      precheck(i, j, x, y);
     }
+    else
+    {
+      // loop-check program
+      assume((loopflag + postflag < 2));
+      assume(INV(i, j, x, y));
+
+      // Loop Condition
+      if ((i <= x))
+      {
+        // Bounded Unrolling
+        int k = UNROLL_LIMIT;
+        while ((i <= x) && k--)
+        {
+          assume((loopflag == 0));
+          // loop body
+          {
+            {
+              (i = incr1(i, 1));
+              (j = (j + y));
+            }
+          }
+          loopcheck(i, j, x, y);
+        }
+      }
+      else
+      {
+        // post-check program
+        assume((postflag == 0));
+        // post-condition
+        if ((y == 1))
+          postcheck((i == j), i, j, x, y)
+      }
+    }
+
+    if (preflag + loopflag + postflag >= 3)
+      assert(0);
   }
-  loopcheck(i, j, x, y);
 }

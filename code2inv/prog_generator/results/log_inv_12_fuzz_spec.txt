@@ -1,0 +1,6 @@
+best_root :  ( ( x < 20 && y <= ( 20 + x ) ) || y <= ( y - 20 ) || x >= ( 20 - 20 ) ) 
+simplify : [Or(x >= 0, And(Not(20 <= x), y <= 20 + x))]
+best_reward : -2
+epoch: 19, average reward: -1.0749, 
+Random: ( x > ( 20 * y ) && y <= ( x - 20 ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 98920, 'boogie_result': 19796, 'ce-F:': 19794, 'actual_z3': 22})

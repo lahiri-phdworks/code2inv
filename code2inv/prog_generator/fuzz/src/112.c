@@ -1,4 +1,4 @@
-#include <75.h>
+#include <112.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -17,65 +17,65 @@
   if (!cond)         \
     continue;
 
-#define INV(c, x1, x2, x3, y, z) PHI
+#define INV(i, n, sn, v1, v2, v3) PHI
 
 int preflag = 0, loopflag = 0, postflag = 0;
 
 // COMMENT : Precheck template
-void precheck(int c, int x1, int x2, int x3, int y, int z)
+void precheck(int i, int n, int sn, int v1, int v2, int v3)
 {
   int f = preflag;
-  aflcrash(INV(c, x1, x2, x3, y, z), preflag);
+  aflcrash(INV(i, n, sn, v1, v2, v3), preflag);
   if (f == 0 && preflag == 1)
   {
     fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
-            "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
+            "i", i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3);
     fflush(stderr);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int c, int x1, int x2, int x3, int y, int z)
+void loopcheck(int i, int n, int sn, int v1, int v2, int v3)
 {
   int f = loopflag;
-  aflcrash(INV(c, x1, x2, x3, y, z), loopflag);
+  aflcrash(INV(i, n, sn, v1, v2, v3), loopflag);
   if (f == 0 && loopflag == 1)
   {
     fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
-            "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
+            "i", i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3);
     fflush(stderr);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, c, x1, x2, x3, y, z)                     \
+#define postcheck(cond, i, n, sn, v1, v2, v3)                      \
   \ 
-{                                                             \
+{                                                               \
     \ 
-    int f = postflag;                                            \
+    int f = postflag;                                              \
     \ 
-   aflcrash(cond, postflag);                                     \
+   aflcrash(cond, postflag);                                       \
     \ 
-    if (f == 0 && postflag == 1)                                 \
-    {                                                            \
+    if (f == 0 && postflag == 1)                                   \
+    {                                                              \
       \ 
        fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
- "c",                                                            \
-               c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z); \
-      fflush(stderr);                                            \
+ "i",                                                              \
+               i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3); \
+      fflush(stderr);                                              \
     \ 
-}                                                           \
+}                                                             \
   }
 
 int main()
 {
   // variable declarations
-  int c;
-  int x1;
-  int x2;
-  int x3;
-  int y;
-  int z;
+  int i;
+  int n;
+  int sn;
+  int v1;
+  int v2;
+  int v3;
   freopen("models.txt", "w", stderr);
 
   for (;;)
@@ -88,43 +88,41 @@ int main()
     int choices = buf[0];
 
     // pre-conditions
-    y = buf[1];
-    assume((y >= 0));
-    assume((y >= 127));
-    (c = 0);
-    (z = (36 * y));
+    n = buf[1];
+    sn = buf[2];
     // precheck
-    // loopcond : (unknown())
+    // loopcond : (i <= n)
 
     if (choices > 25)
     {
       //pre-conditions
       assume((preflag == 0));
-      precheck(c, x1, x2, x3, y, z);
+      (sn = 0);
+      (i = 1);
+      precheck(i, n, sn, v1, v2, v3);
     }
     else
     {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(c, x1, x2, x3, y, z));
+      assume(INV(i, n, sn, v1, v2, v3));
 
       // Loop Condition
-      if ((choices > 55))
+      if ((i <= n))
       {
         // Bounded Unrolling
         int k = UNROLL_LIMIT;
-        while ((choices > 55) && k--)
+        while ((i <= n) && k--)
         {
           assume((loopflag == 0));
           // loop body
           {
-            if ((c < 36))
             {
-              (z = (z + 1));
-              (c = (c + 1));
+              (i = (i + 1));
+              (sn = (sn + 1));
             }
           }
-          loopcheck(c, x1, x2, x3, y, z);
+          loopcheck(i, n, sn, v1, v2, v3);
         }
       }
       else
@@ -132,8 +130,8 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((c < 36))
-          postcheck((z < 4608), c, x1, x2, x3, y, z)
+        if ((sn != n))
+          postcheck((sn == 0), i, n, sn, v1, v2, v3)
       }
     }
 

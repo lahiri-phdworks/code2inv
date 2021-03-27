@@ -4,10 +4,14 @@ import tokenize
 import io
 import logging
 import tqdm
+
 # from code2inv.common.cmd_args import cmd_args
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
-from code2inv.prog_generator.chc_tools.chctools.chcmodel import load_model_from_file, define_fun_to_lambda
+from code2inv.prog_generator.chc_tools.chctools.chcmodel import (
+    load_model_from_file,
+    define_fun_to_lambda,
+)
 from z3 import *
 
 p = {}
@@ -24,21 +28,20 @@ p["=="] = 2
 p["<="] = 2
 p["<"] = 2
 p["and"] = 1
-p['or'] = 1
+p["or"] = 1
 
 
 def condense(inv_tokens):
-    op_list = ["+", "-", "*", "/", "%", "<",
-               "<=", ">", ">=", "==", "!=", "and", "or"]
+    op_list = ["+", "-", "*", "/", "%", "<", "<=", ">", ">=", "==", "!=", "and", "or"]
     un_op_list = ["+", "-"]
     old_list = list(inv_tokens)
     new_list = list(inv_tokens)
     while True:
         for idx in range(len(old_list)):
             if old_list[idx] in un_op_list:
-                if idx == 0 or old_list[idx-1] in op_list or old_list[idx-1] == "(":
-                    new_list[idx] = old_list[idx] + old_list[idx+1]
-                    new_list[idx+1:] = old_list[idx+2:]
+                if idx == 0 or old_list[idx - 1] in op_list or old_list[idx - 1] == "(":
+                    new_list[idx] = old_list[idx] + old_list[idx + 1]
+                    new_list[idx + 1 :] = old_list[idx + 2 :]
                     break
         if old_list == new_list:
             break
@@ -112,7 +115,12 @@ def inv_checker(vc_file: str, inv: str, assignments):
 
     var_list = set()
     for token in inv_tokenized:
-        if token[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in ("and", "or"):
+        if token[
+            0
+        ] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in (
+            "and",
+            "or",
+        ):
             var_list.add(token)
 
     for assignment in assignments:
@@ -140,8 +148,7 @@ def inv_solver(vc_file: str, inv: str):
     for a in t:
         if a.string != "":
             inv_tokenized.append(a.string)
-    inv = stringify_prefix_stack(postfix_prefix(
-        infix_postfix(condense(inv_tokenized))))
+    inv = stringify_prefix_stack(postfix_prefix(infix_postfix(condense(inv_tokenized))))
     inv = inv.replace("==", "=", -1)
 
     sol = z3.Solver()
@@ -149,7 +156,7 @@ def inv_solver(vc_file: str, inv: str):
     res = []
 
     vc_sections = [""]
-    with open(vc_file, 'r') as vc:
+    with open(vc_file, "r") as vc:
         for vc_line in vc.readlines():
             if "SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop" in vc_line:
                 vc_sections.append("")
@@ -218,12 +225,11 @@ def inv_solver(vc_file: str, inv: str):
 
 
 if __name__ == "__main__":
-    # vcfile = sys.argv[1]
-    # inv = sys.argv[2]
-    # print(inv_solver(vc_file=vcfile, inv=inv))
-    pass
+    vcfile = sys.argv[1]
+    inv = sys.argv[2]
+    print(inv_solver(vc_file=vcfile, inv=inv))
 
-'''
+"""
 def is_trivial(vc_file: str, pred: str):
     inv = pred.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
@@ -259,4 +265,4 @@ def is_trivial(vc_file: str, pred: str):
         return True
     else:
         return False
-'''
+"""

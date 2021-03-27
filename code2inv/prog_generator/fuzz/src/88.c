@@ -4,41 +4,68 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <libhfuzz/libhfuzz.h>
+#include <inttypes.h>
 
-#define aflcrash(cond) \
-  if (!cond)           \
-    assert(0);
+#define UNROLL_LIMIT 10
 
-// Guide AFL to proper values
-// exit(0) is not a crash
+#define aflcrash(cond, flag) \
+  if (!cond)                 \
+    flag = 1;
+
 #define assume(cond) \
   if (!cond)         \
-    exit(0);
+    continue;
 
 #define INV(lock, x, y) PHI
 
-// TODO : Automate generation of this snippet
+int preflag = 0, loopflag = 0, postflag = 0;
+
+// COMMENT : Precheck template
+void precheck(int lock, int x, int y)
+{
+  int f = preflag;
+  aflcrash(INV(lock, x, y), preflag);
+  if (f == 0 && preflag == 1)
+  {
+    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n",
+            "lock", lock, "x", x, "y", y);
+    fflush(stderr);
+  }
+}
+
+// COMMENT : Loopcheck template
 void loopcheck(int lock, int x, int y)
 {
-  char buffer[30];
-  fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
-  aflcrash(INV(lock, x, y));
+  int f = loopflag;
+  aflcrash(INV(lock, x, y), loopflag);
+  if (f == 0 && loopflag == 1)
+  {
+    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d\n",
+            "lock", lock, "x", x, "y", y);
+    fflush(stderr);
+  }
 }
 
-// TODO : Automate generation of this snippet
-void postcheck(int lock, int x, int y)
-{
-  char buffer[30];
-  fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n", "lock", lock, "x", x, "y", y);
-  aflcrash(INV(lock, x, y));
-}
-
-int choices[] = {1, -1, 1, -1, 1, 1, -1, 1, -2, -1, 0, 0, 0, 1, 1, -1, 1, 0, 1, -1, 1, 1, 2, 1};
-int unknown()
-{
-  int nums = sizeof(choices) / sizeof(choices[0]);
-  return choices[(rand() % nums) - 1];
-}
+// COMMENT : Postcheck template
+#define postcheck(cond, lock, x, y)   \
+  \ 
+{                                  \
+    \ 
+    int f = postflag;                 \
+    \ 
+   aflcrash(cond, postflag);          \
+    \ 
+    if (f == 0 && postflag == 1)      \
+    {                                 \
+      \ 
+       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n",\ 
+ "lock",                              \
+               lock, "x", x, "y", y); \
+      fflush(stderr);                 \
+    \ 
+}                                \
+  }
 
 int main()
 {
@@ -46,31 +73,76 @@ int main()
   int lock;
   int x;
   int y;
+  freopen("models.txt", "w", stderr);
 
-  freopen("loopmodels.txt", "w", stderr);
-
-  // pre-conditions
-  scanf("%d", &x);
-  (y = (x + 1));
-  (lock = 0);
-
-  // loop body
-  assume(INV(lock, x, y));
-  assume((x != y));
-  if (unknown())
+  for (;;)
   {
+    size_t len;
+    const int8_t *buf;
+
+    HF_ITER(&buf, &len);
+
+    int choices = buf[0];
+
+    // pre-conditions
+    x = buf[1];
+    (y = (x + 1));
+    (lock = 0);
+    // precheck
+    // loopcond : (x != y)
+
+    if (choices > 25)
     {
-      (lock = 1);
-      (x = y);
+      //pre-conditions
+      assume((preflag == 0));
+      precheck(lock, x, y);
     }
-  }
-  else
-  {
+    else
     {
-      (lock = 0);
-      (x = y);
-      (y = (y + 1));
+      // loop-check program
+      assume((loopflag + postflag < 2));
+      assume(INV(lock, x, y));
+
+      // Loop Condition
+      if ((x != y))
+      {
+        // Bounded Unrolling
+        int k = UNROLL_LIMIT;
+        while ((x != y) && k--)
+        {
+          assume((loopflag == 0));
+          {
+            {
+              if (choices > 63)
+              {
+                {
+                  (lock = 1);
+                  (x = y);
+                }
+              }
+              else
+              {
+                {
+                  (lock = 0);
+                  (x = y);
+                  (y = (y + 1));
+                }
+              }
+            }
+          }
+          loopcheck(lock, x, y);
+        }
+      }
+      else
+      {
+        // post-check program
+        assume((postflag == 0));
+        // post-condition
+        postcheck((lock == 1), lock, x, y)
+      }
     }
+
+    if (preflag + loopflag + postflag >= 3)
+      assert(0);
   }
-  loopcheck(lock, x, y);
 }
