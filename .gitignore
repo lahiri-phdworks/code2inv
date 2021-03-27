@@ -149,3 +149,7 @@ bin/
 code2inv/new.smt2
 
 *.pyc
+
+*.TXT
+
+*.fuzz

@@ -85,18 +85,18 @@ def init_fuzzbase():
 def process_crashes(fileName):
     # COMMENT : iterate over all crashes inputs and extract test failures
     results = None
+    # collection_semantic = [None, None, None]
     with open(fileName, mode="r") as fileptr:
         models = fileptr.readlines()
         if isinstance(models, list) and len(models) > 0:
             for lines in models:
-                if "Pre :" in lines:
-                    collection_semantic[0] = lines.strip()
-                if "Loop :" in lines:
-                    collection_semantic[1] = lines.strip()
-                if "Post :" in lines:
-                    collection_semantic[2] = lines.strip()
-        else:
-            return None
+                for index, x in enumerate(["Pre :", "Loop :", "Post :"]):
+                    if x in lines:
+                        collection_semantic[index] = lines.strip()
+                    # else:
+                    #     collection_semantic[index] = None
+            else:
+                return None
 
 
 def mergeModels():
@@ -112,11 +112,19 @@ def mergeModels():
     return results
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    # COMMENT : Gets called in each env.step() iteration.
+    # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
     # dump_template(filepath, inv)
-    init_fuzzbase()
-    call_fuzzsolver(timeout)
+    # open(outputFile, mode="w").close()
+
+    # init_fuzzbase()
+    # call_fuzzsolver(timeout)
+
+    time.sleep(0.3)
+
     process_crashes(outputFile)
     res = mergeModels()
-    print(res)
+
+    print(f"{res}")

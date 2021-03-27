@@ -124,8 +124,8 @@ def process_crashes(fileName):
                 for index, x in enumerate(["Pre :", "Loop :", "Post :"]):
                     if x in lines:
                         collection_semantic[index] = lines.strip()
-                    else:
-                        collection_semantic[index] = None
+                    # else:
+                    #     collection_semantic[index] = None
             else:
                 return None
 

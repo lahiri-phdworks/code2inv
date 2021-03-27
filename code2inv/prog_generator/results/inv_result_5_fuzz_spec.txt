@@ -1,0 +1,2 @@
+( size == y && ( y <= ( 10000 - y ) || z <= ( -10000 * -10000 ) ) )
+z3_report time: 8.58 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

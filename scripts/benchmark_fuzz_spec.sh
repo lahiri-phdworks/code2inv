@@ -1,14 +1,11 @@
 #!/usr/bin/bash
 
 cd ../code2inv/prog_generator
-sudo fuzz/afl-init.sh
+export CC=$(which hfuzz-clang)
+export CXX=$(which hfuzz-clang++)
+export AFL=$(which honggfuzz)
 
-# Arguments for AFL
-export CC=$HOME/afl/afl-gcc
-export CXX=$HOME/afl/afl-g++
-export AFL=$HOME/afl/afl-fuzz
-
-for file_index in fuzz/src/loopcheck/*.c;
+for file_index in fuzz/src/*.c;
 do
     sleep 2
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`

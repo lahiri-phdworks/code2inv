@@ -1,0 +1,2 @@
+( j > ( j * 0 ) && m < k )
+z3_report time: 17.30 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2})
