@@ -8,12 +8,16 @@ int main()
   int y;
   int z;
   // pre-conditions
-  (c = 0);
+  // scanf("%d", &y);
   assume((y >= 0));
   assume((y >= 127));
+  (c = 0);
   (z = (36 * y));
-  // loop body
+  // precheck
+  // loopcond : (unknown())
+  // loopstart
   while (unknown())
+  // loop body
   {
     if ((c < 36))
     {
@@ -21,6 +25,8 @@ int main()
       (c = (c + 1));
     }
   }
+  // loopend
+  // postcheck
   // post-condition
   if ((c < 36))
     assert((z < 4608));

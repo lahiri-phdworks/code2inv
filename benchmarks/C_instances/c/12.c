@@ -6,10 +6,9 @@ int main()
   int z1;
   int z2;
   int z3;
-
+  // pre-conditions
   // scanf("%d", &x);
   // scanf("%d", &y);
-  // pre-conditions
   assume((x >= 0));
   assume((x <= 10));
   assume((y <= 10));
@@ -27,6 +26,7 @@ int main()
   }
   // loopend
   // postcheck
+  // post-condition
   if ((y == 0))
     assert((x != 20));
 }

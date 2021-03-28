@@ -8,16 +8,15 @@ int main()
     int x;
     int m;
     int n;
-
+    // pre-conditions
     // scanf("%d", &n);
     // scanf("%d", &x);
     // scanf("%d", &m);
-    // pre-conditions
-    (x = 1);
-    (m = 1);
     assume((-10000 <= m && m <= 10000));
     assume((-10000 <= x && x <= 10000));
     assume((-10000 <= n && n <= 10000));
+    (x = 1);
+    (m = 1);
     // precheck
     // loopcond : (x < n)
     // loopstart

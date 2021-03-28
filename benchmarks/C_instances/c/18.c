@@ -4,14 +4,12 @@ int main()
     int x;
     int m;
     int n;
-
     // scanf("%d", &x);
     // scanf("%d", &n);
     // pre-conditions
     assume((-10000 <= n && n < 10000));
     (x = 1);
     (m = 1);
-
     // precheck
     // loopcond : (x < n)
     // loopstart

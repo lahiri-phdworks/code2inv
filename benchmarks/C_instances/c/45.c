@@ -4,10 +4,14 @@ int main()
   int c;
   int n;
   // pre-conditions
+  // scanf("%d", &n);
   (c = 0);
   assume((n > 0));
-  // loop body
+  // precheck
+  // loopcond : (unknown())
+  // loopstart
   while (unknown())
+  // loop body
   {
     {
       if (unknown())
@@ -26,6 +30,8 @@ int main()
       }
     }
   }
+  // loopend
+  // postcheck
   // post-condition
   if ((c != n))
     assert((c >= 0));

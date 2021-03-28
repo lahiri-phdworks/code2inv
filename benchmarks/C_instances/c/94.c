@@ -17,9 +17,7 @@ int main()
   // loopcond : (i <= n)
   // loopstart
   while ((i <= n))
-  // loopend
-  // postcheck
-  // post-condition
+  // loop body
   {
     {
       (i = (i + 1));

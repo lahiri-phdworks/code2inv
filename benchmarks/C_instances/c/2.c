@@ -4,14 +4,14 @@ int main()
   int x;
   int y;
 
-  // scanf("%d", &y);
   // pre-conditions
-  (x = 1);
-  (y = 0);
+  // scanf("%d", &y);
   assume((-10000 <= x && x <= 10000));
   assume((-1000 <= y && y <= 1000));
   assume((x == 1));
   assume((y == 0));
+  (x = 1);
+  (y = 0);
   // precheck
   // loopcond : (y < 1000)
   // loopstart
@@ -25,5 +25,6 @@ int main()
   }
   // loopend
   // postcheck
+  // post-condition
   assert((x >= y));
 }

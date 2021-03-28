@@ -64,15 +64,6 @@
 			"cmd": "FalseBranch"
 		},
 		"5_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
-		},
-		"5_2": {
 			"cmd": "Assume",
 			"rval": {
 				"OP": ">=",
@@ -82,6 +73,15 @@
 				"arg1": {
 					"Const": "0"
 				}
+			}
+		},
+		"5_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_1"
+			},
+			"rval": {
+				"Const": "0"
 			}
 		},
 		"ENTRY": {

@@ -4,15 +4,22 @@ int main()
   int n;
   int x;
   // pre-conditions
-  (x = 0);
+  // scanf("%d", &n);
+  // scanf("%d", &x);
   assume((n >= 0));
-  // loop body
+  (x = 0);
+  // precheck
+  // loopcond : (x < n)
+  // loopstart
   while ((x < n))
+  // loop body
   {
     {
       (x = (x + 1));
     }
   }
+  // loopend
+  // postcheck
   // post-condition
   assert((x == n));
 }

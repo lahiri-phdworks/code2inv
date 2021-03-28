@@ -154,15 +154,6 @@
 			"cmd": "FalseBranch"
 		},
 		"7_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "c_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
-		},
-		"7_2": {
 			"cmd": "Assume",
 			"rval": {
 				"OP": ">=",
@@ -174,7 +165,7 @@
 				}
 			}
 		},
-		"7_3": {
+		"7_2": {
 			"cmd": "Assume",
 			"rval": {
 				"OP": ">=",
@@ -184,6 +175,15 @@
 				"arg1": {
 					"Const": "127"
 				}
+			}
+		},
+		"7_3": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "c_1"
+			},
+			"rval": {
+				"Const": "0"
 			}
 		},
 		"7_4": {

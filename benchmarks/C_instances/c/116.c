@@ -7,16 +7,24 @@ int main()
   int v3;
   int x;
   // pre-conditions
+  // scanf("%d", &n);
+  // scanf("%d", &sn);
+  // scanf("%d", &x);
   (sn = 0);
   (x = 0);
-  // loop body
+  // precheck
+  // loopcond : (unknown())
+  // loopstart
   while (unknown())
+  // loop body
   {
     {
       (x = (x + 1));
       (sn = (sn + 1));
     }
   }
+  // loopend
+  // postcheck
   // post-condition
   if ((sn != x))
     assert((sn == -1));

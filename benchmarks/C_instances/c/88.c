@@ -5,9 +5,12 @@ int main()
   int x;
   int y;
   // pre-conditions
+  // scanf("%d", &x);
   (y = (x + 1));
   (lock = 0);
-  // loop body
+  // precheck
+  // loopcond : (x != y)
+  // loopstart
   while ((x != y))
   {
     {
@@ -28,6 +31,8 @@ int main()
       }
     }
   }
+  // loopend
+  // postcheck
   // post-condition
   assert((lock == 1));
 }

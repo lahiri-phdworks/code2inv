@@ -9,7 +9,6 @@ int main()
   int y;
 
   // scanf("%d", &n);
-  // scanf("%d", &v1);
   // pre-conditions
   (x = 1);
   // precheck

@@ -6,10 +6,9 @@ int main()
   int z1;
   int z2;
   int z3;
-
+  // pre-conditions
   // scanf("%d", &x);
   // scanf("%d", &y);
-  // pre-conditions
   assume((x >= 0));
   assume((x <= 2));
   assume((y <= 2));

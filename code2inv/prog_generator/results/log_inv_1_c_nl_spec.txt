@@ -1,6 +1,6 @@
-best_root :  ( x == ( 0 * 0 ) || ( y <= ( y + y ) && y <= ( 100000 - y ) ) || ( y <= ( 0 * 1 ) && y == ( 0 * 100000 ) ) ) 
-simplify : [Or(And(y <= 0, y == 0), x == 0, And(y >= 0, y <= 50000))]
+best_root :  ( x >= ( y * 100000 ) && x >= ( y + 0 ) && x == ( 1 - y ) ) 
+simplify : [y <= 0, y <= 0]
 best_reward : -1
-epoch: 5, average reward: -0.3622, 
-Random: ( ( x >= ( y * y ) && y < ( 0 + 0 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 100588, 'boogie_result': 5861, 'ce-T:': 5860, 'ce-F:': 5857, 'actual_z3': 30})
+epoch: 2, average reward: -0.5252, 
+Random: ( ( x >= ( y - 0 ) && x > ( y - 0 ) ) || ( x >= ( 100000 + 0 ) && x >= y ) ), result_r: -1.5844 
+stats : Counter({'ce-I:': 44195, 'boogie_result': 2937, 'ce-T:': 2936, 'ce-F:': 2933, 'actual_z3': 27})

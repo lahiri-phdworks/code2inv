@@ -4,9 +4,9 @@ int main()
   int x;
   int y;
 
+  // pre-conditions
   // scanf("%d", &y);
   // scanf("%d", &x);
-  // pre-conditions
   assume((x >= 0));
   assume((x <= 2));
   assume((y <= 2));

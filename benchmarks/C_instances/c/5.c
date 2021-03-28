@@ -4,9 +4,8 @@ int main()
    int size;
    int y;
    int z;
-
-   // scanf("%d", &size)
    // pre-conditions
+   // scanf("%d", &size)
    assume((-10000 <= size && size <= 10000));
    // precheck
    // loopcond : (x < size)
@@ -22,6 +21,7 @@ int main()
    }
    // loopend
    // postcheck
+   // post-condition
    if (size > 0)
    {
       assert(z >= y);

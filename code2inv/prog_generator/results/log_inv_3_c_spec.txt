@@ -1,0 +1,6 @@
+best_root :  ( ( y <= ( y - x ) || z > ( x - 5 ) ) ) 
+simplify : [Or(x <= 0, Not(z <= -5 + x))]
+best_reward : -1
+epoch: 2, average reward: -0.5896, 
+Random: ( ( x < ( 5 - x ) ) && ( y == ( z - z ) || y <= ( 1 - x ) ) ), result_r: -1.6803 
+stats : Counter({'ce-T:': 26556, 'ce-I:': 18662, 'boogie_result': 2971, 'ce-F:': 2969, 'actual_z3': 20})

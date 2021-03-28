@@ -7,14 +7,21 @@ int main()
   int v3;
   int x;
   // pre-conditions
+  // scanf("%d", &n);
+  // scanf("%d", &x);
   (x = 0);
-  // loop body
+  // precheck
+  // loopcond : (x < n)
+  // loopstart
   while ((x < n))
+  // loop body
   {
     {
       (x = (x + 1));
     }
   }
+  // loopend
+  // postcheck
   // post-condition
   if ((n >= 0))
     assert((x == n));

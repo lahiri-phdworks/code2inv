@@ -4,10 +4,9 @@ int main()
    int x = 0;
    int y;
    int z;
-
+   // pre-conditions
    // scanf("%d", &y);
    // scanf("%d", &z);
-   // pre-conditions
    assume((-10000 <= y && y <= 10000));
    assume((-10000 <= z && z <= 10000));
    // precheck

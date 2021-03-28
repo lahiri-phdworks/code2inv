@@ -19,8 +19,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	( and
 		( = n n_0 )
 		( = x x_1 )
-		( = x_1 0 )
 		( >= n_0 0 )
+		( = x_1 0 )
 	)
 )
 

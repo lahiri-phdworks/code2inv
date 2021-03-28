@@ -3,14 +3,13 @@ int main()
   // variable declarations
   int x;
   int y;
-
+  // pre-conditions
   // scanf("%d", &x);
   // scanf("%d", &y);
-  // pre-conditions
-  (x = 1);
-  (y = 0);
   assume((x == 1));
   assume((y == 0));
+  (x = 1);
+  (y = 0);
   // precheck
   // loopcond : (y < 100000)
   // loopstart
@@ -24,5 +23,6 @@ int main()
   }
   // loopend
   // postcheck
+  // post-condition
   assert((x >= y));
 }

@@ -20,9 +20,47 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun pre-f ( ( n Int )( x Int )( y Int )( n_0 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( y_1 Int )( y_2 Int ) ) Bool
-	( and
-		( = x x_0 )
-		( = x_0 1 )
+	( or
+		( and
+			( = n n_0 )
+			( = x x_0 )
+			( = y y_0 )
+			( = x_0 1 )
+			( <= -10000 y_0 )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( <= -10000 n_0 )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+		)
+		( and
+			( = n n_0 )
+			( = x x_0 )
+			( = y y_0 )
+			( = x_0 1 )
+			( <= -10000 y_0 )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( not ( <= -10000 n_0 ) )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+		)
+		( and
+			( = n n_0 )
+			( = x x_0 )
+			( = y y_0 )
+			( = x_0 1 )
+			( not ( <= -10000 y_0 ) )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( <= -10000 n_0 )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+		)
+		( and
+			( = n n_0 )
+			( = x x_0 )
+			( = y y_0 )
+			( = x_0 1 )
+			( not ( <= -10000 y_0 ) )
+			( and ( <= -10000 y_0 ) ( <= y_0 10000 ) )
+			( not ( <= -10000 n_0 ) )
+			( and ( <= -10000 n_0 ) ( <= n_0 10000 ) )
+		)
 	)
 )
 
@@ -55,7 +93,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	( or
 		( not
 			( and
-				( = n n_0 )
+				( = n n_0)
 				( = x x_1)
 				( = y y_1)
 			)

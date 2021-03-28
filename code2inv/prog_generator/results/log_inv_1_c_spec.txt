@@ -1,8 +1,6 @@
-best_root :  ( ( x <= ( 100000 - y ) || x == 1 ) && ( x == 1 || x > ( y - 100000 ) ) && ( y <= ( 100000 - y ) ) ) 
-simplify : [Or(x == 1, x <= 100000 + -1*y),
- Or(Not(x <= -100000 + y), x == 1),
- y <= 50000]
+best_root :  ( ( y <= ( 1 + 1 ) || y <= ( y - 1 ) ) ) 
+simplify : [y <= 2]
 best_reward : -1
-epoch: 5, average reward: -0.3927, 
-Random: ( ( y <= ( 0 + 1 ) || x == 1 ) ), result_r: -1.5844 
-stats : Counter({'ce-I:': 93997, 'boogie_result': 5879, 'ce-T:': 5878, 'ce-F:': 5873, 'actual_z3': 46})
+epoch: 2, average reward: -0.5523, 
+Random: ( ( x <= ( 1 + 1 ) ) && ( y <= ( x - 100000 ) || y <= ( 1 + 100000 ) ) ), result_r: -1.6431 
+stats : Counter({'ce-I:': 34279, 'boogie_result': 2944, 'ce-T:': 2943, 'ce-F:': 2938, 'actual_z3': 49})

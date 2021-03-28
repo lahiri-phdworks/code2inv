@@ -22,8 +22,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	( and
 		( = x x_1 )
 		( = y y_1 )
-		( = x_1 1 )
-		( = y_1 0 )
+		( = x_0 1 )
+		( = y_0 0 )
 		( = x_1 1 )
 		( = y_1 0 )
 	)

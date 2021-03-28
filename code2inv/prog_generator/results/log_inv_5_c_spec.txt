@@ -1,6 +1,6 @@
-best_root :  ( ( y > ( 10000 + -10000 ) || z >= ( y - 0 ) ) && ( z > ( -10000 + -10000 ) ) ) 
-simplify : None
+best_root :  ( ( z >= ( x - 1 ) ) ) 
+simplify : [z >= -1 + x]
 best_reward : -1
-epoch: 5, average reward: -0.6021, 
-Random: ( ( z <= 10000 || size == ( x - -10000 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 66045, 'ce-I:': 16389, 'boogie_result': 5957, 'ce-F:': 5952, 'actual_z3': 17})
+epoch: 2, average reward: -0.6201, 
+Random: ( ( x >= ( -10000 + -10000 ) || x < ( z - 10000 ) ) && ( size >= ( 10000 - -10000 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 29724, 'ce-I:': 7482, 'boogie_result': 2988, 'ce-F:': 2983, 'actual_z3': 16})

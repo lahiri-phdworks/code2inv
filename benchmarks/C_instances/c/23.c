@@ -3,7 +3,6 @@ int main()
   // variable declarations
   int i;
   int j;
-
   // scanf("%d", &i);
   // pre-conditions
   (i = 1);
