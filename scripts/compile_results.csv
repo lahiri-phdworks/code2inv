@@ -146,11 +146,13 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 140, c_nl_spec, ( ( i == ( i2 + 1 ) && i2 <= ( i + 6 ) ) || ( y > ( 1 * y ) && y <= ( 500000 + i ) ) ), Failed, No, "[]", 35
 140, c_spec, ( ( i >= ( i - n ) ) && ( n >= ( sum + 0 ) || i2 > ( 2 + 1 ) ) ), Failed, No, "[n >= 0, Or(n >= sum, Not(i2 <= 3))]", 35
 18, c_nl_spec, ( n <= ( m * 10000 ) || ( x == 1 && x == x ) ), Failed, No, "[Or(x == 1, n <= 10000*m)]", 18
+18, fuzz_spec, ( ( m == x || x <= ( n * n ) ) && ( x < ( 10000 * -10000 ) || n == ( n * 10000 ) ) && x > n ), Failed, No, "None", 13
 1, c_nl_spec, ( x == ( 0 * 0 ) || ( y <= ( y + y ) && y <= ( 100000 - y ) ) || ( y <= ( 0 * 1 ) && y == ( 0 * 100000 ) ) ), Failed, No, "[Or(And(y <= 0, y == 0), x == 0, And(y >= 0, y <= 50000))]", 30
 1, c_spec, ( ( x <= ( 100000 - y ) || x == 1 ) && ( x == 1 || x > ( y - 100000 ) ) && ( y <= ( 100000 - y ) ) ), Failed, No, "[Or(x <= 100000 + -1*y, x == 1),
  Or(Not(x <= -100000 + y), x == 1),
  y <= 50000]", 46
 21, c_spec, ( ( x <= 1 || x > m ) ), Failed, No, "[Or(Not(x <= m), x <= 1)]", 10
+21, fuzz_spec, ( ( n == m || m <= ( x * x ) ) && ( m < ( 1 * -10000 ) || x == ( x * 1 ) ) && m > x ), Failed, No, "None", 10
 23, c_nl_spec, ( ( i == 1 && j >= ( 13 - 2 ) ) ), Failed, No, "[j >= 11]", 43
 23, c_spec, ( ( i == 1 || j > ( 13 - j ) ) && ( i <= ( 2 + 13 ) ) && ( j > ( 2 + i ) || i == ( 1 + i ) ) ), Failed, No, "[Or(i == 1, Not(j <= 6)), i <= 15, Not(j <= 2 + i)]", 37
 24, c_nl_spec, ( ( j > ( 6 - 1 ) || i <= ( j - 6 ) ) && ( i < ( j - 1 ) || i <= ( j - 6 ) ) ), Failed, No, "[Or(Not(j <= 5), i <= -6 + j),
