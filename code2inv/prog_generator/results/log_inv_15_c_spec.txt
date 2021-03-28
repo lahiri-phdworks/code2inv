@@ -1,0 +1,6 @@
+best_root :  ( ( n > ( 0 + m ) || x <= 0 ) && ( x == ( x + x ) || n >= ( x + 0 ) ) ) 
+simplify : [Or(Not(n <= m), x <= 0), Or(x == 0, n >= x)]
+best_reward : -1
+epoch: 2, average reward: -0.5736, 
+Random: ( ( x <= 0 || n < ( n - x ) ) && ( n <= 0 ) && ( n <= x ) ), result_r: -1.8240 
+stats : Counter({'ce-I:': 17830, 'ce-T:': 14799, 'ce-F:': 5439, 'boogie_result': 2965, 'actual_z3': 20})

@@ -1,0 +1,6 @@
+best_root :  ( ( n <= ( y + 1 ) ) ) 
+simplify : [n <= 1 + y]
+best_reward : -1
+epoch: 2, average reward: -0.6068, 
+Random: ( ( y < ( x + n ) ) && ( y >= y ) && ( x < ( n + y ) ) ), result_r: -1.8800 
+stats : Counter({'ce-T:': 20558, 'ce-I:': 8790, 'boogie_result': 2951, 'ce-F:': 2890, 'actual_z3': 13})

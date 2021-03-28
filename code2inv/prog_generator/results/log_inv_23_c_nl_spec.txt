@@ -1,6 +1,6 @@
-best_root :  ( ( i == 1 && j >= ( 13 - 2 ) ) ) 
-simplify : [j >= 11]
+best_root :  ( j >= ( 13 + i ) && i == 1 && ( j >= ( 2 + i ) || j > ( 2 - j ) ) ) 
+simplify : [j >= 14, Or(Not(j <= 1), j >= 3)]
 best_reward : -1
-epoch: 5, average reward: -0.5312, 
-Random: ( ( j >= ( i + 2 ) && i == ( 1 * 20 ) ) || i <= j ), result_r: -1.6339 
-stats : Counter({'ce-I:': 135168, 'ce-F:': 17301, 'boogie_result': 5887, 'ce-T:': 5886, 'actual_z3': 43})
+epoch: 7, average reward: -0.4008, 
+Random: ( i > ( 2 + i ) || i <= ( 1 + 2 ) ), result_r: -1.7379 
+stats : Counter({'ce-I:': 199617, 'ce-F:': 23160, 'boogie_result': 7840, 'ce-T:': 7839, 'actual_z3': 43})

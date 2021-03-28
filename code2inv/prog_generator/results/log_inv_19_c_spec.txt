@@ -1,0 +1,6 @@
+best_root :  ( ( m <= ( x - 1 ) || m == ( m - m ) ) ) 
+simplify : [Or(m == 0, m <= -1 + x)]
+best_reward : 0
+epoch: 0, average reward: -0.6644, 
+Random: ( ( m >= ( x + 0 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 4479, 'ce-I:': 2908, 'ce-F:': 2608, 'boogie_result': 989, 'actual_z3': 19})

@@ -27,15 +27,18 @@ def call_ToSmt(inv):
 
 
 def getExpr(inv):
-    call_ToSmt(inv)
-    f = z3.parse_smt2_file(filePath)
-    simplifyTactic = Then(
-        Tactic("simplify"),
-        Tactic("propagate-values"),
-        Tactic("solve-eqs"),
-    )
-    for expr in f:
-        return simplifyTactic(expr)[0]
+    try:
+        call_ToSmt(inv)
+        f = z3.parse_smt2_file(filePath)
+        simplifyTactic = Then(
+            Tactic("simplify"),
+            Tactic("propagate-values"),
+            Tactic("solve-eqs"),
+        )
+        for expr in f:
+            return simplifyTactic(expr)[0]
+    except:
+        return None
 
 
 if __name__ == "__main__":

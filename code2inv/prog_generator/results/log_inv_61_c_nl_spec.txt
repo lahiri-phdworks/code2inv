@@ -1,0 +1,6 @@
+best_root :  ( ( n >= 1 && n >= ( c * c ) ) ) 
+simplify : [n >= 1, n >= c*c]
+best_reward : -1
+epoch: 7, average reward: -0.4962, 
+Random: ( ( c < c || c >= ( c - c ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 71238, 'ce-T:': 18696, 'ce-F:': 15737, 'boogie_result': 7871, 'actual_z3': 23})

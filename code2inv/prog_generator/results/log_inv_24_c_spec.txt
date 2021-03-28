@@ -1,6 +1,6 @@
-best_root :  ( ( i >= 2 || j >= ( i - 2 ) ) && ( i <= j || i <= ( 1 + 6 ) ) && ( j > 6 ) ) 
-simplify : [Or(i >= 2, j >= -2 + i), Or(i <= j, i <= 7), Not(j <= 6)]
+best_root :  ( ( j >= 1 ) && ( j > ( 2 + 2 ) ) && ( j >= ( 6 + i ) || i < ( j - i ) ) ) 
+simplify : [j >= 1, Not(j <= 4), Or(Not(j + -2*i <= 0), j >= 6 + i)]
 best_reward : -1
-epoch: 5, average reward: -0.4695, 
-Random: ( ( j > ( 6 + 6 ) || j > ( i + 6 ) ) && ( i <= ( 1 + 1 ) || i <= ( j - 2 ) ) ), result_r: -1.6389 
-stats : Counter({'ce-I:': 94624, 'ce-F:': 11795, 'boogie_result': 5907, 'ce-T:': 5906, 'actual_z3': 31})
+epoch: 7, average reward: -0.3985, 
+Random: ( ( i >= 1 || i <= ( j - 1 ) ) && ( i <= ( 2 - 6 ) || j >= ( i - 6 ) ) ), result_r: -2.0900 
+stats : Counter({'ce-I:': 133601, 'ce-F:': 15739, 'boogie_result': 7879, 'ce-T:': 7878, 'actual_z3': 34})

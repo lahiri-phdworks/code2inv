@@ -1,0 +1,2 @@
+( n <= n || ( n >= ( n + 1 ) && c < ( c * 1 ) ) || c <= ( 1 + c ) )
+z3_report time: 0.36 pid: 0 stats: Counter({'ce-I:': 17, 'ce-T:': 9, 'boogie_result': 8, 'actual_z3': 8})

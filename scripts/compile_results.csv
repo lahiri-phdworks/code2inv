@@ -10,7 +10,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 106, fuzz_spec, ( k == a && ( a <= ( 0 - a ) || m <= ( 1 * 1 ) ) ), Failed, Yes, "[Or(a <= 0, m <= 1)]", 1
 108, fuzz_spec, ( ( c == ( 1 - a ) && m > ( a - -10000 ) ) || k < -10000 ), Failed, Yes, "None", 1
 109, fuzz_spec, ( j > ( j * 0 ) && m < k ), Failed, Yes, "[Not(j <= 0), Not(k <= m)]", 2
-10, c_nl_spec, ( y > ( x - 4 ) && ( y <= ( 2 * y ) || x == ( y + x ) ) && x <= ( y + x ) ), Passed, Yes, "[Not(y <= -4 + x), Or(0 == y, y >= 0), 0 <= y]", 26
+10, c_nl_spec, ( ( y <= ( y + 0 ) && x < ( 4 + y ) ) ), Passed, Yes, "[Not(y <= -4 + x)]", 11
 10, c_spec, ( ( x >= ( x - 0 ) || x == ( y - 0 ) ) && ( x < ( y + 4 ) || x <= ( 0 + y ) ) ), Passed, Yes, "[Or(Not(y <= -4 + x), x <= y)]", 31
 10, fuzz_spec, ( y > ( y * x ) && ( x < ( 2 + x ) || y >= ( y + 4 ) ) ), Failed, Yes, "[Not(y <= x*y)]", 1
 110, fuzz_spec, ( n >= ( 0 * i ) || sn >= 0 ), Failed, Yes, "[Or(n >= 0, sn >= 0)]", 1
@@ -18,6 +18,8 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 116, c_nl_spec, ( sn == x ), Passed, Yes, "[]", 14
 116, c_spec, ( ( x == sn ) ), Passed, Yes, "[]", 17
 116, fuzz_spec, ( x > ( x * sn ) && ( sn < ( 0 + sn ) || x >= ( x + -1 ) ) ), Failed, Yes, "None", 1
+11, c_nl_spec, ( ( y <= ( y + 20 ) && x < ( 20 + y ) ) ), Passed, Yes, "[Not(y <= -20 + x)]", 11
+11, c_spec, ( ( y > ( y - 20 ) ) && ( x <= ( y + 10 ) ) ), Passed, Yes, "[x <= 10 + y]", 12
 120, c_spec, ( ( i <= ( sn + 1 ) ) && ( i >= ( sn + 1 ) ) && ( sn < ( 8 + 1 ) ) ), Passed, Yes, "[i <= 1 + sn, i >= 1 + sn, Not(9 <= sn)]", 60
 120, fuzz_spec, ( i > ( i * sn ) && ( sn < ( 1 + sn ) || i >= ( i + 0 ) ) ), Failed, Yes, "[Not(i <= i*sn)]", 1
 121, c_spec, ( ( i == ( 1 + sn ) ) && ( i <= ( 1 + 8 ) || sn == ( i + 8 ) ) ), Passed, Yes, "[sn <= 8]", 38
@@ -41,53 +43,127 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 13, c_spec, ( ( y > ( y - 2 ) ) && ( x <= ( y + 2 ) ) ), Passed, Yes, "[x <= 2 + y]", 21
 13, fuzz_spec, ( x > ( x * y ) && ( y < ( 2 + y ) || x >= ( x + 0 ) ) ), Failed, Yes, "[Not(x <= x*y)]", 1
 140, fuzz_spec, ( n == ( 0 + n ) ), Failed, Yes, "[]", 6
+14, c_nl_spec, ( ( y == ( 0 * x ) && y < ( 0 - y ) ) || y > ( x - 4 ) ), Passed, Yes, "[Or(And(y == 0, Not(y >= 0)), Not(y <= -4 + x))]", 10
+14, c_spec, ( ( x < ( y + 4 ) ) ), Passed, Yes, "[Not(y <= -4 + x)]", 30
+15, c_nl_spec, ( ( n <= ( n + n ) || n >= ( 0 + n ) ) && ( m <= ( 0 - 0 ) || m < ( n * 1 ) ) ), Passed, Yes, "[Or(Not(n <= m), m <= 0)]", 18
+15, c_spec, ( ( m < ( n - 0 ) || m < ( 1 - n ) ) && ( n >= ( x - 0 ) || n <= 0 ) ), Passed, Yes, "[Or(Not(n <= m), Not(-1*n <= -1 + m)), Or(n >= x, n <= 0)]", 21
+16, c_nl_spec, ( x <= ( x + x ) && ( m == 0 || m >= 0 ) ), Passed, Yes, "[x >= 0, Or(m == 0, m >= 0)]", 15
+16, c_spec, ( ( x >= ( 0 + 0 ) ) && ( m >= ( 0 + 0 ) ) ), Passed, Yes, "[x >= 0, m >= 0]", 23
+17, c_nl_spec, ( x <= x && ( n <= ( 1 * 1 ) || n > ( m * 1 ) ) ), Passed, Yes, "[Or(n <= 1, Not(n <= m))]", 21
+17, c_spec, ( ( m <= ( n - 1 ) || n <= 1 ) && ( m == ( 1 - 1 ) || n < ( 1 + n ) ) ), Passed, Yes, "[Or(n <= 1, m <= -1 + n)]", 19
 18, c_nl_spec, ( ( m >= ( -10000 - -10000 ) || x > ( n * 1 ) ) && x >= 1 && ( n < ( 10000 * m ) || n < ( n + m ) ) ), Passed, Yes, "None", 21
 18, c_spec, ( ( x >= ( x - x ) ) && ( x > ( -10000 - -10000 ) ) && ( m > ( -10000 + 10000 ) ) ), Passed, Yes, "None", 14
 18, fuzz_spec, ( ( n > n || x == ( 1 * 10000 ) ) && ( n == n || x > ( 10000 - n ) ) && x == ( m * x ) ), Failed, Yes, "[]", 1
+19, c_nl_spec, ( n <= ( m * 0 ) || ( n < ( 1 + 1 ) && m == 0 ) || ( n > ( m + 0 ) && x >= x ) ), Passed, Yes, "[Or(n <= 0, Not(n <= m), And(Not(2 <= n), m == 0))]", 23
+19, c_spec, ( ( m <= ( 0 + 0 ) || n > m ) ), Passed, Yes, "[Or(m <= 0, Not(n <= m))]", 21
 1, fuzz_spec, ( x > ( y * x ) || x <= ( x + y ) ), Failed, Yes, "[Or(Not(x <= x*y), 0 <= y)]", 2
-21, c_nl_spec, ( ( n >= ( 1 + m ) || n <= 1 ) ), Passed, Yes, "[Or(n <= 1, n >= 1 + m)]", 12
-21, c_spec, ( ( x >= ( -10000 + m ) ) && ( n <= 1 || n > m ) ), Passed, Yes, "None", 11
+20, c_nl_spec, ( ( m >= ( x * 0 ) && x >= 0 ) ), Passed, Yes, "[m >= 0, x >= 0]", 21
+20, c_spec, ( ( m <= ( m + x ) || x == 0 ) && ( x <= ( m + x ) || m == ( x - x ) ) ), Passed, Yes, "[Or(0 <= x, x == 0), Or(0 <= m, m == 0)]", 16
+21, c_nl_spec, ( m <= ( n - 1 ) || m <= ( 1 * 1 ) ), Passed, Yes, "[Or(m <= -1 + n, m <= 1)]", 22
+21, c_spec, ( ( n <= 1 || n > m ) ), Passed, Yes, "[Or(Not(n <= m), n <= 1)]", 28
 21, fuzz_spec, ( ( x > x || m == ( 10000 * 1 ) ) && ( x == x || m > ( 1 - x ) ) && m == ( n * m ) ), Failed, Yes, "[]", 1
+22, c_nl_spec, ( m >= 1 && n > ( n - x ) ), Passed, Yes, "[m >= 1, Not(x <= 0)]", 21
+22, c_spec, ( ( m >= 1 ) && ( x > ( 1 - 1 ) ) ), Passed, Yes, "[m >= 1, Not(x <= 0)]", 7
 23, fuzz_spec, ( j > 13 && ( i < ( 20 + 20 ) || i > ( j - 20 ) ) && i == ( i * 1 ) ), Failed, Yes, "[Not(j <= 13), Or(Not(40 <= i), Not(i <= -20 + j))]", 2
 24, fuzz_spec, ( ( j == j && i < ( 6 + j ) ) ), Failed, Yes, "[Not(j <= -6 + i)]", 8
+25, c_nl_spec, ( x >= ( x - x ) || x == 10000 ), Passed, Yes, "[Or(x >= 0, x == 10000)]", 10
+25, c_spec, ( ( x >= 0 ) && ( x >= 10000 || x >= ( x - x ) ) && ( x <= ( 0 + x ) || x == ( 10000 - 10000 ) ) ), Passed, Yes, "[x >= 0]", 33
 26, fuzz_spec, ( ( n > 1 || n < n ) && ( n > ( n + -10000 ) || x >= ( n - n ) ) && ( x == ( x - 10000 ) || x <= ( 10000 - n ) ) ), Failed, Yes, "None", 1
+28, c_nl_spec, ( ( x == ( n - 0 ) || x >= 0 ) ), Passed, Yes, "[Or(x == n, x >= 0)]", 9
+28, c_spec, ( ( x >= ( 0 - 0 ) || x == ( n - 0 ) ) ), Passed, Yes, "[Or(x >= 0, x == n)]", 17
+29, c_nl_spec, ( ( x == ( n - 0 ) || x >= 0 ) ), Passed, Yes, "[Or(x == n, x >= 0)]", 9
+29, c_spec, ( ( x >= ( 0 - 0 ) || x == ( n - 0 ) ) ), Passed, Yes, "[Or(x >= 0, x == n)]", 17
 2, fuzz_spec, ( y >= ( x * y ) && ( y > ( x * x ) || y < x ) ), Failed, Yes, "[y >= x*y, Or(Not(y <= x*x), Not(x <= y))]", 15
 30, c_nl_spec, ( x >= ( x - x ) || x == 100 ), Passed, Yes, "[Or(x >= 0, x == 100)]", 10
 30, c_spec, ( ( x >= 0 ) && ( x >= 100 || x >= ( x - x ) ) && ( x <= ( 0 + x ) || x == ( 100 - 100 ) ) ), Passed, Yes, "[x >= 0]", 33
 30, fuzz_spec, ( ( x == ( x * x ) && x > ( 1 - 100 ) ) || x >= ( x - 0 ) || ( x == x && x <= ( 1 - 1 ) ) ), Failed, Yes, "[]", 6
+33, c_nl_spec, ( ( n == n && x >= 1 ) || x >= ( 0 * n ) || ( n < ( 1 + x ) && x == x ) ), Passed, Yes, "[Or(x >= 0, x >= 1, Not(x <= -1 + n))]", 13
+33, c_spec, ( ( x > ( n + n ) || x >= ( n - n ) ) && ( x < ( 1 + x ) ) ), Passed, Yes, "[Or(Not(x <= 2*n), x >= 0)]", 14
+34, c_nl_spec, ( ( x == ( n - 0 ) || x >= 0 ) ), Passed, Yes, "[Or(x == n, x >= 0)]", 9
+34, c_spec, ( ( x >= ( 0 - 0 ) || x == ( n - 0 ) ) ), Passed, Yes, "[Or(x >= 0, x == n)]", 17
 35, c_nl_spec, ( c >= ( c - c ) || c == 1 ), Passed, Yes, "[Or(c == 1, c >= 0)]", 11
 35, c_spec, ( ( c >= ( 0 - c ) || c == 1 ) ), Passed, Yes, "[Or(c == 1, c >= 0)]", 29
 35, fuzz_spec, ( c > c || ( c == c && c == ( c * 0 ) ) || c <= ( 40 - 40 ) ), Failed, Yes, "[Or(c <= 0, c == 0)]", 1
+36, c_nl_spec, ( c <= 40 || ( c == ( 40 + c ) && c > ( c - 40 ) ) ), Passed, Yes, "[c <= 40]", 31
+36, c_spec, ( ( c <= 40 || c == ( 0 + 1 ) ) ), Passed, Yes, "[Or(c <= 40, c == 1)]", 34
 37, c_nl_spec, ( ( c < c && c == ( c - 40 ) ) || c <= ( c - c ) || c > 0 ), Passed, Yes, "[]", 5
 37, c_spec, ( ( c == ( 1 - 1 ) || c == c ) && ( c == ( 0 + c ) ) && ( c == c || c > c ) ), Passed, Yes, "[]", 1
 37, fuzz_spec, ( c > c || ( c == c && c == ( c * 0 ) ) || c <= ( 40 - 40 ) ), Failed, Yes, "[Or(c == 0, c <= 0)]", 1
 38, c_nl_spec, ( c >= ( n * 0 ) && n > ( 0 * c ) ), Passed, Yes, "[c >= 0, Not(n <= 0)]", 7
 38, c_spec, ( ( n > ( 0 - 1 ) ) ), Passed, Yes, "[Not(n <= -1)]", 10
 38, fuzz_spec, ( c < ( 0 * 1 ) || n >= ( c + 1 ) ), Failed, Yes, "[Or(Not(0 <= c), n >= 1 + c)]", 1
+39, c_nl_spec, ( n <= n || ( n >= ( n + 1 ) && c < ( c * 1 ) ) || c <= ( 1 + c ) ), Passed, Yes, "[]", 8
+39, c_spec, ( ( c >= c || n == ( c + n ) ) ), Passed, Yes, "[]", 4
+3, c_nl_spec, ( x <= 1 || y <= z ), Passed, Yes, "[Or(x <= 1, y <= z)]", 19
+3, c_spec, ( ( x < ( 5 - x ) || z > ( y - 1 ) ) ), Passed, Yes, "[Or(Not(x >= 3), Not(z <= -1 + y))]", 31
+40, c_nl_spec, ( c == 0 && n >= 1 && ( c >= ( n + c ) || c <= c ) ), Passed, Yes, "[n >= 1]", 9
+40, c_spec, ( ( n > ( 0 + 0 ) ) && ( n >= ( c - 1 ) ) && ( n == ( c + n ) ) ), Passed, Yes, "[Not(n <= 0), n >= -1]", 13
 41, c_nl_spec, ( ( c >= 0 && c < ( 1 * n ) ) ), Passed, Yes, "[c >= 0, Not(n <= c)]", 8
 41, c_spec, ( ( n > ( 1 - n ) ) && ( n > c ) && ( n > c ) ), Passed, Yes, "[Not(n <= 0), Not(n <= c)]", 15
 41, fuzz_spec, ( c < ( 0 * 1 ) || n >= ( c + 1 ) ), Failed, Yes, "[Or(Not(0 <= c), n >= 1 + c)]", 1
+42, c_nl_spec, ( ( c > ( 0 + 1 ) && c < 1 ) || ( c <= ( c + 1 ) && n >= ( c + 1 ) ) ), Passed, Yes, "[Or(And(Not(c <= 1), Not(1 <= c)), n >= 1 + c)]", 7
+42, c_spec, ( ( n > ( 0 + 0 ) || n >= ( 1 - n ) ) && ( n < ( c - n ) || c == 0 ) && ( c < ( 1 + c ) || n >= ( c - 1 ) ) ), Passed, Yes, "[Or(Not(n <= 0), n >= 1), Or(Not(c + -2*n <= 0), c == 0)]", 8
+43, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]", 1
+43, c_spec, ( ( n > ( -1 - 0 ) || n > c ) && ( n >= n || c >= ( -1 + 0 ) ) ), Passed, Yes, "None", 1
+44, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]", 1
+44, c_spec, ( ( n > ( -1 - 0 ) || n > c ) && ( n >= n || c >= ( -1 + 0 ) ) ), Passed, Yes, "None", 1
 45, c_nl_spec, ( c >= ( n * 0 ) && n > ( 0 * c ) ), Passed, Yes, "[c >= 0, Not(n <= 0)]", 7
 45, c_spec, ( ( c <= ( n - 0 ) || n <= ( n + 0 ) ) && ( n >= ( c - c ) || n < ( n - 0 ) ) && ( c >= ( n - n ) || c > ( 1 + 1 ) ) ), Passed, Yes, "[n >= 0, Or(Not(c <= 2), c >= 0)]", 15
 45, fuzz_spec, ( c < ( 0 * 1 ) || n >= ( c + 1 ) ), Failed, Yes, "[Or(Not(0 <= c), n >= 1 + c)]", 1
+46, c_nl_spec, ( c <= n && ( n == 0 || c < ( c + 1 ) ) && n >= 1 ), Passed, Yes, "[c <= n, n >= 1]", 10
+46, c_spec, ( ( c >= ( 0 + 0 ) || c < ( n + 0 ) ) && ( c <= ( n - 0 ) || n >= ( 0 + c ) ) && ( c > ( 0 - n ) ) ), Passed, Yes, "[Or(Not(n <= c), c >= 0),
+ Or(c <= n, n >= c),
+ Not(c <= -1*n)]", 17
+47, c_nl_spec, ( n >= 0 || ( c == n && n < n ) ), Passed, Yes, "[n >= 0]", 10
+47, c_spec, ( ( n > 0 ) && ( c >= ( c + 0 ) || n <= ( 0 - 1 ) ) ), Passed, Yes, "[Not(n <= 0)]", 4
+48, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]", 1
+48, c_spec, ( ( n > ( -1 - 0 ) || c >= ( c + 1 ) ) ), Passed, Yes, "None", 5
+49, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]", 1
+49, c_spec, ( ( n > ( -1 - 0 ) || c >= ( c + 1 ) ) ), Passed, Yes, "None", 5
 4, c_nl_spec, ( x >= ( 10000 * x ) || y < ( 1 + z ) ), Passed, Yes, "[Or(x <= 0, Not(z <= -1 + y))]", 22
 4, c_spec, ( ( y == ( y + x ) || y < ( 1 + z ) ) ), Passed, Yes, "[Or(0 == x, Not(z <= -1 + y))]", 19
 4, fuzz_spec, ( z <= 1 && y >= ( 1 - -10000 ) ), Failed, Yes, "None", 1
+50, c_nl_spec, ( c >= ( c - c ) || c == 0 ), Passed, Yes, "[Or(c == 0, c >= 0)]", 11
+50, c_spec, ( ( c > ( c - c ) || c == ( c - c ) ) ), Passed, Yes, "[Or(Not(c <= 0), c == 0)]", 4
 51, c_nl_spec, ( ( c <= ( 4 + 0 ) || c < 1 ) ), Passed, Yes, "[Or(c <= 4, Not(1 <= c))]", 33
 51, c_spec, ( ( c >= c || c <= c ) && ( c < ( 4 + 1 ) ) ), Passed, Yes, "[Not(5 <= c)]", 1
 51, fuzz_spec, ( c > c || ( c == c && c == ( c * 0 ) ) || c <= ( 4 - 4 ) ), Failed, Yes, "[Or(c <= 0, c == 0)]", 1
+52, c_nl_spec, ( c > c || ( c == c && c == ( c * 1 ) ) || c <= ( 0 - 0 ) ), Passed, Yes, "[]", 1
+52, c_spec, ( ( c >= ( 0 - c ) ) && ( c >= ( c - 4 ) || c == ( 0 - 4 ) ) ), Passed, Yes, "[c >= 0]", 11
+53, c_nl_spec, ( c == 0 && n >= 1 && ( c >= ( n + c ) || c <= c ) ), Passed, Yes, "[n >= 1]", 9
+53, c_spec, ( ( n > ( 0 + 0 ) ) && ( n >= ( c - 1 ) ) && ( n == ( c + n ) ) ), Passed, Yes, "[Not(n <= 0), n >= -1]", 13
 54, c_nl_spec, ( ( n > c && c >= 0 ) ), Passed, Yes, "[Not(n <= c), c >= 0]", 1
 54, c_spec, ( ( n == n || n == ( 0 + -10000 ) ) && ( n > c ) ), Passed, Yes, "None", 2
 54, fuzz_spec, ( ( n < -10000 && c <= 10000 ) || ( n > ( n * 1 ) && n >= 1 ) ), Failed, Yes, "None", 3
+55, c_nl_spec, ( ( n > ( 1 - 0 ) || c > ( 0 - 1 ) ) ), Passed, Yes, "[Or(Not(c <= -1), Not(n <= 1))]", 10
+55, c_spec, ( ( c > c || n > ( c + 0 ) ) && ( n == c || n <= ( 0 + n ) ) ), Passed, Yes, "[Not(n <= c)]", 2
+56, c_nl_spec, ( n > c ), Passed, Yes, "[Not(n <= c)]", 20
+56, c_spec, ( ( c < n || c >= ( n + c ) ) && ( n >= ( c + 1 ) || c > ( n + n ) ) && ( c < ( 1 + c ) ) ), Passed, Yes, "[Or(Not(n <= c), 0 >= n), Or(n >= 1 + c, Not(c <= 2*n))]", 10
+57, c_nl_spec, ( ( c <= ( n + -1 ) && c < ( n + 0 ) ) ), Passed, Yes, "None", 24
+57, c_spec, ( ( c == 0 ) && ( n > ( -1 - -1 ) || c > ( 1 + 1 ) ) ), Passed, Yes, "None", 39
+58, c_nl_spec, ( c >= 0 || ( c > ( 1 + 1 ) && c <= ( c * n ) ) || ( n >= 1 && n == ( 0 * n ) ) ), Passed, Yes, "[Or(c >= 0, And(Not(c <= 2), c <= c*n), And(n >= 1, n == 0))]", 10
+58, c_spec, ( ( c <= ( n - 1 ) || n <= ( n + 1 ) ) && ( n >= ( c - c ) || n < ( n - 1 ) ) && ( c >= ( n - n ) || c > ( 0 + 0 ) ) ), Passed, Yes, "[n >= 0, Or(c >= 0, Not(c <= 0))]", 12
+59, c_nl_spec, ( ( c <= ( 1 * 1 ) && n > 0 ) || n > ( 0 + n ) || ( n >= ( c + 0 ) && n > ( 1 - n ) ) ), Passed, Yes, "[Or(c <= 1, n >= c), Not(n <= 0)]", 12
+59, c_spec, ( ( c <= n ) && ( n > ( 0 + 0 ) || n == ( 1 + 1 ) ) && ( n > ( 0 - 1 ) || n < ( c - 0 ) ) ), Passed, Yes, "[c <= n, Or(Not(n <= 0), n == 2), Not(n <= -1)]", 10
 5, fuzz_spec, ( size == y && ( y <= ( 10000 - y ) || z <= ( -10000 * -10000 ) ) ), Failed, Yes, "None", 1
+60, c_nl_spec, ( n >= 1 ), Passed, Yes, "[n >= 1]", 7
+60, c_spec, ( ( n > ( 0 - 1 ) ) ), Passed, Yes, "[Not(n <= -1)]", 10
 63, c_nl_spec, ( ( y >= ( 1 - 1 ) && y >= y ) || ( x >= 10 && y == ( 0 + x ) ) || x <= 1 ), Passed, Yes, "[Or(x <= 1, y >= 0, And(x >= 10, y == x))]", 14
 63, c_spec, ( ( x <= ( x + y ) || x <= ( 10 + 1 ) ) && ( x <= ( 10 + 1 ) ) && ( x <= ( x + y ) || x <= ( 1 + 1 ) ) ), Passed, Yes, "[x <= 11, Or(0 <= y, x <= 2)]", 31
+64, c_nl_spec, ( ( y == ( y * y ) && x == ( y * 10 ) ) || y < 10 || x < 10 ), Passed, Yes, "[Or(And(y == y*y, x == 10*y), Not(10 <= y), Not(10 <= x))]", 17
+64, c_spec, ( ( y < ( 1 - y ) || x <= 10 ) && ( y <= ( x - x ) || x < ( 1 + 10 ) ) ), Passed, Yes, "[Or(Not(y >= 1), x <= 10), Or(Not(11 <= x), y <= 0)]", 13
 65, c_nl_spec, ( y >= y && ( y == ( y + y ) || x <= 100 ) ), Passed, Yes, "[Or(x <= 100, y == 0)]", 16
 65, c_spec, ( ( x <= ( x + y ) || x <= ( 100 + 1 ) ) && ( x <= ( 100 + 1 ) ) && ( x <= ( x + y ) || x <= ( 1 + 1 ) ) ), Passed, Yes, "[x <= 101, Or(0 <= y, x <= 2)]", 31
 65, fuzz_spec, ( x > ( x * y ) && ( y < ( 1 + y ) || x >= ( x + 0 ) ) ), Failed, Yes, "[Not(x <= x*y)]", 1
-68, c_nl_spec, ( ( x < ( 1 + 1 ) || n > ( y - 0 ) ) ), Passed, Yes, "[Or(Not(2 <= x), Not(n <= y))]", 15
-68, c_spec, ( ( x <= ( 0 - 0 ) || x >= ( 0 + x ) ) && ( x > ( 0 + 0 ) ) && ( x <= ( 1 + 0 ) || n >= y ) ), Passed, Yes, "[Not(x <= 0), Or(x <= 1, n >= y)]", 16
+66, c_nl_spec, ( ( y == ( 100 - 100 ) && x <= ( 1 + x ) ) || ( x >= ( x * 1 ) && x <= 100 ) ), Passed, Yes, "[Or(x <= 100, y == 0)]", 13
+66, c_spec, ( ( y <= ( y + x ) ) && ( x < 100 || y <= 1 ) && ( y <= y ) ), Passed, Yes, "[0 <= x, Or(Not(100 <= x), y <= 1)]", 4
+67, c_nl_spec, ( ( y >= 0 || x <= ( 1 * 1 ) ) ), Passed, Yes, "[Or(x <= 1, y >= 0)]", 14
+67, c_spec, ( ( x <= 1 || y >= ( n - n ) ) ), Passed, Yes, "[Or(x <= 1, y >= 0)]", 15
+68, c_nl_spec, ( x <= n || y < ( 1 + 0 ) || ( x <= 1 && n <= ( 1 + 1 ) ) ), Passed, Yes, "[Or(x <= n, Not(1 <= y), And(x <= 1, n <= 2))]", 18
+68, c_spec, ( ( x <= ( 1 - 0 ) || n >= ( y - 0 ) ) && ( y >= ( y + 0 ) ) ), Passed, Yes, "[Or(x <= 1, n >= y)]", 14
 68, fuzz_spec, ( n >= ( 0 * x ) || y >= 0 ), Failed, Yes, "[Or(n >= 0, y >= 0)]", 1
+69, c_nl_spec, ( ( n > ( y * 1 ) && x <= ( y + x ) ) || x == 1 || x <= ( y - x ) ), Passed, Yes, "[Or(And(Not(n <= y), 0 <= y), 2*x <= y, x == 1)]", 15
+69, c_spec, ( ( x == 1 || y >= ( 1 - 1 ) ) ), Passed, Yes, "[Or(x == 1, y >= 0)]", 20
 70, fuzz_spec, ( n >= ( 0 * x ) || y >= 0 ), Failed, Yes, "[Or(n >= 0, y >= 0)]", 1
 75, fuzz_spec, ( y <= 1 && c >= ( 1 - 36 ) ), Failed, Yes, "[y <= 1, c >= -35]", 1
 80, c_nl_spec, ( y <= x ), Passed, Yes, "[y <= x]", 2
@@ -106,9 +182,6 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 89, c_spec, ( ( y > x || lock == ( 0 + 1 ) ) && ( lock < ( 0 + lock ) || lock < ( 0 - -10000 ) ) ), Passed, Yes, "None", 13
 89, fuzz_spec, ( ( lock < y || x > 0 ) && y <= ( 10000 * 10000 ) ), Failed, Yes, "[Or(Not(x <= 0), Not(y <= lock)), y <= 100000000]", 1
 94, fuzz_spec, ( n <= k && k >= i && ( k == i || i == ( i + 10000 ) ) ), Failed, Yes, "[n <= i]", 1
-95, fuzz_spec, ( ( x > 1 || y > ( 1 * x ) ) && ( i < ( j + j ) || i >= ( 1 + x ) ) && ( y < ( x * x ) || y < ( x - 1 ) ) ), Failed, Yes, "[Or(Not(x <= 1), Not(y <= x)),
- Or(Not(2*j <= i), i >= 1 + x),
- Or(Not(x <= 1 + y), Not(x*x <= y))]", 1
 96, fuzz_spec, ( ( x > 1 || j > ( 1 * x ) ) && ( y < ( i + i ) || y >= ( 1 + x ) ) && ( j < ( x * x ) || j < ( x - 1 ) ) ), Failed, Yes, "[Or(Not(x <= 1), Not(j <= x)),
  Or(Not(2*i <= y), y >= 1 + x),
  Or(Not(x*x <= j), Not(x <= 1 + j))]", 1
@@ -145,39 +218,65 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 13, fuzz_spec, ( ( x > ( x * 4 ) || y == ( x * x ) ) && ( x <= ( 2 * 2 ) || x > ( x * 4 ) ) ), Failed, No, "[Or(Not(x >= 0), y == x*x), Or(Not(x >= 0), x <= 4)]", 111
 140, c_nl_spec, ( ( i == ( i2 + 1 ) && i2 <= ( i + 6 ) ) || ( y > ( 1 * y ) && y <= ( 500000 + i ) ) ), Failed, No, "[]", 35
 140, c_spec, ( ( i >= ( i - n ) ) && ( n >= ( sum + 0 ) || i2 > ( 2 + 1 ) ) ), Failed, No, "[n >= 0, Or(n >= sum, Not(i2 <= 3))]", 35
+14, c_spec, ( ( x == x ) ), Failed, No, "[]", 29
+15, c_spec, ( ( n > ( 0 + m ) || x <= 0 ) && ( x == ( x + x ) || n >= ( x + 0 ) ) ), Failed, No, "[Or(Not(n <= m), x <= 0), Or(x == 0, n >= x)]", 20
+16, c_nl_spec, ( n >= ( 0 * m ) || x >= 0 ), Failed, No, "[Or(n >= 0, x >= 0)]", 13
+17, c_nl_spec, ( x > x || m == ( x * x ) ), Failed, No, "[]", 20
 18, c_nl_spec, ( n <= ( m * 10000 ) || ( x == 1 && x == x ) ), Failed, No, "[Or(x == 1, n <= 10000*m)]", 18
 18, fuzz_spec, ( ( m == x || x <= ( n * n ) ) && ( x < ( 10000 * -10000 ) || n == ( n * 10000 ) ) && x > n ), Failed, No, "None", 13
-1, c_nl_spec, ( x == ( 0 * 0 ) || ( y <= ( y + y ) && y <= ( 100000 - y ) ) || ( y <= ( 0 * 1 ) && y == ( 0 * 100000 ) ) ), Failed, No, "[Or(And(y <= 0, y == 0), x == 0, And(y >= 0, y <= 50000))]", 30
-1, c_spec, ( ( x <= ( 100000 - y ) || x == 1 ) && ( x == 1 || x > ( y - 100000 ) ) && ( y <= ( 100000 - y ) ) ), Failed, No, "[Or(x <= 100000 + -1*y, x == 1),
- Or(Not(x <= -100000 + y), x == 1),
- y <= 50000]", 46
+19, c_spec, ( ( m <= ( x - 1 ) || m == ( m - m ) ) ), Failed, No, "[Or(m <= -1 + x, m == 0)]", 19
+1, c_nl_spec, ( ( y <= 1 || x >= ( y * 1 ) ) ), Failed, No, "[Or(y <= 1, x >= y)]", 29
+1, c_spec, ( ( y < ( 100000 - y ) ) ), Failed, No, "[Not(y >= 50000)]", 50
+20, c_nl_spec, ( ( n == ( 0 + n ) && x < ( 1 + n ) ) || m < ( 0 + 1 ) || ( x > ( 0 - n ) && x > ( 1 + n ) ) ), Failed, No, "[Or(Not(n <= -1 + x),
+    And(Not(x <= -1*n), Not(x <= 1 + n)),
+    Not(1 <= m))]", 19
+20, c_spec, ( ( x <= ( m + x ) || x < ( 1 - n ) ) ), Failed, No, "[Or(0 <= m, Not(-1*n <= -1 + x))]", 15
+21, c_nl_spec, ( ( n > m || x >= ( n * x ) ) && ( n > ( n + -10000 ) || n == ( 10000 - m ) ) ), Failed, No, "None", 19
 21, c_spec, ( ( x <= 1 || x > m ) ), Failed, No, "[Or(Not(x <= m), x <= 1)]", 10
 21, fuzz_spec, ( ( n == m || m <= ( x * x ) ) && ( m < ( 1 * -10000 ) || x == ( x * 1 ) ) && m > x ), Failed, No, "None", 10
-23, c_nl_spec, ( ( i == 1 && j >= ( 13 - 2 ) ) ), Failed, No, "[j >= 11]", 43
-23, c_spec, ( ( i == 1 || j > ( 13 - j ) ) && ( i <= ( 2 + 13 ) ) && ( j > ( 2 + i ) || i == ( 1 + i ) ) ), Failed, No, "[Or(i == 1, Not(j <= 6)), i <= 15, Not(j <= 2 + i)]", 37
-24, c_nl_spec, ( ( j > ( 6 - 1 ) || i <= ( j - 6 ) ) && ( i < ( j - 1 ) || i <= ( j - 6 ) ) ), Failed, No, "[Or(Not(j <= 5), i <= -6 + j),
- Or(Not(j <= 1 + i), i <= -6 + j)]", 33
-24, c_spec, ( ( i >= 2 || j >= ( i - 2 ) ) && ( i <= j || i <= ( 1 + 6 ) ) && ( j > 6 ) ), Failed, No, "[Or(i >= 2, j >= -2 + i), Or(i <= j, i <= 7), Not(j <= 6)]", 31
-26, c_spec, ( ( n <= ( n + 0 ) ) && ( n < ( x - n ) || n < ( x + x ) ) && ( n == ( n - 0 ) || n >= ( -10000 - n ) ) ), Failed, No, "None", 7
-2, c_nl_spec, ( y < 1000 || y <= ( 1000 - x ) ), Failed, No, "[Or(Not(1000 <= y), y <= 1000 + -1*x)]", 40
-2, c_spec, ( ( x == 1 ) && ( y >= ( y - y ) ) && ( y == 1 || x <= ( 1 - y ) ) ), Failed, No, "[y >= 0, Or(y <= 0, y == 1)]", 58
-32, c_nl_spec, ( ( x >= ( 1 * 1 ) || n < ( n - x ) ) ), Failed, No, "[Or(Not(x >= 0), x >= 1)]", 12
-32, c_spec, ( ( x > ( n + n ) || x >= 1 ) ), Failed, No, "[Or(Not(x <= 2*n), x >= 1)]", 8
+22, c_nl_spec, ( n >= ( m - 1 ) || x <= 1 || ( m > ( 1 * n ) && n == n ) ), Failed, No, "[Or(x <= 1, n >= -1 + m, Not(m <= n))]", 18
+23, c_nl_spec, ( j >= ( 13 + i ) && i == 1 && ( j >= ( 2 + i ) || j > ( 2 - j ) ) ), Failed, No, "[j >= 14, Or(Not(j <= 1), j >= 3)]", 43
+23, c_spec, ( ( i < ( 1 + 13 ) ) ), Failed, No, "[Not(14 <= i)]", 38
+24, c_nl_spec, ( ( i <= ( j - 2 ) && j >= ( 6 - 1 ) ) || ( j > i && j >= ( 10 + j ) ) ), Failed, No, "[i <= -2 + j, j >= 5]", 33
+24, c_spec, ( ( j >= 1 ) && ( j > ( 2 + 2 ) ) && ( j >= ( 6 + i ) || i < ( j - i ) ) ), Failed, No, "[j >= 1, Not(j <= 4), Or(Not(j + -2*i <= 0), j >= 6 + i)]", 34
+26, c_nl_spec, ( ( n < ( n * x ) || x < ( x - x ) ) ), Failed, No, "[Or(Not(n*x <= n), Not(0 <= x))]", 9
+26, c_spec, ( ( n > ( n - n ) || x < ( n - n ) ) ), Failed, No, "[Or(Not(0 <= x), Not(n <= 0))]", 7
+27, c_nl_spec, ( ( x > 0 && x <= ( x * n ) ) || x < ( x - x ) || ( x >= ( 1 + 1 ) && n < ( x - x ) ) ), Failed, No, "[Or(Not(0 <= x),
+    And(Not(x <= 0), x <= n*x),
+    And(x >= 2, Not(0 <= n)))]", 9
+27, c_spec, ( ( n > ( x - n ) || n < ( 0 - n ) ) ), Failed, No, "[Or(Not(n >= 0), Not(2*n <= x))]", 13
+2, c_nl_spec, ( x > ( -10000 * y ) && x >= y && y >= ( 1 * y ) ), Failed, No, "None", 34
+2, c_spec, ( ( y < ( 0 + 1000 ) ) && ( x >= ( y + y ) || x <= x ) ), Failed, No, "[Not(1000 <= y)]", 54
+31, c_nl_spec, ( ( n >= ( 1 * 1 ) || x < ( x - n ) ) ), Failed, No, "[Or(Not(n >= 0), n >= 1)]", 12
+31, c_spec, ( ( n > ( x - n ) || n < ( 0 - n ) ) ), Failed, No, "[Or(Not(n >= 0), Not(2*n <= x))]", 13
+32, c_nl_spec, ( ( x < ( x * 10000 ) || x < ( 0 - 0 ) ) ), Failed, No, "[Or(Not(0 <= x), Not(x <= 0))]", 12
+32, c_spec, ( ( x > ( n + x ) || x < ( x + x ) ) ), Failed, No, "[Or(Not(0 <= n), Not(x <= 0))]", 8
 32, fuzz_spec, ( n < ( x - n ) ), Failed, No, "[Not(x + -2*n <= 0)]", 8
+3, c_nl_spec, ( x <= 0 || x < ( z + x ) || ( y <= z && y <= ( 1 * y ) ) ), Failed, No, "[Or(y <= z, x <= 0, Not(z <= 0))]", 12
+3, c_spec, ( ( x >= x ) && ( x < 5 || z > ( 0 - 1 ) ) ), Failed, No, "[Or(Not(5 <= x), Not(z <= -1))]", 30
 4, c_nl_spec, ( ( x <= ( x + z ) || x >= ( 10000 * x ) ) ), Failed, No, "[Or(0 <= z, x <= 0)]", 21
 4, c_spec, ( ( x <= ( 500 - x ) || z > ( 1 - y ) ) ), Failed, No, "[Or(x <= 250, Not(z <= 1 + -1*y))]", 16
 5, c_nl_spec, ( ( y > 1 && z <= ( y + 1 ) ) || x <= ( size * size ) ), Failed, No, "[Or(x <= size*size, And(Not(y <= 1), z <= 1 + y))]", 12
-5, c_spec, ( ( y > ( 10000 + -10000 ) || z >= ( y - 0 ) ) && ( z > ( -10000 + -10000 ) ) ), Failed, No, "None", 17
+5, c_spec, ( ( size > ( x - 0 ) || z >= ( x - 0 ) ) ), Failed, No, "[Or(Not(size <= x), z >= x)]", 19
+61, c_nl_spec, ( ( n >= 1 && n >= ( c * c ) ) ), Failed, No, "[n >= 1, n >= c*c]", 23
+61, c_spec, ( ( n < ( n + n ) ) && ( c <= ( n - n ) ) && ( c > ( 0 + -1 ) ) ), Failed, No, "None", 32
+62, c_nl_spec, ( c >= ( c * c ) && ( n > ( 1 - n ) || n > n ) ), Failed, No, "[c >= c*c, Not(n <= 0)]", 27
+62, c_spec, ( ( n > ( 1 - n ) || n >= ( 0 + -1 ) ) && ( c < ( n - c ) ) ), Failed, No, "None", 28
 63, c_spec, ( ( x == y || x > ( x - x ) ) && ( x < ( 10 + 1 ) || y == 0 ) ), Failed, No, "[Or(x == y, Not(x <= 0)), Or(Not(11 <= x), y == 0)]", 28
+64, c_nl_spec, ( ( x <= 10 && y >= ( 10 - 10 ) ) || ( y == y && y <= 1 ) || x > ( 10 + 10 ) ), Failed, No, "[Or(y <= 1, Not(x <= 20), And(x <= 10, y >= 0))]", 16
 65, c_spec, ( ( x == y || x > ( x - x ) ) && ( x < ( 100 + 1 ) || y == 0 ) ), Failed, No, "[Or(x == y, Not(x <= 0)), Or(Not(101 <= x), y == 0)]", 28
 65, fuzz_spec, ( ( x > ( x * 100 ) || y == ( x * x ) ) && ( x <= ( 1 * 1 ) || x > ( x * 100 ) ) ), Failed, No, "[Or(Not(x >= 0), y == x*x), Or(x <= 1, Not(x >= 0))]", 33
-68, c_nl_spec, ( n >= n || ( n <= y && x == 1 ) ), Failed, No, "[]", 13
-68, c_spec, ( ( y <= ( n - 0 ) || n <= ( 0 - 0 ) ) ), Failed, No, "[Or(y <= n, n <= 0)]", 15
+67, c_nl_spec, ( n >= n || ( n <= y && x == 1 ) ), Failed, No, "[]", 13
+67, c_spec, ( ( n <= ( y + 1 ) ) ), Failed, No, "[n <= 1 + y]", 13
+68, c_nl_spec, ( ( n <= ( -10000 * n ) && n > ( y - 10000 ) ) || ( n < ( x - n ) && n == ( -10000 - 0 ) ) || ( x <= ( 10000 * n ) && y <= ( 1 * n ) ) ), Failed, No, "None", 17
+68, c_spec, ( ( x == ( 1 + 0 ) || n > ( y - 0 ) ) ), Failed, No, "[Or(x == 1, Not(n <= y))]", 13
 68, fuzz_spec, ( x > ( y * y ) && ( n > ( y * 1 ) || n >= 0 ) && ( x > ( y * 0 ) || x == ( y + x ) ) ), Failed, No, "[Not(x <= y*y),
  Or(Not(n <= y), n >= 0),
  Or(Not(x <= 0), 0 == y)]", 6
-70, c_nl_spec, ( ( x >= ( x * x ) || n >= ( x * x ) ) ), Failed, No, "[Or(n >= x*x, x >= x*x)]", 17
-70, c_spec, ( ( n <= ( 1 - x ) || x > ( y + y ) ) ), Failed, No, "[Or(n <= 1 + -1*x, Not(x <= 2*y))]", 15
+69, c_nl_spec, ( n <= n || x > 0 ), Failed, No, "[]", 14
+69, c_spec, ( ( y > ( 0 - 1 ) || y == ( 1 - n ) ) && ( x > ( 0 - 1 ) ) ), Failed, No, "[Or(Not(y <= -1), y == 1 + -1*n), Not(x <= -1)]", 19
+70, c_nl_spec, ( ( x == y || n < ( 1 * 1 ) ) ), Failed, No, "[Or(x == y, Not(1 <= n))]", 16
+70, c_spec, ( ( n <= ( 0 + 0 ) || x == x ) && ( x > ( y + n ) || x < ( y + n ) ) ), Failed, No, "[Or(Not(x <= y + n), Not(y + n <= x))]", 16
 70, fuzz_spec, ( ( n > ( 0 - n ) && y <= ( n + n ) ) || ( x <= 0 && y == ( y * 0 ) ) || ( x <= ( 0 * 0 ) && x > ( 0 * n ) ) ), Failed, No, "[Or(And(x <= 0, y == 0), And(Not(n <= 0), y <= 2*n))]", 6
 88, c_nl_spec, ( ( x == ( y + 0 ) && y < x ) || lock == ( y + 1 ) || y > x ), Failed, No, "[Or(And(x == y, Not(x <= y)), lock == 1 + y, Not(y <= x))]", 20
 88, c_spec, ( ( y < ( y + y ) || y < ( y - y ) ) ), Failed, No, "[Or(Not(0 <= y), Not(y <= 0))]", 29
@@ -194,6 +293,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 94, fuzz_spec, ( ( k <= 10000 || j <= 2 ) && j >= k && j > ( 2 * -10000 ) ), Failed, No, "None", 9
 95, c_nl_spec, ( ( j == ( 0 * i ) && i >= ( 1 - 1 ) ) || x >= ( j - i ) || x >= ( 1 - 1 ) ), Failed, No, "[Or(x >= 0, x >= j + -1*i, And(j == 0, i >= 0))]", 25
 95, c_spec, ( ( j == 0 || y >= ( 1 - x ) ) ), Failed, No, "[Or(j == 0, y >= 1 + -1*x)]", 22
+95, fuzz_spec, ( j > incr1 ( y , x ) || ( j > incr1 ( y , y ) && j > ( x + i ) ) ), Failed, No, "None", 7
 96, c_nl_spec, ( ( y <= 1 && i >= ( j + j ) ) || i < ( x + i ) ), Failed, No, "[Or(And(y <= 1, i >= 2*j), Not(x <= 0))]", 25
 96, c_spec, ( ( y >= ( 1 - x ) || i >= ( 0 + 0 ) ) && ( y >= ( 1 - x ) || j <= 0 ) ), Failed, No, "[Or(i >= 0, y >= 1 + -1*x), Or(j <= 0, y >= 1 + -1*x)]", 30
 96, fuzz_spec, ( ( x == ( 0 + j ) || j < 1 ) ), Failed, No, "[Or(x == j, Not(1 <= j))]", 1995

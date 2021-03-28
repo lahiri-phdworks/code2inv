@@ -1,6 +1,6 @@
-best_root :  ( n >= n || ( n <= y && x == 1 ) ) 
-simplify : []
-best_reward : 0
-epoch: 0, average reward: -0.5998, 
-Random: ( y < n && y > ( 1 + x ) ), result_r: -2.2650 
-stats : Counter({'ce-T:': 9504, 'ce-I:': 1573, 'boogie_result': 995, 'ce-F:': 946, 'actual_z3': 13})
+best_root :  ( ( n <= ( -10000 * n ) && n > ( y - 10000 ) ) || ( n < ( x - n ) && n == ( -10000 - 0 ) ) || ( x <= ( 10000 * n ) && y <= ( 1 * n ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 2, average reward: -0.5440, 
+Random: ( x > ( x + 10000 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 23113, 'ce-F:': 5965, 'ce-I:': 5705, 'boogie_result': 2991, 'actual_z3': 17})

@@ -1,6 +1,6 @@
-best_root :  ( ( y <= ( 1 + 1 ) || y <= ( y - 1 ) ) ) 
-simplify : [y <= 2]
+best_root :  ( ( y < ( 100000 - y ) ) ) 
+simplify : [Not(y >= 50000)]
 best_reward : -1
-epoch: 2, average reward: -0.5523, 
-Random: ( ( x <= ( 1 + 1 ) ) && ( y <= ( x - 100000 ) || y <= ( 1 + 100000 ) ) ), result_r: -1.6431 
-stats : Counter({'ce-I:': 34279, 'boogie_result': 2944, 'ce-T:': 2943, 'ce-F:': 2938, 'actual_z3': 49})
+epoch: 7, average reward: -0.1660, 
+Random: ( ( x < ( 100000 - y ) || y <= x ) && ( y <= x || x == 1 ) ), result_r: -1.6000 
+stats : Counter({'ce-I:': 101639, 'boogie_result': 7876, 'ce-T:': 7875, 'ce-F:': 7870, 'actual_z3': 50})

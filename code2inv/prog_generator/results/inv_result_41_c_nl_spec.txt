@@ -1,2 +1,2 @@
 ( ( c >= 0 && c < ( 1 * n ) ) )
-z3_report time: 0.73 pid: 0 stats: Counter({'ce-I:': 46, 'ce-T:': 27, 'boogie_result': 18, 'ce-F:': 15, 'actual_z3': 8})
+z3_report time: 0.69 pid: 0 stats: Counter({'ce-I:': 46, 'ce-T:': 27, 'boogie_result': 18, 'ce-F:': 15, 'actual_z3': 8})

@@ -1,2 +1,2 @@
 ( ( x <= ( x + y ) || x <= ( 10 + 1 ) ) && ( x <= ( 10 + 1 ) ) && ( x <= ( x + y ) || x <= ( 1 + 1 ) ) )
-z3_report time: 157.18 pid: 0 stats: Counter({'ce-T:': 16079, 'ce-I:': 10289, 'boogie_result': 2352, 'ce-F:': 2346, 'actual_z3': 31})
+z3_report time: 161.68 pid: 0 stats: Counter({'ce-T:': 16079, 'ce-I:': 10289, 'boogie_result': 2352, 'ce-F:': 2346, 'actual_z3': 31})
