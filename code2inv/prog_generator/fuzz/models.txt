@@ -1,3 +1,2 @@
 Pre : x : 0, y : 1
-Loop : x : 0, y : 1
 Post : x : 0, y : 1

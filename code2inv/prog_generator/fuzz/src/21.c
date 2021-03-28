@@ -121,7 +121,7 @@ int main()
                     assume((loopflag == 0));
                     // loop body
                     {
-                        if (unknown())
+                        if (choices > 60)
                         {
                             m = x;
                         }

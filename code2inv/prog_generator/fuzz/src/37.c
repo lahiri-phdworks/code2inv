@@ -111,7 +111,7 @@ int main()
           // loop body
           {
             {
-              if (unknown())
+              if (choices > 60)
               {
                 if ((c != 40))
                 {
