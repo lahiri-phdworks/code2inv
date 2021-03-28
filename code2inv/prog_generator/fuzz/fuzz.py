@@ -119,8 +119,8 @@ if __name__ == "__main__":
     # dump_template(filepath, inv)
     # open(outputFile, mode="w").close()
 
-    # init_fuzzbase()
-    # call_fuzzsolver(timeout)
+    init_fuzzbase()
+    call_fuzzsolver(timeout)
 
     time.sleep(0.3)
 

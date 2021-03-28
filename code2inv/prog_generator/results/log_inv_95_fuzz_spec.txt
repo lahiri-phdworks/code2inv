@@ -1,0 +1,6 @@
+best_root :  ( j > incr1 ( y , x ) || ( j > incr1 ( y , y ) && j > ( x + i ) ) ) 
+simplify : None
+best_reward : -2
+epoch: 2, average reward: -1.5335, 
+Random: ( ( x < ( j + i ) && j <= ( j + i ) ) || j == ( j - y ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 17888, 'boogie_result': 2985, 'actual_z3': 7})

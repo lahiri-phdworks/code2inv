@@ -1,2 +1,4 @@
-Pre : x : 0, y : 1
-Post : x : 0, y : 1
+Post : i : 1, j : 0, x : 0, y : 1
+Pre : i : -1, j : 25, x : -1, y : -1
+Loop : i : 1, j : 1, x : 2, y : 17
+95: /home/ha-useast-service/Documents/Research/code2inv/code2inv/prog_generator/fuzz/src/95.c:146: int main(): Assertion `0' failed.

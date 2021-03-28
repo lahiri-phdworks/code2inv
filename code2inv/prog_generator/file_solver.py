@@ -140,24 +140,45 @@ if __name__ == "__main__":
                 % (epoch, acc_reward / 100.0, root, boogie_result(g, root))
             )
             print("best_reward:", best_reward, ", best_root:", best_root)
-            print("Simpify : ", getExpr(best_root))
+
+            try:
+                print("Simpify : ", getExpr(best_root))
+            except:
+                print("Simpify : None")
+
             stats = stat_counter.report_global()
 
             # COMMENT : dump it to an intermediate file for INV() used in Fuzzing.
-            resultpath = os.path.join(
-                os.path.dirname(__file__),
-                "results",
-                f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt",
-            )
-            with open(resultpath, mode="w") as file:
-                file.write(
-                    "best_root :  %s \nsimplify : %s\nbest_reward : %d\n"
-                    % (best_root, getExpr(best_root), best_reward)
+            try:
+                resultpath = os.path.join(
+                    os.path.dirname(__file__),
+                    "results",
+                    f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt",
                 )
-                file.write(
-                    "epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \nstats : %s\n"
-                    % (epoch, acc_reward / 100.0, root, boogie_result(g, root), stats)
+                with open(resultpath, mode="w") as file:
+                    file.write(
+                        "best_root :  %s \nsimplify : %s\nbest_reward : %d\n"
+                        % (best_root, getExpr(best_root), best_reward)
+                    )
+                    file.write(
+                        "epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \nstats : %s\n"
+                        % (epoch, acc_reward / 100.0, root, boogie_result(g, root), stats)
+                    )
+            except:
+                resultpath = os.path.join(
+                    os.path.dirname(__file__),
+                    "results",
+                    f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt",
                 )
+                with open(resultpath, mode="w") as file:
+                    file.write(
+                        "best_root :  %s \nsimplify : %s\nbest_reward : %d\n"
+                        % (best_root, "None", best_reward)
+                    )
+                    file.write(
+                        "epoch: %d, average reward: %.4f, \nRandom: %s, result_r: %.4f \nstats : %s\n"
+                        % (epoch, acc_reward / 100.0, root, boogie_result(g, root), stats)
+                    )
 
             if cmd_args.save_dir is not None:
                 torch.save(

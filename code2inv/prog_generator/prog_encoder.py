@@ -26,24 +26,26 @@ class LogicEncoder(nn.Module):
         super(LogicEncoder, self).__init__()
         self.latent_dim = latent_dim
 
-
         if RULESET:
-            self.char_embedding = Parameter(torch.Tensor(sum([len(RULESET[rule]) for rule in RULESET]), latent_dim))
+            self.char_embedding = Parameter(torch.Tensor(
+                sum([len(RULESET[rule]) for rule in RULESET]), latent_dim))
 
         def new_gate():
             lh = nn.Linear(self.latent_dim, self.latent_dim)
             rh = nn.Linear(self.latent_dim, self.latent_dim)
             return lh, rh
-        
 
-        self.ilh, self.irh = new_gate()        
+        self.ilh, self.irh = new_gate()
         self.lflh, self.lfrh = new_gate()
         self.rflh, self.rfrh = new_gate()
         self.ulh, self.urh = new_gate()
 
-        self.i_gates = [ nn.Linear(self.latent_dim, self.latent_dim) for _ in range(MAX_CHILD) ]
-        self.f_gates = [ [ nn.Linear(self.latent_dim, self.latent_dim) for _ in range(MAX_CHILD) ] for _ in range(MAX_CHILD) ]
-        self.u_gates = [ nn.Linear(self.latent_dim, self.latent_dim) for _ in range(MAX_CHILD) ]
+        self.i_gates = [nn.Linear(self.latent_dim, self.latent_dim)
+                        for _ in range(MAX_CHILD)]
+        self.f_gates = [[nn.Linear(self.latent_dim, self.latent_dim)
+                         for _ in range(MAX_CHILD)] for _ in range(MAX_CHILD)]
+        self.u_gates = [nn.Linear(self.latent_dim, self.latent_dim)
+                        for _ in range(MAX_CHILD)]
 
         self.ix = nn.Linear(self.latent_dim, self.latent_dim)
         self.fx = nn.Linear(self.latent_dim, self.latent_dim)
@@ -57,23 +59,24 @@ class LogicEncoder(nn.Module):
     def forward(self, node_embedding, init_embedding, root):
         if root is None or checkallnone(root):
             return init_embedding
-            
+
         if root.state is None:
             self.subexpr_embed(node_embedding, root)
         s = torch.cat((init_embedding, root.state[0], root.state[1]), dim=1)
         o = F.tanh(self.oend(s))
         return o
-        
 
     def _get_token_embed(self, node_embedding, node):
         idx = 0
         for rule in RULESET:
             for opt in RULESET[rule]:
                 if len(opt) == 1 and node.name == opt[0]:
-                    x_embed = torch.index_select(self.char_embedding, 0, Variable(torch.LongTensor([idx])))
+                    x_embed = torch.index_select(
+                        self.char_embedding, 0, Variable(torch.LongTensor([idx])))
                     return x_embed
                 elif node.name in opt and node.name not in RULESET:
-                    x_embed = torch.index_select(self.char_embedding, 0, Variable(torch.LongTensor([idx])))
+                    x_embed = torch.index_select(
+                        self.char_embedding, 0, Variable(torch.LongTensor([idx])))
                     return x_embed
                 idx += 1
         if node.name != "":
@@ -85,18 +88,19 @@ class LogicEncoder(nn.Module):
             idx = 0
             for rule in RULESET:
                 if node.rule == rule:
-                    x_embed = torch.index_select(self.char_embedding, 0, Variable(torch.LongTensor([idx])))
+                    x_embed = torch.index_select(
+                        self.char_embedding, 0, Variable(torch.LongTensor([idx])))
                     return x_embed
                 idx += 1
 
     def subexpr_embed(self, node_embedding, node):
         if node.state is not None:
             return node.state
-            
+
         x_embed = self._get_token_embed(node_embedding, node)
-        
-        if len(node.children) == 0: # leaf node         
-            
+
+        if len(node.children) == 0:  # leaf node
+
             c = self.cx(x_embed)
             o = F.sigmoid(self.ox(x_embed))
             h = o * F.tanh(c)
@@ -119,7 +123,8 @@ class LogicEncoder(nn.Module):
             for idx in range(len(node.children)):
                 f_gate_vals = []
                 for idx2 in range(len(node.children)):
-                    f_gate_vals.append(self.f_gates[idx][idx2](children_states[idx2][1]))
+                    f_gate_vals.append(self.f_gates[idx][idx2](
+                        children_states[idx2][1]))
                 f_vals.append(fx + sum(f_gate_vals))
 
             u_gate_vals = []
@@ -128,7 +133,8 @@ class LogicEncoder(nn.Module):
                 u_gate_vals.append(self.u_gates[idx](children_states[idx][1]))
 
             update = F.tanh(self.ux(x_embed) + sum(u_gate_vals))
-            c = i * update + sum([ f_vals[idx] * children_states[idx][0] for idx in range(len(node.children)) ])
+            c = i * update + sum([f_vals[idx] * children_states[idx][0]
+                                  for idx in range(len(node.children))])
             h = F.tanh(c)
 
             node.state = (c, h)
