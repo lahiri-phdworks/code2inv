@@ -1,0 +1,6 @@
+best_root :  ( ( k <= 10000 || j <= 2 ) && j >= k && j > ( 2 * -10000 ) ) 
+simplify : None
+best_reward : -2
+epoch: 2, average reward: -1.5075, 
+Random: ( ( n == -10000 && j < ( i - 2 ) ) || j < ( 0 - 10000 ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 17928, 'boogie_result': 2992, 'actual_z3': 9})

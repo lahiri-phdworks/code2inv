@@ -6,8 +6,9 @@ export CXX=$(which hfuzz-clang++)
 export AFL=$(which honggfuzz)
 
 # var=$1;
+# 75 83 85   
 
-for var in 75 80 83 85 88 89 94 95 96 98 99;
+for var in 96 99 80 83 85;
 do
     # ./run_solver_file.sh \
     # ../../benchmarks/C_instances/c_graph/${var}.c.json \
