@@ -1,2 +1,2 @@
 ( ( sn == ( 1 * x ) && sn >= -1 ) )
-z3_report time: 0.29 pid: 0 stats: Counter({'boogie_result': 6, 'actual_z3': 6, 'ce-T:': 5, 'ce-F:': 5, 'ce-I:': 4})
+z3_report time: 0.33 pid: 0 stats: Counter({'boogie_result': 6, 'actual_z3': 6, 'ce-T:': 5, 'ce-F:': 5, 'ce-I:': 4})

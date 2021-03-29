@@ -1,2 +1,2 @@
 ( ( y > ( y - 2 ) ) && ( x <= ( y + 2 ) ) )
-z3_report time: 7.58 pid: 0 stats: Counter({'ce-T:': 480, 'boogie_result': 104, 'ce-F:': 98, 'actual_z3': 21})
+z3_report time: 7.26 pid: 0 stats: Counter({'ce-T:': 480, 'boogie_result': 104, 'ce-F:': 98, 'actual_z3': 21})
