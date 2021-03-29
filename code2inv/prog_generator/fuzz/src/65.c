@@ -19,52 +19,55 @@
 
 #define INV(x, y) PHI
 
+int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
+
+FILE *file_descp;
 
 // COMMENT : Precheck template
-void precheck(int x, int y)
+void precheck(char *buff, int x, int y)
 {
     int f = preflag;
     aflcrash(INV(x, y), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(stderr, "Pre : %s : %d, %s : %d\n",
-                "x", x, "y", y);
-        fflush(stderr);
+        fprintf(file_descp, "Pre : %s\n",
+                buff);
+        fflush(file_descp);
     }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int x, int y)
+void loopcheck(char *buff, int x, int y)
 {
     int f = loopflag;
     aflcrash(INV(x, y), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(stderr, "Loop : %s : %d, %s : %d\n",
-                "x", x, "y", y);
-        fflush(stderr);
+        fprintf(file_descp, "Loop : %s\n",
+                buff);
+        fflush(file_descp);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, x, y)    \
+#define postcheck(buff, cond, x, y)               \
     \ 
-{                           \
+{                                            \
         \ 
-    int f = postflag;            \
+    int f = postflag;                             \
         \ 
-   aflcrash(cond, postflag);     \
+   aflcrash(cond, postflag);                      \
         \ 
-    if (f == 0 && postflag == 1) \
-        {                        \
+    if (f == 0 && postflag == 1)                  \
+        {                                         \
             \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d\n",\ 
- "x",                            \
-               x, "y", y);       \
-            fflush(stderr);      \
+        fprintf(file_descp, "Post : %s\n", buff); \
+            \ 
+fflush(file_descp);                               \
         \ 
-}                       \
+}                                        \
     }
 
 int main()
@@ -73,7 +76,8 @@ int main()
     int x;
     int y;
 
-    freopen("models.txt", "w", stderr);
+    FILE *file_descp = fopen("models.txt", "w");
+    // freopen("models.txt", "w", stderr);
 
     for (;;)
     {
@@ -84,6 +88,10 @@ int main()
 
         int choices = buf[0];
         x = buf[1];
+
+        char vars[100];
+        snprintf(vars, 100, "%s : %d, %s : %d", "x", x, "y", y);
+
         // pre-conditions
         // precheck
         // loopcond : (x <= 100)
@@ -93,7 +101,7 @@ int main()
             //pre-conditions
             assume((preflag == 0));
             (x = 1);
-            precheck(x, y);
+            precheck(vars, x, y);
         }
         else
         {
@@ -114,7 +122,7 @@ int main()
                         y = 100 - x;
                         x = x + 1;
                     }
-                    loopcheck(x, y);
+                    loopcheck(vars, x, y);
                 }
             }
             else
@@ -122,8 +130,16 @@ int main()
                 // post-check program
                 assume((postflag == 0));
                 // post-condition
-                postcheck(y >= 0, x, y)
+                postcheck(vars, y >= 0, x, y)
             }
+        }
+
+        if (preflag + loopflag + postflag == 0 && counter == 100)
+        {
+            fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+                    "precount", precount, "loopcount", loopcount, "postcount", postcount);
+            fflush(file_descp);
+            counter = 0;
         }
 
         if (preflag + loopflag + postflag >= 3)

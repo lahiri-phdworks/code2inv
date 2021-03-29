@@ -19,7 +19,11 @@
 
 #define INV(x, y) PHI
 
+int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
+
+FILE *file_descp;
 
 // COMMENT : Precheck template
 void precheck(char *buff, int x, int y)
@@ -28,9 +32,9 @@ void precheck(char *buff, int x, int y)
   aflcrash(INV(x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s",
+    fprintf(file_descp, "Pre : %s\n",
             buff);
-    fflush(stderr);
+    fflush(file_descp);
   }
 }
 
@@ -41,29 +45,29 @@ void loopcheck(char *buff, int x, int y)
   aflcrash(INV(x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s",
+    fprintf(file_descp, "Loop : %s\n",
             buff);
-    fflush(stderr);
+    fflush(file_descp);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(buff, cond, x, y) \
+#define postcheck(buff, cond, x, y)               \
   \ 
-{                                \
+{                                              \
     \ 
-    int f = postflag;               \
+    int f = postflag;                             \
     \ 
-   aflcrash(cond, postflag);        \
+   aflcrash(cond, postflag);                      \
     \ 
-    if (f == 0 && postflag == 1)    \
-    {                               \
+    if (f == 0 && postflag == 1)                  \
+    {                                             \
       \ 
-       fprintf(stderr, "Post : %s",\ 
-              buff);                \
-      fflush(stderr);               \
+        fprintf(file_descp, "Post : %s\n", buff); \
+      \ 
+fflush(file_descp);                               \
     \ 
-}                              \
+}                                            \
   }
 
 int main()
@@ -71,23 +75,25 @@ int main()
   // variable declarations
   int x;
   int y;
-  freopen("models.txt", "w", stderr);
+
+  FILE *file_descp = fopen("models.txt", "w");
+  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
     size_t len;
-    const int32_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
 
     int choices = buf[0];
-    y = buf[1];
-    x = buf[2];
 
     char vars[100];
-    snprintf(vars, 100, "%s : %d, %s : %d\n", "x", x, "y", y);
+    snprintf(vars, 100, "%s : %d, %s : %d", "x", x, "y", y);
 
     // pre-conditions
+    y = buf[1];
+    x = buf[2];
     // precheck
     // loopcond : (x < 0)
 
@@ -95,13 +101,13 @@ int main()
     {
       //pre-conditions
       assume((preflag == 0));
+      (x = -5000);
       precheck(vars, x, y);
     }
     else
     {
       // loop-check program
       assume((loopflag + postflag < 2));
-      (x = -5000);
       assume(INV(x, y));
 
       // Loop Condition
@@ -129,6 +135,14 @@ int main()
         // post-condition
         postcheck(vars, (y > 0), x, y)
       }
+    }
+
+    if (preflag + loopflag + postflag == 0 && counter == 100)
+    {
+      fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      fflush(file_descp);
+      counter = 0;
     }
 
     if (preflag + loopflag + postflag >= 3)
