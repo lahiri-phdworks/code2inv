@@ -1,2 +1,2 @@
 ( ( c < n || c >= ( n + c ) ) && ( n >= ( c + 1 ) || c > ( n + n ) ) && ( c < ( 1 + c ) ) )
-z3_report time: 4.78 pid: 0 stats: Counter({'ce-I:': 150, 'ce-T:': 129, 'ce-F:': 123, 'boogie_result': 68, 'actual_z3': 10})
+z3_report time: 4.87 pid: 0 stats: Counter({'ce-I:': 150, 'ce-T:': 129, 'ce-F:': 123, 'boogie_result': 68, 'actual_z3': 10})

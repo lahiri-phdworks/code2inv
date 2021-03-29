@@ -1,2 +1,2 @@
 ( ( y > ( 0 - 0 ) || y >= ( 0 + x ) ) && ( x == ( y + y ) ) && ( y == ( y - y ) || y == ( 0 - 0 ) ) )
-z3_report time: 7.19 pid: 0 stats: Counter({'ce-F:': 391, 'ce-I:': 355, 'boogie_result': 119, 'ce-T:': 115, 'actual_z3': 22})
+z3_report time: 7.56 pid: 0 stats: Counter({'ce-F:': 391, 'ce-I:': 355, 'boogie_result': 119, 'ce-T:': 115, 'actual_z3': 22})

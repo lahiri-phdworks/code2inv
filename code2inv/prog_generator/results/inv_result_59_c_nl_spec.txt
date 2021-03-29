@@ -1,2 +1,2 @@
 ( ( c <= ( 1 * 1 ) && n > 0 ) || n > ( 0 + n ) || ( n >= ( c + 0 ) && n > ( 1 - n ) ) )
-z3_report time: 17.03 pid: 0 stats: Counter({'ce-I:': 1396, 'ce-T:': 861, 'ce-F:': 545, 'boogie_result': 292, 'actual_z3': 12})
+z3_report time: 17.45 pid: 0 stats: Counter({'ce-I:': 1396, 'ce-T:': 861, 'ce-F:': 545, 'boogie_result': 292, 'actual_z3': 12})
