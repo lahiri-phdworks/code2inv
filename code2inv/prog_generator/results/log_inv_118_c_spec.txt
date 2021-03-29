@@ -1,0 +1,6 @@
+best_root :  ( ( i == ( 1 + sn ) ) && ( sn <= 1 ) ) 
+simplify : [sn <= 1]
+best_reward : -1
+epoch: 7, average reward: -0.5408, 
+Random: ( ( i == ( 0 + sn ) || sn >= ( 0 - i ) ) ), result_r: -1.8567 
+stats : Counter({'ce-F:': 41992, 'ce-T:': 38418, 'ce-I:': 22225, 'boogie_result': 7898, 'actual_z3': 32})

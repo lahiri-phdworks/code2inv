@@ -1,6 +1,6 @@
-best_root :  ( d3 > ( 0 * d2 ) && ( d2 > ( 0 * d2 ) || d2 > ( 0 - d2 ) ) ) 
-simplify : [Not(d3 <= 0), Not(d2 <= 0)]
+best_root :  ( d3 > ( 0 * 0 ) && ( x3 > ( 1 * d2 ) || d2 > ( 1 - d1 ) ) ) 
+simplify : [Not(d3 <= 0), Or(Not(x3 <= d2), Not(d2 <= 1 + -1*d1))]
 best_reward : -1
-epoch: 5, average reward: -0.5243, 
-Random: ( ( d1 < ( 1 - 10000 ) || d1 > 0 ) && ( d2 > ( 0 - d1 ) || x1 == d3 ) && x3 > ( 0 - d1 ) ), result_r: -1.7960 
-stats : Counter({'ce-F:': 47275, 'ce-I:': 40697, 'ce-T:': 38705, 'boogie_result': 5956, 'actual_z3': 25})
+epoch: 7, average reward: -0.5369, 
+Random: ( d2 > ( 0 + x2 ) || ( d3 > ( 0 * 0 ) && d3 == ( d2 + 10000 ) ) || ( x3 == ( 10000 + 10000 ) && d1 == 10000 ) ), result_r: -2.1155 
+stats : Counter({'ce-F:': 68937, 'ce-I:': 58486, 'ce-T:': 52572, 'boogie_result': 7937, 'actual_z3': 27})

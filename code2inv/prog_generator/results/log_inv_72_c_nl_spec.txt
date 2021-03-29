@@ -1,0 +1,6 @@
+best_root :  ( c >= 36 || z == ( z * z ) || ( y >= ( 1 * 127 ) && z >= 0 ) ) 
+simplify : [Or(c >= 36, z == z*z, And(y >= 127, z >= 0))]
+best_reward : -1
+epoch: 7, average reward: -0.5749, 
+Random: ( y >= ( c * c ) && ( c == ( z * c ) || z == ( c + c ) ) && z == ( z - z ) ), result_r: -2.0200 
+stats : Counter({'ce-F:': 45519, 'ce-I:': 42992, 'ce-T:': 23761, 'boogie_result': 7924, 'actual_z3': 15})

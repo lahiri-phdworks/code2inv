@@ -1,6 +1,6 @@
-best_root :  ( ( y >= ( 1 - x ) || i >= ( 0 + 0 ) ) && ( y >= ( 1 - x ) || j <= 0 ) ) 
-simplify : [Or(y >= 1 + -1*x, i >= 0), Or(j <= 0, y >= 1 + -1*x)]
-best_reward : 0
-epoch: 5, average reward: -0.5658, 
-Random: ( ( x > i ) && ( y >= ( i - x ) || j > i ) && ( y < i || j <= x ) ), result_r: -1.7750 
-stats : Counter({'ce-I:': 52857, 'ce-T:': 32138, 'ce-F:': 6661, 'boogie_result': 5926, 'actual_z3': 30})
+best_root :  ( ( j >= ( 1 - y ) ) && ( j == i || j <= i ) && ( j >= i || j > i ) ) 
+simplify : [j >= 1 + -1*y, Or(j == i, j <= i), Or(j >= i, Not(j <= i))]
+best_reward : -1
+epoch: 7, average reward: -0.6067, 
+Random: ( ( j >= ( 0 + x ) ) && ( x == i ) ), result_r: -2.2502 
+stats : Counter({'ce-I:': 74450, 'ce-T:': 43916, 'ce-F:': 10587, 'boogie_result': 7889, 'actual_z3': 30})

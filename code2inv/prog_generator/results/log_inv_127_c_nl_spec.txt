@@ -1,0 +1,8 @@
+best_root :  ( j < ( i * i ) || j > ( j * 0 ) || ( i > ( 0 * 1 ) && x > ( 0 * i ) ) ) 
+simplify : [Or(Not(i*i <= j),
+    And(Not(i <= 0), Not(x <= 0)),
+    Not(j <= 0))]
+best_reward : -1
+epoch: 7, average reward: -0.5295, 
+Random: ( x <= ( j * j ) || ( j > ( 0 * i ) && j > ( 0 * 1 ) ) || j > ( 0 * 0 ) ), result_r: -2.0900 
+stats : Counter({'ce-T:': 53083, 'ce-I:': 18605, 'ce-F:': 15617, 'boogie_result': 7935, 'actual_z3': 13})

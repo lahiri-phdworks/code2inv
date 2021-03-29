@@ -1,6 +1,6 @@
-best_root :  ( n >= x && ( y <= ( n * n ) || n >= ( 10000 - n ) ) ) 
-simplify : [n >= x, Or(y <= n*n, n >= 5000)]
+best_root :  ( x == ( -10000 * y ) || y < ( 10000 * n ) || ( y >= ( 10000 * y ) && n >= ( x * 1 ) ) ) 
+simplify : None
 best_reward : -1
-epoch: 5, average reward: -0.5467, 
-Random: ( ( n >= y || n < ( 10000 * n ) ) ), result_r: -1.7633 
-stats : Counter({'ce-T:': 40945, 'ce-I:': 12459, 'ce-F:': 11689, 'boogie_result': 5956, 'actual_z3': 12})
+epoch: 7, average reward: -0.5332, 
+Random: ( x >= ( 0 + 1 ) || n >= ( 1 + 1 ) ), result_r: -1.9150 
+stats : Counter({'ce-T:': 54798, 'ce-I:': 19123, 'ce-F:': 15647, 'boogie_result': 7935, 'actual_z3': 13})

@@ -1,0 +1,6 @@
+best_root :  ( ( k < m || k <= m ) ) 
+simplify : [Or(Not(m <= k), k <= m)]
+best_reward : -1
+epoch: 7, average reward: -0.5091, 
+Random: ( ( a <= ( 1 + 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 55445, 'ce-I:': 15824, 'boogie_result': 7931, 'ce-F:': 7847, 'actual_z3': 11})

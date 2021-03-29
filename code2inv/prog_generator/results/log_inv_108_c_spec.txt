@@ -1,6 +1,6 @@
-best_root :  ( ( c == -10000 || j == ( k + k ) ) ) 
+best_root :  ( ( m <= ( c - 1 ) ) && ( j <= ( c + -10000 ) || k == ( j + k ) ) && ( m >= ( j + 1 ) || j >= ( j - 1 ) ) ) 
 simplify : None
 best_reward : -1
-epoch: 5, average reward: -1.0333, 
-Random: ( ( k > ( j - 1 ) || k == ( k + j ) ) && ( k == ( k - j ) || j < ( k + j ) ) && ( j >= 1 ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 17875, 'ce-F:': 17858, 'boogie_result': 5962, 'actual_z3': 12})
+epoch: 7, average reward: -1.0074, 
+Random: ( ( c < ( k + k ) || j == ( j + j ) ) && ( j == ( j + k ) || a == ( j + k ) ) ), result_r: -2.1833 
+stats : Counter({'ce-T:': 23809, 'ce-F:': 23792, 'boogie_result': 7940, 'actual_z3': 12})

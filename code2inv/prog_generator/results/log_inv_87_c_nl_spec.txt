@@ -1,0 +1,6 @@
+best_root :  ( lock <= ( 0 + 1 ) && ( lock > ( lock * 1 ) || y >= ( lock * y ) ) ) 
+simplify : [lock <= 1, y >= lock*y]
+best_reward : -1
+epoch: 3, average reward: -0.5691, 
+Random: ( ( y >= ( lock * 1 ) && y > ( lock * 1 ) ) ), result_r: -1.8240 
+stats : Counter({'ce-T:': 16661, 'ce-I:': 14053, 'ce-F:': 7703, 'boogie_result': 3916, 'actual_z3': 40})

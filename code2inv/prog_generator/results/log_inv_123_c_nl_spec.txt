@@ -1,0 +1,8 @@
+best_root :  ( ( size > ( 0 * i ) || i > ( 0 * size ) ) && ( sn == ( size * sn ) || i <= ( 0 * i ) ) && ( size < size || sn <= ( i * i ) ) ) 
+simplify : [Or(Not(i <= 0), Not(size <= 0)),
+ Or(i <= 0, sn == size*sn),
+ sn <= i*i]
+best_reward : -1
+epoch: 7, average reward: -0.5674, 
+Random: ( sn == ( 0 * size ) || i <= ( i + i ) || sn == ( size * size ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 44218, 'ce-T:': 31662, 'ce-F:': 23047, 'boogie_result': 7920, 'actual_z3': 21})

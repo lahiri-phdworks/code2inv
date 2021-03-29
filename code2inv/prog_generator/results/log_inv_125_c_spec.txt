@@ -1,0 +1,6 @@
+best_root :  ( ( i == ( i + y ) || j > ( x - 0 ) ) && ( i == ( i - i ) || x >= ( x - 0 ) ) && ( i <= ( x - 0 ) ) ) 
+simplify : [Or(0 == y, Not(j <= x)), i <= x]
+best_reward : -1
+epoch: 7, average reward: -0.6045, 
+Random: ( ( x > ( x - 0 ) || x >= ( x - 0 ) ) && ( j > ( 1 + y ) ) && ( x == ( y + y ) || x < 0 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 85909, 'ce-I:': 18707, 'ce-F:': 16960, 'boogie_result': 7904, 'actual_z3': 17})

@@ -1,7 +1,6 @@
-best_root :  ( ( n > ( 1 - n ) || y > ( x + 1 ) ) && ( x <= 10000 || x >= ( y - n ) ) ) 
-simplify : [Or(Not(n <= 0), Not(y <= 1 + x)),
- Or(x <= 10000, x >= y + -1*n)]
+best_root :  ( ( x >= ( 1 - n ) || y > ( 1 + n ) ) && ( n > ( x + 1 ) || n <= n ) ) 
+simplify : [Or(x >= 1 + -1*n, Not(y <= 1 + n))]
 best_reward : -1
-epoch: 5, average reward: -0.6073, 
-Random: ( ( x >= ( y + x ) ) ), result_r: -2.1017 
-stats : Counter({'ce-T:': 46885, 'ce-I:': 17224, 'ce-F:': 11362, 'boogie_result': 5945, 'actual_z3': 14})
+epoch: 7, average reward: -0.6183, 
+Random: ( ( y > ( y + 1 ) ) && ( n > ( 1 + 1 ) || n >= ( -10000 + n ) ) && ( n > ( -10000 + n ) || n < 0 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 62693, 'ce-I:': 23152, 'ce-F:': 15314, 'boogie_result': 7921, 'actual_z3': 14})

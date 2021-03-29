@@ -1,0 +1,6 @@
+best_root :  ( j < ( m * m ) ) 
+simplify : [Not(m*m <= j)]
+best_reward : -1
+epoch: 7, average reward: -0.5828, 
+Random: ( ( k <= ( 1 - 1 ) && c > ( k * 1 ) ) || a == ( 1 * c ) ), result_r: -1.8730 
+stats : Counter({'ce-T:': 39721, 'ce-I:': 15719, 'boogie_result': 7953, 'ce-F:': 7949, 'actual_z3': 11})

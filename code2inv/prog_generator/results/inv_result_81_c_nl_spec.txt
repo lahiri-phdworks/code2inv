@@ -1,0 +1,2 @@
+( ( x >= y && i > ( x * x ) ) || ( i > ( x - x ) && i < ( 1 - 1 ) ) || i >= 0 )
+z3_report time: 16.63 pid: 0 stats: Counter({'ce-T:': 969, 'ce-I:': 473, 'boogie_result': 252, 'ce-F:': 251, 'actual_z3': 23})

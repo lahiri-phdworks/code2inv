@@ -1,0 +1,6 @@
+best_root :  ( ( d2 == 1 ) && ( d1 >= 1 ) && ( d3 >= 1 || d1 <= ( x3 + d1 ) ) ) 
+simplify : [d1 >= 1, Or(d3 >= 1, 0 <= x3)]
+best_reward : -1
+epoch: 7, average reward: -0.4424, 
+Random: ( ( d3 <= ( x3 + d1 ) ) ), result_r: -1.6525 
+stats : Counter({'ce-T:': 61404, 'ce-I:': 59021, 'ce-F:': 58741, 'boogie_result': 7933, 'actual_z3': 24})
