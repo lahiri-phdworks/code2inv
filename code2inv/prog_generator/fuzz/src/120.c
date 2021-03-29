@@ -75,7 +75,9 @@ int main()
   // variable declarations
   int i;
   int sn;
-  FILE *file_descp = fopen("models.txt", "w");
+
+  FILE *fptr = fopen("models.txt", "w");
+  file_descp = fptr;
   // freopen("models.txt", "w", stderr);
 
   for (;;)

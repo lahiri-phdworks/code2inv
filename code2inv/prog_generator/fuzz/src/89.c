@@ -19,52 +19,55 @@
 
 #define INV(lock, v1, v2, v3, x, y) PHI
 
+int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
+
+FILE *file_descp;
 
 // COMMENT : Precheck template
-void precheck(int lock, int v1, int v2, int v3, int x, int y)
+void precheck(char *buff, int lock, int v1, int v2, int v3, int x, int y)
 {
   int f = preflag;
   aflcrash(INV(lock, v1, v2, v3, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
-            "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
-    fflush(stderr);
+    fprintf(file_descp, "Pre : %s\n",
+            buff);
+    fflush(file_descp);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int lock, int v1, int v2, int v3, int x, int y)
+void loopcheck(char *buff, int lock, int v1, int v2, int v3, int x, int y)
 {
   int f = loopflag;
   aflcrash(INV(lock, v1, v2, v3, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
-            "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
-    fflush(stderr);
+    fprintf(file_descp, "Loop : %s\n",
+            buff);
+    fflush(file_descp);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, lock, v1, v2, v3, x, y)                     \
+#define postcheck(buff, cond, lock, v1, v2, v3, x, y) \
   \ 
-{                                                                \
+{                                                  \
     \ 
-    int f = postflag;                                               \
+    int f = postflag;                                 \
     \ 
-   aflcrash(cond, postflag);                                        \
+   aflcrash(cond, postflag);                          \
     \ 
-    if (f == 0 && postflag == 1)                                    \
-    {                                                               \
+    if (f == 0 && postflag == 1)                      \
+    {                                                 \
       \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
- "lock",                                                            \
-               lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y); \
-      fflush(stderr);                                               \
+        fprintf(file_descp, "Post : %s\n", buff);     \
+      \ 
+fflush(file_descp);                                   \
     \ 
-}                                                              \
+}                                                \
   }
 
 int main()
@@ -77,7 +80,9 @@ int main()
   int x;
   int y;
 
-  freopen("models.txt", "w", stderr);
+  FILE *fptr = fopen("models.txt", "w");
+  file_descp = fptr;
+  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
@@ -88,6 +93,13 @@ int main()
 
     int choices = buf[0];
     y = buf[1];
+    x = buf[2];
+    lock = buf[3];
+
+    char vars[100];
+    snprintf(vars, 100, "%s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d",
+             "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
+
     // pre-conditions
     assume((-10000 <= y && y <= 10000));
     // precheck
@@ -99,7 +111,7 @@ int main()
       assume((preflag == 0));
       (x = y);
       (lock = 1);
-      precheck(lock, v1, v2, v3, x, y);
+      precheck(vars, lock, v1, v2, v3, x, y);
     }
     else
     {
@@ -135,7 +147,7 @@ int main()
               }
             }
           }
-          loopcheck(lock, v1, v2, v3, x, y);
+          loopcheck(vars, lock, v1, v2, v3, x, y);
         }
       }
       else
@@ -143,8 +155,16 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        postcheck((lock == 1), lock, v1, v2, v3, x, y)
+        postcheck(vars, (lock == 1), lock, v1, v2, v3, x, y)
       }
+    }
+
+    if (preflag + loopflag + postflag == 0 && counter == 100)
+    {
+      fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      fflush(file_descp);
+      counter = 0;
     }
 
     if (preflag + loopflag + postflag >= 3)

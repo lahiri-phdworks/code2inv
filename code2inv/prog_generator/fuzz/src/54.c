@@ -79,7 +79,8 @@ int main()
   int v2;
   int v3;
 
-  FILE *file_descp = fopen("models.txt", "w");
+  FILE *fptr = fopen("models.txt", "w");
+  file_descp = fptr;
   // freopen("models.txt", "w", stderr);
 
   for (;;)
