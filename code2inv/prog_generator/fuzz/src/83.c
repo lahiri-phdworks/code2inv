@@ -86,6 +86,7 @@ int main()
 
     char vars[100];
     snprintf(vars, 100, "%s : %d, %s : %d\n", "x", x, "y", y);
+
     // pre-conditions
     // precheck
     // loopcond : (x < 0)

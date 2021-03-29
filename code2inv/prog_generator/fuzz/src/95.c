@@ -20,6 +20,9 @@
 #define INV(i, j, x, y) PHI
 
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
+
+int counter;
 
 // COMMENT : Precheck template
 void precheck(char *buff, int i, int j, int x, int y)
@@ -80,6 +83,7 @@ int main()
 
   for (;;)
   {
+    counter;
     size_t len;
     const int8_t *buf;
 
@@ -106,6 +110,7 @@ int main()
       (j = 0);
       (i = 0);
       (y = 1);
+      precount++;
       precheck(vars, i, j, x, y);
     }
     else
@@ -129,6 +134,7 @@ int main()
               (j = (j + y));
             }
           }
+          loopcount++;
           loopcheck(vars, i, j, x, y);
         }
       }
@@ -138,8 +144,17 @@ int main()
         assume((postflag == 0));
         // post-condition
         if ((y == 1))
+        {
+          postcount++;
           postcheck(vars, (i == j), i, j, x, y)
+        }
       }
+    }
+
+    if (preflag + loopflag + postflag == 0 && counter >= 100)
+    {
+      // print
+      counter = 0;
     }
 
     if (preflag + loopflag + postflag >= 3)
