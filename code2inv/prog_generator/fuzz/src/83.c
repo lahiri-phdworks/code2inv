@@ -22,49 +22,48 @@
 int preflag = 0, loopflag = 0, postflag = 0;
 
 // COMMENT : Precheck template
-void precheck(int x, int y)
+void precheck(char *buff, int x, int y)
 {
   int f = preflag;
   aflcrash(INV(x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s : %d, %s : %d\n",
-            "x", x, "y", y);
+    fprintf(stderr, "Pre : %s",
+            buff);
     fflush(stderr);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int x, int y)
+void loopcheck(char *buff, int x, int y)
 {
   int f = loopflag;
   aflcrash(INV(x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s : %d, %s : %d\n",
-            "x", x, "y", y);
+    fprintf(stderr, "Loop : %s",
+            buff);
     fflush(stderr);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, x, y)    \
+#define postcheck(buff, cond, x, y) \
   \ 
-{                             \
+{                                \
     \ 
-    int f = postflag;            \
+    int f = postflag;               \
     \ 
-   aflcrash(cond, postflag);     \
+   aflcrash(cond, postflag);        \
     \ 
-    if (f == 0 && postflag == 1) \
-    {                            \
+    if (f == 0 && postflag == 1)    \
+    {                               \
       \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d\n",\ 
- "x",                            \
-               x, "y", y);       \
-      fflush(stderr);            \
+       fprintf(stderr, "Post : %s",\ 
+              buff);                \
+      fflush(stderr);               \
     \ 
-}                           \
+}                              \
   }
 
 int main()
@@ -77,13 +76,16 @@ int main()
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
     int choices = buf[0];
     y = buf[1];
+    x = buf[2];
 
+    char vars[100];
+    snprintf(vars, 100, "%s : %d, %s : %d\n", "x", x, "y", y);
     // pre-conditions
     // precheck
     // loopcond : (x < 0)
@@ -92,7 +94,7 @@ int main()
     {
       //pre-conditions
       assume((preflag == 0));
-      precheck(x, y);
+      precheck(vars, x, y);
     }
     else
     {
@@ -116,7 +118,7 @@ int main()
               (y = (y + 1));
             }
           }
-          loopcheck(x, y);
+          loopcheck(vars, x, y);
         }
       }
       else
@@ -124,7 +126,7 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        postcheck((y > 0), x, y)
+        postcheck(vars, (y > 0), x, y)
       }
     }
 
