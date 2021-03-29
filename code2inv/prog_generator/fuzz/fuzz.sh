@@ -46,7 +46,5 @@ if [[ ! -d $testDir ]]; then
     echo "Test : $testDir not found !!" 1>&2
 fi
 
-file="models.txt"
-> $file
-
+> models.txt
 $AFL -i $testDir -o $outputDir -P -- $buildDir/$RUNNER

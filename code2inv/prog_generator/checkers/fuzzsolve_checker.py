@@ -58,8 +58,8 @@ def process_model_string(model: str):
     if model == "":
         return None
 
-    cex_type = model.split(":")[0].strip()
-    m_list = model.replace(":", ",").split(",")
+    cex_type = model.strip().split(":")[0].strip()
+    m_list = model.strip().replace(":", ",").split(",")
     for index, elems in enumerate(m_list):
         if (index % 2) == 0:
             vals.append(elems.strip())
@@ -147,6 +147,10 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : Gets called in each env.step() iteration.
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
+
+    for i in range(3):
+        collection_semantic[i] = None
+
     dump_template(filepath, inv)
     open(outputFile, mode="w").close()
 

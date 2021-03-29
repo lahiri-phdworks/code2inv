@@ -32,9 +32,9 @@ void precheck(char *buff, int i, int sn)
   aflcrash(INV(i, sn), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
+    fprintf(file_descp, "\nPre : %s\n",
             buff);
-    fflush(file_descp);
+    // fflush(file_descp);
   }
 }
 
@@ -45,52 +45,51 @@ void loopcheck(char *buff, int i, int sn)
   aflcrash(INV(i, sn), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
+    fprintf(file_descp, "\nLoop : %s\n",
             buff);
-    fflush(file_descp);
+    // fflush(file_descp);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(buff, cond, i, sn)              \
+#define postcheck(buff, cond, i, sn)                \
   \ 
-{                                              \
+{                                                \
     \ 
-    int f = postflag;                             \
+    int f = postflag;                               \
     \ 
-   aflcrash(cond, postflag);                      \
+   aflcrash(cond, postflag);                        \
     \ 
-    if (f == 0 && postflag == 1)                  \
-    {                                             \
+    if (f == 0 && postflag == 1)                    \
+    {                                               \
       \ 
-        fprintf(file_descp, "Post : %s\n", buff); \
-      \ 
-fflush(file_descp);                               \
-    \ 
-}                                            \
+        fprintf(file_descp, "\nPost : %s\n", buff); \
+    }                                               \
   }
 
 int main()
 {
   // variable declarations
-  int i;
-  int sn;
+  long long i;
+  long long sn;
 
   FILE *fptr = fopen("models.txt", "w");
   file_descp = fptr;
-  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
     int choices = buf[0];
+    i = buf[2];
+    sn = buf[4];
 
-    char vars[100];
-    snprintf(vars, 100, "%s : %d, %s : %d", "i", i, "sn", sn);
+    char vars[70] = "";
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 70, "%s : %lld, %s : %lld", "i", i, "sn", sn);
 
     // pre-conditions
     i = buf[1];
@@ -139,15 +138,19 @@ int main()
       }
     }
 
-    if (preflag + loopflag + postflag == 0 && counter == 100)
+    if (preflag + loopflag + postflag == 0 && counter >= 100)
     {
-      fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+      fprintf(file_descp, "%s : %lld, %s : %lld, %s : %lld\n",
               "precount", precount, "loopcount", loopcount, "postcount", postcount);
       fflush(file_descp);
       counter = 0;
     }
 
+    fflush(file_descp);
+
     if (preflag + loopflag + postflag >= 3)
       assert(0);
   }
+
+  return 0;
 }

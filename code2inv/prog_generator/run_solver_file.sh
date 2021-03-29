@@ -28,7 +28,7 @@ model=AssertAwareTreeLSTM
 att=1
 ac=0
 ce=1
-afl_timeout=20
+afl_timeout=5
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 if [ ! -e $save_dir ];
