@@ -23,51 +23,44 @@ int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
-FILE *file_descp;
-
 // COMMENT : Precheck template
-void precheck(char *buff, int c, int n, int v1, int v2, int v3)
+void precheck(FILE *file_descp, char *buff, int c, int n, int v1, int v2, int v3)
 {
   int f = preflag;
   aflcrash(INV(c, n, v1, v2, v3), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
+    fprintf(file_descp, "\nPre : %s\n",
             buff);
-    fflush(file_descp);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(char *buff, int c, int n, int v1, int v2, int v3)
+void loopcheck(FILE *file_descp, char *buff, int c, int n, int v1, int v2, int v3)
 {
   int f = loopflag;
   aflcrash(INV(c, n, v1, v2, v3), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
+    fprintf(file_descp, "\nLoop : %s\n",
             buff);
-    fflush(file_descp);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(buff, cond, c, n, v1, v2, v3)   \
+#define postcheck(file_descp, buff, cond, c, n, v1, v2, v3) \
   \ 
-{                                              \
+{                                                        \
     \ 
-    int f = postflag;                             \
+    int f = postflag;                                       \
     \ 
-   aflcrash(cond, postflag);                      \
+   aflcrash(cond, postflag);                                \
     \ 
-    if (f == 0 && postflag == 1)                  \
-    {                                             \
+    if (f == 0 && postflag == 1)                            \
+    {                                                       \
       \ 
-        fprintf(file_descp, "Post : %s\n", buff); \
-      \ 
-fflush(file_descp);                               \
-    \ 
-}                                            \
+        fprintf(file_descp, "\nPost : %s\n", buff);         \
+    }                                                       \
   }
 
 int main()
@@ -79,9 +72,12 @@ int main()
   int v2;
   int v3;
 
+  char buff[1024];
+  memset(buff, '\0', sizeof(buff));
   FILE *fptr = fopen("models.txt", "w");
-  file_descp = fptr;
-  // freopen("models.txt", "w", stderr);
+
+  // COMMENT : This must be line buffered.
+  setvbuf(fptr, buff, _IOLBF, 1024);
 
   for (;;)
   {
@@ -94,9 +90,9 @@ int main()
     c = buf[1];
     n = buf[2];
 
-    char vars[100];
-    memset(vars, '\0', sizeof(char *) * 100);
-    snprintf(vars, 100, "%s : %d, %s : %d, %s : %d, %s : %d, %s : %d",
+    char vars[150];
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 150, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
              "c", c, "n", n, "v1", v1, "v2", v2, "v3", v3);
 
     // pre-conditions
@@ -110,7 +106,8 @@ int main()
       assume((preflag == 0));
       (c = 0);
       assume((n > 0));
-      precheck(vars, c, n, v1, v2, v3);
+      precount++;
+      precheck(fptr, vars, c, n, v1, v2, v3);
     }
     else
     {
@@ -145,7 +142,8 @@ int main()
               }
             }
           }
-          loopcheck(vars, c, n, v1, v2, v3);
+          loopcount++;
+          loopcheck(fptr, vars, c, n, v1, v2, v3);
         }
       }
       else
@@ -154,15 +152,17 @@ int main()
         assume((postflag == 0));
         // post-condition
         if ((c != n))
-          postcheck(vars, (c <= n), c, n, v1, v2, v3)
+        {
+          postcount++;
+          postcheck(fptr, vars, (c <= n), c, n, v1, v2, v3)
+        }
       }
     }
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+      fprintf(fptr, "\n%s : %lld, %s : %lld, %s : %lld\n",
               "precount", precount, "loopcount", loopcount, "postcount", postcount);
-      fflush(file_descp);
       counter = 0;
     }
 

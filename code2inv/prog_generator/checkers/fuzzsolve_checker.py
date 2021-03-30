@@ -151,13 +151,14 @@ def inv_solver(vc_file: str, inv: str):
     for i in range(3):
         collection_semantic[i] = None
 
-    dump_template(filepath, inv)
     open(outputFile, mode="w").close()
+
+    dump_template(filepath, inv)
 
     init_fuzzbase()
     call_fuzzsolver(timeout)
 
-    time.sleep(0.3)
+    time.sleep(0.15)
 
     process_crashes(outputFile)
     res = mergeModels()
