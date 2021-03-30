@@ -1,8 +1,0 @@
-best_root :  ( ( n <= ( 0 - 0 ) && x <= ( 0 - 1 ) ) || ( y > ( x - 1 ) && n >= ( x * x ) ) || ( n <= 0 && y <= 0 ) ) 
-simplify : [Or(And(n <= 0, x <= -1),
-    And(Not(y <= -1 + x), n >= x*x),
-    And(n <= 0, y <= 0))]
-best_reward : -1
-epoch: 8, average reward: -0.5982, 
-Random: ( x >= ( x * x ) || x < ( 0 * 0 ) || ( x <= ( 0 * x ) && x > ( y - 0 ) ) ), result_r: -1.6933 
-stats : Counter({'ce-T:': 87533, 'ce-I:': 44870, 'boogie_result': 8890, 'ce-F:': 8841, 'actual_z3': 17})

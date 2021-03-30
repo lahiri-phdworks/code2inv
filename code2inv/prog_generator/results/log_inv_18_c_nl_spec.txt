@@ -1,6 +1,0 @@
-best_root :  ( n <= ( m * 10000 ) || ( x == 1 && x == x ) ) 
-simplify : [Or(n <= 10000*m, x == 1)]
-best_reward : -1
-epoch: 2, average reward: -0.5512, 
-Random: ( ( n >= ( m * 10000 ) || x <= ( m * 1 ) ) && x >= ( 1 * 1 ) ), result_r: -2.1017 
-stats : Counter({'ce-I:': 20762, 'ce-T:': 14699, 'boogie_result': 2964, 'ce-F:': 2961, 'actual_z3': 18})

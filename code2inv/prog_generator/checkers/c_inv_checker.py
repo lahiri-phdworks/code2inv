@@ -206,6 +206,8 @@ def inv_solver(vc_file: str, inv: str):
                 t = 3 - len(res)
                 for k in range(t):
                     res.append(None)
+                # COMMENT : Now len(res) == 3 always
+                break
             elif z3.unknown == r:
                 if i == 0:
                     w = "pre"
@@ -228,6 +230,7 @@ def inv_solver(vc_file: str, inv: str):
     # with open(os.path.join("models", f'z3_models_{cmd_args.example}.txt'), mode="a") as file:
     #     file.write(f'{res}\n')
 
+    print(res)
     return res
 
 

@@ -1,6 +1,0 @@
-best_root :  ( ( y > ( 0 - 1 ) || y == ( 1 - n ) ) && ( x > ( 0 - 1 ) ) ) 
-simplify : [Or(Not(y <= -1), y == 1 + -1*n), Not(x <= -1)]
-best_reward : -1
-epoch: 1, average reward: -0.5279, 
-Random: ( ( n == 1 || n <= y ) && ( y >= ( 0 - 1 ) ) && ( x < y || n < ( n + x ) ) ), result_r: -2.1017 
-stats : Counter({'ce-T:': 21258, 'ce-I:': 4947, 'boogie_result': 1973, 'ce-F:': 1949, 'actual_z3': 19})

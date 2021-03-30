@@ -1,6 +1,0 @@
-best_root :  ( x > x || m == ( x * x ) ) 
-simplify : []
-best_reward : -1
-epoch: 1, average reward: -0.5138, 
-Random: ( ( m <= ( 1 * 1 ) && m == ( 1 * m ) ) ), result_r: -1.5745 
-stats : Counter({'ce-I:': 16399, 'ce-T:': 8064, 'ce-F:': 5428, 'boogie_result': 1983, 'actual_z3': 20})

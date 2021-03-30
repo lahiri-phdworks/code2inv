@@ -1,12 +1,12 @@
-#!/usr/bin/bash
+set -e
+set -u
+set -o pipefail
 
 cd code2inv/prog_generator
-sudo fuzz/afl-init.sh
 
-# Arguments for AFL
-export CC=$HOME/afl/afl-gcc
-export CXX=$HOME/afl/afl-g++
-export AFL=$HOME/afl/afl-fuzz
+export CC=$(which hfuzz-clang)
+export CXX=$(which hfuzz-clang++)
+export AFL=$(which honggfuzz)
 
 if [ -z $1 ]; 
 then

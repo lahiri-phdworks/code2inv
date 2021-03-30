@@ -1,6 +1,0 @@
-best_root :  ( ( x < ( x - 0 ) || y >= ( x - 10 ) ) && ( x == ( x + 10 ) || x <= 20 ) ) 
-simplify : [y >= -10 + x, x <= 20]
-best_reward : -1
-epoch: 1, average reward: -0.5950, 
-Random: ( ( y == ( 0 + x ) ) ), result_r: -1.8240 
-stats : Counter({'ce-T:': 9825, 'ce-I:': 7179, 'boogie_result': 1975, 'ce-F:': 1969, 'actual_z3': 28})

@@ -2,9 +2,9 @@
 
 cd ../code2inv/prog_generator
 
-for file_index in {7..133}
+for file_index in {1..6}
 do
-    if [[ $file_index -ne 95 ]] 
+    if [[ $file_index -ne 95 ]] && [[ $file_index -ne 5 ]]
     then
         ./run_solver_file.sh \
         ../../benchmarks/C_instances/c_graph/${file_index}.c.json \

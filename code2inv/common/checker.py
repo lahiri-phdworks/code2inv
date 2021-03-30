@@ -475,7 +475,9 @@ def reward_0(holder, lambda_holder_eval, lambda_new_ce, scores):
     # COMMENT : Reward Updation
     # tqdm.write("reward_0")
     try:
+        # COMMENT
         # always query boogie
+        # else we query Z3 or Fuzzer as the case be
         status, key, ce = lambda_new_ce()
 
         # compute reward
@@ -484,16 +486,16 @@ def reward_0(holder, lambda_holder_eval, lambda_new_ce, scores):
         if status > 0:
             result = 3.0
 
-        if key == 'T:':
+        if key == 'T:':  # COMMENT -> REWARD Pre Model
             scores[0] *= 0.5
             if cmd_args.inv_reward_type == 'ordered':
                 scores[1] = scores[2] = 0.0
-        elif key == 'I:':
+        elif key == 'I:':  # COMMENT -> REWARD Loop Model
             scores[1] *= 0.5
             if cmd_args.inv_reward_type == 'ordered':
                 scores[0] = 1.0
                 scores[2] = 0.0
-        elif key == 'F:':
+        elif key == 'F:':  # COMMENT -> REWARD Post Model
             scores[2] *= 0.5
             if cmd_args.inv_reward_type == 'ordered':
                 scores[0] = scores[1] = 1.0
