@@ -1,6 +1,6 @@
-best_root :  ( ( sn >= 0 ) && ( i <= ( sn + 1 ) ) ) 
-simplify : [sn >= 0, i <= 1 + sn]
+best_root :  ( ( n >= ( i - sn ) || sn == 0 ) ) 
+simplify : [Or(n >= i + -1*sn, sn == 0)]
 best_reward : -1
-epoch: 7, average reward: -0.5437, 
-Random: ( ( i >= ( sn - sn ) ) && ( sn == ( sn + i ) ) ), result_r: -2.1180 
-stats : Counter({'ce-T:': 47433, 'ce-F:': 38764, 'ce-I:': 24043, 'boogie_result': 7920, 'actual_z3': 39})
+epoch: 9, average reward: -0.4175, 
+Random: ( ( i >= ( i - sn ) ) ), result_r: -1.7260 
+stats : Counter({'ce-T:': 59415, 'ce-F:': 48749, 'ce-I:': 32031, 'boogie_result': 9917, 'actual_z3': 39})

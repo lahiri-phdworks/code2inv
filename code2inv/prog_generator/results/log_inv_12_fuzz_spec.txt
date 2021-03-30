@@ -1,6 +1,0 @@
-best_root :  ( ( x > ( y + y ) && x < 0 ) || y == ( y + y ) || ( x == ( y * 0 ) && x == ( 20 * 0 ) ) ) 
-simplify : [Or(And(Not(x <= 2*y), Not(0 <= x)), y == 0, x == 0)]
-best_reward : -2
-epoch: 4, average reward: -1.0928, 
-Random: ( ( y == ( 20 + 20 ) || y < ( y * 10 ) ) && ( x == ( y - 0 ) || x <= ( y + 20 ) ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 24714, 'boogie_result': 4952, 'ce-F:': 4950, 'actual_z3': 23})

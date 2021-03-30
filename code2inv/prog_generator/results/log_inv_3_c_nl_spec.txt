@@ -1,6 +1,0 @@
-best_root :  ( x <= 0 || x < ( z + x ) || ( y <= z && y <= ( 1 * y ) ) ) 
-simplify : [Or(y <= z, x <= 0, Not(z <= 0))]
-best_reward : 0
-epoch: 0, average reward: -0.5668, 
-Random: ( ( y <= 0 || x > ( x * 0 ) ) ), result_r: -2.2650 
-stats : Counter({'ce-T:': 5647, 'ce-I:': 2859, 'ce-F:': 1433, 'boogie_result': 995, 'actual_z3': 12})

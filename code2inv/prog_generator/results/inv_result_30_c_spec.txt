@@ -1,2 +1,2 @@
 ( ( x >= 0 ) && ( x >= 100 || x >= ( x - x ) ) && ( x <= ( 0 + x ) || x == ( 100 - 100 ) ) )
-z3_report time: 5.05 pid: 0 stats: Counter({'ce-I:': 165, 'boogie_result': 58, 'ce-F:': 57, 'ce-T:': 56, 'actual_z3': 33})
+z3_report time: 4.96 pid: 0 stats: Counter({'ce-I:': 165, 'boogie_result': 58, 'ce-F:': 57, 'ce-T:': 56, 'actual_z3': 33})

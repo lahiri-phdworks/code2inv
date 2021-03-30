@@ -1,6 +1,0 @@
-best_root :  ( ( y < ( 0 + 1000 ) ) && ( x >= ( y + y ) || x <= x ) ) 
-simplify : [Not(1000 <= y)]
-best_reward : -1
-epoch: 7, average reward: -0.4209, 
-Random: ( ( x >= ( y + y ) || x <= ( 1000 + 1000 ) ) && ( y < ( 0 + 0 ) ) ), result_r: -2.1250 
-stats : Counter({'ce-I:': 102323, 'ce-F:': 15717, 'boogie_result': 7877, 'ce-T:': 7876, 'actual_z3': 54})

@@ -1,8 +1,8 @@
-best_root :  ( ( sn == ( 0 - sn ) && i > ( 1 - 1 ) ) || ( sn < ( sn * 0 ) && sn >= ( 1 - sn ) ) || ( n > ( 1 - sn ) && n > ( sn - sn ) ) ) 
-simplify : [Or(And(Not(0 <= sn), sn >= 1),
-    And(Not(n <= 1 + -1*sn), Not(n <= 0)),
-    And(sn == 0, Not(i <= 0)))]
+best_root :  ( ( sn == ( 1 - i ) || n > ( 1 - sn ) ) && ( i > ( sn - 1 ) || n > ( 0 - sn ) ) && ( n > ( i - sn ) || i > ( sn - 1 ) ) ) 
+simplify : [Or(Not(n <= 1 + -1*sn), sn == 1 + -1*i),
+ Or(Not(i <= -1 + sn), Not(n <= -1*sn)),
+ Or(Not(n <= i + -1*sn), Not(i <= -1 + sn))]
 best_reward : -1
-epoch: 7, average reward: -0.5441, 
-Random: ( ( i >= ( sn - 1 ) || i < ( 1 - sn ) ) && ( i >= ( sn * 0 ) || i == ( 1 - sn ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 39216, 'ce-F:': 36403, 'ce-I:': 29120, 'boogie_result': 7893, 'actual_z3': 15})
+epoch: 9, average reward: -0.5250, 
+Random: ( i >= ( 1 * sn ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 49026, 'ce-F:': 46213, 'ce-I:': 36968, 'boogie_result': 9855, 'actual_z3': 15})

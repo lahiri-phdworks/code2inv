@@ -1,2 +1,0 @@
-( ( j == j && i < ( 6 + j ) ) )
-z3_report time: 87.45 pid: 0 stats: Counter({'boogie_result': 10, 'actual_z3': 10, 'ce-T:': 8, 'ce-F:': 8})

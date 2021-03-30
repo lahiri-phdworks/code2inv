@@ -1,6 +1,6 @@
-best_root :  ( ( m == ( k + c ) || m >= ( k - 1 ) ) ) 
-simplify : [Or(m == k + c, m >= -1 + k)]
+best_root :  ( ( m >= ( c - 1 ) || a > ( a - 1 ) ) ) 
+simplify : []
 best_reward : -1
-epoch: 7, average reward: -0.5586, 
-Random: ( ( a == ( 1 + c ) || j < ( c - 1 ) ) && ( a == ( c - 1 ) || c == ( 0 + 0 ) ) && ( j >= ( c - 1 ) || c < ( c - 1 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 69826, 'ce-I:': 26148, 'boogie_result': 7969, 'ce-F:': 7963, 'actual_z3': 14})
+epoch: 9, average reward: -0.5453, 
+Random: ( ( m >= ( m - 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 87673, 'ce-I:': 35974, 'boogie_result': 9952, 'ce-F:': 9946, 'actual_z3': 15})

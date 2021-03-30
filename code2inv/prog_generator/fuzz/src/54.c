@@ -86,19 +86,21 @@ int main()
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
     int choices = buf[0];
+    c = buf[1];
+    n = buf[2];
 
     char vars[100];
-    snprintf(vars, 100, "%s : %d, %s : %d, %s : %d, %s : %d, %s : %d", "c", c, "n", n, "v1", v1, "v2", v2, "v3", v3);
+    memset(vars, '\0', sizeof(char *) * 100);
+    snprintf(vars, 100, "%s : %d, %s : %d, %s : %d, %s : %d, %s : %d",
+             "c", c, "n", n, "v1", v1, "v2", v2, "v3", v3);
 
     // pre-conditions
     assume((-10000 <= n && n <= 10000));
-    c = buf[1];
-    n = buf[2];
     // precheck
     // loopcond : (unknown())
 

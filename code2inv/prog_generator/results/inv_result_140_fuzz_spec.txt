@@ -1,2 +1,0 @@
-( n == ( 0 + n ) )
-z3_report time: 52.20 pid: 0 stats: Counter({'ce-T:': 17, 'boogie_result': 9, 'actual_z3': 6})

@@ -1,2 +1,0 @@
-( x > ( y * x ) || x <= ( x + y ) )
-z3_report time: 26.05 pid: 0 stats: Counter({'boogie_result': 3, 'actual_z3': 3, 'ce-T:': 2})

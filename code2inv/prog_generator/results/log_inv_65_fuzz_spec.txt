@@ -1,6 +1,0 @@
-best_root :  ( ( x > ( x * 100 ) || y == ( x * x ) ) && ( x <= ( 1 * 1 ) || x > ( x * 100 ) ) ) 
-simplify : [Or(Not(x >= 0), y == x*x), Or(x <= 1, Not(x >= 0))]
-best_reward : -2
-epoch: 2, average reward: -1.5235, 
-Random: ( y > ( x - 0 ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 17789, 'boogie_result': 2977, 'actual_z3': 33})

@@ -1,6 +1,6 @@
-best_root :  ( ( x < ( x * 10000 ) || x < ( 0 - 0 ) ) ) 
-simplify : [Or(Not(0 <= x), Not(x <= 0))]
+best_root :  ( x < ( x * n ) || n > ( 0 + 0 ) ) 
+simplify : [Or(Not(n*x <= x), Not(n <= 0))]
 best_reward : -1
-epoch: 7, average reward: -0.6310, 
-Random: ( ( x > 0 || x <= ( x * 1 ) ) && ( x <= 1 || x < ( x * x ) ) && n >= ( 1 * 1 ) ), result_r: -1.8240 
-stats : Counter({'ce-T:': 39317, 'boogie_result': 7868, 'ce-I:': 7858, 'ce-F:': 7853, 'actual_z3': 12})
+epoch: 9, average reward: -0.5712, 
+Random: ( ( x < ( x * n ) || n > n ) ), result_r: -1.7260 
+stats : Counter({'ce-T:': 49112, 'boogie_result': 9827, 'ce-I:': 9817, 'ce-F:': 9812, 'actual_z3': 12})

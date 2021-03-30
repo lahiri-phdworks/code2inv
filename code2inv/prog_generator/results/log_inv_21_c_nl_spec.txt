@@ -1,6 +1,6 @@
-best_root :  ( ( n > m || x >= ( n * x ) ) && ( n > ( n + -10000 ) || n == ( 10000 - m ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 3, average reward: -0.5520, 
-Random: ( ( n >= ( x * x ) && m == ( 1 + 1 ) ) || n == ( -10000 * 1 ) || m == ( 1 * -10000 ) ), result_r: -2.0645 
-stats : Counter({'ce-I:': 29441, 'ce-T:': 19473, 'boogie_result': 3950, 'ce-F:': 3947, 'actual_z3': 19})
+best_root :  ( n > m || x >= ( m * m ) ) 
+simplify : [Or(Not(n <= m), x >= m*m)]
+best_reward : 0
+epoch: 5, average reward: -0.5086, 
+Random: ( m <= ( x * m ) && ( x >= ( 10000 + m ) || x > -10000 ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 54809, 'ce-T:': 31269, 'ce-F:': 6264, 'boogie_result': 5916, 'actual_z3': 23})

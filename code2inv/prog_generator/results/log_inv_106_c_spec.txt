@@ -1,6 +1,6 @@
-best_root :  ( ( a >= a ) && ( m == ( j + 1 ) || m == ( j - 10000 ) ) ) 
-simplify : [Or(m == -10000 + j, m == 1 + j)]
+best_root :  ( ( j <= ( -10000 - -10000 ) ) && ( m < j || m == ( j + 1 ) ) ) 
+simplify : None
 best_reward : -1
-epoch: 7, average reward: -0.5435, 
-Random: ( ( k <= ( 0 + 1 ) || m < ( a + m ) ) && ( m < ( -10000 - j ) ) && ( m >= ( a + m ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 31854, 'ce-F:': 15921, 'boogie_result': 7966, 'ce-I:': 7571, 'actual_z3': 7})
+epoch: 9, average reward: -0.5672, 
+Random: ( ( j == ( j + 1 ) || m >= ( a - a ) ) && ( j == ( j + 1 ) || j < ( a - a ) ) && ( a <= ( 0 - 0 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 39798, 'ce-F:': 19893, 'boogie_result': 9952, 'ce-I:': 9557, 'actual_z3': 7})

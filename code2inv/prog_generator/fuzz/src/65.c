@@ -82,14 +82,16 @@ int main()
     for (;;)
     {
         size_t len;
-        const int8_t *buf;
+        const int32_t *buf;
 
         HF_ITER(&buf, &len);
 
         int choices = buf[0];
         x = buf[1];
+        y = buf[2];
 
         char vars[100];
+        memset(vars, '\0', sizeof(char *) * 100);
         snprintf(vars, 100, "%s : %d, %s : %d", "x", x, "y", y);
 
         // pre-conditions

@@ -1,8 +1,0 @@
-best_root :  ( x > ( y * y ) && ( n > ( y * 1 ) || n >= 0 ) && ( x > ( y * 0 ) || x == ( y + x ) ) ) 
-simplify : [Not(x <= y*y),
- Or(Not(n <= y), n >= 0),
- Or(Not(x <= 0), 0 == y)]
-best_reward : -2
-epoch: 2, average reward: -1.5765, 
-Random: ( ( x < ( y * 0 ) || x <= x ) && ( n <= ( y + 0 ) || y < ( y * 1 ) ) && ( x <= ( y + y ) || n > ( y + x ) ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 17835, 'boogie_result': 2976, 'actual_z3': 6})

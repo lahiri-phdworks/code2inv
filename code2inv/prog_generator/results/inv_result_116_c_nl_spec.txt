@@ -1,2 +1,2 @@
 ( sn == x )
-z3_report time: 11.44 pid: 0 stats: Counter({'ce-F:': 708, 'ce-I:': 456, 'boogie_result': 185, 'ce-T:': 184, 'actual_z3': 14})
+z3_report time: 11.70 pid: 0 stats: Counter({'ce-F:': 708, 'ce-I:': 456, 'boogie_result': 185, 'ce-T:': 184, 'actual_z3': 14})

@@ -1,6 +1,0 @@
-best_root :  ( ( i >= ( i - n ) ) && ( n >= ( sum + 0 ) || i2 > ( 2 + 1 ) ) ) 
-simplify : [n >= 0, Or(n >= sum, Not(i2 <= 3))]
-best_reward : -1
-epoch: 5, average reward: -0.4877, 
-Random: ( ( n > ( 1 - 1 ) || n > i ) && ( n >= ( 1 + 500000 ) || n >= sum ) ), result_r: -1.6525 
-stats : Counter({'ce-I:': 101152, 'ce-T:': 67964, 'ce-F:': 14754, 'boogie_result': 5937, 'actual_z3': 35})

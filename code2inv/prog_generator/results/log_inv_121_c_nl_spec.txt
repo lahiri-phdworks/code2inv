@@ -1,6 +1,6 @@
-best_root :  ( ( sn <= ( sn + -10000 ) && i > ( sn - -10000 ) ) || ( i == ( 1 + -10000 ) && sn == ( 0 + -10000 ) ) || ( i < ( 8 - i ) && i >= ( sn + -10000 ) ) ) 
+best_root :  ( i < 8 && i >= ( sn * -10000 ) && ( i >= ( sn * -10000 ) || i < 8 ) ) 
 simplify : None
 best_reward : -1
-epoch: 7, average reward: -0.5112, 
-Random: ( ( sn >= ( i + -10000 ) && i < 8 ) || ( i == ( 1 + 1 ) && sn <= ( sn * -10000 ) ) || ( i == ( 1 + -10000 ) && i < ( 8 - 10000 ) ) ), result_r: -1.5953 
-stats : Counter({'ce-I:': 103327, 'ce-F:': 22433, 'boogie_result': 7857, 'ce-T:': 7855, 'actual_z3': 23})
+epoch: 9, average reward: -0.4674, 
+Random: ( ( sn <= 10000 && i < ( 8 * 1 ) ) || ( i < ( 8 * 8 ) && sn <= 8 ) || ( sn == sn && sn == ( sn * i ) ) ), result_r: -1.7222 
+stats : Counter({'ce-I:': 135786, 'ce-F:': 28325, 'boogie_result': 9821, 'ce-T:': 9819, 'actual_z3': 25})

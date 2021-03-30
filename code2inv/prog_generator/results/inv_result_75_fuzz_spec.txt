@@ -1,2 +1,0 @@
-( y <= 1 && c >= ( 1 - 36 ) )
-z3_report time: 10.62 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

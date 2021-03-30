@@ -1,6 +1,0 @@
-best_root :  ( ( size > ( x - 0 ) || z >= ( x - 0 ) ) ) 
-simplify : [Or(Not(size <= x), z >= x)]
-best_reward : -1
-epoch: 7, average reward: -0.5622, 
-Random: ( ( y > size || z < size ) && ( x > ( x - 0 ) ) && ( size == -10000 || z >= ( x - -10000 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 93629, 'ce-I:': 22335, 'ce-F:': 9732, 'boogie_result': 7939, 'actual_z3': 19})

@@ -2,7 +2,7 @@
 
 cd ../code2inv/prog_generator
 
-for file_index in {71..133}
+for file_index in {7..133}
 do
     if [[ $file_index -ne 95 ]] 
     then

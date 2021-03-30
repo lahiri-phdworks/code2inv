@@ -84,18 +84,19 @@ int main()
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
     int choices = buf[0];
+    y = buf[2];
+    x = buf[4];
 
-    char vars[100];
-    snprintf(vars, 100, "%s : %d, %s : %d", "x", x, "y", y);
+    char vars[150];
+    // memset(vars, '\0', sizeof(char *) * 100);
+    snprintf(vars, 150, "%s : %lld, %s : %lld\n", "x", x, "y", y);
 
     // pre-conditions
-    y = buf[1];
-    x = buf[2];
     // precheck
     // loopcond : (x < y)
 
@@ -139,7 +140,7 @@ int main()
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+      fprintf(file_descp, "%s : %lld, %s : %lld, %s : %lld\n",
               "precount", precount, "loopcount", loopcount, "postcount", postcount);
       fflush(file_descp);
       counter = 0;

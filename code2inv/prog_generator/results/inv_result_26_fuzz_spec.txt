@@ -1,2 +1,0 @@
-( ( n > 1 || n < n ) && ( n > ( n + -10000 ) || x >= ( n - n ) ) && ( x == ( x - 10000 ) || x <= ( 10000 - n ) ) )
-z3_report time: 8.62 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

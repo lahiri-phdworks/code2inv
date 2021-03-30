@@ -1,2 +1,0 @@
-( ( lock < y || x > 0 ) && y <= ( 10000 * 10000 ) )
-z3_report time: 10.61 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

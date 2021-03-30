@@ -1,2 +1,0 @@
-( ( i >= ( sn + i ) && sn < ( 10000 + 10000 ) ) || i == sn )
-z3_report time: 43.52 pid: 0 stats: Counter({'ce-F:': 10, 'boogie_result': 5, 'actual_z3': 5})

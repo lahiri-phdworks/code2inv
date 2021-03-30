@@ -1,2 +1,0 @@
-( ( c == ( 1 - a ) && m > ( a - -10000 ) ) || k < -10000 )
-z3_report time: 17.30 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-T:': 1})

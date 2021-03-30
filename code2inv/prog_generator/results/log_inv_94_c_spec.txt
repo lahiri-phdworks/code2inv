@@ -1,8 +1,6 @@
-best_root :  ( ( i >= ( i - n ) || j > ( n - n ) ) && ( i > ( 0 - 2 ) || n < j ) && ( j > ( 0 - 1 ) ) ) 
-simplify : [Or(n >= 0, Not(j <= 0)),
- Or(Not(i <= -2), Not(j <= n)),
- Not(j <= -1)]
+best_root :  ( ( n >= ( i - j ) || k >= ( n - j ) ) ) 
+simplify : [Or(n >= i + -1*j, k >= n + -1*j)]
 best_reward : -1
-epoch: 7, average reward: -0.5084, 
-Random: ( ( i == ( n + n ) || i >= ( n - n ) ) && ( k == ( n - n ) || n > ( n - n ) ) ), result_r: -2.0254 
-stats : Counter({'ce-I:': 100944, 'ce-T:': 70045, 'ce-F:': 10264, 'boogie_result': 7939, 'actual_z3': 27})
+epoch: 9, average reward: -0.4895, 
+Random: ( ( j < ( 0 + 0 ) || j >= ( i - j ) ) ), result_r: -2.1180 
+stats : Counter({'ce-I:': 130539, 'ce-T:': 87802, 'ce-F:': 14210, 'boogie_result': 9912, 'actual_z3': 27})

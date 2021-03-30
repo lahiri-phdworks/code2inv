@@ -1,2 +1,0 @@
-( ( x > x || m == ( 10000 * 1 ) ) && ( x == x || m > ( 1 - x ) ) && m == ( n * m ) )
-z3_report time: 0.54 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

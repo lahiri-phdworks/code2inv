@@ -1,2 +1,2 @@
 ( ( z > ( 36 * 0 ) && c <= z ) )
-z3_report time: 1.98 pid: 0 stats: Counter({'ce-F:': 56, 'boogie_result': 25, 'ce-T:': 24, 'ce-I:': 22, 'actual_z3': 17})
+z3_report time: 1.93 pid: 0 stats: Counter({'ce-F:': 56, 'boogie_result': 25, 'ce-T:': 24, 'ce-I:': 22, 'actual_z3': 17})

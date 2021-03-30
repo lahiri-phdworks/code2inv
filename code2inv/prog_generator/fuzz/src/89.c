@@ -87,7 +87,7 @@ int main()
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
@@ -96,8 +96,8 @@ int main()
     x = buf[2];
     lock = buf[3];
 
-    char vars[100];
-    snprintf(vars, 100, "%s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d",
+    char vars[150];
+    snprintf(vars, 150, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
              "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
 
     // pre-conditions
@@ -161,7 +161,7 @@ int main()
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(file_descp, "%s : %d, %s : %d, %s : %d\n",
+      fprintf(file_descp, "%s : %lld, %s : %lld, %s : %lld\n",
               "precount", precount, "loopcount", loopcount, "postcount", postcount);
       fflush(file_descp);
       counter = 0;

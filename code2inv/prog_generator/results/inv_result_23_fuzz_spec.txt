@@ -1,2 +1,0 @@
-( j > 13 && ( i < ( 20 + 20 ) || i > ( j - 20 ) ) && i == ( i * 1 ) )
-z3_report time: 34.86 pid: 0 stats: Counter({'boogie_result': 4, 'actual_z3': 4, 'ce-T:': 2})

@@ -1,6 +1,0 @@
-best_root :  ( ( x <= ( 500 - x ) || z > ( 1 - y ) ) ) 
-simplify : [Or(x <= 250, Not(z <= 1 + -1*y))]
-best_reward : -1
-epoch: 1, average reward: -0.5453, 
-Random: ( ( x == ( z + x ) || y > ( y - 10000 ) ) && ( z > ( x + 500 ) ) ), result_r: -1.9500 
-stats : Counter({'ce-T:': 13837, 'ce-I:': 5615, 'boogie_result': 1988, 'ce-F:': 1974, 'actual_z3': 16})
