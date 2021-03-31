@@ -5,7 +5,7 @@ import io
 import logging
 import tqdm
 
-from code2inv.common.cmd_args import cmd_args
+# from code2inv.common.cmd_args import cmd_args
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from code2inv.prog_generator.chc_tools.chctools.chcmodel import (
@@ -221,14 +221,14 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
 
-    if not os.path.isdir("models"):
-        os.mkdir("models")
+    # if not os.path.isdir("models"):
+    #     os.mkdir("models")
 
-    # COMMENT : Print Fuzz Model
-    with open(
-        os.path.join("models", f"z3_models_{cmd_args.example}.txt"), mode="a"
-    ) as file:
-        file.write(f"{res}\n")
+    # # COMMENT : Print Fuzz Model
+    # with open(
+    #     os.path.join("models", f"z3_models_{cmd_args.example}.txt"), mode="a"
+    # ) as file:
+    #     file.write(f"{res}\n")
 
     return res
 
