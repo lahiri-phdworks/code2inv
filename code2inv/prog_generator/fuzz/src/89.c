@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -24,26 +25,32 @@ int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, int lock, int v1, int v2, int v3, int x, int y)
+void precheck(FILE *file_descp, char *buff,
+              int lock, int v1, int v2, int v3, int x, int y)
 {
   int f = preflag;
   aflcrash(INV(lock, v1, v2, v3, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
+    flock(fileno(file_descp), LOCK_SH);
     fprintf(file_descp, "\nPre : %s\n",
             buff);
+    flock(fileno(file_descp), LOCK_SH);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, int lock, int v1, int v2, int v3, int x, int y)
+void loopcheck(FILE *file_descp, char *buff,
+               int lock, int v1, int v2, int v3, int x, int y)
 {
   int f = loopflag;
   aflcrash(INV(lock, v1, v2, v3, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
+    flock(fileno(file_descp), LOCK_SH);
     fprintf(file_descp, "\nLoop : %s\n",
             buff);
+    flock(fileno(file_descp), LOCK_SH);
   }
 }
 
@@ -59,19 +66,21 @@ void loopcheck(FILE *file_descp, char *buff, int lock, int v1, int v2, int v3, i
     if (f == 0 && postflag == 1)                            \
     {                                                       \
       \ 
-        fprintf(fptr, "\nPost : %s\n", buff);               \
+        flock(fileno(fptr), LOCK_SH);                       \
+      fprintf(fptr, "\nPost : %s\n", buff);                 \
+      flock(fileno(fptr), LOCK_SH);                         \
     }                                                       \
   }
 
 int main()
 {
   // variable declarations
-  int lock;
-  int v1;
-  int v2;
-  int v3;
-  int x;
-  int y;
+  long long int lock;
+  long long int v1;
+  long long int v2;
+  long long int v3;
+  long long int x;
+  long long int y;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));

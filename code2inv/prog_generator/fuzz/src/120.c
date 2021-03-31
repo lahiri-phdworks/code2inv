@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -30,8 +31,10 @@ void precheck(FILE *p, char *buff, int i, int sn)
   aflcrash(INV(i, sn), preflag);
   if (f == 0 && preflag == 1)
   {
+    flock(fileno(p), LOCK_SH);
     fprintf(p, "\nPre : %s\n",
             buff);
+    flock(fileno(p), LOCK_UN);
   }
 }
 
@@ -42,25 +45,29 @@ void loopcheck(FILE *p, char *buff, int i, int sn)
   aflcrash(INV(i, sn), loopflag);
   if (f == 0 && loopflag == 1)
   {
+    flock(fileno(p), LOCK_SH);
     fprintf(p, "\nLoop : %s\n",
             buff);
+    flock(fileno(p), LOCK_UN);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(p, buff, cond, i, sn)    \
+#define postcheck(p, buff, cond, i, sn)  \
   \ 
-{                                       \
+{                                     \
     \ 
-    int f = postflag;                      \
+    int f = postflag;                    \
     \ 
-   aflcrash(cond, postflag);               \
+   aflcrash(cond, postflag);             \
     \ 
-    if (f == 0 && postflag == 1)           \
-    {                                      \
+    if (f == 0 && postflag == 1)         \
+    {                                    \
       \ 
-        fprintf(p, "\nPost : %s\n", buff); \
-    }                                      \
+      flock(fileno(p), LOCK_SH);         \
+      fprintf(p, "\nPost : %s\n", buff); \
+      flock(fileno(p), LOCK_UN);         \
+    }                                    \
   }
 
 int main()
