@@ -66,11 +66,11 @@ void loopcheck(FILE *file_descp, char *buff, int c, int n, int v1, int v2, int v
 int main()
 {
   // variable declarations
-  int c;
-  int n;
-  int v1;
-  int v2;
-  int v3;
+  long long int c;
+  long long int n;
+  long long int v1;
+  long long int v2;
+  long long int v3;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));

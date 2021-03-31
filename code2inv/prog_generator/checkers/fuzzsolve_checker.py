@@ -163,5 +163,14 @@ def inv_solver(vc_file: str, inv: str):
     process_crashes(outputFile)
     res = mergeModels()
 
-    tqdm.write(f"{res}")
+    if not os.path.isdir("models"):
+        os.mkdir("models")
+
+    # COMMENT : Print Fuzz Model
+    with open(
+        os.path.join("models", f"fuzz_models_{cmd_args.example}.txt"), mode="a"
+    ) as file:
+        file.write(f"{res}\n")
+
+    # tqdm.write(f"{res}")
     return res

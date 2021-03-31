@@ -66,8 +66,8 @@ void loopcheck(FILE *file_descp, char *buff, int x, int y)
 int main()
 {
     // variable declarations
-    int x;
-    int y;
+    long long int x;
+    long long int y;
 
     char buff[500];
     memset(buff, '\0', sizeof(buff));

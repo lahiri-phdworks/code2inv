@@ -73,8 +73,8 @@ void loopcheck(FILE *p, char *buff, int i, int sn)
 int main()
 {
   // variable declarations
-  long long i;
-  long long sn;
+  long long int i;
+  long long int sn;
 
   char buff[500];
   memset(buff, '\0', sizeof(buff));

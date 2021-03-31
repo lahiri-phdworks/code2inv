@@ -5,7 +5,6 @@ S2 ::= ( C2 ) | ( C2 && C2 ) | ( C2 && C2 && C2 )
 C2 ::= p | ( p "||" p )
 p ::= var cmp expr
 expr ::= func ( terms , terms ) | expr1
-func ::= incr1
 expr1 ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | terms
 terms ::= var | const
 cmp ::= < | > | == | <= | >=

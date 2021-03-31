@@ -35,7 +35,7 @@ void precheck(FILE *file_descp, char *buff,
     flock(fileno(file_descp), LOCK_SH);
     fprintf(file_descp, "\nPre : %s\n",
             buff);
-    flock(fileno(file_descp), LOCK_SH);
+    flock(fileno(file_descp), LOCK_UN);
   }
 }
 
@@ -50,7 +50,7 @@ void loopcheck(FILE *file_descp, char *buff,
     flock(fileno(file_descp), LOCK_SH);
     fprintf(file_descp, "\nLoop : %s\n",
             buff);
-    flock(fileno(file_descp), LOCK_SH);
+    flock(fileno(file_descp), LOCK_UN);
   }
 }
 
@@ -68,7 +68,7 @@ void loopcheck(FILE *file_descp, char *buff,
       \ 
         flock(fileno(fptr), LOCK_SH);                       \
       fprintf(fptr, "\nPost : %s\n", buff);                 \
-      flock(fileno(fptr), LOCK_SH);                         \
+      flock(fileno(fptr), LOCK_UN);                         \
     }                                                       \
   }
 
