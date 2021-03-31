@@ -25,7 +25,7 @@ int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *p, char *buff, int i, int sn)
+void precheck(FILE *p, char *buff, long long int i, long long int sn)
 {
   int f = preflag;
   aflcrash(INV(i, sn), preflag);
@@ -39,7 +39,7 @@ void precheck(FILE *p, char *buff, int i, int sn)
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *p, char *buff, int i, int sn)
+void loopcheck(FILE *p, char *buff, long long int i, long long int sn)
 {
   int f = loopflag;
   aflcrash(INV(i, sn), loopflag);
@@ -76,12 +76,12 @@ int main()
   long long int i;
   long long int sn;
 
-  char buff[500];
+  char buff[512];
   memset(buff, '\0', sizeof(buff));
   FILE *fptr = fopen("models.txt", "w");
 
   // COMMENT : This must be line buffered.
-  setvbuf(fptr, buff, _IOLBF, 500);
+  setvbuf(fptr, buff, _IOLBF, 512);
 
   for (;;)
   {
@@ -90,13 +90,13 @@ int main()
 
     HF_ITER(&buf, &len);
 
-    int choices = buf[0];
+    long long int choices = buf[0];
     i = buf[2];
     sn = buf[4];
 
-    char vars[75];
+    char vars[64];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 75, "%s : %lld, %s : %lld", "i", i, "sn", sn);
+    snprintf(vars, 64, "%s : %lld, %s : %lld", "i", i, "sn", sn);
 
     // pre-conditions
     i = buf[1];

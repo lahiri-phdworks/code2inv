@@ -47,4 +47,4 @@ if [[ ! -d $testDir ]]; then
 fi
 
 > models.txt
-$AFL -i $testDir -o $outputDir -P -- $buildDir/$RUNNER
+$AFL -i $testDir -o $outputDir -t 10 -n 1 -P -- $buildDir/$RUNNER
