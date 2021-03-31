@@ -1,2 +1,2 @@
-( ( m >= ( -10000 - -10000 ) || x > ( n * 1 ) ) && x >= 1 && ( n < ( 10000 * m ) || n < ( n + m ) ) )
-z3_report time: 212.74 pid: 0 stats: Counter({'ce-I:': 27503, 'ce-T:': 17244, 'boogie_result': 3473, 'ce-F:': 3470, 'actual_z3': 21})
+( x >= 1 && ( m > 1 || m == 1 ) )
+z3_report time: 96.79 pid: 0 stats: Counter({'ce-I:': 9479, 'ce-T:': 7694, 'ce-F:': 1868, 'boogie_result': 1563, 'actual_z3': 18})

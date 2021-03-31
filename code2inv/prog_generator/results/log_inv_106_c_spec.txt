@@ -1,6 +1,8 @@
-best_root :  ( ( j <= ( -10000 - -10000 ) ) && ( m < j || m == ( j + 1 ) ) ) 
-simplify : None
+best_root :  ( ( m <= ( 1 + 10000 ) || j <= ( 1 + 0 ) ) && ( m <= 1 || m < ( 1 + 10000 ) ) && ( k < ( m + 1 ) || m > ( 10000 - j ) ) ) 
+simplify : [Or(j <= 1, m <= 10001),
+ Or(m <= 1, Not(10001 <= m)),
+ Or(Not(m <= -1 + k), Not(m <= 10000 + -1*j))]
 best_reward : -1
-epoch: 9, average reward: -0.5672, 
-Random: ( ( j == ( j + 1 ) || m >= ( a - a ) ) && ( j == ( j + 1 ) || j < ( a - a ) ) && ( a <= ( 0 - 0 ) ) ), result_r: -2.0200 
+epoch: 9, average reward: -0.5287, 
+Random: ( ( m <= ( 1 - 0 ) ) ), result_r: -1.7750 
 stats : Counter({'ce-T:': 39798, 'ce-F:': 19893, 'boogie_result': 9952, 'ce-I:': 9557, 'actual_z3': 7})

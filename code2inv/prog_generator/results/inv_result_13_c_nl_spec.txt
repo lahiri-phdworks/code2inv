@@ -1,2 +1,2 @@
-( ( y < ( y * 2 ) || x <= ( y + 2 ) ) )
-z3_report time: 179.05 pid: 0 stats: Counter({'ce-T:': 11326, 'ce-I:': 9621, 'boogie_result': 2835, 'ce-F:': 2832, 'actual_z3': 11})
+( x <= ( y + 2 ) || ( x >= ( 0 * x ) && y > ( x * 2 ) ) || ( x < ( y + y ) && x < ( 0 + y ) ) )
+z3_report time: 6.30 pid: 0 stats: Counter({'ce-T:': 372, 'ce-I:': 179, 'boogie_result': 97, 'ce-F:': 94, 'actual_z3': 11})

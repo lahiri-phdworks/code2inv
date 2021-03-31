@@ -1,6 +1,6 @@
-best_root :  ( ( lock == ( 1 - y ) || x > ( 0 - y ) ) ) 
-simplify : [Or(lock == 1 + -1*y, Not(x <= -1*y))]
+best_root :  ( ( lock < ( x * x ) || lock < ( -10000 * -10000 ) ) && y >= ( lock * -10000 ) && ( y > ( lock * 1 ) || y == ( lock - 1 ) ) ) 
+simplify : None
 best_reward : -1
-epoch: 9, average reward: -0.4314, 
-Random: ( y < ( x + y ) && lock >= 0 && ( lock >= ( 0 - y ) || y >= ( 1 - 10000 ) ) ), result_r: -1.6933 
-stats : Counter({'ce-T:': 54640, 'ce-F:': 24884, 'ce-I:': 20916, 'boogie_result': 9848, 'actual_z3': 12})
+epoch: 9, average reward: -0.5363, 
+Random: ( ( x < ( 10000 + y ) || y > ( lock + 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 49249, 'ce-I:': 34343, 'ce-F:': 32409, 'boogie_result': 9896, 'actual_z3': 13})

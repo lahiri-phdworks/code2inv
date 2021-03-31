@@ -1,2 +1,2 @@
 ( ( z >= y || y > ( z - 4608 ) ) )
-z3_report time: 1.28 pid: 0 stats: Counter({'ce-T:': 22, 'ce-I:': 21, 'boogie_result': 14, 'actual_z3': 14})
+z3_report time: 1.03 pid: 0 stats: Counter({'ce-I:': 21, 'ce-T:': 19, 'boogie_result': 14, 'actual_z3': 14})

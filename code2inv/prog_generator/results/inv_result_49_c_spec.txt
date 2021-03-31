@@ -1,2 +1,2 @@
 ( ( n > ( -1 - 0 ) || c >= ( c + 1 ) ) )
-z3_report time: 1.25 pid: 0 stats: Counter({'ce-I:': 13, 'boogie_result': 11, 'actual_z3': 11, 'ce-T:': 10, 'ce-F:': 5})
+z3_report time: 1.12 pid: 0 stats: Counter({'ce-I:': 13, 'boogie_result': 11, 'actual_z3': 11, 'ce-T:': 10, 'ce-F:': 5})

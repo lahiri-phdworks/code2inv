@@ -1,7 +1,0 @@
-best_root :  ( ( y >= ( 1 - 0 ) || x <= ( y - 1 ) ) && ( lock <= ( y - 1 ) || lock < ( 1 - 0 ) ) ) 
-simplify : [Or(y >= 1, x <= -1 + y),
- Or(Not(1 <= lock), lock <= -1 + y)]
-best_reward : -1
-epoch: 9, average reward: -0.6244, 
-Random: ( ( x < ( y + 1 ) ) && ( lock < ( y - 1 ) || x < ( y - 0 ) ) && ( lock < ( lock + x ) || y > ( y - x ) ) ), result_r: -1.9547 
-stats : Counter({'ce-T:': 58650, 'ce-I:': 37002, 'ce-F:': 26103, 'boogie_result': 9863, 'actual_z3': 30})

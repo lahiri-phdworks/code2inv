@@ -1,2 +1,2 @@
-( x <= x && ( n <= ( 1 * 1 ) || n > ( m * 1 ) ) )
-z3_report time: 181.86 pid: 0 stats: Counter({'ce-I:': 24726, 'ce-T:': 11849, 'ce-F:': 7699, 'boogie_result': 2740, 'actual_z3': 21})
+( n <= 1 || m < ( 1 * n ) )
+z3_report time: 361.29 pid: 0 stats: Counter({'ce-I:': 38093, 'ce-T:': 25392, 'ce-F:': 15422, 'boogie_result': 5440, 'actual_z3': 20})

@@ -1,2 +1,2 @@
-( y > ( 0 - y ) || x <= ( 1 + -5000 ) || ( y < ( 0 + x ) && y > ( 0 - y ) ) )
-z3_report time: 35.28 pid: 0 stats: Counter({'ce-T:': 2782, 'ce-F:': 1383, 'ce-I:': 1374, 'boogie_result': 545, 'actual_z3': 15})
+( x < 0 || y > x || ( x < ( y * y ) && x == ( 0 - 1 ) ) )
+z3_report time: 29.55 pid: 0 stats: Counter({'ce-T:': 2368, 'ce-I:': 1342, 'ce-F:': 588, 'boogie_result': 478, 'actual_z3': 13})

@@ -1,2 +1,2 @@
-( ( x >= ( -10000 + n ) ) && ( x >= ( x + 0 ) || n > x ) && ( x <= ( n + 0 ) || x == 0 ) )
-z3_report time: 66.74 pid: 0 stats: Counter({'ce-T:': 4507, 'ce-I:': 1765, 'ce-F:': 1575, 'boogie_result': 905, 'actual_z3': 10})
+( ( x == x || n <= ( x - x ) ) && ( x == ( 0 - 0 ) || x <= ( n - 0 ) ) && ( n == n ) )
+z3_report time: 5.97 pid: 0 stats: Counter({'ce-T:': 465, 'ce-I:': 137, 'boogie_result': 91, 'ce-F:': 88, 'actual_z3': 10})

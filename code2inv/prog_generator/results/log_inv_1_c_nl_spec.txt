@@ -1,0 +1,8 @@
+best_root :  ( x > ( y * y ) || ( x < ( 100000 - 0 ) && y < ( 100000 * 1 ) ) || ( y == ( y + y ) && y == ( y * y ) ) ) 
+simplify : [Or(Not(x <= y*y),
+    And(Not(100000 <= x), Not(100000 <= y)),
+    And(y == 0, y == y*y))]
+best_reward : -1
+epoch: 9, average reward: -0.2959, 
+Random: ( ( x > ( y + y ) || y <= ( y * y ) ) && y <= ( 1 + 0 ) ), result_r: -1.6117 
+stats : Counter({'ce-I:': 155012, 'boogie_result': 9792, 'ce-T:': 9791, 'ce-F:': 9788, 'actual_z3': 27})

@@ -1,2 +1,2 @@
-( ( y > ( x + 10000 ) && x <= ( 10000 - y ) ) || x < ( y - 1 ) )
-z3_report time: 4.74 pid: 0 stats: Counter({'ce-T:': 301, 'ce-I:': 181, 'boogie_result': 78, 'ce-F:': 74, 'actual_z3': 10})
+( ( y > -15000 && x <= ( -10000 - x ) ) || y > ( 1 * 1 ) )
+z3_report time: 10.04 pid: 0 stats: Counter({'ce-T:': 613, 'ce-I:': 266, 'ce-F:': 201, 'boogie_result': 156, 'actual_z3': 9})

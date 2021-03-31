@@ -1,8 +1,7 @@
-best_root :  ( ( x2 < ( x3 + d3 ) || d1 >= 1 ) && ( d1 <= ( x3 + d3 ) || x2 == 1 ) && ( d2 == 1 || d1 > ( 1 - x2 ) ) ) 
-simplify : [Or(Not(x3 + d3 <= x2), d1 >= 1),
- Or(x2 == 1, d1 <= x3 + d3),
- Or(d2 == 1, Not(d1 <= 1 + -1*x2))]
+best_root :  ( ( d2 == d3 || d3 > ( x3 - x1 ) ) && ( x1 >= ( 1 - x2 ) || x2 <= x3 ) ) 
+simplify : [Or(Not(d3 <= x3 + -1*x1), d2 == d3),
+ Or(x1 >= 1 + -1*x2, x2 <= x3)]
 best_reward : -1
-epoch: 9, average reward: -0.3705, 
-Random: ( ( x3 <= ( x3 + d2 ) || d1 == 1 ) && ( d1 == 1 || x1 < ( x3 + d2 ) ) && ( x3 < ( x3 + d2 ) ) ), result_r: -1.6525 
-stats : Counter({'ce-T:': 77228, 'ce-I:': 74845, 'ce-F:': 74565, 'boogie_result': 9911, 'actual_z3': 24})
+epoch: 9, average reward: -0.4936, 
+Random: ( ( d1 == d1 || d1 <= d1 ) && ( x3 >= ( 1 - x1 ) ) && ( d1 >= ( d1 - 0 ) || d1 == d1 ) ), result_r: -1.9500 
+stats : Counter({'ce-T:': 121915, 'ce-I:': 116896, 'ce-F:': 63407, 'boogie_result': 9905, 'actual_z3': 35})

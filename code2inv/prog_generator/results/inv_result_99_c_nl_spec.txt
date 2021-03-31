@@ -1,2 +1,2 @@
-( n > ( n * 1 ) || n == ( y + x ) )
-z3_report time: 22.21 pid: 0 stats: Counter({'ce-T:': 1335, 'ce-I:': 228, 'boogie_result': 226, 'ce-F:': 218, 'actual_z3': 10})
+( y == ( n - x ) )
+z3_report time: 145.82 pid: 0 stats: Counter({'ce-T:': 13551, 'ce-F:': 4490, 'ce-I:': 4210, 'boogie_result': 2262, 'actual_z3': 12})

@@ -1,6 +1,6 @@
-best_root :  ( x == ( y - i ) && i >= ( 0 - n ) ) 
-simplify : [i >= -1*n]
+best_root :  ( i == ( y - x ) && i >= ( x * 1 ) && ( y == ( y * n ) || x >= ( i - y ) ) ) 
+simplify : [y + -2*x >= 0, Or(x >= 0, y == n*y)]
 best_reward : -1
-epoch: 9, average reward: -0.5154, 
-Random: ( x <= ( 2 + 0 ) ), result_r: -2.0433 
-stats : Counter({'ce-I:': 174781, 'ce-T:': 39478, 'ce-F:': 30423, 'boogie_result': 9901, 'actual_z3': 30})
+epoch: 9, average reward: -0.4707, 
+Random: ( x < ( 3 + i ) && ( i >= ( x + i ) || i <= ( y * n ) ) ), result_r: -1.9442 
+stats : Counter({'ce-I:': 162684, 'ce-T:': 39434, 'ce-F:': 28740, 'boogie_result': 9890, 'actual_z3': 30})

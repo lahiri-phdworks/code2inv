@@ -1,8 +1,6 @@
-best_root :  ( ( i < ( n - 1 ) && n < ( n + 1 ) ) || ( sn == ( n - 0 ) && n > 0 ) || ( sn <= ( sn - sn ) && i > ( 0 * 1 ) ) ) 
-simplify : [Or(And(sn == n, Not(n <= 0)),
-    Not(n <= 1 + i),
-    And(sn <= 0, Not(i <= 0)))]
+best_root :  ( i > ( sn * i ) ) 
+simplify : [Not(i <= i*sn)]
 best_reward : -1
-epoch: 9, average reward: -0.4436, 
-Random: ( ( n == ( sn + n ) || sn > ( sn * sn ) ) ), result_r: -1.6933 
-stats : Counter({'ce-I:': 75112, 'ce-T:': 68133, 'ce-F:': 29569, 'boogie_result': 9894, 'actual_z3': 24})
+epoch: 9, average reward: -0.5055, 
+Random: ( ( sn >= ( sn - i ) && i >= ( 0 * sn ) ) || n >= ( n - i ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 71991, 'ce-T:': 68042, 'ce-F:': 31740, 'boogie_result': 9881, 'actual_z3': 24})

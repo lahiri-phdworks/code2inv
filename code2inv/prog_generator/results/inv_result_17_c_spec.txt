@@ -1,2 +1,2 @@
-( ( m <= ( n - 1 ) || n <= 1 ) && ( m == ( 1 - 1 ) || n < ( 1 + n ) ) )
-z3_report time: 57.40 pid: 0 stats: Counter({'ce-T:': 4395, 'ce-I:': 2949, 'boogie_result': 885, 'ce-F:': 878, 'actual_z3': 19})
+( ( m <= 1 || m < n ) )
+z3_report time: 239.51 pid: 0 stats: Counter({'ce-I:': 18660, 'ce-T:': 17294, 'ce-F:': 6751, 'boogie_result': 3472, 'actual_z3': 27})

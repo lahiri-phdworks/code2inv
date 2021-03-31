@@ -1,6 +1,6 @@
-best_root :  ( n > ( c - n ) && ( c >= ( 1 * c ) || c < ( c + 0 ) ) && ( n == ( 1 + 0 ) || n > ( c * c ) ) ) 
-simplify : [Not(2*n <= c), Or(Not(n <= c*c), n == 1)]
+best_root :  ( ( n > 1 && c <= ( n + n ) ) || ( c <= ( n + n ) && c == ( n + -1 ) ) ) 
+simplify : None
 best_reward : -1
-epoch: 9, average reward: -0.3647, 
-Random: ( n > ( c * c ) && c <= ( c * 0 ) ), result_r: -1.6770 
-stats : Counter({'ce-I:': 91078, 'ce-T:': 24648, 'ce-F:': 19705, 'boogie_result': 9855, 'actual_z3': 23})
+epoch: 9, average reward: -0.4508, 
+Random: ( n > c || c == ( -1 * c ) || n == ( n * -1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 74710, 'ce-T:': 28518, 'ce-F:': 19627, 'boogie_result': 9832, 'actual_z3': 21})

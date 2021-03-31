@@ -1,0 +1,6 @@
+best_root :  ( ( n >= ( 1 - 1 ) && i <= ( 1 - sum ) ) ) 
+simplify : [n >= 0, i <= 1 + -1*sum]
+best_reward : -1
+epoch: 2, average reward: -0.6235, 
+Random: ( sum < ( y + 6 ) && n >= 1 ), result_r: -1.6933 
+stats : Counter({'ce-T:': 26007, 'ce-I:': 19597, 'ce-F:': 6936, 'boogie_result': 2983, 'actual_z3': 21})

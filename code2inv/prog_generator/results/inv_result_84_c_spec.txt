@@ -1,2 +1,2 @@
-( ( x < ( y + y ) || x <= ( 0 + -50 ) ) && ( y == ( y - 0 ) ) )
-z3_report time: 5.27 pid: 0 stats: Counter({'ce-T:': 300, 'boogie_result': 79, 'ce-F:': 73, 'ce-I:': 71, 'actual_z3': 11})
+( ( y > 0 || x <= ( -50 + 1 ) ) && ( x == ( 0 + x ) ) )
+z3_report time: 20.19 pid: 0 stats: Counter({'ce-T:': 1121, 'ce-I:': 929, 'boogie_result': 283, 'ce-F:': 277, 'actual_z3': 12})

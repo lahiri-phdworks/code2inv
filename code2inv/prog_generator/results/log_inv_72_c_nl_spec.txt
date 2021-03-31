@@ -1,8 +1,6 @@
-best_root :  ( ( c == ( z - c ) || z > ( c + 127 ) ) && z > ( 127 * c ) && ( y >= ( c + 127 ) || z <= ( 1 * 127 ) ) ) 
-simplify : [Or(Not(z <= 127 + c), 2*c == z),
- Not(z <= 127*c),
- Or(y >= 127 + c, z <= 127)]
+best_root :  ( ( y > ( 36 + 1 ) && y > ( 36 + c ) ) ) 
+simplify : [Not(y <= 37), Not(y <= 36 + c)]
 best_reward : -1
-epoch: 9, average reward: -0.5078, 
-Random: ( z <= ( 1 + 4608 ) || y > ( 1 + c ) ), result_r: -2.0200 
-stats : Counter({'ce-F:': 57423, 'ce-I:': 54896, 'ce-T:': 29713, 'boogie_result': 9908, 'actual_z3': 15})
+epoch: 9, average reward: -0.4920, 
+Random: ( ( c <= ( c - 127 ) && y > ( 36 - 1 ) ) || y > ( 0 * c ) ), result_r: -1.8240 
+stats : Counter({'ce-F:': 49054, 'ce-I:': 47835, 'ce-T:': 29590, 'boogie_result': 9867, 'actual_z3': 13})

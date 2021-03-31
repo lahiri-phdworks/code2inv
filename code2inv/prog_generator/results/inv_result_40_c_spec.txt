@@ -1,2 +1,2 @@
 ( ( n > ( 0 + 0 ) ) && ( n >= ( c - 1 ) ) && ( n == ( c + n ) ) )
-z3_report time: 1.32 pid: 0 stats: Counter({'ce-I:': 26, 'ce-T:': 25, 'ce-F:': 25, 'boogie_result': 19, 'actual_z3': 13})
+z3_report time: 1.19 pid: 0 stats: Counter({'ce-I:': 26, 'ce-T:': 25, 'ce-F:': 25, 'boogie_result': 19, 'actual_z3': 13})
