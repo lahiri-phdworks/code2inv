@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -19,75 +20,79 @@
 
 #define INV(lock, x, y) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int lock, int x, int y)
+void precheck(FILE *file_descp, char *buff, long long int lock, long long int x, long long int y)
 {
   int f = preflag;
   aflcrash(INV(lock, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n",
-            "lock", lock, "x", x, "y", y);
-    fflush(stderr);
+    fprintf(file_descp, "Pre : %s\n",
+            buff);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int lock, int x, int y)
+void loopcheck(FILE *file_descp, char *buff, long long int lock, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(lock, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d\n",
-            "lock", lock, "x", x, "y", y);
-    fflush(stderr);
+    fprintf(file_descp, "Loop : %s\n",
+            buff);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, lock, x, y)   \
+#define postcheck(file_descp, buff, cond, lock, x, y) \
   \ 
-{                                  \
+{                                                  \
     \ 
-    int f = postflag;                 \
+    int f = postflag;                                 \
     \ 
-   aflcrash(cond, postflag);          \
+   aflcrash(cond, postflag);                          \
     \ 
-    if (f == 0 && postflag == 1)      \
-    {                                 \
-      \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n",\ 
- "lock",                              \
-               lock, "x", x, "y", y); \
-      fflush(stderr);                 \
-    \ 
-}                                \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(file_descp, "Post : %s\n", buff); \ 
+}  \
   }
 
 int main()
 {
   // variable declarations
-  int lock;
-  int x;
-  int y;
-  freopen("models.txt", "w", stderr);
+  long long int lock;
+  long long int x;
+  long long int y;
+
+  char buff[1024];
+  memset(buff, '\0', sizeof(buff));
+
+  FILE *fptr = fopen("models.txt", "w");
+  setvbuf(fptr, buff, _IOLBF, 1024);
 
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
-    int choices = buf[0];
+    long long int choices = buf[0];
+    x = buf[1];
+    y = buf[2];
+    lock = buf[3];
+
+    char vars[128];
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld",
+             "lock", lock, "x", x, "y", y);
 
     // pre-conditions
-    x = buf[1];
-    (y = (x + 1));
-    (lock = 0);
     // precheck
     // loopcond : (x != y)
 
@@ -95,7 +100,10 @@ int main()
     {
       //pre-conditions
       assume((preflag == 0));
-      precheck(lock, x, y);
+      (y = (x + 1));
+      (lock = 0);
+      precount++;
+      precheck(fptr, vars, lock, x, y);
     }
     else
     {
@@ -113,7 +121,7 @@ int main()
           assume((loopflag == 0));
           {
             {
-              if (choices > 63)
+              if (choices > 64)
               {
                 {
                   (lock = 1);
@@ -130,7 +138,8 @@ int main()
               }
             }
           }
-          loopcheck(lock, x, y);
+          loopcount++;
+          loopcheck(fptr, vars, lock, x, y);
         }
       }
       else
@@ -138,8 +147,18 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        postcheck((lock == 1), lock, x, y)
+        {
+          postcount++;
+          postcheck(fptr, vars, (lock == 1), lock, x, y)
+        }
       }
+    }
+
+    if (preflag + loopflag + postflag == 0 && counter == 100)
+    {
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      counter = 0;
     }
 
     if (preflag + loopflag + postflag >= 3)

@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -19,48 +20,46 @@
 
 #define INV(x, y) PHI
 
-int counter = 0;
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, int x, int y)
+void precheck(FILE *file_descp, char *buff, long long int x, long long int y)
 {
     int f = preflag;
     aflcrash(INV(x, y), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(file_descp, "\nPre : %s\n",
+        fprintf(file_descp, "Pre : %s\n",
                 buff);
     }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, int x, int y)
+void loopcheck(FILE *file_descp, char *buff, long long int x, long long int y)
 {
     int f = loopflag;
     aflcrash(INV(x, y), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "\nLoop : %s\n",
+        fprintf(file_descp, "Loop : %s\n",
                 buff);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, y)     \
+#define postcheck(file_descp, buff, cond, x, y)      \
     \ 
-{                                              \
+{                                               \
         \ 
-    int f = postflag;                               \
+    int f = postflag;                                \
         \ 
-   aflcrash(cond, postflag);                        \
+   aflcrash(cond, postflag);                         \
         \ 
-    if (f == 0 && postflag == 1)                    \
-        {                                           \
-            \ 
-        fprintf(file_descp, "\nPost : %s\n", buff); \
-        }                                           \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(file_descp, "Post : %s\n", buff); \ 
+} \
     }
 
 int main()
@@ -69,12 +68,11 @@ int main()
     long long int x;
     long long int y;
 
-    char buff[500];
+    char buff[1024];
     memset(buff, '\0', sizeof(buff));
-    FILE *fptr = fopen("models.txt", "w");
 
-    // COMMENT : This must be line buffered.
-    setvbuf(fptr, buff, _IOLBF, 500);
+    FILE *fptr = fopen("models.txt", "w");
+    setvbuf(fptr, buff, _IOLBF, 1024);
 
     for (;;)
     {
@@ -83,13 +81,12 @@ int main()
 
         HF_ITER(&buf, &len);
 
-        int choices = buf[0];
+        long long int choices = buf[0];
         x = buf[1];
-        y = buf[2];
 
-        char vars[50];
+        char vars[128];
         memset(vars, '\0', sizeof(vars));
-        snprintf(vars, 50, "%s : %lld, %s : %lld", "x", x, "y", y);
+        snprintf(vars, 128, "%s : %lld, %s : %lld", "x", x, "y", y);
 
         // pre-conditions
         // precheck
@@ -131,15 +128,16 @@ int main()
                 // post-check program
                 assume((postflag == 0));
                 // post-condition
-                postcount++;
-                postcheck(fptr, vars, y >= 0, x, y)
+                {
+                    postcount++;
+                    postcheck(fptr, vars, y >= 0, x, y)
+                }
             }
         }
 
         if (preflag + loopflag + postflag == 0 && counter == 100)
         {
-            fprintf(fptr, "\n%s : %lld, %s : %lld, %s : %lld\n",
-                    "precount", precount, "loopcount", loopcount, "postcount", postcount);
+            fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
             counter = 0;
         }
 

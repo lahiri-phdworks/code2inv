@@ -20,54 +20,46 @@
 
 #define INV(i, sn) PHI
 
-int counter = 0;
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *p, char *buff, long long int i, long long int sn)
+void precheck(FILE *file_descp, char *buff, long long int i, long long int sn)
 {
   int f = preflag;
   aflcrash(INV(i, sn), preflag);
   if (f == 0 && preflag == 1)
   {
-    flock(fileno(p), LOCK_SH);
-    fprintf(p, "\nPre : %s\n",
+    fprintf(file_descp, "Pre : %s\n",
             buff);
-    flock(fileno(p), LOCK_UN);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *p, char *buff, long long int i, long long int sn)
+void loopcheck(FILE *file_descp, char *buff, long long int i, long long int sn)
 {
   int f = loopflag;
   aflcrash(INV(i, sn), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    flock(fileno(p), LOCK_SH);
-    fprintf(p, "\nLoop : %s\n",
+    fprintf(file_descp, "Loop : %s\n",
             buff);
-    flock(fileno(p), LOCK_UN);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(p, buff, cond, i, sn)  \
+#define postcheck(file_descp, buff, cond, i, sn)     \
   \ 
-{                                     \
+{                                                 \
     \ 
-    int f = postflag;                    \
+    int f = postflag;                                \
     \ 
-   aflcrash(cond, postflag);             \
+   aflcrash(cond, postflag);                         \
     \ 
-    if (f == 0 && postflag == 1)         \
-    {                                    \
-      \ 
-      flock(fileno(p), LOCK_SH);         \
-      fprintf(p, "\nPost : %s\n", buff); \
-      flock(fileno(p), LOCK_UN);         \
-    }                                    \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(file_descp, "Post : %s\n", buff); \ 
+} \
   }
 
 int main()
@@ -78,9 +70,8 @@ int main()
 
   char buff[512];
   memset(buff, '\0', sizeof(buff));
-  FILE *fptr = fopen("models.txt", "w");
 
-  // COMMENT : This must be line buffered.
+  FILE *fptr = fopen("models.txt", "w");
   setvbuf(fptr, buff, _IOLBF, 512);
 
   for (;;)
@@ -91,16 +82,14 @@ int main()
     HF_ITER(&buf, &len);
 
     long long int choices = buf[0];
-    i = buf[2];
-    sn = buf[4];
-
-    char vars[64];
-    memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 64, "%s : %lld, %s : %lld", "i", i, "sn", sn);
-
-    // pre-conditions
     i = buf[1];
     sn = buf[2];
+
+    char vars[128];
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 128, "%s : %lld, %s : %lld", "i", i, "sn", sn);
+
+    // pre-conditions
     // precheck
     // loopcond : (i <= 8)
 
@@ -110,6 +99,7 @@ int main()
       assume((preflag == 0));
       (sn = 0);
       (i = 1);
+      precount++;
       precheck(fptr, vars, i, sn);
     }
     else
@@ -132,6 +122,7 @@ int main()
               (sn = (sn + 1));
             }
           }
+          loopcount++;
           loopcheck(fptr, vars, i, sn);
         }
       }
@@ -141,13 +132,16 @@ int main()
         assume((postflag == 0));
         // post-condition
         if ((sn != 8))
+        {
+          postcount++;
           postcheck(fptr, vars, (sn == 0), i, sn)
+        }
       }
     }
 
-    if (preflag + loopflag + postflag == 0 && counter >= 100)
+    if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(fptr, "\n%s : %lld, %s : %lld, %s : %lld\n",
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
               "precount", precount, "loopcount", loopcount, "postcount", postcount);
       counter = 0;
     }
@@ -155,6 +149,4 @@ int main()
     if (preflag + loopflag + postflag >= 3)
       assert(0);
   }
-
-  return 0;
 }

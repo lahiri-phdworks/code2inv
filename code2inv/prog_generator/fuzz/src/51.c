@@ -20,7 +20,7 @@
 
 #define INV(c) PHI
 
-int counter = 0;
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
@@ -31,7 +31,7 @@ void precheck(FILE *file_descp, char *buff, long long int c)
   aflcrash(INV(c), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "\nPre : %s\n",
+    fprintf(file_descp, "Pre : %s\n",
             buff);
   }
 }
@@ -43,25 +43,23 @@ void loopcheck(FILE *file_descp, char *buff, long long int c)
   aflcrash(INV(c), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "\nLoop : %s\n",
+    fprintf(file_descp, "Loop : %s\n",
             buff);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, c)      \
+#define postcheck(file_descp, buff, cond, c)         \
   \ 
-{                                              \
+{                                                 \
     \ 
-    int f = postflag;                             \
+    int f = postflag;                                \
     \ 
-   aflcrash(cond, postflag);                      \
+   aflcrash(cond, postflag);                         \
     \ 
-    if (f == 0 && postflag == 1)                  \
-    {                                             \
-      \ 
-      fprintf(file_descp, "\nPost : %s\n", buff); \
-    }                                             \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(file_descp, "Post : %s\n", buff); \ 
+} \
   }
 
 int main()
@@ -69,12 +67,11 @@ int main()
   // variable declarations
   long long int c;
 
-  char buff[1024];
+  char buff[512];
   memset(buff, '\0', sizeof(buff));
-  FILE *fptr = fopen("models.txt", "w");
 
-  // COMMENT : This must be line buffered.
-  setvbuf(fptr, buff, _IOLBF, 1024);
+  FILE *fptr = fopen("models.txt", "w");
+  setvbuf(fptr, buff, _IOLBF, 512);
 
   for (;;)
   {
@@ -83,12 +80,12 @@ int main()
 
     HF_ITER(&buf, &len);
 
-    long long int choices = buf[1];
-    c = buf[3];
+    long long int choices = buf[0];
+    c = buf[1];
 
-    char vars[16];
+    char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 16, "%s : %lld", "c", c);
+    snprintf(vars, 128, "%s : %lld", "c", c);
 
     // pre-conditions
     // precheck
@@ -119,16 +116,16 @@ int main()
           // loop body
           {
             {
-              if (choices > 63)
+              if (choices > 64)
               {
-                if (c != 4)
+                if ((c != 4))
                 {
                   (c = (c + 1));
                 }
               }
               else
               {
-                if (c == 4)
+                if ((c == 4))
                 {
                   (c = 1);
                 }
@@ -144,7 +141,7 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if (c != 4)
+        if ((c != 4))
         {
           postcount++;
           postcheck(fptr, vars, (c <= 4), c)
