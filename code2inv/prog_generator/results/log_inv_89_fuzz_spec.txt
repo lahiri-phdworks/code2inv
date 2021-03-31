@@ -1,0 +1,6 @@
+best_root :  ( ( x <= ( 1 * 1 ) || y > ( -10000 * x ) ) && lock > ( -10000 + x ) ) 
+simplify : None
+best_reward : -2
+epoch: 11, average reward: -1.0739, 
+Random: ( lock <= ( -10000 - y ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 59419, 'boogie_result': 11888, 'ce-F:': 11885, 'actual_z3': 7})

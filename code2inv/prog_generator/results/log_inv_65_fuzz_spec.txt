@@ -1,0 +1,6 @@
+best_root :  ( y >= ( 0 - y ) ) 
+simplify : [y >= 0]
+best_reward : -2
+epoch: 11, average reward: -1.0199, 
+Random: ( y > 0 ), result_r: -2.5100 
+stats : Counter({'ce-T:': 59333, 'boogie_result': 11870, 'ce-F:': 11866, 'actual_z3': 6})
