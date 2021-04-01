@@ -1,6 +1,6 @@
-best_root :  ( ( c < ( 40 * 1 ) || c >= ( 0 * c ) ) && ( c <= ( 40 - 1 ) || c == ( c - 0 ) ) && c >= 40 ) 
-simplify : [Or(Not(40 <= c), c >= 0), c >= 40]
+best_root :  ( ( c > c && c > ( c + c ) ) || ( c <= 1 && c >= ( 0 * c ) ) ) 
+simplify : [c <= 1, c >= 0]
 best_reward : -2
-epoch: 11, average reward: -1.0488, 
-Random: ( ( c == ( c * 40 ) || c <= ( c - 40 ) ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 58800, 'boogie_result': 11764, 'ce-F:': 11763, 'actual_z3': 6})
+epoch: 11, average reward: -1.0723, 
+Random: ( ( c < 1 || c <= ( c * 1 ) ) && c >= 1 && ( c == ( 40 - 1 ) || c == ( 1 * 1 ) ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 35275, 'ce-F:': 35273, 'boogie_result': 11763, 'actual_z3': 9})

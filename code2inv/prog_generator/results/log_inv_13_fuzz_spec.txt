@@ -1,0 +1,6 @@
+best_root :  ( x > ( 0 + y ) || ( y == ( x - 4 ) && x <= ( 2 + 2 ) ) ) 
+simplify : [Or(Not(x <= y), And(y == -4 + x, x <= 4))]
+best_reward : -2
+epoch: 11, average reward: -1.0723, 
+Random: ( y == ( 4 + 2 ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 59246, 'boogie_result': 11860, 'ce-F:': 11857, 'actual_z3': 30})

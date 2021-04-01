@@ -1,6 +1,6 @@
-best_root :  ( ( x >= ( 0 - 1 ) || i <= i ) ) 
-simplify : []
-best_reward : 0
-epoch: 0, average reward: -1.0353, 
-Random: ( ( j <= ( y - 0 ) || i == ( j - 1 ) ) && ( i > 1 || y <= ( 0 * 1 ) ) && y == ( 0 * j ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 4967, 'boogie_result': 998, 'ce-F:': 991, 'actual_z3': 11})
+best_root :  ( ( y > ( y * 1 ) || j < ( x * j ) ) ) 
+simplify : [Not(j*x <= j)]
+best_reward : -2
+epoch: 11, average reward: -1.0988, 
+Random: ( j > ( y * 1 ) || y > ( 0 + 1 ) || ( y < ( i * i ) && x < ( 1 + y ) ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 47639, 'ce-F:': 23811, 'boogie_result': 11915, 'actual_z3': 15})

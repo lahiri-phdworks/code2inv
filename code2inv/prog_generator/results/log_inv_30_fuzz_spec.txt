@@ -1,0 +1,6 @@
+best_root :  ( x > ( 100 * 1 ) || x <= ( 100 - 1 ) ) 
+simplify : [Or(Not(x <= 100), x <= 99)]
+best_reward : -2
+epoch: 11, average reward: -1.0604, 
+Random: ( x <= ( 100 - 100 ) ), result_r: -2.5100 
+stats : Counter({'ce-F:': 47113, 'ce-T:': 23563, 'boogie_result': 11788, 'actual_z3': 14})

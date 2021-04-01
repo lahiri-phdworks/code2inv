@@ -1,0 +1,6 @@
+best_root :  ( y > ( 10 + x ) ) 
+simplify : [Not(y <= 10 + x)]
+best_reward : -2
+epoch: 11, average reward: -1.0909, 
+Random: ( y == ( 20 + 20 ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 47393, 'ce-F:': 23700, 'boogie_result': 11853, 'actual_z3': 7})

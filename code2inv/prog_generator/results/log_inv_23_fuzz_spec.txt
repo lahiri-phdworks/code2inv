@@ -1,0 +1,6 @@
+best_root :  ( ( j < ( 20 - j ) || j > 1 ) && j < j ) 
+simplify : [False]
+best_reward : -2
+epoch: 11, average reward: -1.0189, 
+Random: ( i == j ), result_r: -2.5100 
+stats : Counter({'ce-T:': 59302, 'boogie_result': 11869, 'ce-F:': 11859, 'actual_z3': 19})
