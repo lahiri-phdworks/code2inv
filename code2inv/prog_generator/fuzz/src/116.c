@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -19,76 +20,79 @@
 
 #define INV(sn, x) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int sn, int x)
+void precheck(FILE *file_descp, char *buff, long long int sn, long long int x)
 {
   int f = preflag;
   aflcrash(INV(sn, x), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s : %d, %s : %d\n",
-            "sn", sn, "x", x);
-    fflush(stderr);
+    fprintf(file_descp, "Pre : %s\n",
+            buff);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int sn, int x)
+void loopcheck(FILE *file_descp, char *buff, long long int sn, long long int x)
 {
   int f = loopflag;
   aflcrash(INV(sn, x), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s : %d, %s : %d\n",
-            "sn", sn, "x", x);
-    fflush(stderr);
+    fprintf(file_descp, "Loop : %s\n",
+            buff);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, sn, x)   \
+#define postcheck(file_descp, buff, cond, sn, x)     \
   \ 
-{                             \
+{                                                 \
     \ 
-    int f = postflag;            \
+    int f = postflag;                                \
     \ 
-   aflcrash(cond, postflag);     \
+   aflcrash(cond, postflag);                         \
     \ 
-    if (f == 0 && postflag == 1) \
-    {                            \
-      \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d\n",\ 
- "sn",                           \
-               sn, "x", x);      \
-      fflush(stderr);            \
-    \ 
-}                           \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(file_descp, "Post : %s\n", buff); \ 
+} \
   }
 
 int main()
 {
   // variable declarations
-  int sn;
-  int v1;
-  int v2;
-  int v3;
-  int x;
-  freopen("models.txt", "w", stderr);
+  long long int sn;
+  long long int v1;
+  long long int v2;
+  long long int v3;
+  long long int x;
+
+  char buff[1024];
+  memset(buff, '\0', sizeof(buff));
+
+  FILE *fptr = fopen("models.txt", "w");
+  setvbuf(fptr, buff, _IOLBF, 1024);
 
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
 
-    int choices = buf[0];
-
-    // pre-conditions
+    long long int choices = buf[0];
     sn = buf[2];
     x = buf[3];
+
+    char vars[128];
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 128, "%s : %lld, %s : %lld", "sn", sn, "x", x);
+
+    // pre-conditions
     // precheck
     // loopcond : (unknown())
 
@@ -98,7 +102,8 @@ int main()
       assume((preflag == 0));
       (sn = 0);
       (x = 0);
-      precheck(sn, x);
+      precount++;
+      precheck(fptr, vars, sn, x);
     }
     else
     {
@@ -107,11 +112,11 @@ int main()
       assume(INV(sn, x));
 
       // Loop Condition
-      if ((unknown()))
+      if ((choices > 55))
       {
         // Bounded Unrolling
         int k = UNROLL_LIMIT;
-        while ((unknown()) && k--)
+        while ((choices > 55) && k--)
         {
           assume((loopflag == 0));
           // loop body
@@ -121,7 +126,8 @@ int main()
               (sn = (sn + 1));
             }
           }
-          loopcheck(sn, x);
+          loopcount++;
+          loopcheck(fptr, vars, sn, x);
         }
       }
       else
@@ -130,8 +136,17 @@ int main()
         assume((postflag == 0));
         // post-condition
         if ((sn != x))
-          postcheck((sn == -1), sn, x)
+        {
+          postcount++;
+          postcheck(fptr, vars, (sn == -1), sn, x)
+        }
       }
+    }
+
+    if (preflag + loopflag + postflag == 0 && counter == 100)
+    {
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      counter = 0;
     }
 
     if (preflag + loopflag + postflag >= 3)
