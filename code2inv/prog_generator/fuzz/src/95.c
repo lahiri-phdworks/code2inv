@@ -31,10 +31,8 @@ void precheck(FILE *file_descp, char *buff, int i, int j, int x, int y)
   aflcrash(INV(i, j, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    flock(fileno(file_descp), LOCK_SH);
     fprintf(file_descp, "\nPre : %s\n",
             buff);
-    flock(fileno(file_descp), LOCK_UN);
   }
 }
 
@@ -45,10 +43,8 @@ void loopcheck(FILE *file_descp, char *buff, int i, int j, int x, int y)
   aflcrash(INV(i, j, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    flock(fileno(file_descp), LOCK_SH);
     fprintf(file_descp, "\nLoop : %s\n",
             buff);
-    flock(fileno(file_descp), LOCK_UN);
   }
 }
 
@@ -64,9 +60,7 @@ void loopcheck(FILE *file_descp, char *buff, int i, int j, int x, int y)
     if (f == 0 && postflag == 1)                      \
     {                                                 \
       \ 
-        flock(fileno(fptr), LOCK_SH);                 \
       fprintf(fptr, "\nPost : %s\n", buff);           \
-      flock(fileno(fptr), LOCK_UN);                   \
     }                                                 \
   }
 

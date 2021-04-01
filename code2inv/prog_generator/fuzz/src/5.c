@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int size,
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x, long long int size, long long int y, long long int z)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int temp_size,
+               long long int temp_y, long long int temp_z, long long int x, long long int size, long long int y, long long int z)
 {
    int f = loopflag;
    aflcrash(INV(x, size, y, z), loopflag);
    if (f == 0 && loopflag == 1)
    {
-      fprintf(file_descp, "Loop : %s\n",
-              buff);
+      fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+              "x", temp_x, "size", temp_size, "y", temp_y, "z", temp_z);
+      fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+              "x", x, "size", size, "y", y, "z", z);
    }
 }
 
@@ -64,7 +67,7 @@ void loopcheck(FILE *file_descp, char *buff, long long int x, long long int size
 
 int main()
 {
-   int x = 0;
+   long long int x = 0;
    long long int size;
    long long int y;
    long long int z;
@@ -83,6 +86,7 @@ int main()
       HF_ITER(&buf, &len);
 
       long long int choices = buf[0];
+      x = buf[4];
       size = buf[1];
       y = buf[2];
       z = buf[3];
@@ -117,6 +121,10 @@ int main()
             while ((x < size) && k--)
             {
                assume((loopflag == 0));
+               long long int temp_x = x;
+               long long int temp_size = size;
+               long long int temp_y = y;
+               long long int temp_z = z;
                // loop body
                {
                   x += 1;
@@ -126,7 +134,7 @@ int main()
                   }
                }
                loopcount++;
-               loopcheck(fptr, vars, x, size, y, z);
+               loopcheck(fptr, vars, temp_x, temp_size, temp_y, temp_z, x, size, y, z);
             }
          }
          else

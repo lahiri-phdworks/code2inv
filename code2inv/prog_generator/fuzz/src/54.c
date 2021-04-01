@@ -43,9 +43,9 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_n,
   aflcrash(INV(c, n, v1, v2, v3), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "c", temp_c, "n", temp_n, "v1", v1, "v2", v2, "v3", v3);
-    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "c", c, "n", n, "v1", v1, "v2", v2, "v3", v3);
   }
 }

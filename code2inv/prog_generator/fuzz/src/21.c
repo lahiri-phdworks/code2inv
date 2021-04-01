@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int m, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x, long long int m, long long int n, long long int z1, long long int z2, long long int z3)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int temp_m, long long int temp_n,
+               long long int x, long long int m, long long int n, long long int z1, long long int z2, long long int z3)
 {
     int f = loopflag;
     aflcrash(INV(x, m, n, z1, z2, z3), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "Loop : %s\n",
-                buff);
+        fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
+                "x", temp_x, "m", temp_m, "n", temp_n);
+        fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
+                "x", x, "m", m, "n", n);
     }
 }
 
@@ -85,10 +88,10 @@ int main()
 
         HF_ITER(&buf, &len);
 
-        long long int choices = buf[0];
-        n = buf[1];
-        x = buf[2];
-        m = buf[3];
+        long long int choices = buf[3];
+        n = buf[2];
+        x = buf[1];
+        m = buf[4];
 
         char vars[128];
         memset(vars, '\0', sizeof(vars));
@@ -124,6 +127,9 @@ int main()
                 while ((x < n) && k--)
                 {
                     assume((loopflag == 0));
+                    long long int temp_x = x;
+                    long long int temp_m = m;
+                    long long int temp_n = n;
                     // loop body
                     {
                         if (choices > 64)
@@ -133,7 +139,7 @@ int main()
                         x = x + 1;
                     }
                     loopcount++;
-                    loopcheck(fptr, vars, x, m, n, z1, z2, z3);
+                    loopcheck(fptr, vars, temp_x, temp_m, temp_n, x, m, n, z1, z2, z3);
                 }
             }
             else

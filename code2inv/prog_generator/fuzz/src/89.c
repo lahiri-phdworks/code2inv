@@ -25,32 +25,30 @@ int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff,
-              int lock, int v1, int v2, int v3, int x, int y)
+void precheck(FILE *file_descp, char *buff, long long int lock, long long int v1,
+              long long int v2, long long int v3, long long int x, long long int y)
 {
   int f = preflag;
   aflcrash(INV(lock, v1, v2, v3, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    flock(fileno(file_descp), LOCK_SH);
-    fprintf(file_descp, "\nPre : %s\n",
+    fprintf(file_descp, "Pre : %s\n",
             buff);
-    flock(fileno(file_descp), LOCK_UN);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff,
-               int lock, int v1, int v2, int v3, int x, int y)
+void loopcheck(FILE *file_descp, char *buff, long long temp_lock, long long temp_x, long long temp_y,
+               long long int lock, long long int v1, long long int v2, long long int v3, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(lock, v1, v2, v3, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    flock(fileno(file_descp), LOCK_SH);
-    fprintf(file_descp, "\nLoop : %s\n",
-            buff);
-    flock(fileno(file_descp), LOCK_UN);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "lock", temp_lock, "v1", v1, "v2", v2, "v3", v3, "x", temp_x, "y", temp_y);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
   }
 }
 
@@ -66,9 +64,7 @@ void loopcheck(FILE *file_descp, char *buff,
     if (f == 0 && postflag == 1)                            \
     {                                                       \
       \ 
-        flock(fileno(fptr), LOCK_SH);                       \
-      fprintf(fptr, "\nPost : %s\n", buff);                 \
-      flock(fileno(fptr), LOCK_UN);                         \
+      fprintf(fptr, "Post : %s\n", buff);                   \
     }                                                       \
   }
 
@@ -96,14 +92,14 @@ int main()
 
     HF_ITER(&buf, &len);
 
-    int choices = buf[0];
-    y = buf[1];
-    x = buf[2];
-    lock = buf[3];
+    int choices = buf[2];
+    y = buf[3];
+    x = buf[4];
+    lock = buf[1];
 
-    char vars[150];
+    char vars[256];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 150, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    snprintf(vars, 256, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
              "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
 
     // pre-conditions
@@ -135,6 +131,9 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_lock = lock;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             {
               if (choices > 63)
@@ -155,7 +154,7 @@ int main()
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, lock, v1, v2, v3, x, y);
+          loopcheck(fptr, vars, temp_lock, temp_x, temp_y, lock, v1, v2, v3, x, y);
         }
       }
       else

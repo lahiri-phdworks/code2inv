@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int x, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int i, long long int x, long long int y, long long int z1, long long int z2, long long int z3)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int temp_x, long long int temp_y, long long int i,
+               long long int x, long long int y, long long int z1, long long int z2, long long int z3)
 {
   int f = loopflag;
   aflcrash(INV(i, x, y, z1, z2, z3), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", temp_i, "x", temp_x, "y", temp_y, "z1", z1, "z2", z2, "z3", z3);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);
   }
 }
 
@@ -126,6 +129,9 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_i = i;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             if ((i < y))
             {
@@ -133,7 +139,7 @@ int main()
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, i, x, y, z1, z2, z3);
+          loopcheck(fptr, vars, temp_i, temp_x, temp_y, i, x, y, z1, z2, z3);
         }
       }
       else

@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int v1, l
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int n, long long int v1, long long int v2, long long int v3, long long int x)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x,
+               long long int n, long long int v1, long long int v2, long long int v3, long long int x)
 {
   int f = loopflag;
   aflcrash(INV(n, v1, v2, v3, x), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "n", temp_n, "v1", v1, "v2", v2, "v3", v3, "x", temp_x);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
   }
 }
 
@@ -119,13 +122,15 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_n = n;
+          long long int temp_x = x;
           {
             {
               (x = (x + 1));
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, n, v1, v2, v3, x);
+          loopcheck(fptr, vars, temp_n, temp_x, n, v1, v2, v3, x);
         }
       }
       else

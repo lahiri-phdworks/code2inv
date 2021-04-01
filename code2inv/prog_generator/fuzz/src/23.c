@@ -37,7 +37,8 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int j)
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int temp_j, long long int i, long long int j)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_i,
+               long long int temp_j, long long int i, long long int j)
 {
   int f = loopflag;
   aflcrash(INV(i, j), loopflag);

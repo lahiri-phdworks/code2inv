@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int a, long long int m, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int a, long long int m, long long int j, long long int k)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_a, long long int temp_m, long long int temp_j, long long int temp_k,
+               long long int a, long long int m, long long int j, long long int k)
 {
     int f = loopflag;
     aflcrash(INV(a, m, j, k), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "Loop : %s\n",
-                buff);
+        fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "a", temp_a, "m", temp_m, "j", temp_j, "k", temp_k);
+        fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "a", a, "m", m, "j", j, "k", k);
     }
 }
 
@@ -83,10 +86,12 @@ int main()
         long long int choices = buf[0];
         m = buf[1];
         a = buf[2];
+        j = buf[4];
+        k = buf[3];
 
-        char vars[128];
+        char vars[256];
         memset(vars, '\0', sizeof(vars));
-        snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld", "a", a, "m", m, "j", j, "k", k);
+        snprintf(vars, 256, "%s : %lld, %s : %lld, %s : %lld, %s : %lld", "a", a, "m", m, "j", j, "k", k);
 
         // pre-conditions
         assume((-10000 <= m && m <= 10000));
@@ -118,6 +123,10 @@ int main()
                 while ((k < 1) && k--)
                 {
                     assume((loopflag == 0));
+                    long long int temp_a = a;
+                    long long int temp_m = m;
+                    long long int temp_j = j;
+                    long long int temp_k = k;
                     // loop body
                     {
                         if (m < a)
@@ -127,7 +136,7 @@ int main()
                         k = k + 1;
                     }
                     loopcount++;
-                    loopcheck(fptr, vars, a, m, j, k);
+                    loopcheck(fptr, vars, temp_a, temp_m, temp_j, temp_k, a, m, j, k);
                 }
             }
             else

@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int j, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int i, long long int j, long long int c, long long int t)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int temp_j, long long int temp_c, long long int temp_t,
+               long long int i, long long int j, long long int c, long long int t)
 {
     int f = loopflag;
     aflcrash(INV(i, j, c, t), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "Loop : %s\n",
-                buff);
+        fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "i", temp_i, "j", temp_j, "c", temp_c, "t", temp_t);
+        fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "i", i, "j", j, "c", c, "t", t);
     }
 }
 
@@ -115,6 +118,11 @@ int main()
                 while ((choices > 55) && k--)
                 {
                     assume((loopflag == 0));
+                    // loop body
+                    long long int temp_i = i;
+                    long long int temp_j = j;
+                    long long int temp_c = c;
+                    long long int temp_t = t;
                     {
                         if (c > 48)
                         {
@@ -127,7 +135,7 @@ int main()
                         }
                     }
                     loopcount++;
-                    loopcheck(fptr, vars, i, j, c, t);
+                    loopcheck(fptr, vars, temp_i, temp_j, temp_c, temp_t, i, j, c, t);
                 }
             }
             else
