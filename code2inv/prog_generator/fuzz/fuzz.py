@@ -12,7 +12,7 @@ timeout = sys.argv[2]
 filepath = os.path.join(pwd, f"include/{example}.h")
 fuzzbase = os.path.join(pwd)
 outputFile = os.path.join(pwd, "models.txt")
-collection_semantic = [None, None, None]
+collection_semantic = [None, None, None, None]
 
 # premodelsfile = os.path.join(pwd, "premodels.txt")
 # loopmodelsfile = os.path.join(pwd, "loopmodels.txt")
@@ -90,7 +90,7 @@ def process_crashes(fileName):
         models = fileptr.readlines()
         if isinstance(models, list) and len(models) > 0:
             for lines in models:
-                for index, x in enumerate(["Pre :", "Loop :", "Post :"]):
+                for index, x in enumerate(["Pre :", "LoopStart : ", "LoopEnd : ", "Post :"]):
                     if x in lines:
                         collection_semantic[index] = lines.strip()
                     # else:
@@ -100,16 +100,28 @@ def process_crashes(fileName):
 
 
 def mergeModels():
-    results = []
+    print(collection_semantic)
+    premodel = [None]
+    loopmodel = [None]
+    postmodel = [None]
+    temp = []
     if all(x is None for x in collection_semantic):
         return collection_semantic
     for x in collection_semantic:
         if x is not None:
-            results.append(process_model_string(x)[1])
-        else:
-            results.append(None)
+            cex_type, res = process_model_string(x)
+            if cex_type == "LoopStart" or cex_type == "LoopEnd":
+                temp.append(res)
+                if len(temp) == 2:
+                    (a, b) = temp[0], temp[1]
+                    loopmodel[0] = (a, b)
+                    temp = []
+            if cex_type == "Pre":
+                premodel[0] = res
+            if cex_type == "Post":
+                postmodel[0] = res
 
-    return results
+    return [premodel[0], loopmodel[0], postmodel[0]]
 
 
 if __name__ == "__main__":
@@ -119,8 +131,8 @@ if __name__ == "__main__":
     # dump_template(filepath, inv)
     # open(outputFile, mode="w").close()
 
-    init_fuzzbase()
-    call_fuzzsolver(timeout)
+    # init_fuzzbase()
+    # call_fuzzsolver(timeout)
 
     time.sleep(0.3)
 

@@ -37,14 +37,16 @@ void precheck(FILE *file_descp, char *buff, long long int x)
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x)
+void loopcheck(FILE *file_descp, char *buff, long long int temp, long long int x)
 {
   int f = loopflag;
   aflcrash(INV(x), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld\n",
+            "x", temp);
+    fprintf(file_descp, "LoopEnd : %s : %lld\n",
+            "x", x);
   }
 }
 
@@ -112,15 +114,17 @@ int main()
         int k = UNROLL_LIMIT;
         while ((x > 0) && k--)
         {
+
           assume((loopflag == 0));
           // loop body
+          long long int temp = x;
           {
             {
               (x = (x - 1));
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, x);
+          loopcheck(fptr, vars, temp, x);
         }
       }
       else

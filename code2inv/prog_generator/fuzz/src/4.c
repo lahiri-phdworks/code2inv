@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int y, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x, long long int y, long long int z)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
+               long long int temp_y, long long int temp_z, long long int x, long long int y, long long int z)
 {
    int f = loopflag;
    aflcrash(INV(x, y, z), loopflag);
    if (f == 0 && loopflag == 1)
    {
-      fprintf(file_descp, "Loop : %s\n",
-              buff);
+      fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
+              "x", temp_x, "y", temp_y, "z", temp_z);
+      fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
+              "x", x, "y", y, "z", z);
    }
 }
 
@@ -117,6 +120,9 @@ int main()
             while ((x < 500) && k--)
             {
                assume((loopflag == 0));
+               long long int temp_x = x;
+               long long int temp_y = y;
+               long long int temp_z = z;
                // loop body
                {
                   x += 1;
@@ -126,7 +132,7 @@ int main()
                   }
                }
                loopcount++;
-               loopcheck(fptr, vars, x, y, z);
+               loopcheck(fptr, vars, temp_x, temp_y, temp_z, x, y, z);
             }
          }
          else

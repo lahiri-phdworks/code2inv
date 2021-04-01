@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int m, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x, long long int m, long long int n)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
+               long long int temp_m, long long int temp_n, long long int x, long long int m, long long int n)
 {
     int f = loopflag;
     aflcrash(INV(x, m, n), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "Loop : %s\n",
-                buff);
+        fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
+                "x", temp_x, "m", temp_m, "n", temp_n);
+        fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
+                "x", x, "m", m, "n", n);
     }
 }
 
@@ -118,6 +121,9 @@ int main()
                 {
                     assume((loopflag == 0));
                     // loop body
+                    long long int temp_x = x;
+                    long long int temp_m = m;
+                    long long int temp_n = n;
                     {
                         if (choices > 64)
                         {
@@ -126,7 +132,7 @@ int main()
                         x = x + 1;
                     }
                     loopcount++;
-                    loopcheck(fptr, vars, x, m, n);
+                    loopcheck(fptr, vars, temp_x, temp_m, temp_n, x, m, n);
                 }
             }
             else

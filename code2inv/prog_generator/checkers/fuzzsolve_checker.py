@@ -33,7 +33,7 @@ dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
 fuzzbase = os.path.join(pwd, os.pardir, f"fuzz")
 outputFile = os.path.join(pwd, os.pardir, "models.txt")
-collection_semantic = [None, None, None]
+collection_semantic = [None, None, None, None]
 
 # premodelsfile = os.path.join(pwd, os.pardir, "premodels.txt")
 # loopmodelsfile = os.path.join(pwd, os.pardir, "loopmodels.txt")
@@ -121,7 +121,7 @@ def process_crashes(fileName):
         models = fileptr.readlines()
         if isinstance(models, list) and len(models) > 0:
             for lines in models:
-                for index, x in enumerate(["Pre :", "Loop :", "Post :"]):
+                for index, x in enumerate(["Pre :", "LoopStart : ", "LoopEnd : ", "Post :"]):
                     if x in lines:
                         collection_semantic[index] = lines.strip()
                     # else:
@@ -131,16 +131,32 @@ def process_crashes(fileName):
 
 
 def mergeModels():
-    results = []
+    premodel = [None]
+    loopmodel = [None]
+    postmodel = [None]
+    temp = []
+
     if all(x is None for x in collection_semantic):
-        return collection_semantic
+        return [None, None, None]
+
     for x in collection_semantic:
         if x is not None:
-            results.append(process_model_string(x)[1])
-        else:
-            results.append(None)
+            cex_type, res = process_model_string(x)
 
-    return results
+            if cex_type == "LoopStart" or cex_type == "LoopEnd":
+                temp.append(res)
+                if len(temp) == 2:
+                    (a, b) = temp[0], temp[1]
+                    loopmodel[0] = (a, b)
+                    temp = []
+
+            if cex_type == "Pre":
+                premodel[0] = res
+
+            if cex_type == "Post":
+                postmodel[0] = res
+
+    return [premodel[0], loopmodel[0], postmodel[0]]
 
 
 def inv_solver(vc_file: str, inv: str):
@@ -148,7 +164,7 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
 
-    for i in range(3):
+    for i in range(len(collection_semantic)):
         collection_semantic[i] = None
 
     open(outputFile, mode="w").close()
