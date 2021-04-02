@@ -1,2 +1,0 @@
-[{'x': '0', 'm': '32767', 'n': '0'}, None, None]
-[None, None, None]

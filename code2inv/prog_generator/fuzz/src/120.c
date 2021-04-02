@@ -80,7 +80,7 @@ int main()
   for (;;)
   {
     size_t len;
-    const int32_t *buf;
+    const int16_t *buf;
 
     HF_ITER(&buf, &len);
 
