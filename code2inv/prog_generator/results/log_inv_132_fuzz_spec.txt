@@ -1,6 +1,6 @@
-best_root :  ( ( c <= ( 48 - 57 ) || c >= ( i + i ) ) && c == ( c + i ) ) 
-simplify : [Or(c <= -9, c >= 0)]
+best_root :  ( t >= ( t * 0 ) || j >= ( t * 0 ) || c > i ) 
+simplify : [Or(t >= 0, j >= 0, Not(c <= i))]
 best_reward : -2
-epoch: 14, average reward: -1.5515, 
-Random: ( ( j > i || i < ( 57 * 57 ) ) && i >= ( 48 - 48 ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 89361, 'boogie_result': 14897, 'actual_z3': 6})
+epoch: 7, average reward: -1.5815, 
+Random: ( ( c >= ( c + c ) && j == ( 48 * i ) ) || t < i ), result_r: -3.0000 
+stats : Counter({'ce-T:': 47601, 'boogie_result': 7937, 'actual_z3': 6})

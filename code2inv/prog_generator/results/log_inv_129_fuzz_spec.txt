@@ -1,6 +1,6 @@
-best_root :  ( x < ( 1 - x ) ) 
-simplify : [Not(x >= 1)]
+best_root :  ( y >= ( 1 - 1 ) ) 
+simplify : [y >= 0]
 best_reward : -2
-epoch: 11, average reward: -1.0713, 
-Random: ( y > ( 1 - 1 ) && ( x < ( 1 + x ) || y < y ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 58848, 'boogie_result': 11783, 'ce-F:': 11769, 'actual_z3': 20})
+epoch: 7, average reward: -1.5500, 
+Random: ( x == 1 || ( x <= ( 1 + y ) && y >= ( y * y ) ) || x >= ( 1 + 1 ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 46947, 'boogie_result': 7828, 'actual_z3': 6})

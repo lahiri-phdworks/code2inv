@@ -1,0 +1,6 @@
+best_root :  ( ( x > ( y - 1 ) || y <= ( 10000 - -10000 ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 7, average reward: -0.5448, 
+Random: ( ( y >= ( y * 10000 ) && y <= ( 1000 * 10000 ) ) || ( y >= ( 1000 * 1 ) && y >= ( y * 10000 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 31660, 'boogie_result': 7927, 'ce-T:': 7926, 'ce-F:': 7915, 'actual_z3': 16})

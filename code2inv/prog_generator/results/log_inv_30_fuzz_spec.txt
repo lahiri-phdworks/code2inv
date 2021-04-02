@@ -1,7 +1,6 @@
-best_root :  ( ( x > ( 100 + 0 ) && x > ( 100 * 0 ) ) || ( x <= ( x - x ) && x < ( 100 + 0 ) ) ) 
-simplify : [Or(And(Not(x <= 100), Not(x <= 0)),
-    And(x <= 0, Not(100 <= x)))]
-best_reward : -1
-epoch: 11, average reward: -0.5851, 
-Random: ( x < 0 ), result_r: -2.0200 
-stats : Counter({'ce-F:': 47101, 'boogie_result': 11785, 'ce-T:': 11784, 'ce-I:': 11774, 'actual_z3': 14})
+best_root :  ( x < ( 100 + 100 ) ) 
+simplify : [Not(200 <= x)]
+best_reward : -2
+epoch: 7, average reward: -1.5900, 
+Random: ( x == ( x * x ) && x <= ( 0 + 1 ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 47097, 'boogie_result': 7853, 'actual_z3': 6})

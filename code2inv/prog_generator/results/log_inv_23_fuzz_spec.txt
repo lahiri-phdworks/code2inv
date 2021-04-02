@@ -1,6 +1,6 @@
-best_root :  ( ( j < ( 20 - j ) || j > 1 ) && j < j ) 
-simplify : [False]
+best_root :  ( j >= ( 1 * 2 ) ) 
+simplify : [j >= 2]
 best_reward : -2
-epoch: 11, average reward: -1.0189, 
-Random: ( i == j ), result_r: -2.5100 
-stats : Counter({'ce-T:': 59302, 'boogie_result': 11869, 'ce-F:': 11859, 'actual_z3': 19})
+epoch: 7, average reward: -1.1058, 
+Random: ( ( i < ( i - 13 ) && i > ( 2 + i ) ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 31656, 'ce-I:': 15825, 'boogie_result': 7917, 'actual_z3': 6})

@@ -1,0 +1,8 @@
+best_root :  ( k == 0 || ( m > k && j == ( k - 1 ) ) || ( a == m && j >= ( 0 * 0 ) ) ) 
+simplify : [Or(k == 0,
+    And(a == m, j >= 0),
+    And(Not(m <= k), j == -1 + k))]
+best_reward : -2
+epoch: 7, average reward: -1.0384, 
+Random: ( ( m > m || j < ( m - 0 ) ) && ( j <= ( 0 * 0 ) || m == ( m + 0 ) ) ), result_r: -2.5100 
+stats : Counter({'ce-T:': 31710, 'ce-F:': 15855, 'boogie_result': 7931, 'actual_z3': 6})
