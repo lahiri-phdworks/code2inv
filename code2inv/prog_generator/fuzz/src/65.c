@@ -37,17 +37,19 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int y)
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x, long long int y)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
+               long long int temp_y, long long int x, long long int y)
 {
     int f = loopflag;
     aflcrash(INV(x, y), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "Loop : %s\n",
-                buff);
+        fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
+                "x", temp_x, "y", temp_y);
+        fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
+                "x", x, "y", y);
     }
 }
-
 // COMMENT : Postcheck template
 #define postcheck(file_descp, buff, cond, x, y)      \
     \ 
@@ -115,12 +117,14 @@ int main()
                 {
                     assume((loopflag == 0));
                     // loop body
+                    long long int temp_x = x;
+                    long long int temp_y = y;
                     {
                         y = 100 - x;
                         x = x + 1;
                     }
                     loopcount++;
-                    loopcheck(fptr, vars, x, y);
+                    loopcheck(fptr, vars, temp_x, temp_y, x, y);
                 }
             }
             else
@@ -130,7 +134,7 @@ int main()
                 // post-condition
                 {
                     postcount++;
-                    postcheck(fptr, vars, y >= 0, x, y)
+                    postcheck(fptr, vars, (y >= 0), x, y)
                 }
             }
         }
@@ -142,6 +146,12 @@ int main()
         }
 
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

@@ -150,6 +150,12 @@ int main()
     }
 
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }

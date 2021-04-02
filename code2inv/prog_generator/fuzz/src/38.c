@@ -37,14 +37,16 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int c)
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int n, long long int c)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_c, long long int n, long long int c)
 {
     int f = loopflag;
     aflcrash(INV(n, c), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(file_descp, "Loop : %s\n",
-                buff);
+        fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
+                "n", temp_n, "c", temp_c);
+        fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
+                "n", n, "c", c);
     }
 }
 
@@ -98,6 +100,7 @@ int main()
             //pre-conditions
             assume((preflag == 0));
             assume(n > 0);
+            assume((c == 0));
             precount++;
             precheck(fptr, vars, n, c);
         }
@@ -116,6 +119,8 @@ int main()
                 {
                     assume((loopflag == 0));
                     // loop body
+                    long long int temp_c = c;
+                    long long int temp_n = n;
                     {
                         if (c == n)
                         {
@@ -127,7 +132,7 @@ int main()
                         }
                     }
                     loopcount++;
-                    loopcheck(fptr, vars, n, c);
+                    loopcheck(fptr, vars, temp_n, temp_c, n, c);
                 }
             }
             else
@@ -138,7 +143,7 @@ int main()
                 if (c == n)
                 {
                     postcount++;
-                    postcheck(fptr, vars, c >= 0, n, c)
+                    postcheck(fptr, vars, (c >= 0), n, c)
                 }
             }
         }
@@ -151,6 +156,12 @@ int main()
         }
 
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

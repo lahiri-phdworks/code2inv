@@ -37,14 +37,18 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int j, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int i, long long int j, long long int x, long long int y)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int temp_j, long long int temp_x, long long int temp_y,
+               long long int i, long long int j, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(i, j, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", temp_i, "j", temp_j, "x", temp_x, "y", temp_y);
+
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "j", j, "x", x, "y", y);
   }
 }
 
@@ -86,6 +90,8 @@ int main()
     long long int choices = buf[0];
     i = buf[1];
     y = buf[2];
+    j = buf[4];
+    x = buf[3];
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
@@ -121,6 +127,10 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_i = i;
+          long long int temp_j = j;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             {
               (i = (i + 1));
@@ -128,7 +138,7 @@ int main()
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, i, j, x, y);
+          loopcheck(fptr, vars, temp_i, temp_j, temp_x, temp_y, i, j, x, y);
         }
       }
       else
@@ -151,6 +161,12 @@ int main()
     }
 
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }

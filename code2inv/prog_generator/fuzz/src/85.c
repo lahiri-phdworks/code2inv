@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int y, lo
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int x, long long int y, long long int z1, long long int z2, long long int z3)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int temp_y,
+               long long int x, long long int y, long long int z1, long long int z2, long long int z3)
 {
   int f = loopflag;
   aflcrash(INV(x, y, z1, z2, z3), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "x", temp_x, "y", temp_y, "z1", z1, "z2", z2, "z3", z3);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);
   }
 }
 
@@ -88,9 +91,9 @@ int main()
     y = buf[1];
     x = buf[2];
 
-    char vars[128];
+    char vars[256];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    snprintf(vars, 256, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
              "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);
 
     // pre-conditions
@@ -121,6 +124,8 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             {
               (x = (x + y));
@@ -128,7 +133,7 @@ int main()
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, x, y, z1, z2, z3);
+          loopcheck(fptr, vars, temp_x, temp_y, x, y, z1, z2, z3);
         }
       }
       else
@@ -151,6 +156,12 @@ int main()
     }
 
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }

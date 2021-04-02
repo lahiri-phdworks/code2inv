@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int v1, l
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int n, long long int v1, long long int v2, long long int v3, long long int x, long long int y)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x, long long int temp_y,
+               long long int n, long long int v1, long long int v2, long long int v3, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(n, v1, v2, v3, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopEnd :%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "n", temp_n, "v1", v1, "v2", v2, "v3", v3, "x", temp_x, "y", temp_y);
+    fprintf(file_descp, "LoopEnd :%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
   }
 }
 
@@ -90,9 +93,9 @@ int main()
     x = buf[2];
     y = buf[3];
 
-    char vars[128];
+    char vars[256];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    snprintf(vars, 256, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
              "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
 
     // pre-conditions
@@ -122,12 +125,15 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_n = n;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             y = n - x;
             x = x + 1;
           }
           loopcount++;
-          loopcheck(fptr, vars, n, v1, v2, v3, x, y);
+          loopcheck(fptr, vars, temp_n, temp_x, temp_y, n, v1, v2, v3, x, y);
         }
       }
       else
@@ -138,7 +144,7 @@ int main()
         if (n > 0)
         {
           postcount++;
-          postcheck(fptr, vars, y < n, n, v1, v2, v3, x, y)
+          postcheck(fptr, vars, (y < n), n, v1, v2, v3, x, y)
         }
       }
     }
@@ -151,6 +157,12 @@ int main()
     }
 
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }

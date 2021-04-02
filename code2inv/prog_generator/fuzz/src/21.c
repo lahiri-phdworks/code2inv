@@ -151,7 +151,7 @@ int main()
                 {
                     {
                         postcount++;
-                        postcheck(fptr, vars, m < n, x, m, n, z1, z2, z3)
+                        postcheck(fptr, vars, (m < n), x, m, n, z1, z2, z3)
                     }
                 }
             }
@@ -165,6 +165,12 @@ int main()
         }
 
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

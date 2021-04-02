@@ -146,7 +146,7 @@ int main()
                 // post-condition
                 {
                     postcount++;
-                    postcheck(fptr, vars, a >= m, a, m, j, k)
+                    postcheck(fptr, vars, (a >= m), a, m, j, k)
                 }
             }
         }
@@ -158,6 +158,12 @@ int main()
         }
 
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

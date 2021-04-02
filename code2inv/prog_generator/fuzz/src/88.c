@@ -37,14 +37,17 @@ void precheck(FILE *file_descp, char *buff, long long int lock, long long int x,
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int lock, long long int x, long long int y)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_lock, long long int temp_x, long long int temp_y,
+               long long int lock, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(lock, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
+            "lock", temp_lock, "x", temp_x, "y", temp_y);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
+            "lock", lock, "x", x, "y", y);
   }
 }
 
@@ -87,9 +90,9 @@ int main()
     y = buf[2];
     lock = buf[3];
 
-    char vars[128];
+    char vars[256];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld",
+    snprintf(vars, 256, "%s : %lld, %s : %lld, %s : %lld",
              "lock", lock, "x", x, "y", y);
 
     // pre-conditions
@@ -119,6 +122,10 @@ int main()
         while ((x != y) && k--)
         {
           assume((loopflag == 0));
+          // loop body
+          long long int temp_lock = lock;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             {
               if (choices > 64)
@@ -139,7 +146,7 @@ int main()
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, lock, x, y);
+          loopcheck(fptr, vars, temp_lock, temp_x, temp_y, lock, x, y);
         }
       }
       else
@@ -162,6 +169,12 @@ int main()
     }
 
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }
