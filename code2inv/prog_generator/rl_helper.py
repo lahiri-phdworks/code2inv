@@ -182,7 +182,7 @@ def rollout(g, node_embedding, decoder, use_random, eps):
             root = env.root
             reward_list.append(reward)
         except Exception as e:
-            # print("EXCEPTION", e)
+            print("EXCEPTION", e)
             nll_list.append(decoder.nll)
             value_list.append(decoder.est)
             reward_list.append(-6.0)

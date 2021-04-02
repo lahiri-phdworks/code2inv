@@ -32,8 +32,8 @@ void precheck(FILE *file_descp, char *buff, long long int lock, long long int v1
   aflcrash(INV(lock, v1, v2, v3, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "lock", lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
   }
 }
 
@@ -53,19 +53,21 @@ void loopcheck(FILE *file_descp, char *buff, long long temp_lock, long long temp
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, lock, v1, v2, v3, x, y) \
+#define postcheck(fptr, buff, cond, lock, v1, v2, v3, x, y)        \
   \ 
-{                                                        \
+{                                                               \
     \ 
-    int f = postflag;                                       \
+    int f = postflag;                                              \
     \ 
-   aflcrash(cond, postflag);                                \
+   aflcrash(cond, postflag);                                       \
     \ 
-    if (f == 0 && postflag == 1)                            \
-    {                                                       \
+    if (f == 0 && postflag == 1)                                   \
+    {                                                              \
       \ 
-      fprintf(fptr, "Post : %s\n", buff);                   \
-    }                                                       \
+      fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+             "lock",                                               \
+              lock, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y); \
+    }                                                              \
   }
 
 int main()
@@ -88,9 +90,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     int choices = buf[2];
     y = buf[3];

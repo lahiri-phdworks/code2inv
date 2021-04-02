@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 10
+#define UNROLL_LIMIT 5
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -31,8 +31,8 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int j, lo
   aflcrash(INV(i, j, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "j", j, "x", x, "y", y);
   }
 }
 
@@ -53,17 +53,20 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, i, j, x, y) \
+#define postcheck(file_descp, buff, cond, i, j, x, y)                                  \
   \ 
-{                                                  \
+{                                                                                   \
     \ 
-    int f = postflag;                                 \
+    int f = postflag;                                                                  \
     \ 
-   aflcrash(cond, postflag);                          \
+   aflcrash(cond, postflag);                                                           \
     \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}  \
+    if (f == 0 && postflag == 1)                                                       \
+    {                                                                                  \
+      \ 
+            fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \
+                    "i", i, "j", j, "x", x, "y", y);                                   \
+    }                                                                                  \
   }
 
 int main()
@@ -83,9 +86,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[0];
     i = buf[1];
@@ -156,7 +160,8 @@ int main()
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
       counter = 0;
     }
 

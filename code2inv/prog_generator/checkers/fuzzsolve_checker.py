@@ -46,7 +46,10 @@ collection_semantic = [None, None, None, None]
 
 
 def inv_checker(vc_file: str, inv: str, assignments):
-    c_inv_checker(vc_file, inv, assignments)
+    # tqdm.write(f"Checking {inv}")
+    ret_vals = c_inv_checker(vc_file, inv, assignments)
+    # tqdm.write(f'{valse}')
+    return ret_vals
 
 
 def process_model_string(model: str):
@@ -174,7 +177,7 @@ def inv_solver(vc_file: str, inv: str):
     init_fuzzbase()
     call_fuzzsolver(timeout)
 
-    time.sleep(0.15)
+    time.sleep(0.10)
 
     process_crashes(outputFile)
     res = mergeModels()

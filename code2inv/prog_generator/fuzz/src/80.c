@@ -31,8 +31,8 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int x, lo
   aflcrash(INV(i, x, y, z1, z2, z3), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);
   }
 }
 
@@ -52,17 +52,20 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, i, x, y, z1, z2, z3) \
+#define postcheck(file_descp, buff, cond, i, x, y, z1, z2, z3)                                           \
   \ 
-{                                                           \
+{                                                                                                     \
     \ 
-    int f = postflag;                                          \
+    int f = postflag;                                                                                    \
     \ 
-   aflcrash(cond, postflag);                                   \
+   aflcrash(cond, postflag);                                                                             \
     \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}           \
+    if (f == 0 && postflag == 1)                                                                         \
+    {                                                                                                    \
+      \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \
+                "i", i, "x", x, "y", y, "z1", z1, "z2", z2, "z3", z3);                                   \
+    }                                                                                                    \
   }
 
 int main()
@@ -84,9 +87,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[0];
     y = buf[1];
