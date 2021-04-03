@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 10
+#define UNROLL_LIMIT 32
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -31,8 +31,7 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int y)
   aflcrash(INV(x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "x", x, "y", y);
   }
 }
 
@@ -52,16 +51,16 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, y)      \
+#define postcheck(file_descp, buff, cond, x, y)                                  \
   \ 
-{                                                 \
+{                                                                             \
     \ 
-    int f = postflag;                                \
+    int f = postflag;                                                            \
     \ 
-   aflcrash(cond, postflag);                         \
+   aflcrash(cond, postflag);                                                     \
     \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "x", x, "y", y); \ 
 } \
   }
 
@@ -80,9 +79,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[1];
     x = buf[2];

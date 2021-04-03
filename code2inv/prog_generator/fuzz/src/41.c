@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 10
+#define UNROLL_LIMIT 32
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -82,6 +82,7 @@ int main()
     const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[1];
     n = buf[3];
