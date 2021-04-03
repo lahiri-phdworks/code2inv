@@ -1,6 +1,0 @@
-best_root :  ( x < ( 100 + 100 ) ) 
-simplify : [Not(200 <= x)]
-best_reward : -2
-epoch: 7, average reward: -1.5900, 
-Random: ( x == ( x * x ) && x <= ( 0 + 1 ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 47097, 'boogie_result': 7853, 'actual_z3': 6})

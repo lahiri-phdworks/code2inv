@@ -68,9 +68,9 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
 
 int main()
 {
-    int x;
-    int m;
-    int n;
+    long long int x;
+    long long int m;
+    long long int n;
 
     char buff[1024];
     memset(buff, '\0', sizeof(buff));
@@ -89,6 +89,7 @@ int main()
         long long int choices = buf[0];
         x = buf[1];
         n = buf[2];
+        m = buf[4];
 
         char vars[128];
         memset(vars, '\0', sizeof(vars));

@@ -1,8 +1,0 @@
-best_root :  ( ( y > i && j == ( i * y ) ) || i > ( 1 * 0 ) || ( x > 0 && j < ( y + x ) ) ) 
-simplify : [Or(Not(i <= 0),
-    And(Not(x <= 0), Not(y + x <= j)),
-    And(Not(y <= i), j == i*y))]
-best_reward : -1
-epoch: 3, average reward: -0.4978, 
-Random: ( ( j <= ( x - 1 ) && j == ( i * j ) ) ), result_r: -1.7283 
-stats : Counter({'ce-I:': 46676, 'ce-T:': 11846, 'ce-F:': 6474, 'boogie_result': 3956, 'actual_z3': 20})

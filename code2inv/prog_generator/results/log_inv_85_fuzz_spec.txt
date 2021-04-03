@@ -1,6 +1,0 @@
-best_root :  ( x == 0 && x <= ( 10000 - x ) && x <= ( x - x ) ) 
-simplify : []
-best_reward : -1
-epoch: 7, average reward: -0.5773, 
-Random: ( ( y < ( 10000 * y ) && x >= 10000 ) || x >= ( 10000 * 10000 ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 31673, 'boogie_result': 7921, 'ce-F:': 7917, 'ce-I:': 7915, 'actual_z3': 6})

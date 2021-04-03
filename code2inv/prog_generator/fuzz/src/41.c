@@ -83,9 +83,9 @@ int main()
 
     HF_ITER(&buf, &len);
 
-    long long int choices = buf[0];
-    n = buf[1];
-    c = buf[2];
+    long long int choices = buf[1];
+    n = buf[3];
+    c = buf[4];
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));

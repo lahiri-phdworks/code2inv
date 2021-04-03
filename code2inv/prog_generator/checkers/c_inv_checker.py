@@ -32,8 +32,7 @@ p["or"] = 1
 
 
 def condense(inv_tokens):
-    op_list = ["+", "-", "*", "/", "%", "<",
-               "<=", ">", ">=", "==", "!=", "and", "or"]
+    op_list = ["+", "-", "*", "/", "%", "<", "<=", ">", ">=", "==", "!=", "and", "or"]
     un_op_list = ["+", "-"]
     old_list = list(inv_tokens)
     new_list = list(inv_tokens)
@@ -42,7 +41,7 @@ def condense(inv_tokens):
             if old_list[idx] in un_op_list:
                 if idx == 0 or old_list[idx - 1] in op_list or old_list[idx - 1] == "(":
                     new_list[idx] = old_list[idx] + old_list[idx + 1]
-                    new_list[idx + 1:] = old_list[idx + 2:]
+                    new_list[idx + 1 :] = old_list[idx + 2 :]
                     break
         if old_list == new_list:
             break
@@ -149,8 +148,7 @@ def inv_solver(vc_file: str, inv: str):
     for a in t:
         if a.string != "":
             inv_tokenized.append(a.string)
-    inv = stringify_prefix_stack(postfix_prefix(
-        infix_postfix(condense(inv_tokenized))))
+    inv = stringify_prefix_stack(postfix_prefix(infix_postfix(condense(inv_tokenized))))
     inv = inv.replace("==", "=", -1)
 
     sol = z3.Solver()

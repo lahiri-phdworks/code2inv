@@ -1,2 +1,2 @@
-( ( k <= j && k == j ) || ( j < ( 1 * 0 ) && m <= ( 10000 - -10000 ) ) || ( j >= ( 0 - a ) && k < ( 1 + a ) ) )
-z3_report time: 101.87 pid: 0 stats: Counter({'ce-T:': 5, 'boogie_result': 4, 'actual_z3': 4, 'ce-F:': 1})
+( ( j > ( 10000 + k ) || k <= ( k - k ) ) )
+z3_report time: 138.03 pid: 0 stats: Counter({'ce-T:': 414, 'ce-F:': 197, 'boogie_result': 102, 'actual_z3': 8})

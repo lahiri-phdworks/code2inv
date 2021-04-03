@@ -1,2 +1,2 @@
-( x > ( 10000 - 1 ) || m > ( -10000 + 1 ) )
-z3_report time: 32.92 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-T:': 1})
+( n >= ( -10000 + -10000 ) && ( n <= ( m * n ) || n < m ) )
+z3_report time: 169.82 pid: 0 stats: Counter({'ce-T:': 1145, 'ce-F:': 1144, 'ce-I:': 706, 'boogie_result': 385, 'actual_z3': 9})

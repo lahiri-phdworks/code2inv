@@ -1,6 +1,6 @@
-best_root :  ( x == 0 || x < ( x + x ) || ( y >= ( y * -10000 ) && z > ( x + x ) ) ) 
-simplify : None
-best_reward : -2
-epoch: 7, average reward: -1.0987, 
-Random: ( z <= ( x + x ) || x >= ( 0 * 10000 ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 31626, 'ce-F:': 15813, 'boogie_result': 7910, 'actual_z3': 6})
+best_root :  ( ( z >= ( 10000 * y ) || x <= ( y * y ) ) ) 
+simplify : [Or(z >= 10000*y, x <= y*y)]
+best_reward : -1
+epoch: 14, average reward: -0.9071, 
+Random: ( y == ( z - z ) || ( z >= ( 10000 * y ) && x == ( y * y ) ) ), result_r: -2.4487 
+stats : Counter({'ce-T:': 117322, 'ce-F:': 44435, 'boogie_result': 14816, 'actual_z3': 11})

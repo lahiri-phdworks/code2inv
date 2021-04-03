@@ -1,0 +1,2 @@
+( x == 1 || y == 0 )
+z3_report time: 150.63 pid: 0 stats: Counter({'ce-T:': 249, 'boogie_result': 46, 'ce-F:': 11, 'actual_z3': 9})

@@ -1,6 +1,0 @@
-best_root :  ( c >= ( 1 + c ) || c < ( 1 * 1 ) ) 
-simplify : [Not(1 <= c)]
-best_reward : -2
-epoch: 7, average reward: -1.0973, 
-Random: ( ( c == ( c - c ) && c <= ( c - 40 ) ) || c <= ( c + c ) || c == ( c * 40 ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 39085, 'boogie_result': 7821, 'ce-F:': 7820, 'actual_z3': 6})
