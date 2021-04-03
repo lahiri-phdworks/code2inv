@@ -1,6 +1,0 @@
-best_root :  ( ( c >= ( 127 + z ) || c <= ( z + c ) ) && ( c == ( 4608 - 4608 ) ) && ( y > ( 0 + 4608 ) || y >= ( 127 + c ) ) ) 
-simplify : [Or(0 <= z, -127 >= z), Or(Not(y <= 4608), y >= 127)]
-best_reward : -1
-epoch: 9, average reward: -0.5406, 
-Random: ( ( y >= ( c + 36 ) || c > ( 0 + 1 ) ) && ( c > ( 0 + 1 ) || y > ( c + 36 ) ) && ( y >= ( 127 + c ) || y >= ( 127 - c ) ) ), result_r: -1.7705 
-stats : Counter({'ce-I:': 77972, 'ce-F:': 48243, 'ce-T:': 29220, 'boogie_result': 9894, 'actual_z3': 32})

@@ -1,2 +1,0 @@
-( ( sn <= 0 || size >= ( sn + 0 ) ) && ( sn == ( size - size ) || size >= ( 0 + 0 ) ) && ( i == ( 1 + sn ) ) )
-z3_report time: 398.90 pid: 0 stats: Counter({'ce-T:': 29326, 'ce-I:': 27728, 'ce-F:': 17979, 'boogie_result': 5895, 'actual_z3': 31})

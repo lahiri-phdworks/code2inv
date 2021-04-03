@@ -1,6 +1,0 @@
-best_root :  ( ( k <= ( m + 1 ) || m >= ( c - c ) ) && ( m >= 0 || m < ( c - c ) ) ) 
-simplify : [Or(k <= 1 + m, m >= 0), Or(Not(0 <= m), m >= 0)]
-best_reward : -1
-epoch: 9, average reward: -0.5357, 
-Random: ( ( k < 0 ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 77406, 'ce-I:': 28325, 'boogie_result': 9937, 'ce-F:': 9931, 'actual_z3': 12})

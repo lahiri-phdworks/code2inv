@@ -1,6 +1,0 @@
-best_root :  ( j > ( 6 - i ) && i < ( j * 1 ) ) 
-simplify : [Not(j <= 6 + -1*i), Not(j <= i)]
-best_reward : -1
-epoch: 9, average reward: -0.4225, 
-Random: ( ( j > ( 6 - i ) && i < ( i - 1 ) ) || i < ( i - 10 ) || ( i < ( j + 1 ) && j >= ( 6 + 1 ) ) ), result_r: -1.5876 
-stats : Counter({'ce-I:': 147254, 'ce-F:': 29243, 'boogie_result': 9834, 'ce-T:': 9833, 'actual_z3': 27})

@@ -1,6 +1,0 @@
-best_root :  ( i == ( j * 10000 ) ) 
-simplify : []
-best_reward : -1
-epoch: 9, average reward: -0.5220, 
-Random: ( n > ( 0 * 0 ) || ( k == ( j * 10000 ) && k >= ( 0 * 0 ) ) || ( n >= 0 && k >= ( j * 10000 ) ) ), result_r: -1.7791 
-stats : Counter({'ce-I:': 133127, 'ce-T:': 72867, 'ce-F:': 29190, 'boogie_result': 9915, 'actual_z3': 29})

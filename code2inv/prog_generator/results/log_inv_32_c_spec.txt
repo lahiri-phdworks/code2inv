@@ -1,6 +1,0 @@
-best_root :  ( ( x >= 1 || x > ( x + n ) ) ) 
-simplify : [Or(Not(0 <= n), x >= 1)]
-best_reward : -1
-epoch: 9, average reward: -0.4393, 
-Random: ( ( n > ( x + x ) || x == ( 1 - 0 ) ) ), result_r: -1.6525 
-stats : Counter({'ce-T:': 39353, 'boogie_result': 9842, 'ce-F:': 9841, 'ce-I:': 9834, 'actual_z3': 8})

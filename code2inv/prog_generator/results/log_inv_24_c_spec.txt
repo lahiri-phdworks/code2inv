@@ -1,6 +1,0 @@
-best_root :  ( ( j >= ( j - i ) ) && ( i <= ( 1 - 2 ) || j >= 10 ) && ( j >= 10 ) ) 
-simplify : [i >= 0, j >= 10]
-best_reward : -1
-epoch: 9, average reward: -0.2397, 
-Random: ( ( j >= 10 ) && ( i <= ( 6 - 2 ) || j >= 10 ) && ( j >= 10 || i <= ( 6 - 2 ) ) ), result_r: -1.5844 
-stats : Counter({'ce-I:': 160614, 'ce-F:': 19759, 'boogie_result': 9889, 'ce-T:': 9888, 'actual_z3': 31})

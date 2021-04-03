@@ -155,7 +155,7 @@ if __name__ == "__main__":
                     "results",
                     f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt",
                 )
-                with open(resultpath, mode="w") as file:
+                with open(resultpath, mode="a") as file:
                     file.write(
                         "best_root :  %s \nsimplify : %s\nbest_reward : %d\n"
                         % (best_root, getExpr(best_root), best_reward)
@@ -170,7 +170,7 @@ if __name__ == "__main__":
                     "results",
                     f"log_inv_{cmd_args.example}_{cmd_args.spec_type}.txt",
                 )
-                with open(resultpath, mode="w") as file:
+                with open(resultpath, mode="a") as file:
                     file.write(
                         "best_root :  %s \nsimplify : %s\nbest_reward : %d\n"
                         % (best_root, "None", best_reward)

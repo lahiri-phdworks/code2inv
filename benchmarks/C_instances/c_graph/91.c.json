@@ -12,18 +12,6 @@
 				}
 			}
 		},
-		"5_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_0"
-			},
-			"rval": {
-				"Const": "0"
-			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
 		"3_1": {
 			"cmd": "assign",
 			"lval": {
@@ -38,21 +26,6 @@
 					"Var": "x_0"
 				}
 			}
-		},
-		"4_3": {
-			"cmd": "if",
-			"rval": {
-				"OP": ">=",
-				"arg0": {
-					"Var": "y_1"
-				},
-				"arg1": {
-					"Const": "0"
-				}
-			}
-		},
-		"4_5": {
-			"cmd": "FalseBranch"
 		},
 		"4_1": {
 			"cmd": "Loop"
@@ -72,8 +45,32 @@
 				}
 			}
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
+		"4_3": {
+			"cmd": "if",
+			"rval": {
+				"OP": ">=",
+				"arg0": {
+					"Var": "y_1"
+				},
+				"arg1": {
+					"Const": "0"
+				}
+			}
+		},
+		"4_4": {
+			"cmd": "TrueBranch"
+		},
+		"4_5": {
+			"cmd": "FalseBranch"
+		},
+		"5_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_0"
+			},
+			"rval": {
+				"Const": "0"
+			}
 		},
 		"5_2": {
 			"cmd": "assign",
@@ -84,8 +81,11 @@
 				"Const": "0"
 			}
 		},
-		"4_4": {
-			"cmd": "TrueBranch"
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

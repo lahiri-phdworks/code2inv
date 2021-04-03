@@ -1,7 +1,0 @@
-best_root :  ( ( x3 < ( x2 + d1 ) || d1 > ( 1 - x3 ) ) && ( d1 > ( 1 - d3 ) ) ) 
-simplify : [Or(Not(x2 + d1 <= x3), Not(d1 <= 1 + -1*x3)),
- Not(d1 <= 1 + -1*d3)]
-best_reward : -1
-epoch: 9, average reward: -0.4686, 
-Random: ( ( x3 >= ( 1 - d2 ) || d1 > ( 1 - d1 ) ) && ( x3 > ( 1 - d2 ) || d2 <= ( x2 + d1 ) ) ), result_r: -1.8036 
-stats : Counter({'ce-T:': 89425, 'ce-F:': 73078, 'ce-I:': 71761, 'boogie_result': 9894, 'actual_z3': 27})

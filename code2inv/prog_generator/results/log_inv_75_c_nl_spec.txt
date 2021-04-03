@@ -1,6 +1,0 @@
-best_root :  ( ( y > ( 127 - 36 ) && c <= ( z + 127 ) ) ) 
-simplify : [Not(y <= 91), c <= 127 + z]
-best_reward : -1
-epoch: 9, average reward: -0.5757, 
-Random: ( ( z < ( z - 36 ) && y < ( 127 + 1 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 76790, 'ce-F:': 48736, 'ce-T:': 24974, 'boogie_result': 9921, 'actual_z3': 24})

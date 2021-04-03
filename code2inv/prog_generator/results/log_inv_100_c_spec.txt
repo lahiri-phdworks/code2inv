@@ -1,6 +1,0 @@
-best_root :  ( ( y <= ( n - n ) || n > ( y - y ) ) ) 
-simplify : [Or(y <= 0, Not(n <= 0))]
-best_reward : -1
-epoch: 9, average reward: -0.6264, 
-Random: ( ( n <= n || n > ( x + 0 ) ) && ( n > ( 1 + 0 ) || n == ( 10000 - -10000 ) ) && ( x > ( x + 10000 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 87919, 'ce-I:': 26549, 'boogie_result': 9872, 'ce-F:': 9858, 'actual_z3': 14})

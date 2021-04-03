@@ -1,6 +1,0 @@
-best_root :  ( ( m < ( j - j ) || k <= ( j + m ) ) ) 
-simplify : [Or(Not(0 <= m), k <= j + m)]
-best_reward : -1
-epoch: 9, average reward: -0.5523, 
-Random: ( ( m < ( a - j ) && j >= ( 1 - -10000 ) ) || ( j > ( m + -10000 ) && m == ( k - 10000 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 56314, 'ce-I:': 48493, 'boogie_result': 9943, 'ce-F:': 9931, 'actual_z3': 13})

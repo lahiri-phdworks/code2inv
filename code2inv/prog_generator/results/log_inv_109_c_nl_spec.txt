@@ -1,6 +1,0 @@
-best_root :  ( k <= m ) 
-simplify : [k <= m]
-best_reward : -1
-epoch: 9, average reward: -0.5415, 
-Random: ( ( k >= ( 1 - 1 ) || k <= m ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 49531, 'ce-I:': 19643, 'boogie_result': 9915, 'ce-F:': 9911, 'actual_z3': 11})

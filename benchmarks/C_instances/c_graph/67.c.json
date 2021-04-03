@@ -1,43 +1,16 @@
 {
 	"nodes": {
-		"4_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "y_2"
-			},
+		"1_1": {
+			"cmd": "Assert",
 			"rval": {
-				"OP": "-",
+				"OP": ">=",
 				"arg0": {
-					"Var": "n_0"
+					"Var": "y_1"
 				},
 				"arg1": {
-					"Var": "x_1"
+					"Const": "0"
 				}
 			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"5_3": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "y_1"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "y_0"
-				},
-				"arg1": {
-					"Var": "y_2"
-				}
-			}
-		},
-		"5_5": {
-			"cmd": "TrueBranch"
-		},
-		"5_6": {
-			"cmd": "FalseBranch"
 		},
 		"2_1": {
 			"cmd": "if",
@@ -54,8 +27,23 @@
 		"2_2": {
 			"cmd": "TrueBranch"
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
+		"2_3": {
+			"cmd": "FalseBranch"
+		},
+		"4_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "y_2"
+			},
+			"rval": {
+				"OP": "-",
+				"arg0": {
+					"Var": "n_0"
+				},
+				"arg1": {
+					"Var": "x_1"
+				}
+			}
 		},
 		"4_2": {
 			"cmd": "assign",
@@ -72,6 +60,9 @@
 				}
 			}
 		},
+		"5_1": {
+			"cmd": "Loop"
+		},
 		"5_2": {
 			"cmd": "Phi",
 			"lval": {
@@ -87,28 +78,19 @@
 				}
 			}
 		},
-		"2_3": {
-			"cmd": "FalseBranch"
-		},
-		"1_1": {
-			"cmd": "Assert",
-			"rval": {
-				"OP": ">=",
-				"arg0": {
-					"Var": "y_1"
-				},
-				"arg1": {
-					"Const": "0"
-				}
-			}
-		},
-		"6_1": {
-			"cmd": "assign",
+		"5_3": {
+			"cmd": "Phi",
 			"lval": {
-				"Var": "x_0"
+				"Var": "y_1"
 			},
 			"rval": {
-				"Const": "1"
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "y_0"
+				},
+				"arg1": {
+					"Var": "y_2"
+				}
 			}
 		},
 		"5_4": {
@@ -123,8 +105,26 @@
 				}
 			}
 		},
-		"5_1": {
-			"cmd": "Loop"
+		"5_5": {
+			"cmd": "TrueBranch"
+		},
+		"5_6": {
+			"cmd": "FalseBranch"
+		},
+		"6_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_0"
+			},
+			"rval": {
+				"Const": "1"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

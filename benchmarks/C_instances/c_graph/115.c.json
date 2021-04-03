@@ -1,13 +1,67 @@
 {
 	"nodes": {
-		"6_1": {
+		"1_1": {
+			"cmd": "Assert",
+			"rval": {
+				"OP": "==",
+				"arg0": {
+					"Var": "sn_2"
+				},
+				"arg1": {
+					"Var": "x_2"
+				}
+			}
+		},
+		"2_1": {
+			"cmd": "if",
+			"rval": {
+				"OP": "!=",
+				"arg0": {
+					"Var": "sn_2"
+				},
+				"arg1": {
+					"Const": "-1"
+				}
+			}
+		},
+		"2_2": {
+			"cmd": "TrueBranch"
+		},
+		"2_3": {
+			"cmd": "FalseBranch"
+		},
+		"4_1": {
 			"cmd": "assign",
 			"lval": {
-				"Var": "sn_1"
+				"Var": "x_3"
 			},
 			"rval": {
-				"Const": "0"
+				"OP": "+",
+				"arg0": {
+					"Var": "x_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
 			}
+		},
+		"4_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "sn_3"
+			},
+			"rval": {
+				"OP": "+",
+				"arg0": {
+					"Var": "sn_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
+		},
+		"5_1": {
+			"cmd": "Loop"
 		},
 		"5_2": {
 			"cmd": "Phi",
@@ -23,9 +77,6 @@
 					"Var": "sn_3"
 				}
 			}
-		},
-		"5_1": {
-			"cmd": "Loop"
 		},
 		"5_3": {
 			"cmd": "Phi",
@@ -54,56 +105,14 @@
 		"5_7": {
 			"cmd": "FalseBranch"
 		},
-		"4_1": {
+		"6_1": {
 			"cmd": "assign",
 			"lval": {
-				"Var": "x_3"
+				"Var": "sn_1"
 			},
 			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "x_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
+				"Const": "0"
 			}
-		},
-		"2_1": {
-			"cmd": "if",
-			"rval": {
-				"OP": "!=",
-				"arg0": {
-					"Var": "sn_2"
-				},
-				"arg1": {
-					"Const": "-1"
-				}
-			}
-		},
-		"2_2": {
-			"cmd": "TrueBranch"
-		},
-		"2_3": {
-			"cmd": "FalseBranch"
-		},
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
-		"1_1": {
-			"cmd": "Assert",
-			"rval": {
-				"OP": "==",
-				"arg0": {
-					"Var": "sn_2"
-				},
-				"arg1": {
-					"Var": "x_2"
-				}
-			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
 		},
 		"6_2": {
 			"cmd": "assign",
@@ -114,20 +123,11 @@
 				"Const": "0"
 			}
 		},
-		"4_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "sn_3"
-			},
-			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "sn_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

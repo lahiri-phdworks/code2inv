@@ -1,80 +1,26 @@
 {
 	"nodes": {
-		"6_5": {
-			"cmd": "if",
+		"1_1": {
+			"cmd": "Assert",
 			"rval": {
-				"OP": "<",
+				"OP": "==",
 				"arg0": {
-					"Var": "i_2"
+					"OP": "*",
+					"arg0": {
+						"Const": "3"
+					},
+					"arg1": {
+						"Var": "n_0"
+					}
 				},
 				"arg1": {
-					"Var": "n_0"
-				}
-			}
-		},
-		"6_1": {
-			"cmd": "Loop"
-		},
-		"7_4": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "y_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"6_6": {
-			"cmd": "TrueBranch"
-		},
-		"6_7": {
-			"cmd": "FalseBranch"
-		},
-		"5_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "i_3"
-			},
-			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "i_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
-		},
-		"6_3": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "x_2"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "x_1"
-				},
-				"arg1": {
-					"Var": "x_4"
-				}
-			}
-		},
-		"6_2": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "i_2"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "i_1"
-				},
-				"arg1": {
-					"Var": "i_3"
+					"OP": "+",
+					"arg0": {
+						"Var": "x_2"
+					},
+					"arg1": {
+						"Var": "y_2"
+					}
 				}
 			}
 		},
@@ -108,36 +54,6 @@
 				}
 			}
 		},
-		"5_3": {
-			"cmd": "if",
-			"rval": {
-				"UNK": "UNK_VAL"
-			}
-		},
-		"5_4": {
-			"cmd": "TrueBranch"
-		},
-		"5_5": {
-			"cmd": "FalseBranch"
-		},
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
-		"6_4": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "y_2"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "y_1"
-				},
-				"arg1": {
-					"Var": "y_4"
-				}
-			}
-		},
 		"3_1": {
 			"cmd": "assign",
 			"lval": {
@@ -168,27 +84,18 @@
 				}
 			}
 		},
-		"1_1": {
-			"cmd": "Assert",
+		"4_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_3"
+			},
 			"rval": {
-				"OP": "==",
+				"OP": "+",
 				"arg0": {
-					"OP": "*",
-					"arg0": {
-						"Const": "3"
-					},
-					"arg1": {
-						"Var": "n_0"
-					}
+					"Var": "x_2"
 				},
 				"arg1": {
-					"OP": "+",
-					"arg0": {
-						"Var": "x_2"
-					},
-					"arg1": {
-						"Var": "y_2"
-					}
+					"Const": "1"
 				}
 			}
 		},
@@ -207,29 +114,98 @@
 				}
 			}
 		},
-		"4_1": {
+		"5_1": {
 			"cmd": "assign",
 			"lval": {
-				"Var": "x_3"
+				"Var": "i_3"
 			},
 			"rval": {
 				"OP": "+",
 				"arg0": {
-					"Var": "x_2"
+					"Var": "i_2"
 				},
 				"arg1": {
 					"Const": "1"
 				}
 			}
 		},
-		"7_3": {
-			"cmd": "assign",
+		"5_3": {
+			"cmd": "if",
+			"rval": {
+				"UNK": "UNK_VAL"
+			}
+		},
+		"5_4": {
+			"cmd": "TrueBranch"
+		},
+		"5_5": {
+			"cmd": "FalseBranch"
+		},
+		"6_1": {
+			"cmd": "Loop"
+		},
+		"6_2": {
+			"cmd": "Phi",
 			"lval": {
-				"Var": "x_1"
+				"Var": "i_2"
 			},
 			"rval": {
-				"Const": "0"
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "i_1"
+				},
+				"arg1": {
+					"Var": "i_3"
+				}
 			}
+		},
+		"6_3": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "x_2"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "x_1"
+				},
+				"arg1": {
+					"Var": "x_4"
+				}
+			}
+		},
+		"6_4": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "y_2"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "y_1"
+				},
+				"arg1": {
+					"Var": "y_4"
+				}
+			}
+		},
+		"6_5": {
+			"cmd": "if",
+			"rval": {
+				"OP": "<",
+				"arg0": {
+					"Var": "i_2"
+				},
+				"arg1": {
+					"Var": "n_0"
+				}
+			}
+		},
+		"6_6": {
+			"cmd": "TrueBranch"
+		},
+		"6_7": {
+			"cmd": "FalseBranch"
 		},
 		"7_1": {
 			"cmd": "Assume",
@@ -251,6 +227,30 @@
 			"rval": {
 				"Const": "0"
 			}
+		},
+		"7_3": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
+		},
+		"7_4": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "y_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

@@ -1,6 +1,0 @@
-best_root :  ( j >= ( 1 * 2 ) ) 
-simplify : [j >= 2]
-best_reward : -2
-epoch: 7, average reward: -1.1058, 
-Random: ( ( i < ( i - 13 ) && i > ( 2 + i ) ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 31656, 'ce-I:': 15825, 'boogie_result': 7917, 'actual_z3': 6})

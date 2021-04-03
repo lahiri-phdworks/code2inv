@@ -1,6 +1,0 @@
-best_root :  ( ( lock < ( x * x ) || lock < ( -10000 * -10000 ) ) && y >= ( lock * -10000 ) && ( y > ( lock * 1 ) || y == ( lock - 1 ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 9, average reward: -0.5363, 
-Random: ( ( x < ( 10000 + y ) || y > ( lock + 1 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-T:': 49249, 'ce-I:': 34343, 'ce-F:': 32409, 'boogie_result': 9896, 'actual_z3': 13})

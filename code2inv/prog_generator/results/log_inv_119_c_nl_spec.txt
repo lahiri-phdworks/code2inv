@@ -1,8 +1,0 @@
-best_root :  ( ( size > ( size * 0 ) || sn == ( size * 0 ) ) && ( i <= ( 1 + sn ) || sn == ( sn + sn ) ) && ( sn == 0 || sn >= ( 0 - 0 ) ) ) 
-simplify : [Or(Not(size <= 0), sn == 0),
- Or(i <= 1 + sn, sn == 0),
- Or(sn == 0, sn >= 0)]
-best_reward : -1
-epoch: 9, average reward: -0.5801, 
-Random: ( ( i < ( size * 0 ) && i == ( size - 0 ) ) ), result_r: -2.1600 
-stats : Counter({'ce-I:': 63257, 'ce-T:': 49363, 'ce-F:': 32205, 'boogie_result': 9884, 'actual_z3': 26})

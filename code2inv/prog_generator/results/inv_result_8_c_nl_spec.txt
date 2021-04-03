@@ -1,2 +1,0 @@
-( ( x >= x || y > ( y * y ) ) && ( y <= ( y + 10 ) || y > y ) && x <= ( 10 + y ) )
-z3_report time: 36.47 pid: 0 stats: Counter({'ce-T:': 3108, 'ce-I:': 1862, 'boogie_result': 545, 'ce-F:': 542, 'actual_z3': 15})

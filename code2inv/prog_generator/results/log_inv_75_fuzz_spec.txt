@@ -1,6 +1,0 @@
-best_root :  ( ( z > ( y * 127 ) && z == ( y * c ) ) ) 
-simplify : [Not(c*y <= 127*y)]
-best_reward : -2
-epoch: 11, average reward: -1.5285, 
-Random: ( z >= ( z + 127 ) || z <= ( 1 + 127 ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 71601, 'boogie_result': 11937, 'actual_z3': 6})

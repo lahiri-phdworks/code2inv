@@ -1,6 +1,0 @@
-best_root :  ( ( n > 1 && c <= ( n + n ) ) || ( c <= ( n + n ) && c == ( n + -1 ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 9, average reward: -0.4508, 
-Random: ( n > c || c == ( -1 * c ) || n == ( n * -1 ) ), result_r: -1.8975 
-stats : Counter({'ce-I:': 74710, 'ce-T:': 28518, 'ce-F:': 19627, 'boogie_result': 9832, 'actual_z3': 21})

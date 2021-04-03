@@ -22,12 +22,12 @@ pwd = os.path.dirname(__file__)
 if cmd_args.example:
     example = cmd_args.example
 else:
-    example = "12"
+    example = "63"
 
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 10
+    timeout = 15
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
@@ -177,7 +177,7 @@ def inv_solver(vc_file: str, inv: str):
     init_fuzzbase()
     call_fuzzsolver(timeout)
 
-    time.sleep(0.10)
+    time.sleep(0.1)
 
     process_crashes(outputFile)
     res = mergeModels()

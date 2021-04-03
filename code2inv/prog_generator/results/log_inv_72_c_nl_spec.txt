@@ -1,6 +1,0 @@
-best_root :  ( ( y > ( 36 + 1 ) && y > ( 36 + c ) ) ) 
-simplify : [Not(y <= 37), Not(y <= 36 + c)]
-best_reward : -1
-epoch: 9, average reward: -0.4920, 
-Random: ( ( c <= ( c - 127 ) && y > ( 36 - 1 ) ) || y > ( 0 * c ) ), result_r: -1.8240 
-stats : Counter({'ce-F:': 49054, 'ce-I:': 47835, 'ce-T:': 29590, 'boogie_result': 9867, 'actual_z3': 13})

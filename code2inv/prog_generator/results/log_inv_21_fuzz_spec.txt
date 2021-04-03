@@ -1,6 +1,0 @@
-best_root :  ( ( m <= ( x + n ) || x <= ( x + 1 ) ) && ( x == ( x + 1 ) || n == ( x * -10000 ) ) && ( n == ( x + -10000 ) || n > ( x - -10000 ) ) ) 
-simplify : None
-best_reward : -2
-epoch: 7, average reward: -1.0174, 
-Random: ( m == ( x * x ) && n == ( 10000 * n ) && n == ( -10000 * -10000 ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 31652, 'ce-F:': 15829, 'boogie_result': 7917, 'actual_z3': 6})

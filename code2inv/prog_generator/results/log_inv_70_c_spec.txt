@@ -1,6 +1,0 @@
-best_root :  ( ( n >= ( y + 1 ) || y == ( 0 + x ) ) ) 
-simplify : [Or(n >= 1 + y, y == x)]
-best_reward : -1
-epoch: 9, average reward: -0.5398, 
-Random: ( ( n <= 1 || y == ( 1 - n ) ) ), result_r: -2.0690 
-stats : Counter({'ce-T:': 88503, 'ce-I:': 29166, 'boogie_result': 9850, 'ce-F:': 9826, 'actual_z3': 16})

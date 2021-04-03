@@ -1,8 +1,5 @@
 {
 	"nodes": {
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
 		"1_1": {
 			"cmd": "Assert",
 			"rval": {
@@ -15,8 +12,71 @@
 				}
 			}
 		},
-		"EXIT": {
-			"cmd": "SKIP"
+		"2_1": {
+			"cmd": "if",
+			"rval": {
+				"OP": "!=",
+				"arg0": {
+					"Var": "sn_2"
+				},
+				"arg1": {
+					"Const": "-1"
+				}
+			}
+		},
+		"2_2": {
+			"cmd": "TrueBranch"
+		},
+		"2_3": {
+			"cmd": "FalseBranch"
+		},
+		"4_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_3"
+			},
+			"rval": {
+				"OP": "+",
+				"arg0": {
+					"Var": "x_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
+		},
+		"4_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "sn_3"
+			},
+			"rval": {
+				"OP": "+",
+				"arg0": {
+					"Var": "sn_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
+		},
+		"5_1": {
+			"cmd": "Loop"
+		},
+		"5_2": {
+			"cmd": "Phi",
+			"lval": {
+				"Var": "sn_2"
+			},
+			"rval": {
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "sn_1"
+				},
+				"arg1": {
+					"Var": "sn_3"
+				}
+			}
 		},
 		"5_3": {
 			"cmd": "Phi",
@@ -45,39 +105,6 @@
 		"5_7": {
 			"cmd": "FalseBranch"
 		},
-		"5_2": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "sn_2"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "sn_1"
-				},
-				"arg1": {
-					"Var": "sn_3"
-				}
-			}
-		},
-		"2_1": {
-			"cmd": "if",
-			"rval": {
-				"OP": "!=",
-				"arg0": {
-					"Var": "sn_2"
-				},
-				"arg1": {
-					"Const": "-1"
-				}
-			}
-		},
-		"2_2": {
-			"cmd": "TrueBranch"
-		},
-		"2_3": {
-			"cmd": "FalseBranch"
-		},
 		"6_1": {
 			"cmd": "assign",
 			"lval": {
@@ -85,21 +112,6 @@
 			},
 			"rval": {
 				"Const": "0"
-			}
-		},
-		"4_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_3"
-			},
-			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "x_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
 			}
 		},
 		"6_2": {
@@ -111,23 +123,11 @@
 				"Const": "0"
 			}
 		},
-		"5_1": {
-			"cmd": "Loop"
+		"ENTRY": {
+			"cmd": "SKIP"
 		},
-		"4_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "sn_3"
-			},
-			"rval": {
-				"OP": "+",
-				"arg0": {
-					"Var": "sn_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

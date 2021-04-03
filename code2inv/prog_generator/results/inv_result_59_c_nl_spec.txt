@@ -1,2 +1,0 @@
-( ( c <= n && c > ( 0 - n ) ) )
-z3_report time: 12.18 pid: 0 stats: Counter({'ce-I:': 971, 'ce-T:': 380, 'ce-F:': 276, 'boogie_result': 194, 'actual_z3': 13})

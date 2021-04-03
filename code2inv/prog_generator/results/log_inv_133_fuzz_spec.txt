@@ -1,6 +1,0 @@
-best_root :  ( x >= ( 1 - 0 ) ) 
-simplify : [x >= 1]
-best_reward : -2
-epoch: 14, average reward: -1.0912, 
-Random: ( n == ( x * 1 ) && ( x <= ( x * n ) || n <= ( 1 + x ) ) ), result_r: -2.5100 
-stats : Counter({'ce-T:': 74022, 'boogie_result': 14809, 'ce-F:': 14808, 'actual_z3': 7})

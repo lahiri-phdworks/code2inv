@@ -1,5 +1,5 @@
-torch
-pysmt
-numpy
 future
+numpy
+pysmt
+torch
 tqdm

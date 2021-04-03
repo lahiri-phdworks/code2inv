@@ -1,6 +1,0 @@
-best_root :  ( ( i2 >= ( 6 + n ) || i <= ( 1 - i2 ) ) ) 
-simplify : [Or(i2 >= 6 + n, i <= 1 + -1*i2)]
-best_reward : -1
-epoch: 1, average reward: -0.5167, 
-Random: ( ( y == ( 1 - 2 ) || i >= 0 ) && ( i < 2 || i2 < ( i - i2 ) ) && ( i >= ( 6 + i2 ) ) ), result_r: -2.0608 
-stats : Counter({'ce-I:': 19124, 'ce-T:': 13064, 'ce-F:': 3761, 'boogie_result': 1996, 'actual_z3': 21})

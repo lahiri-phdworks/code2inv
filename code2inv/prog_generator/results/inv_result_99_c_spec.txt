@@ -1,2 +1,0 @@
-( ( x < ( x + -10000 ) || n == ( x + y ) ) )
-z3_report time: 29.17 pid: 0 stats: Counter({'ce-T:': 3002, 'ce-I:': 918, 'ce-F:': 759, 'boogie_result': 433, 'actual_z3': 13})

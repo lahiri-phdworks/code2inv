@@ -1,6 +1,0 @@
-best_root :  ( ( n == 0 || n > ( -10000 - -10000 ) ) && x >= ( -10000 - 0 ) && ( n >= x || x >= ( x * 0 ) ) ) 
-simplify : None
-best_reward : -2
-epoch: 11, average reward: -1.5725, 
-Random: ( ( x >= ( -10000 * -10000 ) || n <= ( x + x ) ) && x > ( n + n ) && ( x == ( -10000 * -10000 ) || x >= ( x + -10000 ) ) ), result_r: -3.0000 
-stats : Counter({'ce-T:': 70995, 'boogie_result': 11840, 'actual_z3': 12})

@@ -1,6 +1,0 @@
-best_root :  ( ( i <= j || j > ( k - k ) ) && ( k >= ( 1 - 1 ) || k >= ( 1 - 2 ) ) ) 
-simplify : [Or(Not(j <= 0), i <= j), Or(k >= 0, k >= -1)]
-best_reward : -1
-epoch: 9, average reward: -0.5299, 
-Random: ( ( n >= ( k - 2 ) || n > ( 1 - 0 ) ) && ( j >= ( 1 - 2 ) ) && ( n >= ( 2 - n ) ) ), result_r: -1.8567 
-stats : Counter({'ce-I:': 116431, 'ce-T:': 85793, 'ce-F:': 16921, 'boogie_result': 9923, 'actual_z3': 25})

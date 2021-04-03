@@ -1,2 +1,0 @@
-( j == ( y * i ) )
-z3_report time: 178.99 pid: 0 stats: Counter({'ce-I:': 3487, 'ce-T:': 1713, 'ce-F:': 749, 'boogie_result': 574, 'actual_z3': 14})

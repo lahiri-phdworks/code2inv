@@ -1,2 +1,0 @@
-( n <= 1 || m < ( 1 * n ) )
-z3_report time: 361.29 pid: 0 stats: Counter({'ce-I:': 38093, 'ce-T:': 25392, 'ce-F:': 15422, 'boogie_result': 5440, 'actual_z3': 20})

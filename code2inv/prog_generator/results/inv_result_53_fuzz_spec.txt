@@ -1,2 +1,0 @@
-( c < ( 1 * 0 ) || n >= ( c + 0 ) )
-z3_report time: 0.18 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

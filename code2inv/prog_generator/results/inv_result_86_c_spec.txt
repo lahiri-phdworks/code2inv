@@ -1,2 +1,0 @@
-( ( y > 0 || x <= ( -50 + 1 ) ) && ( x == ( 0 + x ) ) )
-z3_report time: 20.02 pid: 0 stats: Counter({'ce-T:': 1121, 'ce-I:': 929, 'boogie_result': 283, 'ce-F:': 277, 'actual_z3': 12})

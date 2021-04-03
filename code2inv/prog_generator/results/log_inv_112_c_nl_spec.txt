@@ -1,6 +1,0 @@
-best_root :  ( ( n < n || i == ( 1 + sn ) ) && i > 0 ) 
-simplify : [Not(sn <= -1)]
-best_reward : -1
-epoch: 9, average reward: -0.5165, 
-Random: ( n >= 1 && i >= ( 1 * sn ) ), result_r: -1.7960 
-stats : Counter({'ce-I:': 72003, 'ce-F:': 57455, 'ce-T:': 49224, 'boogie_result': 9887, 'actual_z3': 21})

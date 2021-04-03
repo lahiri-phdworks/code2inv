@@ -1,6 +1,0 @@
-best_root :  ( ( m == ( j + j ) || k == ( k + j ) ) ) 
-simplify : [Or(m == 2*j, 0 == j)]
-best_reward : -1
-epoch: 9, average reward: -0.9262, 
-Random: ( ( c >= 0 ) && ( m == ( j + k ) || m >= ( j - j ) ) ), result_r: -2.3467 
-stats : Counter({'ce-T:': 29758, 'ce-F:': 29741, 'boogie_result': 9923, 'actual_z3': 12})

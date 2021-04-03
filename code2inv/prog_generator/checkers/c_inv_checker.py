@@ -5,7 +5,7 @@ import io
 import logging
 import tqdm
 
-# from code2inv.common.cmd_args import cmd_args
+from code2inv.common.cmd_args import cmd_args
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from code2inv.prog_generator.chc_tools.chctools.chcmodel import (
@@ -32,7 +32,8 @@ p["or"] = 1
 
 
 def condense(inv_tokens):
-    op_list = ["+", "-", "*", "/", "%", "<", "<=", ">", ">=", "==", "!=", "and", "or"]
+    op_list = ["+", "-", "*", "/", "%", "<",
+               "<=", ">", ">=", "==", "!=", "and", "or"]
     un_op_list = ["+", "-"]
     old_list = list(inv_tokens)
     new_list = list(inv_tokens)
@@ -41,7 +42,7 @@ def condense(inv_tokens):
             if old_list[idx] in un_op_list:
                 if idx == 0 or old_list[idx - 1] in op_list or old_list[idx - 1] == "(":
                     new_list[idx] = old_list[idx] + old_list[idx + 1]
-                    new_list[idx + 1 :] = old_list[idx + 2 :]
+                    new_list[idx + 1:] = old_list[idx + 2:]
                     break
         if old_list == new_list:
             break
@@ -133,6 +134,15 @@ def inv_checker(vc_file: str, inv: str, assignments):
     for var in var_list:
         exec(var + "=1")
 
+    if not os.path.isdir("candidates"):
+        os.mkdir("candidates")
+
+    # COMMENT : Print Fuzz Model
+    with open(
+        os.path.join("candidates", f"candidates_{cmd_args.example}_{cmd_args.spec_type}.txt"), mode="a"
+    ) as file:
+        file.write(f"{inv}\n")
+
     try:
         return eval(inv)
     except:
@@ -148,7 +158,8 @@ def inv_solver(vc_file: str, inv: str):
     for a in t:
         if a.string != "":
             inv_tokenized.append(a.string)
-    inv = stringify_prefix_stack(postfix_prefix(infix_postfix(condense(inv_tokenized))))
+    inv = stringify_prefix_stack(postfix_prefix(
+        infix_postfix(condense(inv_tokenized))))
     inv = inv.replace("==", "=", -1)
 
     sol = z3.Solver()
@@ -221,14 +232,14 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
 
-    # if not os.path.isdir("models"):
-    #     os.mkdir("models")
+    if not os.path.isdir("models"):
+        os.mkdir("models")
 
-    # # COMMENT : Print Fuzz Model
-    # with open(
-    #     os.path.join("models", f"z3_models_{cmd_args.example}.txt"), mode="a"
-    # ) as file:
-    #     file.write(f"{res}\n")
+    # COMMENT : Print Fuzz Model
+    with open(
+        os.path.join("models", f"z3_models_{cmd_args.example}_{cmd_args.spec_type}.txt"), mode="a"
+    ) as file:
+        file.write(f"{res}\n")
 
     return res
 

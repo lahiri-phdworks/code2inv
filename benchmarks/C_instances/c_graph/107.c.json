@@ -1,8 +1,5 @@
 {
 	"nodes": {
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
 		"1_1": {
 			"cmd": "Assert",
 			"rval": {
@@ -15,22 +12,19 @@
 				}
 			}
 		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"5_2": {
-			"cmd": "TrueBranch"
-		},
-		"5_3": {
-			"cmd": "FalseBranch"
-		},
-		"4_1": {
-			"cmd": "assign",
+		"3_1": {
+			"cmd": "Phi",
 			"lval": {
-				"Var": "m_2"
+				"Var": "m_3"
 			},
 			"rval": {
-				"Var": "a_0"
+				"OP": "phi_merge",
+				"arg0": {
+					"Var": "m_1"
+				},
+				"arg1": {
+					"Var": "m_2"
+				}
 			}
 		},
 		"3_2": {
@@ -47,6 +41,36 @@
 					"Const": "1"
 				}
 			}
+		},
+		"4_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "m_2"
+			},
+			"rval": {
+				"Var": "a_0"
+			}
+		},
+		"5_1": {
+			"cmd": "if",
+			"rval": {
+				"OP": "<",
+				"arg0": {
+					"Var": "m_1"
+				},
+				"arg1": {
+					"Var": "a_0"
+				}
+			}
+		},
+		"5_2": {
+			"cmd": "TrueBranch"
+		},
+		"5_3": {
+			"cmd": "FalseBranch"
+		},
+		"6_1": {
+			"cmd": "Loop"
 		},
 		"6_2": {
 			"cmd": "Phi",
@@ -78,48 +102,6 @@
 				}
 			}
 		},
-		"6_5": {
-			"cmd": "TrueBranch"
-		},
-		"6_6": {
-			"cmd": "FalseBranch"
-		},
-		"5_1": {
-			"cmd": "if",
-			"rval": {
-				"OP": "<",
-				"arg0": {
-					"Var": "m_1"
-				},
-				"arg1": {
-					"Var": "a_0"
-				}
-			}
-		},
-		"7_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "k_1"
-			},
-			"rval": {
-				"Const": "0"
-			}
-		},
-		"3_1": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "m_3"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "m_1"
-				},
-				"arg1": {
-					"Var": "m_2"
-				}
-			}
-		},
 		"6_4": {
 			"cmd": "if",
 			"rval": {
@@ -132,8 +114,11 @@
 				}
 			}
 		},
-		"6_1": {
-			"cmd": "Loop"
+		"6_5": {
+			"cmd": "TrueBranch"
+		},
+		"6_6": {
+			"cmd": "FalseBranch"
 		},
 		"7_1": {
 			"cmd": "assign",
@@ -143,6 +128,21 @@
 			"rval": {
 				"Const": "0"
 			}
+		},
+		"7_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "k_1"
+			},
+			"rval": {
+				"Const": "0"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

@@ -1,6 +1,0 @@
-best_root :  ( ( d2 > ( 10000 + 10000 ) && d1 == d2 ) || ( d1 > ( -10000 + 10000 ) && d1 < ( d3 + d2 ) ) ) 
-simplify : None
-best_reward : -1
-epoch: 9, average reward: -0.5163, 
-Random: ( ( d1 > ( -10000 - -10000 ) && d1 < ( d2 + d2 ) ) ), result_r: -1.6280 
-stats : Counter({'ce-F:': 87554, 'ce-I:': 76770, 'ce-T:': 59098, 'boogie_result': 9881, 'actual_z3': 24})

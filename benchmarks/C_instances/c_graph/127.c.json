@@ -1,5 +1,17 @@
 {
 	"nodes": {
+		"1_1": {
+			"cmd": "Assert",
+			"rval": {
+				"OP": "!=",
+				"arg0": {
+					"Var": "i_1"
+				},
+				"arg1": {
+					"Var": "j_1"
+				}
+			}
+		},
 		"2_1": {
 			"cmd": "if",
 			"rval": {
@@ -15,28 +27,7 @@
 		"2_2": {
 			"cmd": "TrueBranch"
 		},
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
-		"5_3": {
-			"cmd": "Phi",
-			"lval": {
-				"Var": "y_1"
-			},
-			"rval": {
-				"OP": "phi_merge",
-				"arg0": {
-					"Var": "y_0"
-				},
-				"arg1": {
-					"Var": "y_2"
-				}
-			}
-		},
-		"5_5": {
-			"cmd": "TrueBranch"
-		},
-		"5_6": {
+		"2_3": {
 			"cmd": "FalseBranch"
 		},
 		"4_1": {
@@ -54,38 +45,23 @@
 				}
 			}
 		},
+		"4_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "y_2"
+			},
+			"rval": {
+				"OP": "-",
+				"arg0": {
+					"Var": "y_1"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
+		},
 		"5_1": {
 			"cmd": "Loop"
-		},
-		"2_3": {
-			"cmd": "FalseBranch"
-		},
-		"1_1": {
-			"cmd": "Assert",
-			"rval": {
-				"OP": "!=",
-				"arg0": {
-					"Var": "i_1"
-				},
-				"arg1": {
-					"Var": "j_1"
-				}
-			}
-		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"5_4": {
-			"cmd": "if",
-			"rval": {
-				"OP": "!=",
-				"arg0": {
-					"Var": "x_1"
-				},
-				"arg1": {
-					"Const": "0"
-				}
-			}
 		},
 		"5_2": {
 			"cmd": "Phi",
@@ -102,29 +78,38 @@
 				}
 			}
 		},
-		"6_2": {
-			"cmd": "assign",
+		"5_3": {
+			"cmd": "Phi",
 			"lval": {
-				"Var": "j_1"
+				"Var": "y_1"
 			},
 			"rval": {
-				"Var": "y_0"
-			}
-		},
-		"4_2": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "y_2"
-			},
-			"rval": {
-				"OP": "-",
+				"OP": "phi_merge",
 				"arg0": {
-					"Var": "y_1"
+					"Var": "y_0"
 				},
 				"arg1": {
-					"Const": "1"
+					"Var": "y_2"
 				}
 			}
+		},
+		"5_4": {
+			"cmd": "if",
+			"rval": {
+				"OP": "!=",
+				"arg0": {
+					"Var": "x_1"
+				},
+				"arg1": {
+					"Const": "0"
+				}
+			}
+		},
+		"5_5": {
+			"cmd": "TrueBranch"
+		},
+		"5_6": {
+			"cmd": "FalseBranch"
 		},
 		"6_1": {
 			"cmd": "assign",
@@ -134,6 +119,21 @@
 			"rval": {
 				"Var": "x_0"
 			}
+		},
+		"6_2": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "j_1"
+			},
+			"rval": {
+				"Var": "y_0"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

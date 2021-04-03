@@ -12,17 +12,20 @@
 				}
 			}
 		},
-		"EXIT": {
-			"cmd": "SKIP"
-		},
-		"ENTRY": {
-			"cmd": "SKIP"
-		},
-		"4_4": {
-			"cmd": "TrueBranch"
-		},
-		"4_5": {
-			"cmd": "FalseBranch"
+		"3_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_3"
+			},
+			"rval": {
+				"OP": "-",
+				"arg0": {
+					"Var": "x_2"
+				},
+				"arg1": {
+					"Const": "1"
+				}
+			}
 		},
 		"4_1": {
 			"cmd": "Loop"
@@ -42,30 +45,6 @@
 				}
 			}
 		},
-		"3_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_3"
-			},
-			"rval": {
-				"OP": "-",
-				"arg0": {
-					"Var": "x_2"
-				},
-				"arg1": {
-					"Const": "1"
-				}
-			}
-		},
-		"5_1": {
-			"cmd": "assign",
-			"lval": {
-				"Var": "x_1"
-			},
-			"rval": {
-				"Const": "10000"
-			}
-		},
 		"4_3": {
 			"cmd": "if",
 			"rval": {
@@ -77,6 +56,27 @@
 					"Const": "0"
 				}
 			}
+		},
+		"4_4": {
+			"cmd": "TrueBranch"
+		},
+		"4_5": {
+			"cmd": "FalseBranch"
+		},
+		"5_1": {
+			"cmd": "assign",
+			"lval": {
+				"Var": "x_1"
+			},
+			"rval": {
+				"Const": "10000"
+			}
+		},
+		"ENTRY": {
+			"cmd": "SKIP"
+		},
+		"EXIT": {
+			"cmd": "SKIP"
 		}
 	},
 	"control-flow": [

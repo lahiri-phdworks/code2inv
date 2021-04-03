@@ -1,8 +1,0 @@
-best_root :  ( ( i < j || j > ( i * i ) ) && j > ( 13 + 2 ) && j > ( i + 13 ) ) 
-simplify : [Or(Not(j <= i), Not(j <= i*i)),
- Not(j <= 15),
- Not(j <= 13 + i)]
-best_reward : -1
-epoch: 9, average reward: -0.3156, 
-Random: ( i <= ( j - 1 ) || ( j > ( 2 - 2 ) && j >= ( i - 1 ) ) || j >= ( 13 * i ) ), result_r: -1.8504 
-stats : Counter({'ce-I:': 207479, 'ce-F:': 19535, 'boogie_result': 9778, 'ce-T:': 9777, 'actual_z3': 35})
