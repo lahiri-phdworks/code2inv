@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -25,47 +24,46 @@ int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int n, long long int v1, long long int v2, long long int v3, long long int x, long long int y)
+void precheck(FILE *fptr, char *buff, long long int n, long long int v1, long long int v2, long long int v3, long long int x, long long int y)
 {
   int f = preflag;
   aflcrash(INV(n, v1, v2, v3, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre :%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x, long long int temp_y,
+void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_y, long long int temp_x,
                long long int n, long long int v1, long long int v2, long long int v3, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(n, v1, v2, v3, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "LoopEnd :%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "n", temp_n, "v1", v1, "v2", v2, "v3", v3, "x", temp_x, "y", temp_y);
-    fprintf(file_descp, "LoopEnd :%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, n, v1, v2, v3, x, y)                                           \
+#define postcheck(fptr, buff, cond, n, v1, v2, v3, x, y)             \
   \ 
-{                                                                                                     \
+{                                                                 \
     \ 
-    int f = postflag;                                                                                    \
+    int f = postflag;                                                \
     \ 
-   aflcrash(cond, postflag);                                                                             \
+   aflcrash(cond, postflag);                                         \
     \ 
-    if (f == 0 && postflag == 1)                                                                         \
-    {                                                                                                    \
-      \ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \
-                "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);                                   \
-    }                                                                                                    \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "n",                                                                \
+                n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y); \ 
+} \
   }
 
 int main()
@@ -84,6 +82,8 @@ int main()
   FILE *fptr = fopen("models.txt", "w");
   setvbuf(fptr, buff, _IOLBF, 1024);
 
+  // freopen("models.txt", "w", stderr);
+
   for (;;)
   {
     size_t len;
@@ -97,9 +97,9 @@ int main()
     x = buf[2];
     y = buf[3];
 
-    char vars[256];
+    char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 256, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
              "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
 
     // pre-conditions
@@ -136,6 +136,7 @@ int main()
             y = n - x;
             x = x + 1;
           }
+
           loopcount++;
           loopcheck(fptr, vars, temp_n, temp_x, temp_y, n, v1, v2, v3, x, y);
         }
@@ -147,6 +148,7 @@ int main()
         // post-condition
         if (n > 0)
         {
+          // assert (y >= 0);
           postcount++;
           postcheck(fptr, vars, (y < n), n, v1, v2, v3, x, y)
         }

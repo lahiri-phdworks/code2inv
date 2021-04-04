@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -20,53 +19,54 @@
 
 #define INV(i, j, x, y) PHI
 
-int counter = 0;
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, int i, int j, int x, int y)
+void precheck(FILE *fptr, char *buff, long long int i, long long int j, long long int x, long long int y)
 {
   int f = preflag;
   aflcrash(INV(i, j, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "\nPre : %s\n",
-            buff);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "j", j, "x", x, "y", y);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, int i, int j, int x, int y)
+void loopcheck(FILE *fptr, char *buff, long long int temp_i, long long int temp_j, long long int temp_x, long long int temp_y,
+               long long int i, long long int j, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(i, j, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "\nLoop : %s\n",
-            buff);
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", temp_i, "j", temp_j, "x", temp_x, "y", temp_y);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "j", j, "x", x, "y", y);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, i, j, x, y) \
+#define postcheck(fptr, buff, cond, i, j, x, y) \
   \ 
-{                                                  \
+{                                            \
     \ 
-    int f = postflag;                                 \
+    int f = postflag;                           \
     \ 
-   aflcrash(cond, postflag);                          \
+   aflcrash(cond, postflag);                    \
     \ 
-    if (f == 0 && postflag == 1)                      \
-    {                                                 \
-      \ 
-      fprintf(fptr, "\nPost : %s\n", buff);           \
-    }                                                 \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "i",                                           \
+                i, "j", j, "x", x, "y", y); \ 
+}  \
   }
 
-// COMMENT : External Function Call
-// Z3 will fail in this case
-int func(int a, int b)
+int incr1(int a, int b)
 {
   return b + a;
 }
@@ -79,29 +79,31 @@ int main()
   long long int x;
   long long int y;
 
-  char buff[500];
+  char buff[1024];
   memset(buff, '\0', sizeof(buff));
-  FILE *fptr = fopen("models.txt", "w");
 
-  // COMMENT : This must be line buffered.
-  setvbuf(fptr, buff, _IOLBF, 500);
+  FILE *fptr = fopen("models.txt", "w");
+  setvbuf(fptr, buff, _IOLBF, 1024);
+
+  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
-    int choices = buf[1];
-    i = buf[2];
-    y = buf[4];
-    j = buf[5];
+    long long int choices = buf[0];
+    i = buf[1];
+    y = buf[2];
     x = buf[3];
+    j = buf[4];
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld",
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
              "i", i, "j", j, "x", x, "y", y);
 
     // pre-conditions
@@ -133,14 +135,19 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_i = i;
+          long long int temp_j = j;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             {
-              (i = func(i, 1));
+              (i = incr1(i, 1));
               (j = (j + y));
             }
           }
+
           loopcount++;
-          loopcheck(fptr, vars, i, j, x, y);
+          loopcheck(fptr, vars, temp_i, temp_j, temp_x, temp_y, i, j, x, y);
         }
       }
       else
@@ -148,7 +155,7 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((y == 1))
+        if (y == 1)
         {
           postcount++;
           postcheck(fptr, vars, (i == j), i, j, x, y)

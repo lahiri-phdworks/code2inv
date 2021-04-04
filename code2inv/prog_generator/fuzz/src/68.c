@@ -19,60 +19,66 @@
 
 #define INV(n, y, x) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int n, int y, int x)
+void precheck(FILE *fptr, char *buff, long long int n, long long int y, long long int x)
 {
     int f = preflag;
     aflcrash(INV(n, y, x), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d\n",
+        fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n",
                 "n", n, "y", y, "x", x);
-        fflush(stderr);
     }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int n, int y, int x)
+void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_y, long long int temp_x,
+               long long int n, long long int y, long long int x)
 {
     int f = loopflag;
     aflcrash(INV(n, y, x), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d\n",
+        fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
+                "n", temp_n, "y", temp_y, "x", temp_x);
+        fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
                 "n", n, "y", y, "x", x);
-        fflush(stderr);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, n, y, x)   \
+#define postcheck(fptr, buff, cond, n, y, x) \
     \ 
-{                             \
+{                                       \
         \ 
-    int f = postflag;              \
+    int f = postflag;                        \
         \ 
-   aflcrash(cond, postflag);       \
+   aflcrash(cond, postflag);                 \
         \ 
-    if (f == 0 && postflag == 1)   \
-        {                          \
-            \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d\n",\ 
- "n",                              \
-               n, "y", y, "x", x); \
-            fflush(stderr);        \
-        \ 
-}                         \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "n",                                        \
+                n, "y", y, "x", x); \ 
+}       \
     }
 
 int main()
 {
-    int n;
-    int y;
-    int x = 1;
-    freopen("models.txt", "w", stderr);
+    long long int n;
+    long long int y;
+    long long int x = 1;
+
+    char buff[1024];
+    memset(buff, '\0', sizeof(buff));
+
+    FILE *fptr = fopen("models.txt", "w");
+    setvbuf(fptr, buff, _IOLBF, 1024);
+
+    // freopen("models.txt", "w", stderr);
 
     for (;;)
     {
@@ -80,12 +86,19 @@ int main()
         const int8_t *buf;
 
         HF_ITER(&buf, &len);
+        counter++;
 
-        int choices = buf[0];
-
-        // pre-conditions
+        long long int choices = buf[0];
         n = buf[1];
         y = buf[2];
+        x = buf[3];
+
+        char vars[100];
+        memset(vars, '\0', sizeof(vars));
+        snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n",
+                 "n", n, "y", y, "x", x);
+
+        // pre-conditions
         assume((-10000 <= y && y <= 10000));
         assume((-10000 <= n && n <= 10000));
         // precheck
@@ -95,7 +108,9 @@ int main()
         {
             //pre-conditions
             assume((preflag == 0));
-            precheck(n, y, x);
+            (x = 1);
+            precount++;
+            precheck(fptr, vars, n, y, x);
         }
         else
         {
@@ -112,11 +127,16 @@ int main()
                 {
                     assume((loopflag == 0));
                     // loop body
+                    long long int temp_n = n;
+                    long long int temp_y = y;
+                    long long int temp_x = x;
                     {
                         y = n - x;
                         x = x + 1;
                     }
-                    loopcheck(n, y, x);
+
+                    loopcount++;
+                    loopcheck(fptr, vars, temp_n, temp_y, temp_x, n, y, x);
                 }
             }
             else
@@ -126,12 +146,27 @@ int main()
                 // post-condition
                 if (n > 0)
                 {
-                    postcheck((y <= n), n, y, x)
+                    // assert (y >= 0);
+                    postcount++;
+                    postcheck(fptr, vars, (y <= n), n, y, x)
                 }
             }
         }
 
+        if (preflag + loopflag + postflag == 0 && counter == 100)
+        {
+            fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+                    "precount", precount, "loopcount", loopcount, "postcount", postcount);
+            counter = 0;
+        }
+
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

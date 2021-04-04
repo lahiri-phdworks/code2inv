@@ -19,65 +19,69 @@
 
 #define INV(d1, d2, d3, x1, x2, x3) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int d1, int d2, int d3, int x1, int x2, int x3)
+void precheck(FILE *fptr, char *buff, long long int d1, long long int d2, long long int d3, long long int x1, long long int x2, long long int x3)
 {
     int f = preflag;
     aflcrash(INV(d1, d2, d3, x1, x2, x3), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+        fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "d1", d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3);
-        fflush(stderr);
     }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int d1, int d2, int d3, int x1, int x2, int x3)
+void loopcheck(FILE *fptr, char *buff, long long int temp_x1, long long int temp_x2, long long int temp_x3, long long int d1, long long int d2, long long int d3, long long int x1, long long int x2, long long int x3)
 {
     int f = loopflag;
     aflcrash(INV(d1, d2, d3, x1, x2, x3), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+        fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "d1", d1, "d2", d2, "d3", d3, "x1", temp_x1, "x2", temp_x2, "x3", temp_x3);
+        fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "d1", d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3);
-        fflush(stderr);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, d1, d2, d3, x1, x2, x3)                       \
+#define postcheck(fptr, buff, cond, d1, d2, d3, x1, x2, x3)               \
     \ 
-{                                                                \
+{                                                                    \
         \ 
-    int f = postflag;                                                 \
+    int f = postflag;                                                     \
         \ 
-   aflcrash(cond, postflag);                                          \
+   aflcrash(cond, postflag);                                              \
         \ 
-    if (f == 0 && postflag == 1)                                      \
-        {                                                             \
-            \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
- "d1",                                                                \
-               d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3); \
-            fflush(stderr);                                           \
-        \ 
-}                                                            \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "d1",                                                                    \
+                d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3); \ 
+} \
     }
 
 int main()
 {
     // variable declarations
-    int d1;
-    int d2;
-    int d3;
-    int x1;
-    int x2;
-    int x3;
+    long long int d1;
+    long long int d2;
+    long long int d3;
+    long long int x1;
+    long long int x2;
+    long long int x3;
 
-    freopen("models.txt", "w", stderr);
+    char buff[1024];
+    memset(buff, '\0', sizeof(buff));
+
+    FILE *fptr = fopen("models.txt", "w");
+    setvbuf(fptr, buff, _IOLBF, 1024);
+
+    // freopen("models.txt", "w", stderr);
 
     for (;;)
     {
@@ -85,10 +89,16 @@ int main()
         const int8_t *buf;
 
         HF_ITER(&buf, &len);
+        counter++;
 
-        int choices = buf[0];
+        long long int choices = buf[0];
         x2 = buf[1];
         x3 = buf[2];
+
+        char vars[100];
+        memset(vars, '\0', sizeof(vars));
+        snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                 "d1", d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3);
 
         // pre-conditions
         assume((-10000 <= x2 && x1 <= 10000));
@@ -104,7 +114,8 @@ int main()
             (d2 = 1);
             (d3 = 1);
             (x1 = 1);
-            precheck(d1, d2, d3, x1, x2, x3);
+            precount++;
+            precheck(fptr, vars, d1, d2, d3, x1, x2, x3);
         }
         else
         {
@@ -121,6 +132,9 @@ int main()
                 {
                     assume((loopflag == 0));
                     // loop body
+                    long long int temp_x1 = x1;
+                    long long int temp_x2 = x2;
+                    long long int temp_x3 = x3;
                     {
                         if (x2 > 0)
                         {
@@ -132,7 +146,9 @@ int main()
                             }
                         }
                     }
-                    loopcheck(d1, d2, d3, x1, x2, x3);
+
+                    loopcount++;
+                    loopcheck(fptr, vars, temp_x1, temp_x2, temp_x3, d1, d2, d3, x1, x2, x3);
                 }
             }
             else
@@ -140,11 +156,25 @@ int main()
                 // post-check program
                 assume((postflag == 0));
                 // post-condition
-                postcheck((x2 >= 0), d1, d2, d3, x1, x2, x3)
+                postcount++;
+                postcheck(fptr, vars, (x2 >= 0), d1, d2, d3, x1, x2, x3)
             }
         }
 
+        if (preflag + loopflag + postflag == 0 && counter == 100)
+        {
+            fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+                    "precount", precount, "loopcount", loopcount, "postcount", postcount);
+            counter = 0;
+        }
+
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

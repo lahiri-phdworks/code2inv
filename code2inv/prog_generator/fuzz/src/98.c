@@ -19,62 +19,68 @@
 
 #define INV(i, j, x, y) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int i, int j, int x, int y)
+void precheck(FILE *fptr, char *buff, long long int i, long long int j, long long int x, long long int y)
 {
   int f = preflag;
   aflcrash(INV(i, j, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d\n",
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "i", i, "j", j, "x", x, "y", y);
-    fflush(stderr);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int i, int j, int x, int y)
+void loopcheck(FILE *fptr, char *buff, long long int temp_i, long long int temp_j, long long int temp_x, long long int temp_y,
+               long long int i, long long int j, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(i, j, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d\n",
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", temp_i, "j", temp_j, "x", temp_x, "y", temp_y);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "i", i, "j", j, "x", x, "y", y);
-    fflush(stderr);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, i, j, x, y)        \
+#define postcheck(fptr, buff, cond, i, j, x, y) \
   \ 
-{                                       \
+{                                            \
     \ 
-    int f = postflag;                      \
+    int f = postflag;                           \
     \ 
-   aflcrash(cond, postflag);               \
+   aflcrash(cond, postflag);                    \
     \ 
-    if (f == 0 && postflag == 1)           \
-    {                                      \
-      \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
- "i",                                      \
-               i, "j", j, "x", x, "y", y); \
-      fflush(stderr);                      \
-    \ 
-}                                     \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "i",                                           \
+                i, "j", j, "x", x, "y", y); \ 
+}  \
   }
 
 int main()
 {
   // variable declarations
-  int i;
-  int j;
-  int x;
-  int y;
-  freopen("models.txt", "w", stderr);
+  long long int i;
+  long long int j;
+  long long int x;
+  long long int y;
+
+  char buff[1024];
+  memset(buff, '\0', sizeof(buff));
+
+  FILE *fptr = fopen("models.txt", "w");
+  setvbuf(fptr, buff, _IOLBF, 1024);
+
+  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
@@ -82,13 +88,20 @@ int main()
     const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
-    int choices = buf[0];
-
-    // pre-conditions
+    long long int choices = buf[0];
+    j = buf[4];
     y = buf[1];
     x = buf[2];
     i = buf[3];
+
+    char vars[100];
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+             "i", i, "j", j, "x", x, "y", y);
+
+    // pre-conditions
     // precheck
     // loopcond : (i <= x)
 
@@ -99,7 +112,8 @@ int main()
       (j = 0);
       (i = 0);
       (y = 2);
-      precheck(i, j, x, y);
+      precount++;
+      precheck(fptr, vars, i, j, x, y);
     }
     else
     {
@@ -116,13 +130,19 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_i = i;
+          long long int temp_j = j;
+          long long int temp_x = x;
+          long long int temp_y = y;
           {
             {
               (i = (i + 1));
               (j = (j + y));
             }
           }
-          loopcheck(i, j, x, y);
+
+          loopcount++;
+          loopcheck(fptr, vars, temp_i, temp_j, temp_x, temp_y, i, j, x, y);
         }
       }
       else
@@ -130,12 +150,28 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((i != j))
-          postcheck((y != 1), i, j, x, y)
+        if (i != j)
+        {
+          postcount++;
+          postcheck(fptr, vars, (y != 1), i, j, x, y)
+        }
       }
     }
 
+    if (preflag + loopflag + postflag == 0 && counter == 100)
+    {
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      counter = 0;
+    }
+
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }

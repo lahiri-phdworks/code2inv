@@ -19,59 +19,65 @@
 
 #define INV(a, c, m, j, k) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int a, int c, int m, int j, int k)
+void precheck(FILE *fptr, char *buff, long long int a, long long int c, long long int m, long long int j, long long int k)
 {
     int f = preflag;
     aflcrash(INV(a, c, m, j, k), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+        fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "a", a, "c", c, "m", m, "j", j, "k", k);
-        fflush(stderr);
     }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int a, int c, int m, int j, int k)
+void loopcheck(FILE *fptr, char *buff, long long int temp_a, long long int temp_c, long long int temp_m, long long int temp_j, long long int temp_k,
+               long long int a, long long int c, long long int m, long long int j, long long int k)
 {
     int f = loopflag;
     aflcrash(INV(a, c, m, j, k), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+        fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "a", temp_a, "c", temp_c, "m", temp_m, "j", temp_j, "k", temp_k);
+        fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "a", a, "c", c, "m", m, "j", j, "k", k);
-        fflush(stderr);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, a, c, m, j, k)             \
+#define postcheck(fptr, buff, cond, a, c, m, j, k)     \
     \ 
-{                                             \
+{                                                 \
         \ 
-    int f = postflag;                              \
+    int f = postflag;                                  \
         \ 
-   aflcrash(cond, postflag);                       \
+   aflcrash(cond, postflag);                           \
         \ 
-    if (f == 0 && postflag == 1)                   \
-        {                                          \
-            \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
- "a",                                              \
-               a, "c", c, "m", m, "j", j, "k", k); \
-            fflush(stderr);                        \
-        \ 
-}                                         \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "a",                                                  \
+                a, "c", c, "m", m, "j", j, "k", k); \ 
+} \
     }
 
 int main()
 {
     // variable declarations
-    int a, c, m, j, k;
-    freopen("models.txt", "w", stderr);
+    long long int a, c, m, j, k;
+
+    char buff[1024];
+    memset(buff, '\0', sizeof(buff));
+
+    FILE *fptr = fopen("models.txt", "w");
+    setvbuf(fptr, buff, _IOLBF, 1024);
+
+    // freopen("models.txt", "w", stderr);
 
     for (;;)
     {
@@ -79,11 +85,20 @@ int main()
         const int8_t *buf;
 
         HF_ITER(&buf, &len);
+        counter++;
 
-        int choices = buf[0];
-
+        long long int choices = buf[0];
         c = buf[1];
         a = buf[2];
+        m = buf[3];
+        j = buf[4];
+        k = buf[5];
+
+        char vars[100];
+        memset(vars, '\0', sizeof(vars));
+        snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                 "a", a, "c", c, "m", m, "j", j, "k", k);
+
         // pre-conditions
         assume((-10000 <= c && c <= 10000));
         assume((-10000 <= a && a <= 10000));
@@ -97,7 +112,8 @@ int main()
             assume(a <= m);
             (j = 0);
             (k = 0);
-            precheck(a, c, m, j, k);
+            precount++;
+            precheck(fptr, vars, a, c, m, j, k);
         }
         else
         {
@@ -114,6 +130,11 @@ int main()
                 {
                     assume((loopflag == 0));
                     // loop body
+                    long long int temp_a = a;
+                    long long int temp_c = c;
+                    long long int temp_m = m;
+                    long long int temp_j = j;
+                    long long int temp_k = k;
                     {
                         if (m < a)
                         {
@@ -121,7 +142,9 @@ int main()
                         }
                         k = k + 1;
                     }
-                    loopcheck(a, c, m, j, k);
+
+                    loopcount++;
+                    loopcheck(fptr, vars, temp_a, temp_c, temp_m, temp_j, temp_k, a, c, m, j, k);
                 }
             }
             else
@@ -129,11 +152,25 @@ int main()
                 // post-check program
                 assume((postflag == 0));
                 // post-condition
-                postcheck((a <= m), a, c, m, j, k)
+                postcount++;
+                postcheck(fptr, vars, (a <= m), a, c, m, j, k)
             }
         }
 
+        if (preflag + loopflag + postflag == 0 && counter == 100)
+        {
+            fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+                    "precount", precount, "loopcount", loopcount, "postcount", postcount);
+            counter = 0;
+        }
+
         if (preflag + loopflag + postflag >= 3)
+        {
+            fclose(fptr);
             assert(0);
+        }
     }
+
+    fclose(fptr);
+    return 0;
 }

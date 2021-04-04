@@ -31,8 +31,8 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int v1, l
   aflcrash(INV(n, v1, v2, v3, x), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
   }
 }
 
@@ -60,9 +60,13 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int
     \ 
    aflcrash(cond, postflag);                                \
     \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}        \
+    if (f == 0 && postflag == 1)                            \
+    {                                                       \
+      \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+             "n",                                           \
+                n, "v1", v1, "v2", v2, "v3", v3, "x", x);   \
+    }                                                       \
   }
 
 int main()
@@ -83,9 +87,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[0];
     n = buf[1];
@@ -93,7 +98,8 @@ int main()
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld", "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
+    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+             "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
 
     // pre-conditions
     // precheck

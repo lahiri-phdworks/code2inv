@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
@@ -24,57 +23,62 @@ double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
-// COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_n,
-               long long int temp_c, long long int n, long long int c)
-{
-  int f = loopflag;
-  aflcrash(INV(n, c), loopflag);
-  if (f == 0 && loopflag == 1)
-  {
-    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
-            "n", temp_n, "c", temp_c);
-    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
-            "n", n, "c", c);
-  }
-}
-
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int n, long long int c)
+void precheck(FILE *fptr, char *buff, long long int n, long long int c)
 {
   int f = preflag;
   aflcrash(INV(n, c), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "n", n, "c", c);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld\n",
+            "n", n, "c", c);
+  }
+}
+
+// COMMENT : Loopcheck template
+void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_c,
+               long long int n, long long int c)
+{
+  int f = loopflag;
+  aflcrash(INV(n, c), loopflag);
+  if (f == 0 && loopflag == 1)
+  {
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld\n",
+            "n", temp_n, "c", temp_c);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld\n",
+            "n", n, "c", c);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, n, c)                                  \
+#define postcheck(fptr, buff, cond, n, c) \
   \ 
-{                                                                             \
+{                                      \
     \ 
-    int f = postflag;                                                            \
+    int f = postflag;                     \
     \ 
-   aflcrash(cond, postflag);                                                     \
+   aflcrash(cond, postflag);              \
     \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "c", c); \ 
-} \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld\n", \ 
+ "n",                                     \
+                n, "c", c); \ 
+}            \
   }
 
 int main()
 {
   // variable declarations
-  long long int c;
-  long long int n;
+  int c;
+  int n;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
 
   FILE *fptr = fopen("models.txt", "w");
   setvbuf(fptr, buff, _IOLBF, 1024);
+
+  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
@@ -86,11 +90,11 @@ int main()
 
     long long int choices = buf[0];
     n = buf[1];
-    c = buf[2];
 
-    char vars[128];
+    char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld\n", "n", n, "c", c);
+    snprintf(vars, 100, "%s : %lld, %s : %lld\n",
+             "n", n, "c", c);
 
     // pre-conditions
     // precheck
@@ -124,7 +128,7 @@ int main()
           long long int temp_c = c;
           {
             {
-              if (choices > 64)
+              if (unknown())
               {
                 if ((c != n))
                 {
@@ -140,6 +144,7 @@ int main()
               }
             }
           }
+
           loopcount++;
           loopcheck(fptr, vars, temp_n, temp_c, n, c);
         }

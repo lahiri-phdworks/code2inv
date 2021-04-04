@@ -80,14 +80,16 @@ int main()
     for (;;)
     {
         size_t len;
-        const int16_t *buf;
+        const int8_t *buf;
 
         HF_ITER(&buf, &len);
+        counter++;
 
         long long int choices = buf[0];
         t = buf[1];
         j = buf[2];
         c = buf[3];
+        t = buf[4];
 
         char vars[128];
         memset(vars, '\0', sizeof(vars));

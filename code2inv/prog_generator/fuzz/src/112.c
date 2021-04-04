@@ -19,64 +19,70 @@
 
 #define INV(i, n, sn, v1, v2, v3) PHI
 
+double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
+double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(int i, int n, int sn, int v1, int v2, int v3)
+void precheck(FILE *fptr, char *buff, long long int i, long long int n, long long int sn, long long int v1, long long int v2, long long int v3)
 {
   int f = preflag;
   aflcrash(INV(i, n, sn, v1, v2, v3), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(stderr, "Pre : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "i", i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3);
-    fflush(stderr);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(int i, int n, int sn, int v1, int v2, int v3)
+void loopcheck(FILE *fptr, char *buff, long long int temp_i, long long int temp_n, long long int temp_sn,
+               long long int i, long long int n, long long int sn, long long int v1, long long int v2, long long int v3)
 {
   int f = loopflag;
   aflcrash(INV(i, n, sn, v1, v2, v3), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(stderr, "Loop : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", temp_i, "n", temp_n, "sn", temp_sn, "v1", v1, "v2", v2, "v3", v3);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "i", i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3);
-    fflush(stderr);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(cond, i, n, sn, v1, v2, v3)                      \
+#define postcheck(fptr, buff, cond, i, n, sn, v1, v2, v3)              \
   \ 
-{                                                               \
+{                                                                   \
     \ 
-    int f = postflag;                                              \
+    int f = postflag;                                                  \
     \ 
-   aflcrash(cond, postflag);                                       \
+   aflcrash(cond, postflag);                                           \
     \ 
-    if (f == 0 && postflag == 1)                                   \
-    {                                                              \
-      \ 
-       fprintf(stderr, "Post : %s : %d, %s : %d, %s : %d, %s : %d, %s : %d, %s : %d\n",\ 
- "i",                                                              \
-               i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3); \
-      fflush(stderr);                                              \
-    \ 
-}                                                             \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "i",                                                                  \
+                i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3); \ 
+} \
   }
 
 int main()
 {
   // variable declarations
-  int i;
-  int n;
-  int sn;
-  int v1;
-  int v2;
-  int v3;
-  freopen("models.txt", "w", stderr);
+  long long int i;
+  long long int n;
+  long long int sn;
+  long long int v1;
+  long long int v2;
+  long long int v3;
+
+  char buff[1024];
+  memset(buff, '\0', sizeof(buff));
+
+  FILE *fptr = fopen("models.txt", "w");
+  setvbuf(fptr, buff, _IOLBF, 1024);
+
+  // freopen("models.txt", "w", stderr);
 
   for (;;)
   {
@@ -84,12 +90,19 @@ int main()
     const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
-    int choices = buf[0];
-
-    // pre-conditions
+    long long int choices = buf[0];
     n = buf[1];
     sn = buf[2];
+    i = buf[3];
+
+    char vars[100];
+    memset(vars, '\0', sizeof(vars));
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+             "i", i, "n", n, "sn", sn, "v1", v1, "v2", v2, "v3", v3);
+
+    // pre-conditions
     // precheck
     // loopcond : (i <= n)
 
@@ -99,7 +112,8 @@ int main()
       assume((preflag == 0));
       (sn = 0);
       (i = 1);
-      precheck(i, n, sn, v1, v2, v3);
+      precount++;
+      precheck(fptr, vars, i, n, sn, v1, v2, v3);
     }
     else
     {
@@ -116,13 +130,18 @@ int main()
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_i = i;
+          long long int temp_n = n;
+          long long int temp_sn = sn;
           {
             {
               (i = (i + 1));
               (sn = (sn + 1));
             }
           }
-          loopcheck(i, n, sn, v1, v2, v3);
+
+          loopcount++;
+          loopcheck(fptr, vars, temp_i, temp_n, temp_sn, i, n, sn, v1, v2, v3);
         }
       }
       else
@@ -131,11 +150,27 @@ int main()
         assume((postflag == 0));
         // post-condition
         if ((sn != n))
-          postcheck((sn == 0), i, n, sn, v1, v2, v3)
+        {
+          postcount++;
+          postcheck(fptr, vars, ((sn == 0)), i, n, sn, v1, v2, v3)
+        }
       }
     }
 
+    if (preflag + loopflag + postflag == 0 && counter == 100)
+    {
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      counter = 0;
+    }
+
     if (preflag + loopflag + postflag >= 3)
+    {
+      fclose(fptr);
       assert(0);
+    }
   }
+
+  fclose(fptr);
+  return 0;
 }
