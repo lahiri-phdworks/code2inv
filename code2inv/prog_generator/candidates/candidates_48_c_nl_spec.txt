@@ -1,0 +1,5 @@
+( n <= ( n - n ) or c >= ( -1 * c ) )
+( n <= ( n - n ) or c >= ( -1 * c ) )
+( c > ( n * c ) or c <= ( c + n ) )
+( c > ( n * c ) or c <= ( c + n ) )
+( c > ( n * c ) or c <= ( c + n ) )

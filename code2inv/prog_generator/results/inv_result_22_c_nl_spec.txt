@@ -1,0 +1,2 @@
+( ( x <= ( x * m ) || x == ( 1 * m ) ) && x > ( x - x ) )
+z3_report time: 96.53 pid: 0 stats: Counter({'ce-I:': 10630, 'ce-T:': 7418, 'boogie_result': 1488, 'ce-F:': 1486, 'actual_z3': 17})

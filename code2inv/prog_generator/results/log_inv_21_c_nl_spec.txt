@@ -1,0 +1,18 @@
+best_root :  ( ( n >= ( 10000 * 10000 ) || n <= n ) ) 
+simplify : []
+best_reward : 0
+epoch: 0, average reward: -0.5432, 
+Random: ( m == ( 1 + x ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 4862, 'ce-I:': 3235, 'boogie_result': 996, 'ce-F:': 993, 'actual_z3': 12})
+best_root :  ( m == 1 ) 
+simplify : []
+best_reward : -1
+epoch: 1, average reward: -0.5441, 
+Random: ( n <= ( n - 10000 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 9896, 'ce-I:': 9160, 'boogie_result': 1986, 'ce-F:': 1983, 'actual_z3': 15})
+best_root :  ( ( m < n && m <= ( n - 1 ) ) || n > n || x >= ( x * n ) ) 
+simplify : [Or(x >= n*x, And(Not(n <= m), m <= -1 + n))]
+best_reward : -1
+epoch: 2, average reward: -0.5209, 
+Random: ( ( x > ( -10000 + x ) && n == ( m * 10000 ) ) || n < ( 1 * 10000 ) || ( n < x && n == ( -10000 * 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 18561, 'ce-T:': 15854, 'boogie_result': 2979, 'ce-F:': 2976, 'actual_z3': 19})

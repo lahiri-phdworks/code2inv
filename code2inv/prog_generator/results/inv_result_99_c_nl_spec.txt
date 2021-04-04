@@ -1,0 +1,2 @@
+( y == ( n - x ) )
+z3_report time: 148.78 pid: 0 stats: Counter({'ce-T:': 13551, 'ce-F:': 4490, 'ce-I:': 4210, 'boogie_result': 2262, 'actual_z3': 12})

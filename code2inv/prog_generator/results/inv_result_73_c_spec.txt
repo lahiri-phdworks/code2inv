@@ -1,0 +1,2 @@
+( ( z > ( 1 - y ) || y <= 4608 ) && ( y >= ( c + 127 ) || c <= 4608 ) && ( y > ( z - z ) ) )
+z3_report time: 0.24 pid: 0 stats: Counter({'boogie_result': 3, 'actual_z3': 3, 'ce-T:': 2})

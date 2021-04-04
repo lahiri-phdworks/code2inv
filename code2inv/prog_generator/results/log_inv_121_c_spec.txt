@@ -1,0 +1,95 @@
+best_root :  ( ( sn >= ( 0 - 0 ) ) ) 
+simplify : [sn >= 0]
+best_reward : 0
+epoch: 0, average reward: -0.5285, 
+Random: ( ( sn <= 8 ) && ( i < ( i + i ) || i >= ( -10000 + 10000 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 9198, 'ce-F:': 3267, 'boogie_result': 997, 'ce-T:': 996, 'actual_z3': 24})
+best_root :  ( ( i <= ( 8 - i ) ) ) 
+simplify : [i <= 4]
+best_reward : -1
+epoch: 1, average reward: -0.5745, 
+Random: ( ( i < ( i + -10000 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 19166, 'ce-F:': 7227, 'boogie_result': 1987, 'ce-T:': 1986, 'actual_z3': 25})
+best_root :  ( ( i < ( 8 - i ) || sn < ( sn - 8 ) ) && ( sn < ( sn - -10000 ) || i <= ( 1 - i ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 2, average reward: -0.5298, 
+Random: ( ( sn <= ( sn - sn ) ) && ( i < ( 10000 + i ) ) ), result_r: -1.8158 
+stats : Counter({'ce-I:': 30377, 'ce-F:': 11167, 'boogie_result': 2972, 'ce-T:': 2971, 'actual_z3': 26})
+best_root :  ( ( sn < ( 8 - i ) || i < ( 1 - i ) ) && ( i < ( 1 + i ) || i == ( 0 - -10000 ) ) && ( i >= ( 0 + 10000 ) || sn > ( i - 8 ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 3, average reward: -0.5389, 
+Random: ( ( i >= sn ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 43172, 'ce-F:': 15071, 'boogie_result': 3948, 'ce-T:': 3947, 'actual_z3': 29})
+best_root :  ( ( sn > ( i + 8 ) || i <= ( 8 - sn ) ) && ( i < 8 ) && ( i <= ( 1 - sn ) || i < 8 ) ) 
+simplify : [Or(Not(sn <= 8 + i), i <= 8 + -1*sn), Not(8 <= i)]
+best_reward : -1
+epoch: 4, average reward: -0.5306, 
+Random: ( ( i > ( i + i ) || sn <= ( 8 - sn ) ) && ( i < 1 || sn > ( i + 8 ) ) && ( sn > ( i + 0 ) ) ), result_r: -2.0853 
+stats : Counter({'ce-I:': 57812, 'ce-F:': 18975, 'boogie_result': 4924, 'ce-T:': 4923, 'actual_z3': 29})
+best_root :  ( ( i < ( 8 - 1 ) ) && ( i < 8 ) ) 
+simplify : [Not(7 <= i), Not(8 <= i)]
+best_reward : -1
+epoch: 5, average reward: -0.4981, 
+Random: ( ( sn < 0 ) && ( i <= 8 || sn < 0 ) ), result_r: -2.2956 
+stats : Counter({'ce-I:': 72719, 'ce-F:': 22915, 'boogie_result': 5909, 'ce-T:': 5908, 'actual_z3': 30})
+best_root :  ( ( sn == ( 1 - sn ) || i <= 1 ) && ( i <= 8 ) ) 
+simplify : [i <= 1, i <= 8]
+best_reward : -1
+epoch: 6, average reward: -0.5293, 
+Random: ( ( sn > ( i + 8 ) ) && ( sn == ( 8 - 1 ) || sn < ( 8 - i ) ) ), result_r: -2.0506 
+stats : Counter({'ce-I:': 88335, 'ce-F:': 26819, 'boogie_result': 6885, 'ce-T:': 6884, 'actual_z3': 30})
+best_root :  ( ( i <= ( 8 - i ) ) ) 
+simplify : [i <= 4]
+best_reward : -1
+epoch: 7, average reward: -0.5208, 
+Random: ( ( i <= ( 1 - sn ) ) && ( sn < ( 10000 - -10000 ) ) ), result_r: -1.5913 
+stats : Counter({'ce-I:': 104095, 'ce-F:': 30759, 'boogie_result': 7870, 'ce-T:': 7869, 'actual_z3': 30})
+best_root :  ( ( sn <= ( 1 - sn ) || i <= ( 1 - sn ) ) && ( i <= ( 1 - sn ) ) && ( i >= ( i - sn ) ) ) 
+simplify : [i <= 1 + -1*sn, sn >= 0]
+best_reward : -1
+epoch: 8, average reward: -0.4574, 
+Random: ( ( sn < ( 8 - i ) ) ), result_r: -1.6831 
+stats : Counter({'ce-I:': 119759, 'ce-F:': 34675, 'boogie_result': 8849, 'ce-T:': 8848, 'actual_z3': 30})
+best_root :  ( ( sn <= ( 1 - i ) || i < ( 8 - 1 ) ) ) 
+simplify : [Or(Not(7 <= i), sn <= 1 + -1*i)]
+best_reward : -1
+epoch: 9, average reward: -0.2925, 
+Random: ( ( sn < ( 1 - i ) ) && ( i < 8 || sn <= ( 1 - i ) ) ), result_r: -2.0506 
+stats : Counter({'ce-I:': 135759, 'ce-F:': 38675, 'boogie_result': 9849, 'ce-T:': 9848, 'actual_z3': 30})
+best_root :  ( ( sn < ( 8 - i ) ) && ( i < ( 8 - i ) || sn < ( 1 - i ) ) && ( sn < ( 1 + i ) ) ) 
+simplify : [Not(-1*i <= -8 + sn),
+ Or(Not(i >= 4), Not(-1*i <= -1 + sn)),
+ Not(i <= -1 + sn)]
+best_reward : -1
+epoch: 10, average reward: -0.2543, 
+Random: ( ( sn <= ( 1 - i ) ) ), result_r: -1.5913 
+stats : Counter({'ce-I:': 151727, 'ce-F:': 42667, 'boogie_result': 10847, 'ce-T:': 10846, 'actual_z3': 30})
+best_root :  ( ( sn <= ( 1 - i ) || i < 8 ) && ( i < 8 || sn <= ( 1 - i ) ) && ( i <= ( 8 - i ) || sn < ( 8 - i ) ) ) 
+simplify : [Or(Not(8 <= i), sn <= 1 + -1*i),
+ Or(i <= 4, Not(-1*i <= -8 + sn))]
+best_reward : -1
+epoch: 11, average reward: -0.1775, 
+Random: ( ( sn <= ( 1 - i ) ) && ( i < 8 || sn < ( 1 - i ) ) && ( i < 8 ) ), result_r: -1.5913 
+stats : Counter({'ce-I:': 167775, 'ce-F:': 46679, 'boogie_result': 11850, 'ce-T:': 11849, 'actual_z3': 30})
+best_root :  ( ( sn <= ( 1 + i ) ) && ( i < 8 || sn < ( 8 - i ) ) && ( i < ( 8 - i ) || sn == ( 1 - i ) ) ) 
+simplify : [sn <= 1 + i,
+ Or(Not(8 <= i), Not(-1*i <= -8 + sn)),
+ Or(Not(i >= 4), sn == 1 + -1*i)]
+best_reward : -1
+epoch: 12, average reward: -0.1522, 
+Random: ( ( sn <= ( 1 - i ) || i < 8 ) ), result_r: -1.5913 
+stats : Counter({'ce-I:': 183807, 'ce-F:': 50687, 'boogie_result': 12852, 'ce-T:': 12851, 'actual_z3': 30})
+best_root :  ( ( sn <= ( 1 - i ) ) && ( i == 1 ) && ( sn <= ( 1 - i ) || i < 8 ) ) 
+simplify : [sn <= 0]
+best_reward : -1
+epoch: 13, average reward: -0.1775, 
+Random: ( ( sn <= ( 1 - i ) ) && ( i < 8 || sn <= ( 1 - i ) ) && ( i < 8 || sn <= ( 1 - i ) ) ), result_r: -1.5913 
+stats : Counter({'ce-I:': 199839, 'ce-F:': 54695, 'boogie_result': 13854, 'ce-T:': 13853, 'actual_z3': 30})
+best_root :  ( ( sn <= ( 1 - i ) || sn < ( 8 - sn ) ) && ( i < 8 ) && ( sn <= ( 1 - i ) || i < 8 ) ) 
+simplify : [Or(sn <= 1 + -1*i, Not(sn >= 4)), Not(8 <= i)]
+best_reward : -1
+epoch: 14, average reward: -0.1714, 
+Random: ( ( sn <= ( 1 - i ) ) && ( i < 8 || sn <= ( 1 - i ) ) ), result_r: -1.5913 
+stats : Counter({'ce-I:': 215839, 'ce-F:': 58695, 'boogie_result': 14854, 'ce-T:': 14853, 'actual_z3': 30})

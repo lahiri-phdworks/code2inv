@@ -1,0 +1,2 @@
+( ( sn == x ) && ( x < ( sn + x ) || sn <= sn ) && ( x >= sn ) )
+z3_report time: 2.70 pid: 0 stats: Counter({'ce-F:': 96, 'boogie_result': 34, 'ce-I:': 33, 'ce-T:': 32, 'actual_z3': 19})

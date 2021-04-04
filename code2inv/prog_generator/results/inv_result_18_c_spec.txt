@@ -1,0 +1,2 @@
+( ( n < ( m + n ) ) && ( x >= m ) && ( m <= m ) )
+z3_report time: 32.22 pid: 0 stats: Counter({'ce-T:': 2821, 'ce-I:': 2343, 'boogie_result': 511, 'ce-F:': 503, 'actual_z3': 16})

@@ -1,0 +1,24 @@
+best_root :  ( ( x >= ( x - 1 ) || x <= ( 5 - z ) ) ) 
+simplify : []
+best_reward : 0
+epoch: 0, average reward: -0.5764, 
+Random: ( ( y > z ) && ( x == ( y - z ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 9297, 'ce-I:': 4604, 'boogie_result': 998, 'ce-F:': 996, 'actual_z3': 17})
+best_root :  ( ( x < ( y - z ) || z >= y ) ) 
+simplify : [Or(Not(y + -1*z <= x), z >= y)]
+best_reward : 0
+epoch: 1, average reward: -0.5594, 
+Random: ( ( y == ( 1 + x ) ) && ( z <= 0 ) && ( z >= ( 0 + 0 ) ) ), result_r: -2.2650 
+stats : Counter({'ce-T:': 19462, 'ce-I:': 10592, 'ce-F:': 2164, 'boogie_result': 1996, 'actual_z3': 19})
+best_root :  ( ( x < 5 || z >= 1 ) ) 
+simplify : [Or(Not(5 <= x), z >= 1)]
+best_reward : -1
+epoch: 2, average reward: -0.5109, 
+Random: ( ( x == ( 1 - x ) ) && ( z <= ( 1 - y ) || y > y ) && ( x < 5 || y == y ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 30754, 'ce-I:': 16735, 'ce-F:': 4154, 'boogie_result': 2991, 'actual_z3': 21})
+best_root :  ( ( x >= ( x - 1 ) ) && ( z > x || z <= ( 1 - x ) ) && ( x >= ( x - 1 ) || z == ( 0 - y ) ) ) 
+simplify : [Or(Not(z <= x), z <= 1 + -1*x)]
+best_reward : -1
+epoch: 3, average reward: -0.5640, 
+Random: ( ( y <= ( 1 - x ) ) && ( z == y ) ), result_r: -1.9792 
+stats : Counter({'ce-T:': 42490, 'ce-I:': 24817, 'ce-F:': 6110, 'boogie_result': 3969, 'actual_z3': 24})

@@ -1,0 +1,12 @@
+best_root :  ( x <= n ) 
+simplify : [x <= n]
+best_reward : 0
+epoch: 0, average reward: -0.6036, 
+Random: ( ( x >= 0 && y >= ( 1 - x ) ) ), result_r: -1.9383 
+stats : Counter({'ce-T:': 5967, 'ce-F:': 1962, 'ce-I:': 1513, 'boogie_result': 998, 'actual_z3': 10})
+best_root :  ( ( x < ( n * y ) && x <= n ) || ( n > 0 && y >= ( -10000 + 10000 ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 1, average reward: -0.5642, 
+Random: ( x < ( n + n ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 11931, 'ce-F:': 3950, 'ce-I:': 3501, 'boogie_result': 1992, 'actual_z3': 10})

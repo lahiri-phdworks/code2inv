@@ -1,0 +1,3 @@
+[None, None, {'c': '5'}]
+[None, ({'tmp': '0', 'c': '0'}, {'c': '1', 'tmp': '0'}), None]
+[None, None, None]

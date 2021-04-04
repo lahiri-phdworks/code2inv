@@ -1,0 +1,6 @@
+best_root :  ( x > ( y + y ) || y <= 1 || x <= 100 ) 
+simplify : [Or(y <= 1, Not(x <= 2*y), x <= 100)]
+best_reward : 0
+epoch: 0, average reward: -0.5909, 
+Random: ( x < ( 100 + 100 ) ), result_r: -1.8567 
+stats : Counter({'ce-I:': 5000, 'ce-T:': 3909, 'ce-F:': 1232, 'boogie_result': 989, 'actual_z3': 14})

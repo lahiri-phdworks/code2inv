@@ -1,0 +1,12 @@
+best_root :  ( ( x >= ( 1 - 0 ) || z <= z ) ) 
+simplify : []
+best_reward : 0
+epoch: 0, average reward: -0.6108, 
+Random: ( x <= ( 1 - x ) && size < ( 0 * 1 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 6633, 'ce-I:': 2764, 'boogie_result': 998, 'ce-F:': 991, 'actual_z3': 11})
+best_root :  ( y < ( z + x ) || x <= ( 1 * y ) ) 
+simplify : [Or(Not(z + x <= y), x <= y)]
+best_reward : -1
+epoch: 1, average reward: -0.5713, 
+Random: ( ( y <= ( z - 0 ) || z >= size ) && y == ( x - z ) && z >= ( 0 * 0 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 14552, 'ce-I:': 5755, 'boogie_result': 1995, 'ce-F:': 1988, 'actual_z3': 14})
