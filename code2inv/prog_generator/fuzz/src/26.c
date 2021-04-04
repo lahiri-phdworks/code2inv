@@ -31,34 +31,35 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int x)
   aflcrash(INV(n, x), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "n", n, "x", x);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int n, long long int x)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x, long long int n, long long int x)
 {
   int f = loopflag;
   aflcrash(INV(n, x), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "Loop : %s\n",
-            buff);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
+            "n", temp_n, "x", temp_x);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
+            "n", n, "x", x);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, n, x)      \
+#define postcheck(file_descp, buff, cond, n, x)                                  \
   \ 
-{                                                 \
+{                                                                             \
     \ 
-    int f = postflag;                                \
+    int f = postflag;                                                            \
     \ 
-   aflcrash(cond, postflag);                         \
+   aflcrash(cond, postflag);                                                     \
     \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "x", x); \ 
 } \
   }
 
@@ -77,16 +78,18 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[0];
+    x = buf[2];
     n = buf[1];
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld", "n", n, "x", x);
+    snprintf(vars, 128, "%s : %lld, %s : %lld\n", "n", n, "x", x);
 
     // pre-conditions
     assume((-10000 <= n && n <= 10000));
@@ -115,6 +118,8 @@ int main()
         while ((x > 1) && k--)
         {
           assume((loopflag == 0));
+          long long int temp_x = x;
+          long long int temp_n = n;
           // loop body
           {
             {
@@ -122,7 +127,7 @@ int main()
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, n, x);
+          loopcheck(fptr, vars, temp_n, temp_x, n, x);
         }
       }
       else
@@ -140,7 +145,8 @@ int main()
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
       counter = 0;
     }
 

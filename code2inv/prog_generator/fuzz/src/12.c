@@ -25,19 +25,20 @@ int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int x, long long int y, long long int z1, long long int z2, long long int z3)
+void precheck(FILE *file_descp, char *buff, long long int x, long long int y,
+              long long int z1, long long int z2, long long int z3)
 {
   int f = preflag;
   aflcrash(INV(x, y, z1, z2, z3), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "x", x, "y", y);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int temp_y, long long int x, long long int y, long long int z1, long long int z2, long long int z3)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
+               long long int temp_y, long long int x, long long int y, long long int z1, long long int z2, long long int z3)
 {
   int f = loopflag;
   aflcrash(INV(x, y, z1, z2, z3), loopflag);
@@ -51,17 +52,17 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, y, z1, z2, z3) \
+#define postcheck(file_descp, buff, cond, x, y, z1, z2, z3)                      \
   \ 
-{                                                        \
+{                                                                             \
     \ 
-    int f = postflag;                                       \
+    int f = postflag;                                                            \
     \ 
-   aflcrash(cond, postflag);                                \
+   aflcrash(cond, postflag);                                                     \
     \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}        \
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "x", x, "y", y); \ 
+} \
   }
 
 int main()
@@ -82,9 +83,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[0];
     x = buf[1];
@@ -92,7 +94,7 @@ int main()
 
     char vars[64];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 64, "%s : %lld, %s : %lld", "x", x, "y", y);
+    snprintf(vars, 64, "%s : %lld, %s : %lld\n", "x", x, "y", y);
 
     // pre-conditions
     // precheck

@@ -90,7 +90,8 @@ int main()
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld", "x", x, "y", y);
+    snprintf(vars, 128, "%s : %lld, %s : %lld\n",
+             "x", x, "y", y);
 
     // pre-conditions
     // precheck

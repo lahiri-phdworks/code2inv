@@ -1,4 +1,4 @@
-#include <32.h>
+#include <27.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -18,61 +18,55 @@
   if (!cond)         \
     continue;
 
-#define INV(n, v1, v2, v3, x) PHI
+#define INV(n, x) PHI
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int n, long long int v1, long long int v2, long long int v3, long long int x)
+void precheck(FILE *file_descp, char *buff, long long int n, long long int x)
 {
   int f = preflag;
-  aflcrash(INV(n, v1, v2, v3, x), preflag);
+  aflcrash(INV(n, x), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "n", n, "x", x);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x,
-               long long int n, long long int v1, long long int v2, long long int v3, long long int x)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x, long long int n, long long int x)
 {
   int f = loopflag;
-  aflcrash(INV(n, v1, v2, v3, x), loopflag);
+  aflcrash(INV(n, x), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(file_descp, "LoopStart :%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "n", temp_n, "v1", v1, "v2", v2, "v3", v3, "x", temp_x);
-    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
+    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
+            "n", temp_n, "x", temp_x);
+    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
+            "n", n, "x", x);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, n, v1, v2, v3, x)                                   \
+#define postcheck(file_descp, buff, cond, n, x)                                  \
   \ 
-{                                                                                          \
+{                                                                             \
     \ 
-    int f = postflag;                                                                         \
+    int f = postflag;                                                            \
     \ 
-   aflcrash(cond, postflag);                                                                  \
+   aflcrash(cond, postflag);                                                     \
     \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \
-                "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x); \ 
-}                             \
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "x", x); \ 
+} \
   }
 
 int main()
 {
   // variable declarations
   long long int n;
-  long long int v1;
-  long long int v2;
-  long long int v3;
   long long int x;
 
   char buff[1024];
@@ -90,16 +84,14 @@ int main()
     counter++;
 
     long long int choices = buf[0];
-    n = buf[1];
     x = buf[2];
+    n = buf[1];
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-             "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x);
+    snprintf(vars, 128, "%s : %lld, %s : %lld\n", "n", n, "x", x);
 
     // pre-conditions
-    assume((-10000 <= x && x <= 10000));
     // precheck
     // loopcond : (x > 1)
 
@@ -109,13 +101,13 @@ int main()
       assume((preflag == 0));
       (x = n);
       precount++;
-      precheck(fptr, vars, n, v1, v2, v3, x);
+      precheck(fptr, vars, n, x);
     }
     else
     {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(n, v1, v2, v3, x));
+      assume(INV(n, x));
 
       // Loop Condition
       if ((x > 1))
@@ -125,16 +117,16 @@ int main()
         while ((x > 1) && k--)
         {
           assume((loopflag == 0));
-          // loop body
           long long int temp_x = x;
           long long int temp_n = n;
+          // loop body
           {
             {
               (x = (x - 1));
             }
           }
           loopcount++;
-          loopcheck(fptr, vars, temp_n, temp_x, n, v1, v2, v3, x);
+          loopcheck(fptr, vars, temp_n, temp_x, n, x);
         }
       }
       else
@@ -142,17 +134,18 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((n >= 0))
+        if (n >= 0)
         {
           postcount++;
-          postcheck(fptr, vars, (x == 1), n, v1, v2, v3, x)
+          postcheck(fptr, vars, (x == 1), n, x)
         }
       }
     }
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
       counter = 0;
     }
 

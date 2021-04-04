@@ -1,4 +1,4 @@
-#include <4.h>
+#include <7.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -18,60 +18,57 @@
    if (!cond)        \
       continue;
 
-#define INV(x, y, z) PHI
+#define INV(x, y) PHI
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int x, long long int y, long long int z)
+void precheck(FILE *file_descp, char *buff, long long int x, long long int y)
 {
    int f = preflag;
-   aflcrash(INV(x, y, z), preflag);
+   aflcrash(INV(x, y), preflag);
    if (f == 0 && preflag == 1)
    {
-      fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld\n", "x", x, "y", y, "z", z);
+      fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "x", x, "y", y);
    }
 }
 
 // COMMENT : Loopcheck template
 void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
-               long long int temp_y, long long int temp_z, long long int x, long long int y, long long int z)
+               long long int temp_y, long long int x, long long int y)
 {
    int f = loopflag;
-   aflcrash(INV(x, y, z), loopflag);
+   aflcrash(INV(x, y), loopflag);
    if (f == 0 && loopflag == 1)
    {
-      fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
-              "x", temp_x, "y", temp_y, "z", temp_z);
-      fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
-              "x", x, "y", y, "z", z);
+      fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
+              "x", temp_x, "y", temp_y);
+      fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
+              "x", x, "y", y);
    }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, y, z)                                              \
+#define postcheck(file_descp, buff, cond, x, y)                                  \
    \ 
-{                                                                                           \
+{                                                                            \
       \ 
-    int f = postflag;                                                                           \
+    int f = postflag;                                                            \
       \ 
-   aflcrash(cond, postflag);                                                                    \
+   aflcrash(cond, postflag);                                                     \
       \ 
-    if (f == 0 && postflag == 1)                                                                \
-      {                                                                                         \
-         \ 
-        fprintf(file_descp, "Post :%s : %lld, %s : %lld, %s : %lld\n", "x", x, "y", y, "z", z); \
-      }                                                                                         \
+    if (f == 0 && postflag == 1) {\ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "x", x, "y", y); \ 
+} \
    }
 
 int main()
 {
    // variable declarations
-   long long int x = 0;
+   long long int x;
    long long int y;
-   long long int z;
 
    char buff[1024];
    memset(buff, '\0', sizeof(buff));
@@ -89,63 +86,63 @@ int main()
 
       long long int choices = buf[0];
       y = buf[1];
-      z = buf[2];
+      x = buf[2];
 
       char vars[128];
       memset(vars, '\0', sizeof(vars));
-      snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld\n",
-               "x", x, "y", y, "z", z);
+      snprintf(vars, 128, "%s : %lld, %s : %lld", "x", x, "y", y);
 
       // pre-conditions
-      assume((-10000 <= y && y <= 10000));
-      assume((-10000 <= z && z <= 10000));
       // precheck
-      // loopcond : (x < 500)
+      // loopcond : unknown()
 
       if (choices > 25)
       {
          //pre-conditions
          assume((preflag == 0));
+         assume((x >= 0));
+         assume((x <= 10));
+         assume((y <= 10));
+         assume((y >= 0));
          precount++;
-         precheck(fptr, vars, x, y, z);
+         precheck(fptr, vars, x, y);
       }
       else
       {
          // loop-check program
          assume((loopflag + postflag < 2));
-         assume(INV(x, y, z));
+         assume(INV(x, y));
 
          // Loop Condition
-         if ((x < 500))
+         if (choices > 55)
          {
             // Bounded Unrolling
             int k = UNROLL_LIMIT;
-            while ((x < 500) && k--)
+            while ((choices > 55) && k--)
             {
                assume((loopflag == 0));
+               // loop body
                long long int temp_x = x;
                long long int temp_y = y;
-               long long int temp_z = z;
-               // loop body
                {
-                  x += 1;
-                  if (z <= y)
                   {
-                     y = z;
+                     (x = (x + 10));
+                     (y = (y + 10));
                   }
                }
                loopcount++;
-               loopcheck(fptr, vars, temp_x, temp_y, temp_z, x, y, z);
+               loopcheck(fptr, vars, temp_x, temp_y, x, y);
             }
          }
          else
          {
+            // post-condition
             // post-check program
             assume((postflag == 0));
-            // post-condition
+            if (x == 20)
             {
                postcount++;
-               postcheck(fptr, vars, (z >= y), x, y, z)
+               postcheck(fptr, vars, (y != 0), x, y)
             }
          }
       }

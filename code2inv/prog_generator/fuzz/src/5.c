@@ -81,9 +81,10 @@ int main()
    for (;;)
    {
       size_t len;
-      const int16_t *buf;
+      const int8_t *buf;
 
       HF_ITER(&buf, &len);
+      counter++;
 
       long long int choices = buf[0];
       x = buf[4];
@@ -104,6 +105,7 @@ int main()
       {
          //pre-conditions
          assume((preflag == 0));
+         (x = 0);
          precount++;
          precheck(fptr, vars, x, size, y, z);
       }
@@ -154,7 +156,8 @@ int main()
 
       if (preflag + loopflag + postflag == 0 && counter == 100)
       {
-         fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
+         fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+                 "precount", precount, "loopcount", loopcount, "postcount", postcount);
          counter = 0;
       }
 

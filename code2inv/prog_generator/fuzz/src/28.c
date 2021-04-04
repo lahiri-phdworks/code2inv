@@ -1,4 +1,4 @@
-#include <133.h>
+#include <28.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -36,17 +36,16 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int x)
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_n,
-               long long int temp_x, long long int n, long long int x)
+void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int temp_x, long long int n, long long int x)
 {
   int f = loopflag;
   aflcrash(INV(n, x), loopflag);
   if (f == 0 && loopflag == 1)
   {
     fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld\n",
-            "n", temp_n, "c", temp_x);
+            "n", temp_n, "x", temp_x);
     fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
-            "n", n, "c", x);
+            "n", n, "x", x);
   }
 }
 
@@ -85,8 +84,8 @@ int main()
     counter++;
 
     long long int choices = buf[0];
-    n = buf[1];
     x = buf[2];
+    n = buf[1];
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
@@ -94,14 +93,13 @@ int main()
 
     // pre-conditions
     // precheck
-    // loopcond : (x < n)
+    // loopcond : (x > 1)
 
     if (choices > 25)
     {
       //pre-conditions
       assume((preflag == 0));
-      assume((n >= 0));
-      (x = 0);
+      (x = n);
       precount++;
       precheck(fptr, vars, n, x);
     }
@@ -112,19 +110,19 @@ int main()
       assume(INV(n, x));
 
       // Loop Condition
-      if ((x < n))
+      if ((x > 0))
       {
         // Bounded Unrolling
         int k = UNROLL_LIMIT;
-        while ((x < n) && k--)
+        while ((x > 0) && k--)
         {
           assume((loopflag == 0));
-          // loop body
-          long long int temp_n = n;
           long long int temp_x = x;
+          long long int temp_n = n;
+          // loop body
           {
             {
-              (x = (x + 1));
+              (x = (x - 1));
             }
           }
           loopcount++;
@@ -136,9 +134,10 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
+        if (x != 0)
         {
           postcount++;
-          postcheck(fptr, vars, (x == n), n, x)
+          postcheck(fptr, vars, (n < 0), n, x)
         }
       }
     }

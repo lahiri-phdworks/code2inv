@@ -31,8 +31,7 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int j)
   aflcrash(INV(i, j), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "Pre : %s\n",
-            buff);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "i", i, "j", j);
   }
 }
 
@@ -49,16 +48,16 @@ void loopcheck(FILE *file_descp, char *buff, long long int i, long long int j)
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, i, j)      \
+#define postcheck(file_descp, buff, cond, i, j)                                  \
   \ 
-{                                                 \
+{                                                                             \
     \ 
-    int f = postflag;                                \
+    int f = postflag;                                                            \
     \ 
-   aflcrash(cond, postflag);                         \
+   aflcrash(cond, postflag);                                                     \
     \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "i", i, "j", j); \ 
 } \
   }
 
@@ -77,9 +76,10 @@ int main()
   for (;;)
   {
     size_t len;
-    const int16_t *buf;
+    const int8_t *buf;
 
     HF_ITER(&buf, &len);
+    counter++;
 
     long long int choices = buf[0];
     i = buf[1];
@@ -87,7 +87,7 @@ int main()
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld", "i", i, "j", j);
+    snprintf(vars, 128, "%s : %lld, %s : %lld\n", "i", i, "j", j);
 
     // pre-conditions
     // precheck

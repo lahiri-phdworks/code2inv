@@ -51,19 +51,21 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_i,
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, i, sn)                                \
+#define postcheck(file_descp, buff, cond, i, sn) \
   \ 
-{                                                                            \
+{                                             \
     \ 
-    int f = postflag;                                                           \
+    int f = postflag;                            \
     \ 
-   aflcrash(cond, postflag);                                                    \
+   aflcrash(cond, postflag);                     \
     \ 
-    if (f == 0 && postflag == 1)                                                \
-    {                                                                           \
+    if (f == 0 && postflag == 1)                 \
+    {                                            \
       \ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "i", i, "sn", sn); \
-    }                                                                           \
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", \ 
+        "i",                                     \
+                i, "sn", sn);                    \
+    }                                            \
   }
 
 int main()
