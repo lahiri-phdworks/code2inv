@@ -1,2 +1,0 @@
-( x == sn && x > ( -1 + x ) )
-z3_report time: 183.77 pid: 0 stats: Counter({'ce-F:': 231, 'boogie_result': 46, 'ce-T:': 45, 'actual_z3': 11})

@@ -1,2 +1,0 @@
-( m >= 1 && m <= x && m < ( 10000 * 1 ) )
-z3_report time: 410.49 pid: 0 stats: Counter({'ce-I:': 6229, 'ce-T:': 3930, 'ce-F:': 2731, 'boogie_result': 1052, 'actual_z3': 17})

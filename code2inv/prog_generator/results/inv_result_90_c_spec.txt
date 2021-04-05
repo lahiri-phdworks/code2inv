@@ -1,2 +1,0 @@
-( ( x <= ( y - 1 ) || lock == 1 ) )
-z3_report time: 30.64 pid: 0 stats: Counter({'ce-T:': 2472, 'ce-I:': 1121, 'ce-F:': 791, 'boogie_result': 423, 'actual_z3': 28})

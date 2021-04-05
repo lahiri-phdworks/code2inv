@@ -110,7 +110,7 @@ int main()
     // precheck
     // loopcond : (x != y)
 
-    if (choices > 15000)
+    if (choices > 30000)
     {
       //pre-conditions
       assume((preflag == 0));
@@ -139,7 +139,7 @@ int main()
           long long int temp_y = y;
           {
             {
-              if (choices > 900)
+              if (choices > 5000)
               {
                 {
                   (lock = 1);

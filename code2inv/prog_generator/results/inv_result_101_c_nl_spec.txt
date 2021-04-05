@@ -1,2 +1,0 @@
-( ( n >= ( 0 + x ) && n == n ) || ( n == n && x <= ( 10000 + -10000 ) ) )
-z3_report time: 33.29 pid: 0 stats: Counter({'ce-T:': 3435, 'ce-I:': 1275, 'ce-F:': 1038, 'boogie_result': 508, 'actual_z3': 14})

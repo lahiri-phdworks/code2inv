@@ -1,2 +1,0 @@
-( ( x >= ( 0 + 0 ) && x <= ( y + 10 ) ) )
-z3_report time: 394.33 pid: 0 stats: Counter({'ce-T:': 3171, 'ce-I:': 1686, 'boogie_result': 502, 'ce-F:': 499, 'actual_z3': 18})

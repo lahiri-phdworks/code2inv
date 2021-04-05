@@ -1,2 +1,0 @@
-( ( x <= 100 || x == ( 0 + 1 ) ) )
-z3_report time: 3.91 pid: 0 stats: Counter({'ce-I:': 80, 'boogie_result': 49, 'actual_z3': 49, 'ce-T:': 48, 'ce-F:': 34})

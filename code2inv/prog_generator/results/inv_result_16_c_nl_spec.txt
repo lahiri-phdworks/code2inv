@@ -1,2 +1,0 @@
-( x >= m && ( m >= 0 || m == 0 ) )
-z3_report time: 247.46 pid: 0 stats: Counter({'ce-I:': 22248, 'ce-T:': 18994, 'boogie_result': 3813, 'ce-F:': 3809, 'actual_z3': 15})

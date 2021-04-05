@@ -1,2 +1,0 @@
-( i == ( 1 + sn ) && sn >= ( sn - 0 ) && ( n >= ( sn + 0 ) || sn == 0 ) )
-z3_report time: 850.95 pid: 0 stats: Counter({'ce-I:': 89211, 'ce-F:': 72512, 'ce-T:': 59979, 'boogie_result': 12038, 'actual_z3': 22})

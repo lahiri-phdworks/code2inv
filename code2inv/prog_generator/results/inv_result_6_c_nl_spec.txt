@@ -1,2 +1,0 @@
-( ( x >= x && z >= y ) || x <= ( z - z ) || ( size == ( 1 * y ) && size < ( size - size ) ) )
-z3_report time: 141.76 pid: 0 stats: Counter({'ce-T:': 16802, 'ce-I:': 6430, 'boogie_result': 2220, 'ce-F:': 2213, 'actual_z3': 15})

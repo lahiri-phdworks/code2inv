@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 100
+#define UNROLL_LIMIT 512
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -30,7 +30,7 @@ void precheck(FILE *file_descp, char *buff, int x, int y)
   aflcrash(INV(x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(file_descp, "\nPre : %s : %lld, %s : %lld\n", "x", x, "y", y);
+    fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "x", x, "y", y);
   }
 }
 
@@ -50,19 +50,19 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, y)                                 \
+#define postcheck(file_descp, buff, cond, x, y)                               \
   \ 
-{                                                                            \
+{                                                                          \
     \ 
-    int f = postflag;                                                           \
+    int f = postflag;                                                         \
     \ 
-   aflcrash(cond, postflag);                                                    \
+   aflcrash(cond, postflag);                                                  \
     \ 
-    if (f == 0 && postflag == 1)                                                \
-    {                                                                           \
+    if (f == 0 && postflag == 1)                                              \
+    {                                                                         \
       \ 
-        fprintf(file_descp, "\nPost : %s : %lld, %s : %lld\n", "x", x, "y", y); \
-    }                                                                           \
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "x", x, "y", y); \
+    }                                                                         \
   }
 
 int main()
@@ -71,12 +71,12 @@ int main()
   long long int x;
   long long int y;
 
-  char buff[500];
+  char buff[1024];
   memset(buff, '\0', sizeof(buff));
   FILE *fptr = fopen("models.txt", "w");
 
   // COMMENT : This must be line buffered.
-  setvbuf(fptr, buff, _IOLBF, 500);
+  setvbuf(fptr, buff, _IOLBF, 1024);
 
   for (;;)
   {
@@ -98,7 +98,7 @@ int main()
     // precheck
     // loopcond : (x < 0)
 
-    if (choices > 15000)
+    if (choices > 30000)
     {
       //pre-conditions
       assume((preflag == 0));
