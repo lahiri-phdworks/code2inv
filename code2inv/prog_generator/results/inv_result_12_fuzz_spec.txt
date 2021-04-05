@@ -1,2 +1,2 @@
-( ( x == x || y > x ) && ( x == ( y * 20 ) || x < ( 20 + y ) ) )
-z3_report time: 280.53 pid: 0 stats: Counter({'ce-T:': 26, 'boogie_result': 17, 'actual_z3': 17, 'ce-F:': 15})
+( x < ( 20 + y ) )
+z3_report time: 271.39 pid: 0 stats: Counter({'ce-T:': 321, 'ce-I:': 157, 'boogie_result': 88, 'ce-F:': 85, 'actual_z3': 13})

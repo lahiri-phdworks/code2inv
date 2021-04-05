@@ -28,7 +28,7 @@ model=AssertAwareTreeLSTM
 att=1
 ac=0
 ce=1
-afl_timeout=16
+afl_timeout=20
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 if [ ! -e $save_dir ];
@@ -52,7 +52,7 @@ python -u file_solver.py \
     -encoder_model "Param"\
     -decoder_model $model \
     -only_use_z3 1 \
-    -num_epochs 15 \
+    -num_epochs 12 \
     -s2v_level $s2v_level \
     -embedding_size $embedding \
     -rl_batchsize $rl_batchsize \

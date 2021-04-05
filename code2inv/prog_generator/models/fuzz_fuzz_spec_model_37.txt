@@ -1,1 +1,8 @@
 [None, None, None]
+[None, ({'c': '0'}, {'c': '1'}), None]
+[{'c': '0'}, ({'c': '-1'}, {'c': '0'}), None]
+[{'c': '0'}, None, None]
+[{'c': '0'}, None, None]
+[{'c': '0'}, ({'c': '-40'}, {'c': '-39'}), None]
+[{'c': '0'}, None, None]
+[None, None, None]

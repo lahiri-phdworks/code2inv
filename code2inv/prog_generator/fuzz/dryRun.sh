@@ -1,20 +1,15 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
-sudo ./afl-init.sh
+export CC=$(which hfuzz-clang)
+export CXX=$(which hfuzz-clang++)
+export AFL=$(which honggfuzz)
 
-# Arguments for AFL
-export CC=$HOME/afl/afl-gcc
-export CXX=$HOME/afl/afl-g++
-export AFL=$HOME/afl/afl-fuzz
+example=$1
+timeout=$2
 
-for file_index in src/loopcheck/*.c;
-do 
-    var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
-    echo Processing $var
-    if [[ -n $var ]]; then 
-        python3 fuzz.py $var 10
-    fi
-done
+./start.sh -b bin -o output -t tests -e $example
 
-pkill afl
-pkill afl-fuzz
+timeout $timeout ./fuzz.sh -b bin -o output -t tests -e $example

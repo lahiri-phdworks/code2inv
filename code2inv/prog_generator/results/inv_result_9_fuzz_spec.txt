@@ -1,2 +1,2 @@
-( ( y == ( 4 + 2 ) && y == ( 2 - 4 ) ) || y < y || x < ( 2 + 2 ) )
-z3_report time: 513.06 pid: 0 stats: Counter({'ce-T:': 162, 'boogie_result': 42, 'ce-F:': 39, 'actual_z3': 31})
+( x < ( y + 4 ) || y < ( y * 4 ) )
+z3_report time: 221.28 pid: 0 stats: Counter({'ce-T:': 1190, 'ce-I:': 659, 'boogie_result': 301, 'ce-F:': 298, 'actual_z3': 10})

@@ -1,0 +1,12 @@
+best_root :  ( ( x < ( x * x ) && y > ( 1 - 0 ) ) || x < ( -5000 + x ) ) 
+simplify : None
+best_reward : -1
+epoch: 3, average reward: -0.4352, 
+Random: ( x <= ( -5000 + x ) && ( y > 0 || x == ( 1 + 1 ) ) && ( x >= ( -5000 * -5000 ) || y == ( 1 - 0 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 76870, 'ce-I:': 16677, 'ce-F:': 9751, 'boogie_result': 3928, 'actual_z3': 116})
+best_root :  ( ( x >= ( 1 - 0 ) && y > ( 1 * 0 ) ) ) 
+simplify : None
+best_reward : -1
+epoch: 4, average reward: -0.4292, 
+Random: ( x >= -5000 || ( y > ( 1 * 0 ) && y > ( 1 * 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 104220, 'ce-I:': 21562, 'ce-F:': 12682, 'boogie_result': 4905, 'actual_z3': 150})

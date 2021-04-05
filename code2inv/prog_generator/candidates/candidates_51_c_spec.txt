@@ -1,4 +1,0 @@
-( ( c <= ( c - c ) ) )
-( ( c >= c or c <= c ) and ( c < ( 4 + 1 ) ) )
-( ( c >= c or c <= c ) and ( c < ( 4 + 1 ) ) )
-( ( c >= c or c <= c ) and ( c < ( 4 + 1 ) ) )

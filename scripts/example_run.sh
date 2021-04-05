@@ -13,17 +13,19 @@ export AFL=$(which honggfuzz)
 # 1 2 4 5 10 12 13 18 21 23 24 26 30 32 35 37 41 45 51 63 70 75 88 96 120 129 89 83 65 54 51 35 95 100 105 106 116 132 133 38 80 85
 # last iter : 96 105 2 4 116 10 12 13 18 21 23 24 120 129 106 132 30 35 37 38 41 51 54 63 65 70 98 80 83 85 88 89 45;
 
-for var in 131 132 133 140
-do
-    ./run_solver_file.sh \
-    ../../benchmarks/C_instances/c_graph/${var}.c.json \
-    ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \
-    -o results/inv_result_${var}_c_spec.txt ${var} c_spec
+# 106 108 109 12 130 13 140 15 16 18 1 21 2 35 37 38 41 45 51 75 83 85 88 99 100 110 112 121 124 132 23 24 26 27 32 4 5 6 89 94 95
 
-    ./run_solver_file.sh \
-    ../../benchmarks/C_instances/c_graph/${var}.c.json \
-    ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_spec \
-    -o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_spec
+for var in 85 88 99 100 110 112 121 124 132 23 24 26 27 32 4 5 6 89 94 95
+do
+    # ./run_solver_file.sh \
+    # ../../benchmarks/C_instances/c_graph/${var}.c.json \
+    # ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \
+    # -o results/inv_result_${var}_c_spec.txt ${var} c_spec
+
+    # ./run_solver_file.sh \
+    # ../../benchmarks/C_instances/c_graph/${var}.c.json \
+    # ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_spec \
+    # -o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_spec
 
     ./run_solver_file.sh \
     ../../benchmarks/C_instances/c_graph/${var}.c.json \

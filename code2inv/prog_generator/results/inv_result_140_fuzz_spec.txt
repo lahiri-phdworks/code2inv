@@ -1,2 +1,2 @@
 ( y > sum )
-z3_report time: 82.31 pid: 0 stats: Counter({'ce-I:': 6, 'boogie_result': 5, 'actual_z3': 5, 'ce-T:': 4})
+z3_report time: 102.66 pid: 0 stats: Counter({'ce-I:': 6, 'boogie_result': 5, 'actual_z3': 5, 'ce-T:': 4})

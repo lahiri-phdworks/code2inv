@@ -1,2 +1,2 @@
-( ( x < ( 1 + x ) && m >= 0 ) || ( n < ( x * 0 ) && x >= 0 ) )
-z3_report time: 134.02 pid: 0 stats: Counter({'ce-T:': 116, 'ce-F:': 61, 'boogie_result': 33, 'ce-I:': 17, 'actual_z3': 8})
+( ( x <= ( n + x ) || m >= ( n - x ) ) && m <= ( 0 + x ) && x <= ( m + x ) )
+z3_report time: 906.25 pid: 0 stats: Counter({'ce-I:': 68286, 'ce-T:': 26819, 'ce-F:': 10518, 'boogie_result': 5391, 'actual_z3': 27})

@@ -1,2 +1,2 @@
-( c > c || ( c == c && c == ( c * 0 ) ) || c <= ( 4 - 4 ) )
-z3_report time: 16.45 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})
+( c < ( 4 + 1 ) )
+z3_report time: 375.22 pid: 0 stats: Counter({'ce-F:': 429, 'ce-I:': 386, 'boogie_result': 117, 'ce-T:': 115, 'actual_z3': 18})

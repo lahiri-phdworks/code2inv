@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 32
+#define UNROLL_LIMIT 100
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -77,7 +77,7 @@ int main()
   for (;;)
   {
     size_t len;
-    const int8_t *buf;
+    const int32_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -93,7 +93,7 @@ int main()
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 25)
+    if (choices > 15000)
     {
       //pre-conditions
       assume((preflag == 0));
@@ -108,18 +108,18 @@ int main()
       assume(INV(c));
 
       // Loop Condition
-      if ((choices > 55))
+      if ((choices > 1500))
       {
         // Bounded Unrolling
         int k = UNROLL_LIMIT;
-        while ((choices > 55) && k--)
+        while ((choices > 1500) && k--)
         {
           assume((loopflag == 0));
           // loop body
           long long int temp_c = c;
           {
             {
-              if (choices > 64)
+              if (choices > 5000)
               {
                 if ((c != 4))
                 {
