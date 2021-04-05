@@ -1,0 +1,2 @@
+( k == 0 || ( j == ( k + 10000 ) && a <= ( 10000 + 1 ) ) )
+z3_report time: 142.22 pid: 0 stats: Counter({'ce-T:': 622, 'ce-F:': 451, 'boogie_result': 159, 'actual_z3': 8})

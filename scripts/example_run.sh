@@ -25,8 +25,8 @@ do
     ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_spec \
     -o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_spec
 
-    # ./run_solver_file.sh \
-    # ../../benchmarks/C_instances/c_graph/${var}.c.json \
-    # ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \
-    # -o results/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec
+    ./run_solver_file.sh \
+    ../../benchmarks/C_instances/c_graph/${var}.c.json \
+    ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \
+    -o results/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec
 done

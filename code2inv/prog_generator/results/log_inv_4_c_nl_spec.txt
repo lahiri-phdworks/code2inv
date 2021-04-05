@@ -1,6 +1,0 @@
-best_root :  ( x <= ( 1 - -10000 ) || ( y == ( z + z ) && z < 1 ) ) 
-simplify : None
-best_reward : 0
-epoch: 0, average reward: -0.5502, 
-Random: ( y == ( z - z ) ), result_r: -1.9383 
-stats : Counter({'ce-T:': 5245, 'ce-I:': 4186, 'boogie_result': 997, 'ce-F:': 995, 'actual_z3': 15})

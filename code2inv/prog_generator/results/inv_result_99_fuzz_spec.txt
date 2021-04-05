@@ -1,0 +1,2 @@
+( ( x == ( 10000 + 1 ) && n == ( 1 - 1 ) ) || x == ( n - y ) || n == ( -10000 * 1 ) )
+z3_report time: 543.06 pid: 0 stats: Counter({'ce-T:': 25743, 'ce-I:': 16490, 'ce-F:': 12501, 'boogie_result': 4294, 'actual_z3': 14})

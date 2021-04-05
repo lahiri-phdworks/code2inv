@@ -1,0 +1,2 @@
+( x == ( 1 * n ) || x >= ( 0 * x ) )
+z3_report time: 170.09 pid: 0 stats: Counter({'ce-T:': 493, 'ce-I:': 159, 'boogie_result': 102, 'ce-F:': 94, 'actual_z3': 10})

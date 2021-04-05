@@ -1,0 +1,6 @@
+( j > ( j * 0 ) and m < k )
+( j > ( k - k ) and j > 0 and a <= 1 )
+( j > ( k - k ) and j > 0 and a <= 1 )
+( j <= ( 1 + m ) or c <= ( c - 0 ) )
+( j <= ( 1 + m ) or c <= ( c - 0 ) )
+( j <= ( 1 + m ) or c <= ( c - 0 ) )

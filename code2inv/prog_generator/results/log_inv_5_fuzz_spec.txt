@@ -1,0 +1,96 @@
+best_root :  ( ( y > 1 && z <= ( y + 1 ) ) || x <= ( size * size ) ) 
+simplify : [Or(x <= size*size, And(Not(y <= 1), z <= 1 + y))]
+best_reward : 0
+epoch: 0, average reward: -0.5294, 
+Random: ( ( size > ( y + size ) || x <= ( 1 - -10000 ) ) && ( y == ( -10000 - y ) || size > ( size * y ) ) ), result_r: -1.9220 
+stats : Counter({'ce-T:': 8441, 'ce-I:': 2367, 'boogie_result': 999, 'ce-F:': 996, 'actual_z3': 14})
+best_root :  ( ( z <= ( 0 - 0 ) || z > ( x * y ) ) ) 
+simplify : [Or(z <= 0, Not(z <= x*y))]
+best_reward : -1
+epoch: 1, average reward: -0.4704, 
+Random: ( ( x >= ( -10000 - size ) && x <= ( 0 * 0 ) ) || ( y < ( 0 - -10000 ) && y < ( 0 + 1 ) ) || ( y <= ( 0 + 1 ) && x <= ( 0 + 1 ) ) ), result_r: -1.6280 
+stats : Counter({'ce-T:': 18411, 'ce-I:': 6740, 'boogie_result': 1996, 'ce-F:': 1993, 'actual_z3': 16})
+best_root :  ( y <= ( 1 + 1 ) || ( x <= ( 1 + 1 ) && y < ( 10000 - y ) ) || ( size > size && y <= ( 0 + 1 ) ) ) 
+simplify : [Or(y <= 2, And(x <= 2, Not(y >= 5000)))]
+best_reward : -1
+epoch: 2, average reward: -0.4858, 
+Random: ( ( z <= ( 1 + 1 ) && size >= ( -10000 - size ) ) || ( size <= ( 1 + 1 ) && size <= ( 0 + 0 ) ) ), result_r: -1.6770 
+stats : Counter({'ce-T:': 28321, 'ce-I:': 13062, 'boogie_result': 2987, 'ce-F:': 2984, 'actual_z3': 18})
+best_root :  ( y < ( 0 + 1 ) || size >= ( y + y ) || ( x <= ( 1 + 1 ) && z <= ( 1 * 10000 ) ) ) 
+simplify : [Or(Not(1 <= y), size >= 2*y, And(x <= 2, z <= 10000))]
+best_reward : -1
+epoch: 3, average reward: -0.5169, 
+Random: ( size > ( size + y ) && ( y < ( 0 + 1 ) || y >= ( 10000 - size ) ) && ( x == ( y - 0 ) || y > ( y * size ) ) ), result_r: -1.8730 
+stats : Counter({'ce-T:': 38171, 'ce-I:': 20723, 'boogie_result': 3972, 'ce-F:': 3969, 'actual_z3': 20})
+best_root :  ( ( x < ( 0 + 1 ) || size > ( y + y ) ) ) 
+simplify : [Or(Not(1 <= x), Not(size <= 2*y))]
+best_reward : -1
+epoch: 4, average reward: -0.3993, 
+Random: ( z > ( size + y ) && size < ( 0 + 1 ) ), result_r: -1.8730 
+stats : Counter({'ce-T:': 48101, 'ce-I:': 29660, 'boogie_result': 4965, 'ce-F:': 4962, 'actual_z3': 20})
+best_root :  ( ( z >= ( 0 * z ) && z < ( 0 + 1 ) ) || x <= y || x > ( size + size ) ) 
+simplify : [Or(x <= y, Not(x <= 2*size), And(z >= 0, Not(1 <= z)))]
+best_reward : -1
+epoch: 5, average reward: -0.4230, 
+Random: ( ( z < ( 0 - 1 ) && size <= ( 10000 + 1 ) ) || size < ( 0 + 1 ) ), result_r: -1.6770 
+stats : Counter({'ce-T:': 58041, 'ce-I:': 38606, 'boogie_result': 5959, 'ce-F:': 5956, 'actual_z3': 20})
+best_root :  ( z > ( y + y ) || z >= ( size + x ) || ( size > ( size + size ) && size < ( 0 - 0 ) ) ) 
+simplify : [Or(Not(z <= 2*y),
+    z >= size + x,
+    And(Not(size >= 0), Not(0 <= size)))]
+best_reward : -1
+epoch: 6, average reward: -0.4800, 
+Random: ( z < ( 0 + 1 ) || ( x <= ( 0 + 10000 ) && y < ( 0 + 1 ) ) ), result_r: -1.7750 
+stats : Counter({'ce-T:': 67891, 'ce-I:': 47471, 'boogie_result': 6944, 'ce-F:': 6941, 'actual_z3': 20})
+best_root :  ( ( y <= ( 0 - 0 ) || x <= ( y - 0 ) ) ) 
+simplify : [Or(y <= 0, x <= y)]
+best_reward : -1
+epoch: 7, average reward: -0.4660, 
+Random: ( size > ( x * x ) ), result_r: -1.8240 
+stats : Counter({'ce-T:': 77761, 'ce-I:': 56978, 'boogie_result': 7931, 'ce-F:': 7928, 'actual_z3': 21})
+best_root :  ( z >= ( y - 0 ) || z < ( 0 + 1 ) || ( z > ( size + x ) && size <= ( 0 - 0 ) ) ) 
+simplify : [Or(z >= y, Not(1 <= z), And(Not(z <= size + x), size <= 0))]
+best_reward : -1
+epoch: 8, average reward: -0.4808, 
+Random: ( ( y > ( size + x ) && y < ( 0 + 1 ) ) || ( x > ( size + x ) && y >= ( 10000 - size ) ) ), result_r: -1.9220 
+stats : Counter({'ce-T:': 87621, 'ce-I:': 66838, 'boogie_result': 8917, 'ce-F:': 8914, 'actual_z3': 21})
+best_root :  ( ( size < ( 0 * -10000 ) && x < 0 ) || x < ( z - 1 ) || y < ( 0 + 1 ) ) 
+simplify : None
+best_reward : -1
+epoch: 9, average reward: -0.5712, 
+Random: ( ( z >= ( -10000 - z ) && x < ( 0 + 1 ) ) ), result_r: -1.7705 
+stats : Counter({'ce-T:': 97613, 'ce-I:': 76558, 'boogie_result': 9889, 'ce-F:': 9886, 'actual_z3': 22})
+best_root :  ( size <= ( 10000 - 10000 ) || x < size || ( x < ( 0 * 10000 ) && y < ( 0 - 1 ) ) ) 
+simplify : [Or(size <= 0,
+    And(Not(0 <= x), Not(-1 <= y)),
+    Not(size <= x))]
+best_reward : -1
+epoch: 10, average reward: -0.5217, 
+Random: ( ( size <= ( 10000 - 10000 ) || x < ( z - 10000 ) ) ), result_r: -1.7527 
+stats : Counter({'ce-T:': 108415, 'ce-I:': 87770, 'boogie_result': 10871, 'ce-F:': 10868, 'actual_z3': 24})
+best_root :  ( size <= ( 10000 - 10000 ) || x < ( size - 1 ) || ( x == ( y - 1 ) && size < ( 1 * 1 ) ) ) 
+simplify : [Or(Not(size <= 1 + x),
+    size <= 0,
+    And(x == -1 + y, Not(1 <= size)))]
+best_reward : -1
+epoch: 11, average reward: -0.4930, 
+Random: ( size >= ( 10000 - z ) || ( z < ( 1 * 0 ) && z == ( y - 10000 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 119338, 'ce-I:': 99686, 'boogie_result': 11864, 'ce-F:': 11861, 'actual_z3': 24})
+best_root :  ( y > ( x + x ) || ( z < ( 0 - 1 ) && x > 0 ) || y <= ( 10000 - 10000 ) ) 
+simplify : [Or(Not(y <= 2*x), And(Not(-1 <= z), Not(x <= 0)), y <= 0)]
+best_reward : -1
+epoch: 12, average reward: -0.4131, 
+Random: ( size <= ( -10000 - 10000 ) && ( z < 1 || size <= ( 10000 - 10000 ) ) && size < size ), result_r: -2.0200 
+stats : Counter({'ce-T:': 130239, 'ce-I:': 111578, 'boogie_result': 12855, 'ce-F:': 12852, 'actual_z3': 24})
+best_root :  ( x < ( 1 + 1 ) || z < ( 1 + 1 ) || z < ( 1 - 1 ) ) 
+simplify : [Or(Not(2 <= x), Not(2 <= z), Not(0 <= z))]
+best_reward : -1
+epoch: 13, average reward: -0.4757, 
+Random: ( y > ( size + x ) || ( z < 1 && size < ( 1 + 1 ) ) || z < ( 1 + 1 ) ), result_r: -1.7082 
+stats : Counter({'ce-T:': 141008, 'ce-I:': 123326, 'boogie_result': 13834, 'ce-F:': 13831, 'actual_z3': 24})
+best_root :  ( x < ( 1 + 1 ) || z < ( 1 + 1 ) ) 
+simplify : [Or(Not(2 <= x), Not(2 <= z))]
+best_reward : -1
+epoch: 14, average reward: -0.4310, 
+Random: ( y <= ( 10000 - 10000 ) ), result_r: -1.7973 
+stats : Counter({'ce-T:': 151865, 'ce-I:': 135170, 'boogie_result': 14821, 'ce-F:': 14818, 'actual_z3': 24})

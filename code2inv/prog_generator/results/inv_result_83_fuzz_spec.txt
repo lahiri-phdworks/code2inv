@@ -1,0 +1,2 @@
+( ( x < ( 0 + y ) || y <= ( x + -5000 ) ) )
+z3_report time: 466.72 pid: 0 stats: Counter({'ce-T:': 4654, 'boogie_result': 327, 'ce-F:': 325, 'actual_z3': 27})

@@ -1,0 +1,2 @@
+( d3 >= ( d2 - 10000 ) && x1 < ( x1 * d2 ) && ( d2 == x3 || x3 <= ( x2 - x1 ) ) )
+z3_report time: 16.48 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})
