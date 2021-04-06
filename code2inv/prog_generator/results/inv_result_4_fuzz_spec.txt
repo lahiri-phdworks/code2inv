@@ -1,2 +1,0 @@
-( z <= ( -10000 - 1 ) || ( z >= y && x >= ( -10000 - y ) ) || x <= ( 0 - 0 ) )
-z3_report time: 407.40 pid: 0 stats: Counter({'ce-T:': 9337, 'ce-F:': 3879, 'ce-I:': 2576, 'boogie_result': 1327, 'actual_z3': 16})

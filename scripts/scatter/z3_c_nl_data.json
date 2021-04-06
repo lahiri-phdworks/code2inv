@@ -1,0 +1,1717 @@
+{
+    "instance101": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance102": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance103": {
+        "status": true,
+        "rtime": 34,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance104": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance105": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance10": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance114": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance115": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance116": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance117": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance11": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance128": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance129": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance12": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance132": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance133": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance13": {
+        "status": true,
+        "rtime": 21,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance14": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance15": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance16": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance17": {
+        "status": true,
+        "rtime": 30,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance18": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance19": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance20": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance21": {
+        "status": true,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance22": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance25": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance28": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance29": {
+        "status": true,
+        "rtime": 17,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance30": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance33": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance34": {
+        "status": true,
+        "rtime": 17,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance35": {
+        "status": true,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance36": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance37": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance38": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance39": {
+        "status": true,
+        "rtime": 4,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance3": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance40": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance41": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance42": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance43": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance44": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance45": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance46": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance47": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance48": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance49": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance4": {
+        "status": true,
+        "rtime": 27,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance50": {
+        "status": true,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance51": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance52": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance53": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance54": {
+        "status": true,
+        "rtime": 2,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance55": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance56": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance57": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance58": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance59": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance60": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance63": {
+        "status": true,
+        "rtime": 34,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance64": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance65": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance66": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance67": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance69": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance71": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance73": {
+        "status": true,
+        "rtime": 2,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance74": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance76": {
+        "status": true,
+        "rtime": 2,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance77": {
+        "status": true,
+        "rtime": 26,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance78": {
+        "status": true,
+        "rtime": 26,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance79": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance7": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance80": {
+        "status": true,
+        "rtime": 17,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance81": {
+        "status": true,
+        "rtime": 26,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance82": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance83": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance84": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance85": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance86": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance87": {
+        "status": true,
+        "rtime": 20,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance88": {
+        "status": true,
+        "rtime": 28,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance89": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance8": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance90": {
+        "status": true,
+        "rtime": 28,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance91": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance92": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance97": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance98": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance99": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance9": {
+        "status": true,
+        "rtime": 21,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance100": {
+        "status": false,
+        "rtime": 14,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance106": {
+        "status": false,
+        "rtime": 7,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance107": {
+        "status": false,
+        "rtime": 11,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance108": {
+        "status": false,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance109": {
+        "status": false,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance110": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance111": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance112": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance113": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance118": {
+        "status": false,
+        "rtime": 31,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance119": {
+        "status": false,
+        "rtime": 32,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance120": {
+        "status": false,
+        "rtime": 61,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance121": {
+        "status": false,
+        "rtime": 30,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance122": {
+        "status": false,
+        "rtime": 31,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance123": {
+        "status": false,
+        "rtime": 32,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance124": {
+        "status": false,
+        "rtime": 21,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance125": {
+        "status": false,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance126": {
+        "status": false,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance127": {
+        "status": false,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance130": {
+        "status": false,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance131": {
+        "status": false,
+        "rtime": 32,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance140": {
+        "status": false,
+        "rtime": 30,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance1": {
+        "status": false,
+        "rtime": 65,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance23": {
+        "status": false,
+        "rtime": 42,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance24": {
+        "status": false,
+        "rtime": 31,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance26": {
+        "status": false,
+        "rtime": 7,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance27": {
+        "status": false,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance2": {
+        "status": false,
+        "rtime": 67,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance31": {
+        "status": false,
+        "rtime": 14,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance32": {
+        "status": false,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance61": {
+        "status": false,
+        "rtime": 27,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance62": {
+        "status": false,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance68": {
+        "status": false,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance6": {
+        "status": false,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance70": {
+        "status": false,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance72": {
+        "status": false,
+        "rtime": 20,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance75": {
+        "status": false,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance93": {
+        "status": false,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance94": {
+        "status": false,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+,
+    "instance96": {
+        "status": false,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance101": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance102": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance103": {
+        "status": true,
+        "rtime": 34,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance104": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance105": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance10": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance114": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance115": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance116": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance117": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance11": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance128": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance129": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance12": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance132": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance133": {
+        "status": true,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance13": {
+        "status": true,
+        "rtime": 21,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance14": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance15": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance16": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance17": {
+        "status": true,
+        "rtime": 30,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance18": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance19": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance20": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance21": {
+        "status": true,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance22": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance25": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance28": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance29": {
+        "status": true,
+        "rtime": 17,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance30": {
+        "status": true,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance33": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance34": {
+        "status": true,
+        "rtime": 17,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance35": {
+        "status": true,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance36": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance37": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance38": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance39": {
+        "status": true,
+        "rtime": 4,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance3": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance40": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance41": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance42": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance43": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance44": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance45": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance46": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance47": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance48": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance49": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance4": {
+        "status": true,
+        "rtime": 27,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance50": {
+        "status": true,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance51": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance52": {
+        "status": true,
+        "rtime": 1,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance53": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance54": {
+        "status": true,
+        "rtime": 2,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance55": {
+        "status": true,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance56": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance57": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance58": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance59": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance60": {
+        "status": true,
+        "rtime": 10,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance63": {
+        "status": true,
+        "rtime": 34,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance64": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance65": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance66": {
+        "status": true,
+        "rtime": 15,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance67": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance69": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance71": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance73": {
+        "status": true,
+        "rtime": 2,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance74": {
+        "status": true,
+        "rtime": 9,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance76": {
+        "status": true,
+        "rtime": 2,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance77": {
+        "status": true,
+        "rtime": 26,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance78": {
+        "status": true,
+        "rtime": 26,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance79": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance7": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance80": {
+        "status": true,
+        "rtime": 17,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance81": {
+        "status": true,
+        "rtime": 26,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance82": {
+        "status": true,
+        "rtime": 24,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance83": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance84": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance85": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance86": {
+        "status": true,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance87": {
+        "status": true,
+        "rtime": 20,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance88": {
+        "status": true,
+        "rtime": 28,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance89": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance8": {
+        "status": true,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance90": {
+        "status": true,
+        "rtime": 28,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance91": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance92": {
+        "status": true,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance97": {
+        "status": true,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance98": {
+        "status": true,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance99": {
+        "status": true,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance9": {
+        "status": true,
+        "rtime": 21,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance100": {
+        "status": false,
+        "rtime": 14,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance106": {
+        "status": false,
+        "rtime": 7,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance107": {
+        "status": false,
+        "rtime": 11,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance108": {
+        "status": false,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance109": {
+        "status": false,
+        "rtime": 12,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance110": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance111": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance112": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance113": {
+        "status": false,
+        "rtime": 33,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance118": {
+        "status": false,
+        "rtime": 31,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance119": {
+        "status": false,
+        "rtime": 32,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance120": {
+        "status": false,
+        "rtime": 61,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance121": {
+        "status": false,
+        "rtime": 30,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance122": {
+        "status": false,
+        "rtime": 31,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance123": {
+        "status": false,
+        "rtime": 32,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance124": {
+        "status": false,
+        "rtime": 21,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance125": {
+        "status": false,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance126": {
+        "status": false,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance127": {
+        "status": false,
+        "rtime": 18,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance130": {
+        "status": false,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance131": {
+        "status": false,
+        "rtime": 32,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance140": {
+        "status": false,
+        "rtime": 30,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance1": {
+        "status": false,
+        "rtime": 65,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance23": {
+        "status": false,
+        "rtime": 42,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance24": {
+        "status": false,
+        "rtime": 31,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance26": {
+        "status": false,
+        "rtime": 7,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance27": {
+        "status": false,
+        "rtime": 13,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance2": {
+        "status": false,
+        "rtime": 67,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance31": {
+        "status": false,
+        "rtime": 14,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance32": {
+        "status": false,
+        "rtime": 8,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance61": {
+        "status": false,
+        "rtime": 27,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance62": {
+        "status": false,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance68": {
+        "status": false,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance6": {
+        "status": false,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance70": {
+        "status": false,
+        "rtime": 16,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance72": {
+        "status": false,
+        "rtime": 20,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance75": {
+        "status": false,
+        "rtime": 22,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance93": {
+        "status": false,
+        "rtime": 19,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance94": {
+        "status": false,
+        "rtime": 25,
+        "type": "Z3_C_NL_SPEC"
+    }
+},
+{
+    "instance96": {
+        "status": false,
+        "rtime": 29,
+        "type": "Z3_C_NL_SPEC"
+    }
+},

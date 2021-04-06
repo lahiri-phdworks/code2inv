@@ -1,0 +1,2 @@
+( ( i >= ( 1 * 0 ) && j == ( i * y ) ) )
+z3_report time: 325.78 pid: 0 stats: Counter({'ce-I:': 59598, 'ce-T:': 14615, 'ce-F:': 8956, 'boogie_result': 4879, 'actual_z3': 22})

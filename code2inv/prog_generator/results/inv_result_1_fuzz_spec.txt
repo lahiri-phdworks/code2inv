@@ -1,2 +1,0 @@
-( y >= ( y * 0 ) && ( y <= ( 0 + x ) || y > ( y * y ) ) && ( y < ( x + x ) || y == ( 100000 + 100000 ) ) )
-z3_report time: 880.92 pid: 0 stats: Counter({'ce-I:': 36874, 'ce-F:': 11787, 'boogie_result': 2702, 'ce-T:': 2701, 'actual_z3': 29})

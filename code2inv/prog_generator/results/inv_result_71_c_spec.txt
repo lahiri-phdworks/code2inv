@@ -1,0 +1,2 @@
+( ( z > ( 36 - z ) ) )
+z3_report time: 0.82 pid: 0 stats: Counter({'ce-F:': 36, 'boogie_result': 12, 'ce-T:': 11, 'actual_z3': 9})

@@ -1,0 +1,2 @@
+( x <= ( y + 2 ) || ( x >= ( 0 * x ) && y > ( x * 2 ) ) || ( x < ( y + y ) && x < ( 0 + y ) ) )
+z3_report time: 6.06 pid: 0 stats: Counter({'ce-T:': 372, 'ce-I:': 179, 'boogie_result': 97, 'ce-F:': 94, 'actual_z3': 11})
