@@ -1,0 +1,6 @@
+best_root :  ( ( x < ( 10000 - x ) && x > x ) || x <= 500 ) 
+simplify : [x <= 500]
+best_reward : 0
+epoch: 0, average reward: -0.6101, 
+Random: ( z > y || ( x < ( 10000 + z ) && z <= ( -10000 * 500 ) ) ), result_r: -1.8100 
+stats : Counter({'ce-T:': 6702, 'ce-F:': 2895, 'ce-I:': 1920, 'boogie_result': 999, 'actual_z3': 13})

@@ -88,6 +88,7 @@ int main()
       counter++;
 
       long long int choices = buf[0];
+      x = buf[3];
       y = buf[1];
       z = buf[2];
 
@@ -106,6 +107,7 @@ int main()
       {
          //pre-conditions
          assume((preflag == 0));
+         (x = 0);
          precount++;
          precheck(fptr, vars, x, y, z);
       }
