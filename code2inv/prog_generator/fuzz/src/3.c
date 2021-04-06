@@ -1,14 +1,13 @@
-#include <5.h>
+#include <3.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <sys/file.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 100
+#define UNROLL_LIMIT 512
 
 #define aflcrash(cond, flag) \
    if (!cond)                \
@@ -18,57 +17,64 @@
    if (!cond)        \
       continue;
 
-#define INV(x, size, y, z) PHI
+#define INV(x, y, z) PHI
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int x, long long int size, long long int y, long long int z)
+void precheck(FILE *fptr, char *buff, long long int x, long long int y, long long int z)
 {
    int f = preflag;
-   aflcrash(INV(x, size, y, z), preflag);
+   aflcrash(INV(x, y, z), preflag);
    if (f == 0 && preflag == 1)
    {
-      fprintf(file_descp, "Pre : %s\n",
-              buff);
+      fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n",
+              "x", x, "y", y, "z", z);
    }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int temp_size,
-               long long int temp_y, long long int temp_z, long long int x, long long int size, long long int y, long long int z)
+void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int temp_y, long long int temp_z,
+               long long int x, long long int y, long long int z)
 {
    int f = loopflag;
-   aflcrash(INV(x, size, y, z), loopflag);
+   aflcrash(INV(x, y, z), loopflag);
    if (f == 0 && loopflag == 1)
    {
-      fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-              "x", temp_x, "size", temp_size, "y", temp_y, "z", temp_z);
-      fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-              "x", x, "size", size, "y", y, "z", z);
+      fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
+              "x", temp_x, "y", temp_y, "z", temp_z);
+      fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
+              "x", x, "y", y, "z", z);
    }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, size, y, z) \
+#define postcheck(fptr, buff, cond, x, y, z) \
    \ 
-{                                                    \
+{                                        \
       \ 
-    int f = postflag;                                    \
+    int f = postflag;                        \
       \ 
-   aflcrash(cond, postflag);                             \
+   aflcrash(cond, postflag);                 \
       \ 
     if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}     \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "x",                                        \
+                x, "y", y, "z", z); \ 
+}       \
    }
+
+long long int func(long long int a, long long b)
+{
+   return a + b;
+}
 
 int main()
 {
+   // variable declarations
    long long int x;
-   long long int size;
    long long int y;
    long long int z;
 
@@ -77,6 +83,8 @@ int main()
 
    FILE *fptr = fopen("models.txt", "w");
    setvbuf(fptr, buff, _IOLBF, 1024);
+
+   // freopen("models.txt", "w", stderr);
 
    for (;;)
    {
@@ -87,47 +95,45 @@ int main()
       counter++;
 
       long long int choices = buf[0];
-      x = buf[4];
-      size = buf[1];
+      x = buf[1];
       y = buf[2];
       z = buf[3];
 
-      char vars[128];
+      char vars[100];
       memset(vars, '\0', sizeof(vars));
-      snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld", "x", x, "size", size, "y", y, "z", z);
+      snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n",
+               "x", x, "y", y, "z", z);
 
       // pre-conditions
-      assume((-10000 <= size && size <= 10000));
       // precheck
-      // loopcond : (x < size)
+      // loopcond : (x < 5)
 
-      if (choices > 30000)
+      if (choices > 300000)
       {
          //pre-conditions
          assume((preflag == 0));
          (x = 0);
          precount++;
-         precheck(fptr, vars, x, size, y, z);
+         precheck(fptr, vars, x, y, z);
       }
       else
       {
          // loop-check program
          assume((loopflag + postflag < 2));
-         assume(INV(x, size, y, z));
+         assume(INV(x, y, z));
 
          // Loop Condition
-         if ((x < size))
+         if ((x < 5))
          {
             // Bounded Unrolling
-            int k = UNROLL_LIMIT;
-            while ((x < size) && k--)
+            int unroll = UNROLL_LIMIT;
+            while ((x < 5) && unroll--)
             {
                assume((loopflag == 0));
+               // loop body
                long long int temp_x = x;
-               long long int temp_size = size;
                long long int temp_y = y;
                long long int temp_z = z;
-               // loop body
                {
                   x += 1;
                   if (z <= y)
@@ -135,8 +141,9 @@ int main()
                      y = z;
                   }
                }
+
                loopcount++;
-               loopcheck(fptr, vars, temp_x, temp_size, temp_y, temp_z, x, size, y, z);
+               loopcheck(fptr, vars, temp_x, temp_y, temp_z, x, y, z);
             }
          }
          else
@@ -144,13 +151,8 @@ int main()
             // post-check program
             assume((postflag == 0));
             // post-condition
-            if (size > 0)
-            {
-               {
-                  postcount++;
-                  postcheck(fptr, vars, (z >= y), x, size, y, z)
-               }
-            }
+            postcount++;
+            postcheck(fptr, vars, (z >= y), x, y, z)
          }
       }
 

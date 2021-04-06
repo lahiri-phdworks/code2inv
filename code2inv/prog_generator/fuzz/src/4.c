@@ -69,7 +69,7 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
 int main()
 {
    // variable declarations
-   long long int x = 0;
+   long long int x;
    long long int y;
    long long int z;
 

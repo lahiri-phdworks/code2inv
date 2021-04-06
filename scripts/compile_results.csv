@@ -4,3 +4,6 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simpli
 99, fuzz_spec, ( n == ( y + x ) ), Passed, Yes, "[]", 14
 100, fuzz_spec, ( ( y <= ( n * x ) || x >= ( 0 * y ) ) ), Failed, No, "[Or(y <= n*x, x >= 0)]", 25
 110, fuzz_spec, ( ( sn <= ( 0 * i ) && n > ( n + 1 ) ) || ( sn == ( 0 + sn ) && i >= sn ) ), Failed, No, "[i >= sn]", 31
+103, fuzz_spec, ( x <= 100 || ( x == ( 100 + x ) && x > ( x - 100 ) ) ), Passed, Yes, "[x <= 100]", 16
+14, fuzz_spec, ( x <= ( y + 2 ) ), Passed, Yes, "[x <= 2 + y]", 23
+3, fuzz_spec, ( x < 1 || y < ( 1 + z ) ), Passed, Yes, "[Or(Not(1 <= x), Not(z <= -1 + y))]", 24
