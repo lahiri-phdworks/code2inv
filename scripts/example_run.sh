@@ -5,28 +5,22 @@ export CC=$(which hfuzz-clang)
 export CXX=$(which hfuzz-clang++)
 export AFL=$(which honggfuzz)
 
-# var=$1;
-# 75 83 85 96 99 80 83 85
-# 101 102 103 104 105 10 114 115 116 117 11 128 129 12 132 133 13 14 15 16 17 18 19 20 21 22 25 28 29 30 33 34 35 36 37 38 39 
-# 3 40 41 42 43 44 45 46 47 48 49 4 50 51 52 53 54 55 56 57 58 59 60 63 64 65 66 67 68 69 71 73 74 76 77 78 79 80 81 82 83 84 85 86 87 91 92 97 98 99
-
-# 1 2 4 5 10 12 13 18 21 23 24 26 30 32 35 37 41 45 51 63 70 75 88 96 120 129 89 83 65 54 51 35 95 100 105 106 116 132 133 38 80 85
-# last iter : 96 105 2 4 116 10 12 13 18 21 23 24 120 129 106 132 30 35 37 38 41 51 54 63 65 70 98 80 83 85 88 89 45;
-
-# 106 108 109 12 130 13 140 15 16 18 1 21 2 35 37 38 41 45 51 75 83 85 88 99 100 110 112 121 124 132 23 24 26 27 32 4 5 6 89 94 95
-
-for var in 85 88 99 100 110 23 24 26 27 32 4 5 6 89 94 112 121 124 132
+for var in 39 20 22 36 40 61 62 74 77 79 nl-1 nl-1 nl-2 nl-3 nl-4 nl-5 nl-6 nl-7
 do
-    # ./run_solver_file.sh \
-    # ../../benchmarks/C_instances/c_graph/${var}.c.json \
-    # ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \
-    # -o results/inv_result_${var}_c_spec.txt ${var} c_spec
+    ./run_solver_file.sh \
+    ../../benchmarks/C_instances/c_graph/${var}.c.json \
+    ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \
+    -o results/inv_result_${var}_c_spec.txt ${var} c_spec
 
-    # ./run_solver_file.sh \
-    # ../../benchmarks/C_instances/c_graph/${var}.c.json \
-    # ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_spec \
-    # -o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_spec
+    sleep 1
 
+    ./run_solver_file.sh \
+    ../../benchmarks/C_instances/c_graph/${var}.c.json \
+    ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_spec \
+    -o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_spec
+
+    sleep 2
+    
     ./run_solver_file.sh \
     ../../benchmarks/C_instances/c_graph/${var}.c.json \
     ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \

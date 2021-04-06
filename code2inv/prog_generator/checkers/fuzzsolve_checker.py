@@ -22,12 +22,12 @@ pwd = os.path.dirname(__file__)
 if cmd_args.example:
     example = cmd_args.example
 else:
-    example = "63"
+    example = "3"
 
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 15
+    timeout = 20
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
