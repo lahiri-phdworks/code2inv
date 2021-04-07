@@ -1,0 +1,2 @@
+( y >= 2 || ( y == 0 && x <= ( j * 2 ) ) )
+z3_report time: 395.23 pid: 0 stats: Counter({'ce-I:': 3417, 'ce-T:': 1131, 'boogie_result': 379, 'ce-F:': 372, 'actual_z3': 18})

@@ -1,0 +1,2 @@
+( ( y <= ( y * 100 ) && x >= 100 ) || x < 100 || y == ( 0 - 0 ) )
+z3_report time: 375.12 pid: 0 stats: Counter({'ce-T:': 4672, 'ce-I:': 3460, 'ce-F:': 1933, 'boogie_result': 951, 'actual_z3': 15})

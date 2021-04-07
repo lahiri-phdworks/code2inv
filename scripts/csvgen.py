@@ -62,30 +62,6 @@ if __name__ == "__main__":
     else:
         simpleStr = str(simpleExpr)
 
-    if "c_nl_spec" in fileName:
-        resDict["rtime"] = int(stats)
-        resDict["type"] = "Z3_C_SPEC"
-        instanceObj[f"instance{example}"] = resDict
-        with open(os.path.join("scatter", f'z3_c_data.json'), mode="a") as fileptr:
-            json.dump(instanceObj, fileptr, indent=4)
-            fileptr.write(",\n")
-    elif "c_spec" in fileName:
-        resDict["rtime"] = int(stats)
-        resDict["type"] = "Z3_C_NL_SPEC"
-        instanceObj[f"instance{example}"] = resDict
-        with open(os.path.join("scatter", f'z3_c_nl_data.json'), mode="a") as fileptr:
-            json.dump(instanceObj, fileptr, indent=4)
-            fileptr.write(",\n")
-    elif "fuzz_spec" in fileName:
-        resDict["rtime"] = int(stats)
-        resDict["type"] = "FUZZ_SPEC"
-        instanceObj[f"instance{example}"] = resDict
-        with open(os.path.join("scatter", f'fuzz_nl_data.json'), mode="a") as fileptr:
-            json.dump(instanceObj, fileptr, indent=4)
-            fileptr.write(",\n")
-    else:
-        pass
-
     print(
         f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{simpleStr}", {stats}'
     )

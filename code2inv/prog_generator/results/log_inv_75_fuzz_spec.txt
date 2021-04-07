@@ -1,0 +1,104 @@
+best_root :  ( y >= ( 127 - c ) || z == ( c - 127 ) ) 
+simplify : [Or(y >= 127 + -1*c, z == -127 + c)]
+best_reward : 0
+epoch: 0, average reward: -0.6004, 
+Random: ( y <= ( z - 4608 ) && y == ( c - 4608 ) && ( c > ( 4608 * 0 ) || c > ( 127 * 1 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 7931, 'ce-F:': 2327, 'ce-I:': 1916, 'boogie_result': 999, 'actual_z3': 13})
+best_root :  ( ( c < ( 4608 * y ) || y <= ( c - 4608 ) ) && c >= ( 1 - 4608 ) && y > ( 4608 * 36 ) ) 
+simplify : [Or(Not(4608*y <= c), y <= -4608 + c),
+ c >= -4607,
+ Not(y <= 165888)]
+best_reward : -1
+epoch: 1, average reward: -0.5766, 
+Random: ( ( z > ( 4608 * 4608 ) && z > ( 1 - 4608 ) ) || y < ( c + y ) ), result_r: -1.9179 
+stats : Counter({'ce-T:': 15891, 'ce-F:': 5312, 'ce-I:': 3906, 'boogie_result': 1994, 'actual_z3': 13})
+best_root :  ( ( z <= ( 0 * 0 ) || z < ( 4608 * y ) ) ) 
+simplify : [Or(Not(4608*y <= z), z <= 0)]
+best_reward : -1
+epoch: 2, average reward: -0.6150, 
+Random: ( z > ( y - 4608 ) || z == ( c + 36 ) || y == ( c + 4608 ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 23819, 'ce-F:': 8285, 'ce-I:': 5888, 'boogie_result': 2985, 'actual_z3': 13})
+best_root :  ( z >= ( 0 + y ) || ( z == ( z - 4608 ) && y < ( z + 4608 ) ) ) 
+simplify : [z >= y]
+best_reward : -1
+epoch: 3, average reward: -0.5823, 
+Random: ( ( c >= ( y - c ) && y <= z ) || y >= z || ( y > ( 0 - 4608 ) && c > ( 36 - 1 ) ) ), result_r: -2.4283 
+stats : Counter({'ce-T:': 31771, 'ce-F:': 11267, 'ce-I:': 7876, 'boogie_result': 3979, 'actual_z3': 13})
+best_root :  ( ( z <= ( z + 36 ) || y == ( 36 - 4608 ) ) && y <= ( 0 + z ) && y > ( 36 + 4608 ) ) 
+simplify : [y <= z, Not(y <= 4644)]
+best_reward : -1
+epoch: 4, average reward: -0.5599, 
+Random: ( ( c >= ( 0 + 4608 ) || y <= ( c + z ) ) && z >= ( 0 + 36 ) && y < ( c + z ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 39723, 'ce-F:': 14249, 'ce-I:': 9864, 'boogie_result': 4973, 'actual_z3': 13})
+best_root :  ( ( c >= ( 1 - 36 ) && y == ( c + z ) ) || ( y <= ( z + 36 ) && y > ( 36 + 36 ) ) || ( c == ( 1 + z ) && y <= ( z + 4608 ) ) ) 
+simplify : [Or(And(c >= -35, y == c + z),
+    And(y <= 36 + z, Not(y <= 72)),
+    And(c == 1 + z, y <= 4608 + z))]
+best_reward : -1
+epoch: 5, average reward: -0.5309, 
+Random: ( c > ( 127 * y ) && y <= z ), result_r: -2.0200 
+stats : Counter({'ce-T:': 47683, 'ce-F:': 17234, 'ce-I:': 11854, 'boogie_result': 5968, 'actual_z3': 13})
+best_root :  ( y >= 127 && ( y <= ( z - 4608 ) || y <= ( y + z ) ) && ( y <= ( z - 36 ) || c == ( z + 4608 ) ) ) 
+simplify : [y >= 127,
+ Or(0 <= z, y <= -4608 + z),
+ Or(y <= -36 + z, c == 4608 + z)]
+best_reward : -1
+epoch: 6, average reward: -0.5402, 
+Random: ( c > ( 0 - 36 ) || y <= ( 0 + z ) || c >= 36 ), result_r: -1.8567 
+stats : Counter({'ce-T:': 55619, 'ce-F:': 20210, 'ce-I:': 13838, 'boogie_result': 6960, 'actual_z3': 13})
+best_root :  ( ( c == z && y > ( 36 - 36 ) ) || ( z == ( z + 4608 ) && c <= ( z - 4608 ) ) || ( y >= ( 127 - 36 ) && y <= ( 0 + z ) ) ) 
+simplify : [Or(And(y >= 91, y <= z), And(c == z, Not(y <= 0)))]
+best_reward : -1
+epoch: 7, average reward: -0.5567, 
+Random: ( ( y < ( c + z ) && z <= ( 0 + z ) ) || z == ( z - 0 ) || z <= ( 0 + z ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 63515, 'ce-F:': 23171, 'ce-I:': 15812, 'boogie_result': 7947, 'actual_z3': 13})
+best_root :  ( ( y < ( c + z ) && y > ( 0 + 4608 ) ) || ( y <= ( 1 - c ) && y <= z ) || ( c == ( z - 4608 ) && y >= ( 0 - 4608 ) ) ) 
+simplify : [Or(And(Not(c + z <= y), Not(y <= 4608)),
+    And(c == -4608 + z, y >= -4608),
+    And(y <= 1 + -1*c, y <= z))]
+best_reward : -1
+epoch: 8, average reward: -0.5925, 
+Random: ( y <= ( 0 - z ) || y <= ( 0 + z ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 71387, 'ce-F:': 26123, 'ce-I:': 17780, 'boogie_result': 8931, 'actual_z3': 13})
+best_root :  ( ( c >= ( 0 - 36 ) && y >= ( 4608 - 36 ) ) || ( z > ( 36 * 0 ) && c == 127 ) || ( z == ( 127 + 4608 ) && y > ( 36 * 0 ) ) ) 
+simplify : [Or(And(c >= -36, y >= 4572),
+    And(Not(z <= 0), c == 127),
+    And(z == 4735, Not(y <= 0)))]
+best_reward : -1
+epoch: 9, average reward: -0.5431, 
+Random: ( ( z > ( 36 - 4608 ) && z >= ( 0 * 0 ) ) || y >= ( 0 - 127 ) ), result_r: -2.0200 
+stats : Counter({'ce-T:': 79291, 'ce-F:': 29087, 'ce-I:': 19756, 'boogie_result': 9919, 'actual_z3': 13})
+best_root :  ( ( z > z || z == ( 36 * y ) ) && ( z <= ( z - 4608 ) || c < ( c + 4608 ) ) ) 
+simplify : []
+best_reward : -1
+epoch: 10, average reward: -0.5659, 
+Random: ( c >= ( 0 * 0 ) || ( c > ( y - 4608 ) && z < ( 1 + 4608 ) ) || ( z > ( 0 - 4608 ) && z <= ( c - z ) ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 87163, 'ce-F:': 32039, 'ce-I:': 22301, 'boogie_result': 10903, 'actual_z3': 14})
+best_root :  ( ( z == ( c * 36 ) && c < ( 1 + 4608 ) ) || ( z > ( y - 1 ) && z < ( 0 + 4608 ) ) || ( z > ( z - 4608 ) && z == ( 36 * y ) ) ) 
+simplify : [Or(And(Not(z <= -1 + y), Not(4608 <= z)),
+    z == 36*y,
+    And(z == 36*c, Not(4609 <= c)))]
+best_reward : -1
+epoch: 11, average reward: -0.5587, 
+Random: ( y < ( c + z ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 95083, 'ce-F:': 35009, 'ce-I:': 26238, 'boogie_result': 11893, 'actual_z3': 15})
+best_root :  ( ( c >= ( 0 * 36 ) && z <= ( 36 * y ) ) || ( y <= z && y < c ) ) 
+simplify : [Or(And(c >= 0, z <= 36*y), And(y <= z, Not(c <= y)))]
+best_reward : -1
+epoch: 12, average reward: -0.5439, 
+Random: ( ( c == ( c + z ) || z > ( 36 * 36 ) ) ), result_r: -2.2160 
+stats : Counter({'ce-T:': 103011, 'ce-F:': 37982, 'ce-I:': 30944, 'boogie_result': 12884, 'actual_z3': 16})
+best_root :  ( ( c >= 0 || c > ( z + y ) ) && ( y > ( 36 * 4608 ) || y <= 36 ) ) 
+simplify : [Or(c >= 0, Not(c <= z + y)), Or(Not(y <= 165888), y <= 36)]
+best_reward : -1
+epoch: 13, average reward: -0.5809, 
+Random: ( ( y >= ( 36 * 36 ) && y <= ( 36 * y ) ) ), result_r: -1.9179 
+stats : Counter({'ce-T:': 110899, 'ce-F:': 40940, 'ce-I:': 35874, 'boogie_result': 13870, 'actual_z3': 16})
+best_root :  ( ( c >= ( 4608 * 0 ) && y < ( 0 * 0 ) ) || y <= ( c - 4608 ) || ( y <= z && y >= ( 4608 * 36 ) ) ) 
+simplify : [Or(And(y <= z, y >= 165888),
+    And(c >= 0, Not(0 <= y)),
+    y <= -4608 + c)]
+best_reward : -1
+epoch: 14, average reward: -0.5995, 
+Random: ( z > ( 36 * 127 ) && c <= c && ( y > ( 0 * 4608 ) || y > ( c + 4608 ) ) ), result_r: -2.0812 
+stats : Counter({'ce-T:': 118803, 'ce-F:': 43904, 'ce-I:': 40814, 'boogie_result': 14858, 'actual_z3': 16})

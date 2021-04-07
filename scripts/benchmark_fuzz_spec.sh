@@ -18,5 +18,5 @@ do
         -o results/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec
     fi
 
-    sleep 2 
+    sleep 1 
 done
