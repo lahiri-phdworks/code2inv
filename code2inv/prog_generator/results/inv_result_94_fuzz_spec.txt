@@ -1,2 +1,0 @@
-( k <= ( j - 0 ) && j < ( 0 - j ) && ( k <= ( k + 2 ) || n > ( -10000 + j ) ) )
-z3_report time: 61.43 pid: 0 stats: Counter({'boogie_result': 3, 'actual_z3': 3, 'ce-T:': 3})

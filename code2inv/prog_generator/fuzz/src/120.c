@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 100
+#define UNROLL_LIMIT 4096
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -67,6 +67,11 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_i,
                 i, "sn", sn);                    \
     }                                            \
   }
+
+long long int func(long long int a, long long int b)
+{
+  return a + b;
+}
 
 int main()
 {
@@ -127,8 +132,8 @@ int main()
           long long int temp_sn = sn;
           {
             {
-              (i = (i + 1));
-              (sn = (sn + 1));
+              (i = func(i, 1));
+              (sn = func(sn, 1));
             }
           }
           loopcount++;

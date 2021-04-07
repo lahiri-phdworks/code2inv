@@ -15,7 +15,7 @@ export AFL=$(which honggfuzz)
 
 # 106 108 109 12 130 13 140 15 16 18 1 21 2 35 37 38 41 45 51 75 83 85 88 99 100 110 112 121 124 132 23 24 26 27 32 4 5 6 89 94 95
 
-for var in 85 88 99 100 110 23 24 26 27 32 4 5 6 89 94 112 121 124 132
+for var in 1 2 10 14 88 89 99 120
 do
     # ./run_solver_file.sh \
     # ../../benchmarks/C_instances/c_graph/${var}.c.json \

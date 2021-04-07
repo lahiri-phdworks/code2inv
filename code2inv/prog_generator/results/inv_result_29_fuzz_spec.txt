@@ -1,2 +1,0 @@
-( ( x == ( n - 0 ) || x >= 0 ) )
-z3_report time: 207.27 pid: 0 stats: Counter({'ce-T:': 204, 'boogie_result': 44, 'ce-F:': 40, 'actual_z3': 10, 'ce-I:': 9})

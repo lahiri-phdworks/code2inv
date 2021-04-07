@@ -104,7 +104,7 @@ int main()
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 300000)
+    if (choices > 30000)
     {
       //pre-conditions
       assume((preflag == 0));
@@ -123,11 +123,11 @@ int main()
       assume(INV(x, y));
 
       // Loop Condition
-      if ((choices > 1500))
+      if ((choices > 2500))
       {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
-        while ((choices > 1500) && unroll--)
+        while ((choices > 2500) && unroll--)
         {
           assume((loopflag == 0));
           // loop body

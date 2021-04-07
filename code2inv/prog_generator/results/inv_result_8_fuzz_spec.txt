@@ -1,2 +1,0 @@
-( x < ( 20 + y ) || x > ( y + x ) || ( x > ( 20 + 10 ) && x > ( 20 - x ) ) )
-z3_report time: 418.59 pid: 0 stats: Counter({'ce-T:': 591, 'ce-I:': 381, 'boogie_result': 164, 'ce-F:': 161, 'actual_z3': 20})

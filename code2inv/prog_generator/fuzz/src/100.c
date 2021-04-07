@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 100
+#define UNROLL_LIMIT 4096
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -65,6 +65,11 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_
                 n, "x", x, "y", y); \ 
 }       \
   }
+
+long long int func(long long int a, long long int b)
+{
+  return a + b;
+}
 
 int main()
 {
@@ -133,7 +138,7 @@ int main()
           long long int temp_x = x;
           {
             {
-              (y = (y + 1));
+              (y = func(y, 1));
               (x = (x - 1));
             }
           }

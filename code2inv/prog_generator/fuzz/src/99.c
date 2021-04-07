@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 100
+#define UNROLL_LIMIT 512
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
