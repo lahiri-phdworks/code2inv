@@ -66,6 +66,11 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int temp_
 }            \
     }
 
+long long int square(long long int a)
+{
+    return (a) * (a);
+}
+
 int main()
 {
     // variable declarations
@@ -83,7 +88,7 @@ int main()
     for (;;)
     {
         size_t len;
-        const int32_t *buf;
+        const int16_t *buf;
 
         HF_ITER(&buf, &len);
         counter++;
@@ -101,7 +106,7 @@ int main()
         // precheck
         // loopcond : (unknown())
 
-        if (choices > 35000)
+        if (choices > 15000)
         {
             //pre-conditions
             assume((preflag == 0));
@@ -129,7 +134,7 @@ int main()
                     long long int temp_y = y;
                     {
                         y = y + 1;
-                        x = y * y;
+                        x = y * y + 2 * y + 1;
                     }
 
                     loopcount++;
@@ -142,7 +147,7 @@ int main()
                 assume((postflag == 0));
                 // post-condition
                 postcount++;
-                postcheck(fptr, vars, ((x == y * y)), x, y)
+                postcheck(fptr, vars, ((x == square(y + 1))), x, y)
             }
         }
 

@@ -6,7 +6,7 @@ import logging
 import tqdm
 import os
 
-# from code2inv.common.cmd_args import cmd_args
+from code2inv.common.cmd_args import cmd_args
 from code2inv.prog_generator.chc_tools.chctools.horndb import *
 from code2inv.prog_generator.chc_tools.chctools.solver_utils import *
 from code2inv.prog_generator.chc_tools.chctools.chcmodel import (
@@ -135,17 +135,17 @@ def inv_checker(vc_file: str, inv: str, assignments):
     for var in var_list:
         exec(var + "=1")
 
-    # if not os.path.isdir("candidates"):
-    #     os.mkdir("candidates")
+    if not os.path.isdir("candidates"):
+        os.mkdir("candidates")
 
-    # # COMMENT : Print Fuzz Model
-    # with open(
-    #     os.path.join(
-    #         "candidates", f"candidates_{cmd_args.example}_{cmd_args.spec_type}.txt"
-    #     ),
-    #     mode="a",
-    # ) as file:
-    #     file.write(f"{inv}\n")
+    # COMMENT : Print Fuzz Model
+    with open(
+        os.path.join(
+            "candidates", f"candidates_{cmd_args.example}_{cmd_args.spec_type}.txt"
+        ),
+        mode="a",
+    ) as file:
+        file.write(f"{inv}\n")
 
     try:
         return eval(inv)
@@ -236,15 +236,16 @@ def inv_solver(vc_file: str, inv: str):
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
 
-    # if not os.path.isdir("models"):
-    #     os.mkdir("models")
+    if not os.path.isdir("models"):
+        os.mkdir("models")
 
-    # # COMMENT : Print Fuzz Model
-    # with open(
-    #     os.path.join("models", f"z3_{cmd_args.spec_type}_model_{cmd_args.example}.txt"),
-    #     mode="a",
-    # ) as file:
-    #     file.write(f"{res}\n")
+    # COMMENT : Print Fuzz Model
+    with open(
+        os.path.join(
+            "models", f"z3_{cmd_args.spec_type}_model_{cmd_args.example}.txt"),
+        mode="a",
+    ) as file:
+        file.write(f"{res}\n")
 
     return res
 

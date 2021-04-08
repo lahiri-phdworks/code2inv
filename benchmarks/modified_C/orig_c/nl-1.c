@@ -6,9 +6,9 @@ int main()
 	while (unknown())
 	{
 		y = y + 1;
-		x = y * y;
+		x = y * y + 2 * y + 1;
 	}
 
-	assert(x == y * y);
+	assert((x == (y + 1) * (y + 1)));
 	return 0;
 }

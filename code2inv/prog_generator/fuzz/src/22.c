@@ -89,7 +89,7 @@ int main()
     for (;;)
     {
         size_t len;
-        const int32_t *buf;
+        const int16_t *buf;
 
         HF_ITER(&buf, &len);
         counter++;
@@ -108,7 +108,7 @@ int main()
         // precheck
         // loopcond : (x < n)
 
-        if (choices > 30000)
+        if (choices > 15000)
         {
             //pre-conditions
             assume((preflag == 0));
@@ -136,7 +136,7 @@ int main()
                     long long int temp_n = n;
                     {
                         // loop body
-                        if (choices > 15000)
+                        if (choices > 1500)
                         {
                             m = x;
                         }

@@ -98,4 +98,5 @@ def toc():
 if cmd_args.save_dir is not None:
     if not os.path.isdir(cmd_args.save_dir):
         os.makedirs(cmd_args.save_dir)
-print(cmd_args)
+
+# print(cmd_args)

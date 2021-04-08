@@ -1,3 +1,8 @@
+long long int square(long long int a)
+{
+	return (a) * (a);
+}
+
 int main()
 {
 	// variable declarations
@@ -14,14 +19,14 @@ int main()
 	while (unknown())
 	// loop body
 	{
-		long long int temp_x = x;
-		long long int temp_y = y;
+		// long long int temp_x = x;
+		// long long int temp_y = y;
 		y = y + 1;
-		x = y * y;
+		x = y * y + 2 * y + 1;
 	}
 	// loopend
 	// postcheck
 	// post-condition
-	assert((x == y * y));
+	assert((x == square(y + 1)));
 	return 0;
 }

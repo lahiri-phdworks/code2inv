@@ -1,0 +1,2 @@
+( x == ( y * y * y * y ) )
+z3_report time: 87.71 pid: 0 stats: Counter({'ce-I:': 4208, 'ce-F:': 3150, 'boogie_result': 897, 'ce-T:': 896, 'actual_z3': 14})

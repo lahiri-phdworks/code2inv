@@ -28,8 +28,8 @@ model=AssertAwareTreeLSTM
 att=1
 ac=0
 ce=1
-afl_timeout=20
-num_epochs=10
+afl_timeout=$TIMEOUT
+num_epochs=$EPOCHS
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 if [ ! -e $save_dir ];
@@ -42,8 +42,6 @@ mkdir -p tests/results
 log_file=$save_dir/log-sample-${single_sample}-model-${model}-${ctx}-r-${inv_reward_type}-s2v-${s2v_level}-bsize-${rl_batchsize}-att-${att}-ac-${ac}-ce-${ce}.txt
 
 # COMMENT : Z3 used for this flag
-export EPOCHS=$num_epochs
-export TIMEOUT=$afl_timeout
 
 python -u file_solver.py \
     -input_graph $input_graph\

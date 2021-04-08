@@ -42,7 +42,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			( = x_1 x )
 			( = y_1 y )
 			( = y_2 ( + y_1 1 ) )
-			( = x_2 ( * y_2 y_2 ) )
+			( = x_2 ( + ( + ( * y_2 y_2 ) ( * 2 y_2 ) ) 1 ) )
 			( = x_2 x! )
 			( = y_2 y! )
 			(= tmp tmp! )
@@ -60,7 +60,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		)
 		( not
 			( and
-				( not ( = x_1 ( * y_1 y_1 ) ) )
+				( not ( = x_1 ( * ( + y_1 1 ) ( + y_1 1 ) ) ) )
 			)
 		)
 	)
