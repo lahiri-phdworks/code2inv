@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 4096
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -37,7 +37,7 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int y)
 
 // COMMENT : Loopcheck template
 void loopcheck(FILE *file_descp, char *buff, long long int temp_x,
-               long long int temp_y, long int x, long long int y)
+               long long int temp_y, long long int x, long long int y)
 {
   int f = loopflag;
   aflcrash(INV(x, y), loopflag);
@@ -85,8 +85,8 @@ int main()
     counter++;
 
     long long int choices = buf[2];
-    x = buf[2];
-    y = buf[4];
+    x = buf[1];
+    y = buf[3];
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));

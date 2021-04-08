@@ -52,7 +52,7 @@ python -u file_solver.py \
     -encoder_model "Param"\
     -decoder_model $model \
     -only_use_z3 1 \
-    -num_epochs 15 \
+    -num_epochs 10 \
     -s2v_level $s2v_level \
     -embedding_size $embedding \
     -rl_batchsize $rl_batchsize \

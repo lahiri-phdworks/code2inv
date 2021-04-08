@@ -31,7 +31,7 @@ int main()
       {
         if ((c > n))
         {
-          (c = (func(c, 1)));
+          c = func(c, 1);
         }
       }
       else

@@ -1,4 +1,7 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
 
 cd ../code2inv/prog_generator
 

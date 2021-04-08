@@ -32,7 +32,7 @@ int main()
     long long int temp_y = y;
     if ((i < y))
     {
-      (i = (func(i, 1)));
+      i = func(i, 1);
     }
   }
   // loopend

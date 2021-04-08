@@ -1,5 +1,15 @@
 (set-logic LIA)
 
+( declare-const d Int )
+( declare-const d! Int )
+( declare-const temp_w Int )
+( declare-const temp_w! Int )
+( declare-const temp_x Int )
+( declare-const temp_x! Int )
+( declare-const temp_y Int )
+( declare-const temp_y! Int )
+( declare-const temp_z Int )
+( declare-const temp_z! Int )
 ( declare-const w Int )
 ( declare-const w! Int )
 ( declare-const x Int )
@@ -9,6 +19,15 @@
 ( declare-const z Int )
 ( declare-const z! Int )
 
+( declare-const d_0 Int )
+( declare-const temp_w_0 Int )
+( declare-const temp_w_1 Int )
+( declare-const temp_x_0 Int )
+( declare-const temp_x_1 Int )
+( declare-const temp_y_0 Int )
+( declare-const temp_y_1 Int )
+( declare-const temp_z_0 Int )
+( declare-const temp_z_1 Int )
 ( declare-const w_0 Int )
 ( declare-const w_1 Int )
 ( declare-const w_2 Int )
@@ -23,11 +42,11 @@
 ( declare-const z_3 Int )
 ( declare-const z_4 Int )
 
-( define-fun inv-f( ( w Int )( x Int )( y Int )( z Int ) ) Bool
+( define-fun inv-f( ( d Int )( temp_w Int )( temp_x Int )( temp_y Int )( temp_z Int )( w Int )( x Int )( y Int )( z Int ) ) Bool
 SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
-( define-fun pre-f ( ( w Int )( x Int )( y Int )( z Int )( w_0 Int )( w_1 Int )( w_2 Int )( w_3 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( z_0 Int )( z_1 Int )( z_2 Int )( z_3 Int )( z_4 Int ) ) Bool
+( define-fun pre-f ( ( d Int )( temp_w Int )( temp_x Int )( temp_y Int )( temp_z Int )( w Int )( x Int )( y Int )( z Int )( d_0 Int )( temp_w_0 Int )( temp_w_1 Int )( temp_x_0 Int )( temp_x_1 Int )( temp_y_0 Int )( temp_y_1 Int )( temp_z_0 Int )( temp_z_1 Int )( w_0 Int )( w_1 Int )( w_2 Int )( w_3 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( z_0 Int )( z_1 Int )( z_2 Int )( z_3 Int )( z_4 Int ) ) Bool
 	( or
 		( and
 			( = w w_1 )
@@ -52,58 +71,104 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	)
 )
 
-( define-fun trans-f ( ( w Int )( x Int )( y Int )( z Int )( w! Int )( x! Int )( y! Int )( z! Int )( w_0 Int )( w_1 Int )( w_2 Int )( w_3 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( z_0 Int )( z_1 Int )( z_2 Int )( z_3 Int )( z_4 Int ) ) Bool
+( define-fun trans-f ( ( d Int )( temp_w Int )( temp_x Int )( temp_y Int )( temp_z Int )( w Int )( x Int )( y Int )( z Int )( d! Int )( temp_w! Int )( temp_x! Int )( temp_y! Int )( temp_z! Int )( w! Int )( x! Int )( y! Int )( z! Int )( d_0 Int )( temp_w_0 Int )( temp_w_1 Int )( temp_x_0 Int )( temp_x_1 Int )( temp_y_0 Int )( temp_y_1 Int )( temp_z_0 Int )( temp_z_1 Int )( w_0 Int )( w_1 Int )( w_2 Int )( w_3 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( z_0 Int )( z_1 Int )( z_2 Int )( z_3 Int )( z_4 Int ) ) Bool
 	( or
 		( and
+			( = temp_w_0 temp_w )
+			( = temp_x_0 temp_x )
+			( = temp_y_0 temp_y )
+			( = temp_z_0 temp_z )
 			( = w_2 w )
 			( = x_1 x )
 			( = z_2 z )
+			( = temp_w_0 temp_w! )
+			( = temp_x_0 temp_x! )
+			( = temp_y_0 temp_y! )
+			( = temp_z_0 temp_z! )
 			( = w_2 w! )
 			( = x_1 x! )
 			( = z_2 z! )
 			( = y y_0 )
 			( = y! y_0 )
+			( = d d! )
+			( = temp_w temp_w! )
+			( = temp_x temp_x! )
+			( = temp_y temp_y! )
+			( = temp_z temp_z! )
 			( = w w! )
 			( = z z! )
 		)
 		( and
+			( = temp_w_0 temp_w )
+			( = temp_x_0 temp_x )
+			( = temp_y_0 temp_y )
+			( = temp_z_0 temp_z )
 			( = w_2 w )
 			( = x_1 x )
 			( = z_2 z )
 			( <= x_1 y_0 )
+			( = temp_x_1 x_1 )
+			( = temp_y_1 y_0 )
+			( = temp_z_1 z_2 )
+			( = temp_w_1 w_2 )
 			( = w_3 ( * w_2 x_1 ) )
 			( < x_1 y_0 )
-			( = z_3 ( * z_2 x_1 ) )
+			( = z_3  )
 			( = z_4 z_3 )
 			( = x_2 ( + x_1 1 ) )
+			( = temp_w_1 temp_w! )
+			( = temp_x_1 temp_x! )
+			( = temp_y_1 temp_y! )
+			( = temp_z_1 temp_z! )
 			( = w_3 w! )
 			( = x_2 x! )
 			( = z_4 z! )
+			(= d d_0 )
+			(= d! d_0 )
 			(= y y_0 )
 			(= y! y_0 )
 		)
 		( and
+			( = temp_w_0 temp_w )
+			( = temp_x_0 temp_x )
+			( = temp_y_0 temp_y )
+			( = temp_z_0 temp_z )
 			( = w_2 w )
 			( = x_1 x )
 			( = z_2 z )
 			( <= x_1 y_0 )
+			( = temp_x_1 x_1 )
+			( = temp_y_1 y_0 )
+			( = temp_z_1 z_2 )
+			( = temp_w_1 w_2 )
 			( = w_3 ( * w_2 x_1 ) )
 			( not ( < x_1 y_0 ) )
 			( = z_4 z_2 )
 			( = x_2 ( + x_1 1 ) )
+			( = temp_w_1 temp_w! )
+			( = temp_x_1 temp_x! )
+			( = temp_y_1 temp_y! )
+			( = temp_z_1 temp_z! )
 			( = w_3 w! )
 			( = x_2 x! )
 			( = z_4 z! )
+			(= d d_0 )
+			(= d! d_0 )
 			(= y y_0 )
 			(= y! y_0 )
 		)
 	)
 )
 
-( define-fun post-f ( ( w Int )( x Int )( y Int )( z Int )( w_0 Int )( w_1 Int )( w_2 Int )( w_3 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( z_0 Int )( z_1 Int )( z_2 Int )( z_3 Int )( z_4 Int ) ) Bool
+( define-fun post-f ( ( d Int )( temp_w Int )( temp_x Int )( temp_y Int )( temp_z Int )( w Int )( x Int )( y Int )( z Int )( d_0 Int )( temp_w_0 Int )( temp_w_1 Int )( temp_x_0 Int )( temp_x_1 Int )( temp_y_0 Int )( temp_y_1 Int )( temp_z_0 Int )( temp_z_1 Int )( w_0 Int )( w_1 Int )( w_2 Int )( w_3 Int )( x_0 Int )( x_1 Int )( x_2 Int )( y_0 Int )( z_0 Int )( z_1 Int )( z_2 Int )( z_3 Int )( z_4 Int ) ) Bool
 	( or
 		( not
 			( and
+				( = d d_0 )
+				( = temp_w temp_w_0)
+				( = temp_x temp_x_0)
+				( = temp_y temp_y_0)
+				( = temp_z temp_z_0)
 				( = w w_2)
 				( = x x_1)
 				( = y y_0)
@@ -113,7 +178,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( not
 			( and
 				( not ( <= x_1 y_0 ) )
-				( not ( = w_2 ( * z_2 y_0 ) ) )
+				( not ( = w_2 d_0 ) )
 			)
 		)
 	)
@@ -121,8 +186,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 ( assert ( not
 	( =>
-		( pre-f w x y z w_0 w_1 w_2 w_3 x_0 x_1 x_2 y_0 z_0 z_1 z_2 z_3 z_4  )
-		( inv-f w x y z )
+		( pre-f d temp_w temp_x temp_y temp_z w x y z d_0 temp_w_0 temp_w_1 temp_x_0 temp_x_1 temp_y_0 temp_y_1 temp_z_0 temp_z_1 w_0 w_1 w_2 w_3 x_0 x_1 x_2 y_0 z_0 z_1 z_2 z_3 z_4  )
+		( inv-f d temp_w temp_x temp_y temp_z w x y z )
 	)
 ))
 
@@ -130,18 +195,18 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 ( assert ( not
 	( =>
 		( and
-			( inv-f w x y z )
-			( trans-f w x y z w! x! y! z! w_0 w_1 w_2 w_3 x_0 x_1 x_2 y_0 z_0 z_1 z_2 z_3 z_4 )
+			( inv-f d temp_w temp_x temp_y temp_z w x y z )
+			( trans-f d temp_w temp_x temp_y temp_z w x y z d! temp_w! temp_x! temp_y! temp_z! w! x! y! z! d_0 temp_w_0 temp_w_1 temp_x_0 temp_x_1 temp_y_0 temp_y_1 temp_z_0 temp_z_1 w_0 w_1 w_2 w_3 x_0 x_1 x_2 y_0 z_0 z_1 z_2 z_3 z_4 )
 		)
-		( inv-f w! x! y! z! )
+		( inv-f d! temp_w! temp_x! temp_y! temp_z! w! x! y! z! )
 	)
 ))
 
 SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 ( assert ( not
 	( =>
-		( inv-f w x y z  )
-		( post-f w x y z w_0 w_1 w_2 w_3 x_0 x_1 x_2 y_0 z_0 z_1 z_2 z_3 z_4 )
+		( inv-f d temp_w temp_x temp_y temp_z w x y z  )
+		( post-f d temp_w temp_x temp_y temp_z w x y z d_0 temp_w_0 temp_w_1 temp_x_0 temp_x_1 temp_y_0 temp_y_1 temp_z_0 temp_z_1 w_0 w_1 w_2 w_3 x_0 x_1 x_2 y_0 z_0 z_1 z_2 z_3 z_4 )
 	)
 ))
 

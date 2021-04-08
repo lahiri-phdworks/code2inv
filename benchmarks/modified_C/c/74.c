@@ -31,8 +31,8 @@ int main()
     long long int temp_z = z;
     if ((c < 36))
     {
-      (z = (func(z, 1)));
-      (c = (func(c, 1)));
+      z = func(z, 1);
+      c = func(c, 1);
     }
   }
   // loopend

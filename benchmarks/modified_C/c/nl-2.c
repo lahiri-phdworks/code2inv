@@ -1,3 +1,12 @@
+long long int func(long long int a, long long int b)
+{
+	long long int c = 0;
+	__asm__ __volatile__("imull %%ebx, %%eax;"
+						 : "=a"(c)
+						 : "a"(a), "b"(b));
+	return c;
+}
+
 int main()
 {
 	// variable declarations
@@ -22,6 +31,6 @@ int main()
 	// loopend
 	// postcheck
 	// post-condition
-	assert((y <= x * x));
+	assert((y <= func(x, x)));
 	return 0;
 }

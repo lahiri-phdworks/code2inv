@@ -27,7 +27,7 @@ int main()
       {
         if ((c != 40))
         {
-          (c = (func(c, 1)));
+          c = func(c, 1);
         }
       }
       else
