@@ -1,2 +1,0 @@
-( y <= ( y * y * y * y ) && x >= ( y * y * y ) && x == ( y * y * y * y ) )
-z3_report time: 1275.21 pid: 0 stats: Counter({'ce-I:': 30586, 'ce-F:': 2659, 'boogie_result': 1144, 'ce-T:': 1143, 'actual_z3': 56})

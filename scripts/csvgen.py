@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import re
 
 from code2inv.processing.simplifier import getExpr
 from code2inv.prog_generator.checkers.c_inv_checker import inv_solver
@@ -12,6 +13,7 @@ if __name__ == "__main__":
 
     resDict = dict()
     instanceObj = dict()
+    best_root = []
     fileName = sys.argv[1]
     resultFile = fileName.strip().split("/")[-1]
     inv = ""
@@ -40,10 +42,23 @@ if __name__ == "__main__":
     with open(fileName, mode="r") as fileptr:
         lines = fileptr.readlines()
 
-    stats = lines[-1].strip().split(":")[-1].strip()[:-2]
+    z3_cexs = lines[-1]
+    z3_report_time = re.findall("z3_report time: [0-9]*[.][0-9]*", z3_cexs)
+    actual_z3 = re.findall("'actual_z3': [0-9]*", z3_cexs)
+    stats = actual_z3[0].split(":")[1]
+
+    if len(z3_report_time) > 0:
+        timetaken = z3_report_time[0].split(":")[1]
+    else:
+        timetaken = 0.0
+
     if len(lines) > 0:
-        if "best_root" in lines[0]:
-            inv = lines[0].strip().split(":")[1].strip()
+        for l in lines:
+            if "best_root" in l:
+                best_root.append(l.strip())
+
+        if len(best_root) > 0 and "best_root" in best_root[-1]:
+            inv = best_root[-1].strip().split(":")[1].strip()
         else:
             inv = lines[0].strip()
 
@@ -63,5 +78,5 @@ if __name__ == "__main__":
         simpleStr = str(simpleExpr)
 
     print(
-        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{simpleStr}", {stats}'
+        f'{example}, {invType}, {str(inv)}, {str(check)}, {str(converged)}, "{simpleStr}", {stats}, {timetaken}'
     )

@@ -3,7 +3,7 @@ set -e
 set -u
 set -o pipefail
 
-echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simplify Expression, CE-s Count" > compile_results.csv
+echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simplify Expression, CE-s Count, Solve-Time" > compile_results.csv
 for files in ../code2inv/prog_generator/results/*.txt;
 do
     echo "Processing $files"
