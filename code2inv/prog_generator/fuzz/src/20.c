@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 1024
 
 #define aflcrash(cond, flag) \
     if (!cond)               \
@@ -73,7 +73,7 @@ long long int func(long long int a, long long int b)
 
 int main()
 {
-    long long int z1, z2, z3;
+    long long int z1 = 0, z2 = 0, z3 = 0;
     long long int x;
     long long int m;
     long long int n;

@@ -27,9 +27,9 @@ int main()
   while (unknown())
   // loop body
   {
-    long long int temp_i = i;
-    long long int temp_x = x;
-    long long int temp_y = y;
+    // long long int temp_i = i;
+    // long long int temp_x = x;
+    // long long int temp_y = y;
     if ((i < y))
     {
       i = func(i, 1);

@@ -1,4 +1,5 @@
-int main() {
+int main()
+{
   // variable declarations
   int c;
   int x1;
@@ -12,15 +13,15 @@ int main() {
   assume((y >= 127));
   (z = (36 * y));
   // loop body
-  while (unknown()) {
-    if ( (c < 36) )
+  while (unknown())
+  {
+    if ((c < 36))
     {
-    (z  = (z + 1));
-    (c  = (c + 1));
+      (z = (z + 1));
+      (c = (c + 1));
     }
-
   }
   // post-condition
-if ( (c < 36) )
-assert( (z >= 0) );
+  if ((c < 36))
+    assert((z >= 0));
 }

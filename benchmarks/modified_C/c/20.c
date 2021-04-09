@@ -22,9 +22,9 @@ int main()
     while (x < n)
     {
         // loop body
-        long long int temp_x = x;
-        long long int temp_m = m;
-        long long int temp_n = n;
+        // long long int temp_x = x;
+        // long long int temp_m = m;
+        // long long int temp_n = n;
         if (unknown())
         {
             m = x;

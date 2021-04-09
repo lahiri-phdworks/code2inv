@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 1024
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -96,7 +96,7 @@ int main()
     counter++;
 
     long long int choices = buf[0];
-    c = buf[1];
+    c = buf[2];
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));

@@ -21,7 +21,7 @@ int main()
   while (unknown())
   // loop body
   {
-    long long int temp_c = c;
+    // long long int temp_c = c;
     {
       if (unknown())
       {

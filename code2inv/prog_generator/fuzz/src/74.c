@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 1024
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -75,9 +75,9 @@ int main()
 {
   // variable declarations
   long long int c;
-  long long int x1;
-  long long int x2;
-  long long int x3;
+  long long int x1 = -32768;
+  long long int x2 = -32768;
+  long long int x3 = -32768;
   long long int y;
   long long int z;
 

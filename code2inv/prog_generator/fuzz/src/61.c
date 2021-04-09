@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 1024
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -80,9 +80,9 @@ int main()
   // variable declarations
   long long int c;
   long long int n;
-  long long int v1;
-  long long int v2;
-  long long int v3;
+  long long int v1 = 0;
+  long long int v2 = 0;
+  long long int v3 = 0;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));

@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 1024
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -75,6 +75,11 @@ long long int func(long long int a, long long int b)
   return c;
 }
 
+int compare(long long int lhs, long long int rhs)
+{
+  return lhs >= rhs ? 1 : 0;
+}
+
 int main()
 {
   // variable declarations
@@ -140,14 +145,14 @@ int main()
             {
               if (choices > 1500)
               {
-                if ((c > n))
+                if ((compare(c, n)))
                 {
                   (c = (func(c, 1)));
                 }
               }
               else
               {
-                if ((c == n))
+                if ((compare(c, n)))
                 {
                   (c = 1);
                 }

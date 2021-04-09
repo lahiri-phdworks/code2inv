@@ -1,6 +1,10 @@
 long long int func(long long int a, long long int b)
 {
-    return a + b;
+    long long int c = 0;
+    __asm__ __volatile__("addl %%ebx, %%eax;"
+                         : "=c"(c)
+                         : "a"(a), "b"(b));
+    return c;
 }
 
 int main()
@@ -22,9 +26,9 @@ int main()
     while (x < n)
     {
         // loop body
-        long long int temp_x = x;
-        long long int temp_m = m;
-        long long int temp_n = n;
+        // long long int temp_x = x;
+        // long long int temp_m = m;
+        // long long int temp_n = n;
         if (unknown())
         {
             m = x;

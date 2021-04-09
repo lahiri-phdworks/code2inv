@@ -26,9 +26,9 @@ int main()
   while (unknown())
   {
     // loop body
-    long long int temp_c = c;
-    long long int temp_y = y;
-    long long int temp_z = z;
+    // long long int temp_c = c;
+    // long long int temp_y = y;
+    // long long int temp_z = z;
     if ((c < 36))
     {
       z = func(z, 1);
