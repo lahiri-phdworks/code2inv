@@ -22,7 +22,7 @@ pwd = os.path.dirname(__file__)
 if cmd_args.example:
     example = cmd_args.example
 else:
-    example = "3"
+    example = "10"
 
 if cmd_args.example:
     timeout = cmd_args.afl_timeout

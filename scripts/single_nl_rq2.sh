@@ -6,6 +6,7 @@ set -o pipefail
 var=$1
 export EPOCHS=$2
 export TIMEOUT=$3
+export EXAMPLE=$1
 
 cd ../code2inv/prog_generator
 mkdir -p RQ2_TIME_LOGS_${EPOCHS}_${TIMEOUT}
@@ -21,16 +22,19 @@ export AFL=$(which honggfuzz)
 # ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \
 # -o results/inv_result_${var}_c_spec.txt ${var} c_spec) 2> RQ2_TIME_LOGS_${EPOCHS}_${TIMEOUT}/z3_time_${var}.log
 
-sleep 1
+# sleep 1
 
-(time ./run_solver_file.sh \
-../../benchmarks/C_instances/c_graph/${var}.c.json \
-../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_mod_spec \
--o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_mod_spec) 2> RQ2_TIME_LOGS_${EPOCHS}_${TIMEOUT}/z3_nl_time_${var}.log
+# export SPEC=c_nl_mod_spec
 
-cat RQ2_TIME_LOGS_${EPOCHS}_${TIMEOUT}/z3_nl_time_${var}.log
+# (time ./run_solver_file.sh \
+# ../../benchmarks/C_instances/c_graph/${var}.c.json \
+# ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_nl_mod_spec \
+# -o results/inv_result_${var}_c_nl_spec.txt ${var} c_nl_mod_spec) 2> RQ2_TIME_LOGS_${EPOCHS}_${TIMEOUT}/z3_nl_time_${var}.log
 
-sleep 1
+# cat RQ2_TIME_LOGS_${EPOCHS}_${TIMEOUT}/z3_nl_time_${var}.log
+# sleep 1
+
+export SPEC=fuzz_nl_mod_spec
 
 (time ./run_solver_file.sh \
 ../../benchmarks/modified_C/c_graph/${var}.c.json \

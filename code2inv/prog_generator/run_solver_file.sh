@@ -28,9 +28,12 @@ model=AssertAwareTreeLSTM
 att=1
 ac=0
 ce=1
-afl_timeout=$TIMEOUT
-num_epochs=$EPOCHS
+afl_timeout=20
+num_epochs=8
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
+
+export EXAMPLE=$example
+export SPEC=$specs
 
 if [ ! -e $save_dir ];
 then
