@@ -1,0 +1,2 @@
+( ( y >= ( 0 * x ) || x < 10 ) )
+z3_report time: 349.84 pid: 0 stats: Counter({'ce-T:': 2737, 'ce-I:': 1477, 'ce-F:': 1247, 'boogie_result': 564, 'actual_z3': 15})

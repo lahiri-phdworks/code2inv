@@ -1,0 +1,2 @@
+( ( m <= x && m >= ( x * x ) ) || n > m )
+z3_report time: 255.47 pid: 0 stats: Counter({'ce-I:': 2091, 'ce-T:': 1980, 'boogie_result': 499, 'ce-F:': 496, 'actual_z3': 11})

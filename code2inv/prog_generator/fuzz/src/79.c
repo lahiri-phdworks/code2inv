@@ -69,7 +69,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_i, long long int temp_
 long long int func(long long int a, long long int b)
 {
   long long int c = 0;
-  __asm__ __volatile__("incr %%ebx, %%eax;"
+  __asm__ __volatile__("addl %%ebx, %%eax;"
                        : "=a"(c)
                        : "a"(a), "b"(b));
   return c;

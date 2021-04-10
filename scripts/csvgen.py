@@ -27,6 +27,9 @@ if __name__ == "__main__":
     elif "fuzz_spec" in fileName:
         invType = "fuzz_spec"
         example = resultFile.strip().split("_")[-3]
+    elif "fuzz_nl_spec" in fileName:
+        invType = "fuzz_nl_spec"
+        example = resultFile.strip().split("_")[-4]
     else:
         pass
 

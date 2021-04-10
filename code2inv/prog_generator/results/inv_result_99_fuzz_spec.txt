@@ -1,0 +1,2 @@
+( ( n >= ( y + x ) || n > 10000 ) && ( n == ( x + y ) || n < -10000 ) )
+z3_report time: 352.72 pid: 0 stats: Counter({'ce-T:': 1651, 'ce-I:': 1253, 'ce-F:': 819, 'boogie_result': 418, 'actual_z3': 16})

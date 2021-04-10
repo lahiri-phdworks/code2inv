@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int z1, long long int z2, long l
     {
         fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "z1", z1, "z2", z2, "z3", z3, "x", x, "m", m, "n", n);
+        assert(0);
     }
 }
 
@@ -47,23 +48,28 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int temp_
                 "z1", z1, "z2", z2, "z3", z3, "x", temp_x, "m", temp_m, "n", temp_n);
         fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "z1", z1, "z2", z2, "z3", z3, "x", x, "m", m, "n", n);
+        assert(0);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, z1, z2, z3, x, m, n)            \
+#define postcheck(fptr, buff, cond, z1, z2, z3, x, m, n)         \
     \ 
-{                                                              \
+{                                                           \
         \ 
-    int f = postflag;                                               \
+    int f = postflag;                                            \
         \ 
-   aflcrash(cond, postflag);                                        \
+   aflcrash(cond, postflag);                                     \
         \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)                                 \
+        {                                                        \
+            \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "z1",                                                              \
-                z1, "z2", z2, "z3", z3, "x", x, "m", m, "n", n); \ 
-} \
+ "z1",                                                           \
+                z1, "z2", z2, "z3", z3, "x", x, "m", m, "n", n); \
+            assert(0);                                           \
+        \ 
+}                                                       \
     }
 
 long long int func(long long int a, long long int b)

@@ -35,7 +35,8 @@ shift $((OPTIND -1))
 
 export RUNNER=$RUNNER
 
-rm -rf bin/* output/* graph/*
+rm -rf bin/* 
+rm -rf output/
 
 if [ $OPTIND -eq 1 ]; 
     then 
