@@ -31,8 +31,9 @@ void precheck(FILE *file_descp, char *buff, long long int x, long long int size,
    aflcrash(INV(x, size, y, z), preflag);
    if (f == 0 && preflag == 1)
    {
-      fprintf(file_descp, "Pre : %s\n",
-              buff);
+      fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+              "x", x, "size", size, "y", y, "z", z);
+      assert(0);
    }
 }
 
@@ -48,21 +49,27 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_x, long long int
               "x", temp_x, "size", temp_size, "y", temp_y, "z", temp_z);
       fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
               "x", x, "size", size, "y", y, "z", z);
+      assert(0);
    }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, x, size, y, z) \
+#define postcheck(file_descp, buff, cond, x, size, y, z)                           \
    \ 
-{                                                    \
+{                                                                              \
       \ 
-    int f = postflag;                                    \
+    int f = postflag;                                                              \
       \ 
-   aflcrash(cond, postflag);                             \
+   aflcrash(cond, postflag);                                                       \
       \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}     \
+    if (f == 0 && postflag == 1)                                                   \
+      {                                                                            \
+         \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \
+                "x", x, "size", size, "y", y, "z", z);                             \
+         assert(0);                                                                \
+      \ 
+}                                                                           \
    }
 
 int main()
@@ -94,14 +101,14 @@ int main()
 
       char vars[128];
       memset(vars, '\0', sizeof(vars));
-      snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld", "x", x, "size", size, "y", y, "z", z);
+      snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "x", x, "size", size, "y", y, "z", z);
 
       // pre-conditions
       assume((-10000 <= size && size <= 10000));
       // precheck
       // loopcond : (x < size)
 
-      if (choices > 15000)
+      if (choices > 10000)
       {
          //pre-conditions
          assume((preflag == 0));

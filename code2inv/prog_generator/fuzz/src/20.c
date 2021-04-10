@@ -72,11 +72,6 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int temp_
 }                                                       \
     }
 
-long long int func(long long int a, long long int b)
-{
-    return a + b;
-}
-
 int main()
 {
     long long int z1 = 0, z2 = 0, z3 = 0;
@@ -114,7 +109,7 @@ int main()
         // precheck
         // loopcond : (x < n)
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));
@@ -146,7 +141,8 @@ int main()
                         {
                             m = x;
                         }
-                        x = func(x, 1);
+                        __asm__ __volatile__("inc %%eax;"
+                                             : "=a"(x));
                     }
 
                     loopcount++;

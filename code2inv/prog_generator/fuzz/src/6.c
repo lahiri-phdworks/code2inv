@@ -101,7 +101,7 @@ int main()
       // precheck
       // loopcond : (x < size)
 
-      if (choices > 15000)
+      if (choices > 10000)
       {
          //pre-conditions
          assume((preflag == 0));

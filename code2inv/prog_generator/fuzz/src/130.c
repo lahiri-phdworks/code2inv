@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int d1, long long int d2, long l
     {
         fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "d1", d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3);
+        assert(0);
     }
 }
 
@@ -46,23 +47,28 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x1, long long int temp
                 "d1", d1, "d2", d2, "d3", d3, "x1", temp_x1, "x2", temp_x2, "x3", temp_x3);
         fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "d1", d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3);
+        assert(0);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, d1, d2, d3, x1, x2, x3)               \
+#define postcheck(fptr, buff, cond, d1, d2, d3, x1, x2, x3)            \
     \ 
-{                                                                    \
+{                                                                 \
         \ 
-    int f = postflag;                                                     \
+    int f = postflag;                                                  \
         \ 
-   aflcrash(cond, postflag);                                              \
+   aflcrash(cond, postflag);                                           \
         \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)                                       \
+        {                                                              \
+            \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "d1",                                                                    \
-                d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3); \ 
-} \
+ "d1",                                                                 \
+                d1, "d2", d2, "d3", d3, "x1", x1, "x2", x2, "x3", x3); \
+            assert(0);                                                 \
+        \ 
+}                                                             \
     }
 
 int main()
@@ -107,7 +113,7 @@ int main()
         // precheck
         // loopcond : (x1 > 0)
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));

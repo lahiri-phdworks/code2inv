@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int c, long long int x1, long lo
   {
     fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
+    assert(0);
   }
 }
 
@@ -47,23 +48,28 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_c, long long int temp_
             "c", temp_c, "x1", x1, "x2", x2, "x3", x3, "y", temp_y, "z", temp_z);
     fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
+    assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, c, x1, x2, x3, y, z)             \
+#define postcheck(fptr, buff, cond, c, x1, x2, x3, y, z)          \
   \ 
-{                                                                 \
+{                                                              \
     \ 
-    int f = postflag;                                                \
+    int f = postflag;                                             \
     \ 
-   aflcrash(cond, postflag);                                         \
+   aflcrash(cond, postflag);                                      \
     \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)                                  \
+    {                                                             \
+      \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "c",                                                                \
-                c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z); \ 
-} \
+ "c",                                                             \
+                c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z); \
+      assert(0);                                                  \
+    \ 
+}                                                            \
   }
 
 long long int func(long long int a, long long int b)
@@ -111,7 +117,7 @@ int main()
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 15000)
+    if (choices > 10000)
     {
       //pre-conditions
       assume((preflag == 0));

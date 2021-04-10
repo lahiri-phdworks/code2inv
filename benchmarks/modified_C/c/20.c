@@ -1,8 +1,3 @@
-long long int func(long long int a, long long int b)
-{
-    return a + b;
-}
-
 int main()
 {
     long long int z1, z2, z3;
@@ -29,7 +24,7 @@ int main()
         {
             m = x;
         }
-        x = func(x, 1);
+        x += 1;
     }
     // loopend
     // postcheck

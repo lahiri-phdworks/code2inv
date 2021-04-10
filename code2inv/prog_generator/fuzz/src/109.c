@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int a, long long int c, long lon
     {
         fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "a", a, "c", c, "m", m, "j", j, "k", k);
+        assert(0);
     }
 }
 
@@ -47,23 +48,28 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a, long long int temp_
                 "a", temp_a, "c", temp_c, "m", temp_m, "j", temp_j, "k", temp_k);
         fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "a", a, "c", c, "m", m, "j", j, "k", k);
+        assert(0);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, a, c, m, j, k)     \
+#define postcheck(fptr, buff, cond, a, c, m, j, k)  \
     \ 
-{                                                 \
+{                                              \
         \ 
-    int f = postflag;                                  \
+    int f = postflag;                               \
         \ 
-   aflcrash(cond, postflag);                           \
+   aflcrash(cond, postflag);                        \
         \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)                    \
+        {                                           \
+            \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "a",                                                  \
-                a, "c", c, "m", m, "j", j, "k", k); \ 
-} \
+ "a",                                               \
+                a, "c", c, "m", m, "j", j, "k", k); \
+            assert(0);                              \
+        \ 
+}                                          \
     }
 
 int main()
@@ -107,7 +113,7 @@ int main()
         // precheck
         // loopcond : (k < c)
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));

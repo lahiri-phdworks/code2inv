@@ -21,12 +21,12 @@ int main()
       {
         if ((c == n))
         {
-          (c = 1);
+          (c = n * n);
         }
       }
     }
   }
   // post-condition
-  if ((c != n))
-    assert((c >= 0));
+  if ((c == n))
+    assert((c == n * n));
 }

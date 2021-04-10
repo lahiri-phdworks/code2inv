@@ -32,6 +32,7 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int c)
   if (f == 0 && preflag == 1)
   {
     fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "n", n, "c", c);
+    assert(0);
   }
 }
 
@@ -47,21 +48,26 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_n,
             "n", temp_n, "c", temp_c);
     fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
             "n", n, "c", c);
+    assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, n, c)                                  \
+#define postcheck(file_descp, buff, cond, n, c)                               \
   \ 
-{                                                                             \
+{                                                                          \
     \ 
-    int f = postflag;                                                            \
+    int f = postflag;                                                         \
     \ 
-   aflcrash(cond, postflag);                                                     \
+   aflcrash(cond, postflag);                                                  \
     \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "c", c); \ 
-} \
+    if (f == 0 && postflag == 1)                                              \
+    {                                                                         \
+      \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "c", c); \
+      assert(0);                                                              \
+    \ 
+}                                                                        \
   }
 
 int main()
@@ -96,7 +102,7 @@ int main()
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 15000)
+    if (choices > 10000)
     {
       //pre-conditions
       assume((preflag == 0));
@@ -160,6 +166,7 @@ int main()
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
       fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
+      assert(0);
       counter = 0;
     }
 

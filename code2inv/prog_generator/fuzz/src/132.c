@@ -31,8 +31,8 @@ void precheck(FILE *file_descp, char *buff, long long int i, long long int j, lo
     aflcrash(INV(i, j, c, t), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(file_descp, "Pre : %s\n",
-                buff);
+        fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "i", i, "j", j, "c", c, "t", t);
+        assert(0);
     }
 }
 
@@ -52,17 +52,21 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_i, long long int
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, i, j, c, t) \
+#define postcheck(file_descp, buff, cond, i, j, c, t)                                                               \
     \ 
-{                                                \
+{                                                                                                              \
         \ 
-    int f = postflag;                                 \
+    int f = postflag;                                                                                               \
         \ 
-   aflcrash(cond, postflag);                          \
+   aflcrash(cond, postflag);                                                                                        \
         \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s\n", buff); \ 
-}  \
+    if (f == 0 && postflag == 1)                                                                                    \
+        {                                                                                                           \
+            \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "i", i, "j", j, "c", c, "t", t); \
+            assert(0);                                                                                              \
+        \ 
+}                                                                                                          \
     }
 
 int main()
@@ -99,7 +103,7 @@ int main()
         // precheck
         // loopcond : (unknown())
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));

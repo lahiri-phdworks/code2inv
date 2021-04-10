@@ -59,7 +59,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( and
 			( = c_2 c )
 			( = c_2 n_0 )
-			( = c_5 1 )
+			( = c_5 ( * n_0 n_0 ) )
 			( = c_4 c_5 )
 			( = c_4 c! )
 			(= n n_0 )
@@ -88,8 +88,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		)
 		( not
 			( and
-				( not ( = c_2 n_0 ) )
-				( not ( >= c_2 0 ) )
+				( = c_2 n_0 )
+				( not ( = c_2 ( * n_0 n_0 ) ) )
 			)
 		)
 	)

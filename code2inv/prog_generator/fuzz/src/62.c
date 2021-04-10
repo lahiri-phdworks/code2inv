@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int c, long long int n, long lon
   {
     fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "c", c, "n", n, "v1", v1, "v2", v2, "v3", v3);
+    assert(0);
   }
 }
 
@@ -47,23 +48,28 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_c, long long int temp_
             "c", temp_c, "n", temp_n, "v1", v1, "v2", v2, "v3", v3);
     fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "c", c, "n", n, "v1", v1, "v2", v2, "v3", v3);
+    assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, c, n, v1, v2, v3)        \
+#define postcheck(fptr, buff, cond, c, n, v1, v2, v3)     \
   \ 
-{                                                         \
+{                                                      \
     \ 
-    int f = postflag;                                        \
+    int f = postflag;                                     \
     \ 
-   aflcrash(cond, postflag);                                 \
+   aflcrash(cond, postflag);                              \
     \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)                          \
+    {                                                     \
+      \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "c",                                                        \
-                c, "n", n, "v1", v1, "v2", v2, "v3", v3); \ 
-} \
+ "c",                                                     \
+                c, "n", n, "v1", v1, "v2", v2, "v3", v3); \
+      assert(0);                                          \
+    \ 
+}                                                    \
   }
 
 long long int func(long long int a, long long int b)
@@ -113,7 +119,7 @@ int main()
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 15000)
+    if (choices > 10000)
     {
       //pre-conditions
       assume((preflag == 0));

@@ -34,6 +34,8 @@ save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 export EXAMPLE=$example
 export SPEC=$specs
+export TIMEOUT=$afl_timeout
+export EPOCH=$num_epochs
 
 if [ ! -e $save_dir ];
 then
@@ -53,7 +55,7 @@ python -u file_solver.py \
     -attention $att \
     -use_ce $ce \
     -aggressive_check $ac \
-    -encoder_model "Param"\
+    -encoder_model "Param" \
     -decoder_model $model \
     -only_use_z3 1 \
     -num_epochs $num_epochs \

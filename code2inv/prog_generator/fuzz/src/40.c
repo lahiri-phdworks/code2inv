@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int n, long long int c)
   {
     fprintf(fptr, "Pre : %s : %lld, %s : %lld\n",
             "n", n, "c", c);
+    assert(0);
   }
 }
 
@@ -47,6 +48,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_
             "n", temp_n, "c", temp_c);
     fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld\n",
             "n", n, "c", c);
+    assert(0);
   }
 }
 
@@ -59,23 +61,18 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_
     \ 
    aflcrash(cond, postflag);              \
     \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)          \
+    {                                     \
+      \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld\n", \ 
  "n",                                     \
-                n, "c", c); \ 
-}            \
+                n, "c", c);               \
+      assert(0);                          \
+    \ 
+}                                    \
   }
 
-long long int func(long long int a, long long int b)
-{
-  long long int c = 0;
-  __asm__ __volatile__("addl %%ebx, %%eax;"
-                       : "=a"(c)
-                       : "a"(a), "b"(b));
-  return c;
-}
-
-int compare(long long int lhs, long long int rhs)
+long long int func(long long int lhs, long long int rhs)
 {
   return lhs >= rhs ? 1 : 0;
 }
@@ -115,7 +112,7 @@ int main()
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 15000)
+    if (choices > 10000)
     {
       //pre-conditions
       assume((preflag == 0));
@@ -145,16 +142,17 @@ int main()
             {
               if (choices > 1500)
               {
-                if ((compare(c, n)))
+                if ((func(c, n)))
                 {
-                  (c = (func(c, 1)));
+                  __asm__ __volatile__("inc %%eax;"
+                                       : "=a"(c));
                 }
               }
               else
               {
-                if ((compare(c, n)))
+                if ((c == n))
                 {
-                  (c = 1);
+                  (c = pow(n, 2));
                 }
               }
             }
@@ -169,10 +167,10 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((c != n))
+        if ((c == n))
         {
           postcount++;
-          postcheck(fptr, vars, ((c >= 0)), n, c)
+          postcheck(fptr, vars, ((c == pow(n, 2))), n, c)
         }
       }
     }

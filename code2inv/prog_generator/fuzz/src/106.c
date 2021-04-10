@@ -33,6 +33,7 @@ void precheck(FILE *file_descp, char *buff, long long int a, long long int m, lo
     {
         fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "a", a, "m", m, "j", j, "k", k);
+        assert(0);
     }
 }
 
@@ -48,6 +49,7 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_a, long long int
                 "a", temp_a, "m", temp_m, "j", temp_j, "k", temp_k);
         fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "a", a, "m", m, "j", j, "k", k);
+        assert(0);
     }
 }
 
@@ -60,11 +62,15 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_a, long long int
         \ 
    aflcrash(cond, postflag);                          \
         \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)                      \
+        {                                             \
+            \ 
         fprintf(file_descp, "Post :%s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
                  "a",                                 \
-                a, "m", m, "j", j, "k", k); \ 
-}        \
+                a, "m", m, "j", j, "k", k);           \
+            assert(0);                                \
+        \ 
+}                                            \
     }
 
 int main()
@@ -103,7 +109,7 @@ int main()
         // precheck
         // loopcond : (k < 1)
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));

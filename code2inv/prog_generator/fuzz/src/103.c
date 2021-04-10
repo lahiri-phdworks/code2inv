@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int x)
   {
     fprintf(fptr, "Pre : %s : %lld\n",
             "x", x);
+    assert(0);
   }
 }
 
@@ -46,6 +47,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int x)
             "x", temp_x);
     fprintf(fptr, "LoopEnd : %s : %lld\n",
             "x", x);
+    assert(0);
   }
 }
 
@@ -58,11 +60,15 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int x)
     \ 
    aflcrash(cond, postflag);           \
     \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)       \
+    {                                  \
+      \ 
         fprintf(fptr, "Post : %s : %lld\n", \ 
  "x",                                  \
-                x); \ 
-}                 \
+                x);                    \
+      assert(0);                       \
+    \ 
+}                                 \
   }
 
 int main()

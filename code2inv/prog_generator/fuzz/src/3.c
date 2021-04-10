@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int x, long long int y, long lon
    {
       fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n",
               "x", x, "y", y, "z", z);
+      assert(0);
    }
 }
 
@@ -47,6 +48,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int temp_
               "x", temp_x, "y", temp_y, "z", temp_z);
       fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
               "x", x, "y", y, "z", z);
+      assert(0);
    }
 }
 
@@ -59,11 +61,15 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x, long long int temp_
       \ 
    aflcrash(cond, postflag);                 \
       \ 
-    if (f == 0 && postflag == 1) {\ 
+    if (f == 0 && postflag == 1)             \
+      {                                      \
+         \ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
  "x",                                        \
-                x, "y", y, "z", z); \ 
-}       \
+                x, "y", y, "z", z);          \
+         assert(0);                          \
+      \ 
+}                                     \
    }
 
 long long int func(long long int a, long long b)

@@ -32,6 +32,7 @@ void precheck(FILE *file_descp, char *buff, long long int n, long long int x)
   if (f == 0 && preflag == 1)
   {
     fprintf(file_descp, "Pre : %s : %lld, %s : %lld\n", "n", n, "x", x);
+    assert(0);
   }
 }
 
@@ -46,21 +47,26 @@ void loopcheck(FILE *file_descp, char *buff, long long int temp_n, long long int
             "n", temp_n, "x", temp_x);
     fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld\n",
             "n", n, "x", x);
+    assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, n, x)                                  \
+#define postcheck(file_descp, buff, cond, n, x)                               \
   \ 
-{                                                                             \
+{                                                                          \
     \ 
-    int f = postflag;                                                            \
+    int f = postflag;                                                         \
     \ 
-   aflcrash(cond, postflag);                                                     \
+   aflcrash(cond, postflag);                                                  \
     \ 
-    if (f == 0 && postflag == 1) {\ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "x", x); \ 
-} \
+    if (f == 0 && postflag == 1)                                              \
+    {                                                                         \
+      \ 
+        fprintf(file_descp, "Post : %s : %lld, %s : %lld\n", "n", n, "x", x); \
+      assert(0);                                                              \
+    \ 
+}                                                                        \
   }
 
 int main()
@@ -95,7 +101,7 @@ int main()
     // precheck
     // loopcond : (x > 1)
 
-    if (choices > 15000)
+    if (choices > 10000)
     {
       //pre-conditions
       assume((preflag == 0));

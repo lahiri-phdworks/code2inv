@@ -1,10 +1,11 @@
-long long int func(long long int a, long long int b)
+long long int func(long long int lhs, long long int rhs)
 {
-  long long int c = 0;
-  __asm__ __volatile__("addl %%ebx, %%eax;"
-                       : "=c"(c)
-                       : "a"(a), "b"(b));
-  return c;
+  return lhs >= rhs ? 1 : 0;
+}
+
+long long int pow(long long int x, long long int y)
+{
+  return 0;
 }
 
 int main()
@@ -31,14 +32,14 @@ int main()
       {
         if ((c > n))
         {
-          c = func(c, 1);
+          (c = (c + 1));
         }
       }
       else
       {
         if ((c == n))
         {
-          (c = 1);
+          (c = pow(n, 2));
         }
       }
     }
@@ -46,8 +47,8 @@ int main()
   // loopend
   // postcheck
   // post-condition
-  if ((c != n))
+  if ((c == n))
   {
-    assert((c >= 0));
+    assert((c == pow(n, 2)));
   }
 }

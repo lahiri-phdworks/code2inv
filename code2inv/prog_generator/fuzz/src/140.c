@@ -32,6 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int sum, long long int n, long l
     {
         fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
+        assert(0);
     }
 }
 
@@ -47,6 +48,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_sum, long long int tem
                 "sum", temp_sum, "n", temp_n, "i", temp_i, "y", temp_y, "i2", temp_i2);
         fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
                 "sum", sum, "n", n, "i", i, "y", y, "i2", i2);
+        assert(0);
     }
 }
 
@@ -108,7 +110,7 @@ int main()
         // precheck
         // loopcond : (i <= n)
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));
@@ -139,7 +141,7 @@ int main()
                     long long int temp_y = y;
                     long long int temp_i2 = i2;
                     {
-                        (i2 = i * i);
+                        (i2 = pow(i, 2));
                         (i = i + 1);
                         (y = (i * (i + 1) * (2 * i + 1) / 6));
                         sum = sum + i2;
