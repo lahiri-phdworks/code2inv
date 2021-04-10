@@ -1,0 +1,2 @@
+( ( c <= 40 && c >= ( c * 0 ) ) || ( c == ( c - c ) && c == ( 1 - 0 ) ) )
+z3_report time: 617.62 pid: 0 stats: Counter({'ce-I:': 18069, 'ce-F:': 12761, 'boogie_result': 3200, 'ce-T:': 3198, 'actual_z3': 20})

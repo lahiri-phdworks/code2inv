@@ -1,2 +1,2 @@
 ( ( c < ( c * 0 ) || c <= 40 ) )
-z3_report time: 15.37 pid: 0 stats: Counter({'ce-I:': 817, 'boogie_result': 201, 'ce-T:': 199, 'ce-F:': 194, 'actual_z3': 33})
+z3_report time: 13.53 pid: 0 stats: Counter({'ce-I:': 817, 'boogie_result': 201, 'ce-T:': 199, 'ce-F:': 194, 'actual_z3': 33})

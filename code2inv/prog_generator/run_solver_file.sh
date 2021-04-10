@@ -29,7 +29,7 @@ att=1
 ac=0
 ce=1
 afl_timeout=20
-num_epochs=8
+num_epochs=10
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 export EXAMPLE=$example

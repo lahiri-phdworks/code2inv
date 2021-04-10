@@ -1,0 +1,18 @@
+best_root :  ( ( c < c && c == ( c - 40 ) ) || c <= ( c - c ) || c > 0 ) 
+simplify : []
+best_reward : 0
+epoch: 0, average reward: -0.5834, 
+Random: ( c <= 0 ), result_r: -1.6933 
+stats : Counter({'ce-I:': 4713, 'ce-F:': 3857, 'boogie_result': 974, 'ce-T:': 972, 'actual_z3': 19})
+best_root :  ( ( c == ( c + c ) || c == ( 0 - c ) ) ) 
+simplify : []
+best_reward : -1
+epoch: 1, average reward: -0.6050, 
+Random: ( c == ( c - c ) && c >= ( c * 1 ) && ( c >= ( c + c ) || c < 0 ) ), result_r: -1.6117 
+stats : Counter({'ce-I:': 10431, 'ce-F:': 7669, 'boogie_result': 1927, 'ce-T:': 1925, 'actual_z3': 19})
+best_root :  ( ( c >= ( c * c ) && c <= 0 ) || c == ( 40 * 1 ) || c < 40 ) 
+simplify : [Or(And(c >= c*c, c <= 0), c == 40, Not(40 <= c))]
+best_reward : -1
+epoch: 2, average reward: -0.5021, 
+Random: ( c == ( 0 * c ) || c == c || ( c == ( 0 * 0 ) && c == ( 40 + 0 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 16203, 'ce-F:': 11517, 'boogie_result': 2889, 'ce-T:': 2887, 'actual_z3': 19})

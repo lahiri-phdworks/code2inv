@@ -1,2 +1,2 @@
 ( ( y > ( 1 + 0 ) && y <= ( z * 1 ) ) )
-z3_report time: 3.41 pid: 0 stats: Counter({'ce-F:': 132, 'ce-I:': 114, 'boogie_result': 44, 'ce-T:': 43, 'actual_z3': 16})
+z3_report time: 2.92 pid: 0 stats: Counter({'ce-F:': 132, 'ce-I:': 114, 'boogie_result': 44, 'ce-T:': 43, 'actual_z3': 16})

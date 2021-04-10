@@ -1,0 +1,18 @@
+best_root :  ( y >= ( y - i ) ) 
+simplify : [i >= 0]
+best_reward : 0
+epoch: 0, average reward: -0.5997, 
+Random: ( y >= ( y - i ) ), result_r: -1.9220 
+stats : Counter({'ce-F:': 4312, 'ce-T:': 3921, 'ce-I:': 3748, 'boogie_result': 994, 'actual_z3': 22})
+best_root :  ( ( y == ( x + x ) || x >= ( i + y ) ) ) 
+simplify : [Or(y == 2*x, x >= i + y)]
+best_reward : -1
+epoch: 1, average reward: -0.6288, 
+Random: ( ( y > func ( i , y ) && y <= func ( i , i ) ) || ( i < func ( i , i ) && y <= ( x - x ) ) || ( x < ( x - x ) && x == ( x - y ) ) ), result_r: -2.0200 
+stats : Counter({'ce-F:': 9247, 'ce-I:': 8189, 'ce-T:': 7869, 'boogie_result': 1981, 'actual_z3': 24})
+best_root :  ( x >= ( 1 + 1 ) || y <= ( 1 * 1 ) || i >= y ) 
+simplify : [Or(i >= y, x >= 2, y <= 1)]
+best_reward : 0
+epoch: 0, average reward: -0.6114, 
+Random: ( ( x <= 1 && x >= ( i - y ) ) ), result_r: -2.2883 
+stats : Counter({'ce-T:': 6101, 'ce-I:': 5591, 'ce-F:': 1079, 'boogie_result': 992, 'actual_z3': 25})
