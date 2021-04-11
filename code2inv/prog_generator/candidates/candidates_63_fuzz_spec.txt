@@ -1,0 +1,3 @@
+( x <= ( x - x ) or y >= ( 10 * y ) )
+( y > ( x * y ) or y <= ( y + x ) )
+( y > ( x * y ) or y <= ( y + x ) )

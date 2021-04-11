@@ -19,13 +19,13 @@ for file_index in fuzz/src/*.c;
 do
 
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
-    echo $var
-    
+    echo Processing $var file
+    sleep 5
+        
     if [[ -n $var ]]; then 
         (time ./run_solver_file.sh \
         ../../benchmarks/C_instances/c_graph/${var}.c.json \
         ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \
         -o results_${TIMEOUT}_${EPOCH}_folder/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec) 2> RUNNER_TIME_LOGS/time_${var}_fuzz_spec.log
     fi
-    sleep 2 
 done

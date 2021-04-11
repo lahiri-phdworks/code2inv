@@ -3,15 +3,27 @@ set -e
 set -u
 set -o pipefail
 
-echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Z3 Simplify Expression, CE-s Count, Solve-Time" > compile_results.csv
+TIMEOUT=$1
+EPOCHS=$2
+
+mkdir -p CSVs
+rm -rf ../code2inv/prog_generator/results/*_fuzz_spec.txt
+cp -r ../code2inv/prog_generator/results_${TIMEOUT}_${EPOCHS}_folder/* ../code2inv/prog_generator/results/
+../code2inv/prog_generator/results/removeRedundent.sh
+
+echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time" > CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv
 for files in ../code2inv/prog_generator/results/*.txt;
 do
     echo "Processing $files"
-    timeout 10 python3 csvgen.py $files >> compile_results.csv
+    timeout 10 python3 csvgen.py $files >> CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv
 done
 
-correct=`cat compile_results.csv | grep "fuzz_spec" | grep "Passed" | wc -l`
-incorrect=`cat compile_results.csv | grep "fuzz_spec" | grep "Failed" | wc -l`
+correct=`cat CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv | grep "fuzz_spec" | grep "Passed" | wc -l`
+incorrect=`cat CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv | grep "fuzz_spec" | grep "Failed" | wc -l`
 
 echo "Correct : $correct"
 echo "Incorrect : $incorrect"
+
+rm -rf ../code2inv/prog_generator/results/*_fuzz_spec.txt
+rm -rf models
+rm -rf ../code2inv/new.smt2
