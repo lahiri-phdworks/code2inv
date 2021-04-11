@@ -141,7 +141,7 @@ def inv_checker(vc_file: str, inv: str, assignments):
     # COMMENT : Print Fuzz Model
     with open(
         os.path.join(
-            "candidates", f"candidates_{cmd_args.example}_{cmd_args.spec_type}.txt"
+            "candidates", f"candidates_{cmd_args.example}_{cmd_args.spec_type}_{cmd_args.afl_timeout}_{cmd_args.num_epochs}.log"
         ),
         mode="a",
     ) as file:

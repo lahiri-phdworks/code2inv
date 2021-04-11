@@ -8,6 +8,6 @@ for file in candidates/*.txt;
 do
 	count=$(cat $file | uniq | wc -l)
 	items=$(cat $file | uniq | tail -n 1)
-	echo "$file : $count" >> getCandidates.log
+	echo "$file : $count" >> getCandidates.txt
 	echo "Expression : $items"
 done

@@ -1,5 +1,0 @@
-( y <= ( y - y ) or x >= ( 0 * x ) )
-( y <= ( y - y ) or x >= ( 0 * x ) )
-( x > ( y * x ) or x <= ( x + y ) )
-( x > ( y * x ) or x <= ( x + y ) )
-( x > ( y * x ) or x <= ( x + y ) )

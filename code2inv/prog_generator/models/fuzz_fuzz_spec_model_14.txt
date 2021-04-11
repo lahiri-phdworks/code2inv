@@ -1,4 +1,0 @@
-[{'x': '1', 'y': '0'}, None, None]
-[None, None, {'x': '4', 'y': '0'}]
-[None, None, {'x': '4', 'y': '0'}]
-[None, None, None]

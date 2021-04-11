@@ -1,7 +1,0 @@
-[None, ({'c': '0'}, {'c': '1'}), None]
-[{'c': '0'}, None, None]
-[{'c': '0'}, None, None]
-[{'c': '0'}, None, None]
-[{'c': '0'}, None, None]
-[{'c': '0'}, None, None]
-[None, None, None]

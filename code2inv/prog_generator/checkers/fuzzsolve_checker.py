@@ -187,7 +187,7 @@ def inv_solver(vc_file: str, inv: str):
 
     # COMMENT : Print Fuzz Model
     with open(
-        os.path.join("models", f"fuzz_{cmd_args.spec_type}_model_{cmd_args.example}.txt"), mode="a"
+        os.path.join("models", f"{cmd_args.spec_type}_model_{cmd_args.example}_{cmd_args.afl_timeout}_{cmd_args.num_epochs}.log"), mode="a"
     ) as file:
         file.write(f"{res}\n")
 
