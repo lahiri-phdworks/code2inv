@@ -200,3 +200,9 @@ int main()
     fclose(fptr);
     return 0;
 }
+
+/**
+ * True : ((n > 2) && (i <= n) && (out == i))
+ * False : ((n > 2) && (i <= n) && (out == (i * (i + 1)) / 2 ))
+ * Complete Invariant : (n > 2) && (i <= n) && (isprime(n) && out == i || !isprime(n) && out == i*(i+1)/2)
+*/

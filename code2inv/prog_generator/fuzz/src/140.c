@@ -155,7 +155,7 @@ int main()
                         i = i + 1;
                         // i2 = pow(i, 2);
                         // y = (i * (i + 1) * (2 * i + 1)) / (6);
-                        sum = foo(sum, i);
+                        sum = sum + i * i;
                     }
                     // ( ( i <= n ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) )
                     loopcount++;
@@ -168,7 +168,7 @@ int main()
                 assume((postflag == 0));
                 // post-condition
                 postcount++;
-                postcheck(fptr, vars, ((sum == ((n * (n + 1) * (2 * n + 1)) / (6)))), sum, n, i, y, i2)
+                postcheck(fptr, vars, (sum == ((n * (n + 1) * (2 * n + 1)) / 6)), sum, n, i, y, i2)
             }
         }
 

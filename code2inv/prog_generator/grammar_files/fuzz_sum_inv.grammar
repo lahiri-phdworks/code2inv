@@ -1,7 +1,7 @@
 S ::= p
 p ::= ( C && P )
 C ::= ( var == ( expr ) / ( const ) )
-expr ::= ( term ) | ( term * term ) | ( term * term * term )
-term ::= ( const * var + const ) | ( 1 )
+expr ::= ( term * term * term )
+term ::= ( const * var + const )
 P ::= ( var >= const ) | ( var <= const )
 const ::= 1 | 2 | 6
