@@ -45,7 +45,6 @@ mkdir -p tests/results
 log_file=$save_dir/log-sample-${single_sample}-model-${model}-${ctx}-r-${inv_reward_type}-s2v-${s2v_level}-bsize-${rl_batchsize}-att-${att}-ac-${ac}-ce-${ce}.txt
 
 # COMMENT : Z3 used for this flag
-sleep 1
 echo Running with $8 -- $9
 
 python -u file_solver.py \
