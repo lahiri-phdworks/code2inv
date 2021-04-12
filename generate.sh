@@ -14,5 +14,5 @@ do
     fi
 done
 
-chmod 755 /production/benchmarks/C_instances/c_smt2/*
-chmod 755 /production/benchmarks/C_instances/c_graph/*
+chmod 777 /production/benchmarks/C_instances/c_smt2/*
+chmod 777 /production/benchmarks/C_instances/c_graph/*

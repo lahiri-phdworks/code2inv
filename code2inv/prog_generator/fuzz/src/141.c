@@ -141,7 +141,6 @@ int main()
             // loop-check program
             assume((loopflag + postflag < 2));
             assume(INV(i, n, out));
-            // ( ( n > 2 ) && ( i <= n ) && ( ( ( isprime ( n ) ) && ( out == i ) ) || ( (! ( isprime ( n ) ) && ( out == ( i * ( i + 1 ) ) / 2 ) ) ) ) )
             // Loop Condition
             if ((i < n))
             {
