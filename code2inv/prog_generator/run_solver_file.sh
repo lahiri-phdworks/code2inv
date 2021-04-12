@@ -28,8 +28,8 @@ model=AssertAwareTreeLSTM
 att=1
 ac=0
 ce=1
-afl_timeout=25
-num_epochs=8
+afl_timeout=75
+num_epochs=100
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 export EXAMPLE=$example

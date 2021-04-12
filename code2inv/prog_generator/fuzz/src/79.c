@@ -152,7 +152,7 @@ int main()
             {
               __asm__ __volatile__("inc %%eax;"
                                    : "=a"(i)
-                                   : "i"(i));
+                                   : "a"(i));
             }
           }
 
