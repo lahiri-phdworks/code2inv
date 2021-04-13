@@ -18,3 +18,17 @@ best_reward : -1
 epoch: 5, average reward: -0.5931, 
 Random: ( q > ( d * 1 ) ), result_r: -2.1670 
 stats : Counter({'ce-I:': 31916, 'ce-T:': 29557, 'ce-F:': 11811, 'boogie_result': 5924, 'actual_z3': 17})
+best_root :  ( ( r > ( d * 0 ) && q < ( d + 0 ) ) || d > ( n - 0 ) || q > ( n - 1 ) ) 
+simplify : [Or(And(Not(r <= 0), Not(d <= q)),
+    Not(q <= -1 + n),
+    Not(d <= n))]
+best_reward : -1
+epoch: 6, average reward: -0.5783, 
+Random: ( ( r == 1 || q >= ( 1 + 0 ) ) && q > ( 1 - q ) && q > ( d + 0 ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 38818, 'ce-T:': 34953, 'ce-F:': 13783, 'boogie_result': 6910, 'actual_z3': 18})
+best_root :  ( n == ( r + q ) && ( d > ( 1 - q ) || q >= 0 ) && ( d <= ( 1 + d ) || d > ( d - 1 ) ) ) 
+simplify : [Or(Not(d <= 1 + -1*q), q >= 0)]
+best_reward : -1
+epoch: 7, average reward: -0.5160, 
+Random: ( q >= ( 0 - 1 ) ), result_r: -1.7750 
+stats : Counter({'ce-I:': 45734, 'ce-T:': 40881, 'ce-F:': 15759, 'boogie_result': 7898, 'actual_z3': 18})
