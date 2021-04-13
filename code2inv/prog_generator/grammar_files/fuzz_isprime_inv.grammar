@@ -1,0 +1,6 @@
+S ::= p
+p ::= ( ( n > 2 ) && ( i <= n ) )
+expr1 ::= ( var op const ) | ( var op var ) | ( const op const ) | terms
+terms ::= var | const
+cmp ::= < | > | == | <= | >=
+op ::= + | * 

@@ -4,11 +4,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <math.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 100
 
 #define aflcrash(cond, flag) \
     if (!cond)               \
@@ -54,28 +53,20 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_sum, long long int tem
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, sum, n, i, y, i2)   \
+#define postcheck(fptr, buff, cond, sum, n, i, y, i2)      \
     \ 
-{                                                  \
+{                                                     \
         \ 
-    int f = postflag;                                   \
+    int f = postflag;                                      \
         \ 
-   aflcrash(cond, postflag);                            \
+   aflcrash(cond, postflag);                               \
         \ 
-    if (f == 0 && postflag == 1)                        \
-        {                                               \
-            \ 
+    if (f == 0 && postflag == 1) {\ 
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "sum",                                                 \
-                sum, "n", n, "i", i, "y", y, "i2", i2); \
-            assert(0);                                  \
-        \ 
-}                                              \
+ "sum",                                                    \
+                sum, "n", n, "i", i, "y", y, "i2", i2); \ 
+} \
     }
-long long int foo(long long int sum, long long int i)
-{
-    return sum + pow(i, 2);
-}
 
 int main()
 {
@@ -104,10 +95,10 @@ int main()
 
         long long int choices = buf[0];
         n = buf[1];
-        i = buf[3];
-        y = 0;
-        i2 = 0;
-        sum = buf[5];
+        i = buf[2];
+        y = buf[5];
+        i2 = buf[3];
+        sum = buf[4];
 
         char vars[100];
         memset(vars, '\0', sizeof(vars));
@@ -118,7 +109,7 @@ int main()
         // precheck
         // loopcond : (i <= n)
 
-        if (choices > 15000)
+        if (choices > 10000)
         {
             //pre-conditions
             assume((preflag == 0));
@@ -152,12 +143,14 @@ int main()
                     long long int temp_y = y;
                     long long int temp_i2 = i2;
                     {
-                        i = i + 1;
-                        // i2 = pow(i, 2);
-                        // y = (i * (i + 1) * (2 * i + 1)) / (6);
-                        sum = sum + i * i;
+                        __asm__ __volatile__("inc %%eax;"
+                                             : "=a"(i)
+                                             : "a"(i));
+                        (i2 = pow(i, 2));
+                        (y = (i * (i + 1) * (2 * i + 1)) / (6));
+                        (sum = sum + i2);
                     }
-                    // ( ( i <= n ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) )
+
                     loopcount++;
                     loopcheck(fptr, vars, temp_sum, temp_n, temp_i, temp_y, temp_i2, sum, n, i, y, i2);
                 }
@@ -168,7 +161,7 @@ int main()
                 assume((postflag == 0));
                 // post-condition
                 postcount++;
-                postcheck(fptr, vars, (sum == ((n * (n + 1) * (2 * n + 1)) / 6)), sum, n, i, y, i2)
+                postcheck(fptr, vars, ((sum == ((n * (n + 1) * (2 * n + 1)) / (6)))), sum, n, i, y, i2)
             }
         }
 

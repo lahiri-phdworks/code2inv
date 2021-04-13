@@ -1,0 +1,51 @@
+Timeout : 5, EPOCH : 8
+Correct : 28 + 7 
+Incorrect : 24
+Timeout : 5, EPOCH : 10
+Correct : 29 + 9 
+Incorrect : 23
+Timeout : 5, EPOCH : 12
+Correct : 29 + 9 
+Incorrect : 25
+Timeout : 5, EPOCH : 15
+Correct : 27 + 9 
+Incorrect : 27
+
+Timeout : 10, EPOCH : 8
+Correct : 28 + 9 
+Incorrect : 26
+Timeout : 10, EPOCH : 10
+Correct : 30 + 6
+Incorrect : 24
+Timeout : 10, EPOCH : 12
+Correct : 24 + 7
+Incorrect : 29
+Timeout : 10, EPOCH : 15
+Correct : 26 + 9
+Incorrect : 27
+
+Timeout : 20, EPOCH : 8
+Correct : 26 + 8
+Incorrect : 26
+Timeout : 20, EPOCH : 10
+Correct : 23 + 11
+Incorrect : 30
+Timeout : 20, EPOCH : 12
+Correct : 30 + 4
+Incorrect : 23
+Timeout : 20, EPOCH : 15
+Correct : 29 + 6
+Incorrect : 25
+
+Timeout : 30, EPOCH : 8
+Correct : 27 + 10
+Incorrect : 25
+Timeout : 30, EPOCH : 10
+Correct : 27 + 6
+Incorrect : 26
+Timeout : 30, EPOCH : 12
+Correct : 25 + 7
+Incorrect : 28
+Timeout : 30, EPOCH : 15
+Correct : 26 + 6
+Incorrect : 22

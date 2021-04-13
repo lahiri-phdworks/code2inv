@@ -4,7 +4,7 @@ C1 ::= p | ( p && p )
 S2 ::= ( C2 ) | ( C2 && C2 ) | ( C2 && C2 && C2 )
 C2 ::= p | ( p "||" p )
 p ::= var cmp expr
-expr ::= func ( terms , terms ) | expr1
+expr ::= foo ( var , const ) | expr1
 expr1 ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | terms
 terms ::= var | const
 cmp ::= < | > | == | <= | >=

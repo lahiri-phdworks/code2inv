@@ -31,4 +31,4 @@ fi
 (time ./run_solver_file.sh \
     ../../benchmarks/C_instances/c_graph/${var}.c.json \
     ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/$SPEC \
-    -o results/inv_result_${var}_${SPEC}.txt ${var} fuzz_spec) 2> RUNNER_TIME_LOGS/time_${var}_${SPEC}.log
+    -o results_runner/inv_result_${var}_${SPEC}.txt ${var} fuzz_spec) 2> RUNNER_TIME_LOGS/time_${var}_${SPEC}.log

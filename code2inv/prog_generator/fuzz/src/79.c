@@ -150,9 +150,7 @@ int main()
           {
             if ((i < y))
             {
-              __asm__ __volatile__("inc %%eax;"
-                                   : "=a"(i)
-                                   : "i"(i));
+              i = i + 1;
             }
           }
 
