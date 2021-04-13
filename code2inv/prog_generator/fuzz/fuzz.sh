@@ -47,6 +47,6 @@ if [[ ! -d $testDir ]]; then
 fi
 
 > models.txt
-$AFL -i $testDir -o $outputDir -n 4 --exit_upon_crash --mutations_per_run 10 -P -- $buildDir/$RUNNER
+$AFL -i $testDir -o $outputDir --exit_upon_crash --mutations_per_run 10 -P -- $buildDir/$RUNNER
 
 # COMMENT : We can use --exit_upon_crash (exits on first crash) & --linux_perf_bts_edge 
