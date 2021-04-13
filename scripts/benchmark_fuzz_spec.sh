@@ -11,7 +11,7 @@ export AFL=$(which honggfuzz)
 
 must_pass=(11 12 133 13 16 17 18 19 38 40 41 98 99 9 15 41 65 70 77 83 116 28 68 10 88 63)
 
-for TIMEOUT in 20;
+for TIMEOUT in 10 20;
 do
     for EPOCH in 8;
     do
