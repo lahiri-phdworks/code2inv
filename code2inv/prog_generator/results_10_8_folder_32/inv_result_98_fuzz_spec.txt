@@ -1,2 +1,0 @@
-( i == ( y + i ) && ( y > i || x < i ) && ( i == ( x + 0 ) || j > ( 1 - i ) ) )
-z3_report time: 2.72 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-T:': 1})

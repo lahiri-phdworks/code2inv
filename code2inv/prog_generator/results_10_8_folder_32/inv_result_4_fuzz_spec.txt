@@ -1,2 +1,0 @@
-( ( x <= ( 1 * 500 ) && x <= 500 ) || ( y == 10000 && x <= x ) || ( x > x && z > 10000 ) )
-z3_report time: 20.53 pid: 0 stats: Counter({'ce-I:': 329, 'ce-F:': 254, 'ce-T:': 119, 'boogie_result': 89, 'actual_z3': 12})

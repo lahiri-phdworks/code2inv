@@ -1,2 +1,0 @@
-( j >= ( i - j ) || ( n == ( 2 * -10000 ) && k <= ( n + j ) ) || n == ( 2 * 1 ) )
-z3_report time: 264.27 pid: 0 stats: Counter({'ce-T:': 22075, 'ce-I:': 13431, 'ce-F:': 9970, 'boogie_result': 3819, 'actual_z3': 14})

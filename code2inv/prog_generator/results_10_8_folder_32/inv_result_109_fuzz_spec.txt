@@ -1,2 +1,0 @@
-( m > 0 && c > 1 && k > ( 1 + j ) )
-z3_report time: 6.66 pid: 0 stats: Counter({'ce-T:': 9, 'boogie_result': 5, 'actual_z3': 5, 'ce-F:': 1})

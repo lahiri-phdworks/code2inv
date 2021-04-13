@@ -1,2 +1,0 @@
-( m < -10000 || ( j > j && a >= ( -10000 - 1 ) ) || ( k >= 10000 && j >= ( a * m ) ) )
-z3_report time: 8.11 pid: 0 stats: Counter({'ce-I:': 10, 'boogie_result': 6, 'actual_z3': 6, 'ce-F:': 3})

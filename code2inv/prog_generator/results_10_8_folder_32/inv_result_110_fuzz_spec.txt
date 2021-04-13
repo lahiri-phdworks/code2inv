@@ -1,2 +1,0 @@
-( sn == ( 0 * 0 ) && ( sn > 0 || n == ( 0 - 1 ) ) )
-z3_report time: 2.63 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-F:': 1})

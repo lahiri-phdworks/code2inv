@@ -1,2 +1,0 @@
-( ( z < y || c > 36 ) && y <= ( 127 * 127 ) )
-z3_report time: 1.33 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

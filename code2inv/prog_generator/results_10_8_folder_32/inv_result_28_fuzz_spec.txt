@@ -1,2 +1,0 @@
-( n < ( x * x ) )
-z3_report time: 2.70 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-T:': 1})

@@ -1,69 +1,0 @@
-OP_FILE results_10_8_folder_32/inv_result_4_fuzz_spec.txt
-Running with 10 -- 8
-{'S': [['S1'], ['S2']], 'S1': [['(', 'C1', ')'], ['(', 'C1', '||', 'C1', ')'], ['(', 'C1', '||', 'C1', '||', 'C1', ')']], 'C1': [['p'], ['(', 'p', '&&', 'p', ')']], 'S2': [['(', 'C2', ')'], ['(', 'C2', '&&', 'C2', ')'], ['(', 'C2', '&&', 'C2', '&&', 'C2', ')']], 'C2': [['p'], ['(', 'p', '||', 'p', ')']], 'p': [['var', 'cmp', 'expr']], 'expr': [['(', 'var', 'op', 'var', ')'], ['(', 'var', 'op', 'const', ')'], ['(', 'const', 'op', 'var', ')'], ['(', 'const', 'op', 'const', ')'], ['var'], ['const']], 'cmp': [['<'], ['>'], ['=='], ['<='], ['>=']], 'op': [['+'], ['-'], ['*']]}
-MAX CHILD 7
-VAR FORMAT ssa
-====== begin of s2v configuration ======
-| msg_average = 0
-======   end of s2v configuration ======
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Parameter inited
-  0%|          | 0/100 [00:00<?, ?it/s]/usr/local/lib/python3.8/dist-packages/torch/nn/functional.py:1709: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
-  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
-/usr/local/lib/python3.8/dist-packages/torch/nn/functional.py:1698: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
-  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
-avg reward so far : -0.69167:   0%|          | 0/100 [00:08<?, ?it/s]avg reward so far : -0.69167:   1%|          | 1/100 [00:08<13:29,  8.18s/it]avg reward so far : -0.69667:   1%|          | 1/100 [00:08<13:29,  8.18s/it]avg reward so far : -0.69667:   2%|▏         | 2/100 [00:08<06:00,  3.68s/it]avg reward so far : -0.60344:   2%|▏         | 2/100 [00:10<06:00,  3.68s/it]avg reward so far : -0.60344:   3%|▎         | 3/100 [00:10<04:40,  2.89s/it]avg reward so far : -0.48515:   3%|▎         | 3/100 [00:12<04:40,  2.89s/it]avg reward so far : -0.48515:   4%|▍         | 4/100 [00:12<04:13,  2.64s/it]avg reward so far : -0.58457:   4%|▍         | 4/100 [00:13<04:13,  2.64s/it]avg reward so far : -0.58457:   5%|▌         | 5/100 [00:13<02:52,  1.81s/it]avg reward so far : -0.55919:   5%|▌         | 5/100 [00:16<02:52,  1.81s/it]avg reward so far : -0.55919:   6%|▌         | 6/100 [00:16<03:38,  2.32s/it]avg reward so far : -0.59164:   6%|▌         | 6/100 [00:16<03:38,  2.32s/it]avg reward so far : -0.59164:   7%|▋         | 7/100 [00:16<02:37,  1.70s/it]avg reward so far : -0.65650:   7%|▋         | 7/100 [00:17<02:37,  1.70s/it]avg reward so far : -0.65650:   8%|▊         | 8/100 [00:17<02:01,  1.32s/it]                                                                             found a solution for 0 , sol: ( ( x <= ( 1 * 500 ) && x <= 500 ) || ( y == 10000 && x <= x ) || ( x > x && z > 10000 ) )
-avg reward so far : -0.65650:   8%|▊         | 8/100 [00:20<02:01,  1.32s/it]                                                                             z3_report time: 20.53 pid: 0 stats: Counter({'ce-I:': 329, 'ce-F:': 254, 'ce-T:': 119, 'boogie_result': 89, 'actual_z3': 12})
-avg reward so far : -0.65650:   8%|▊         | 8/100 [00:20<02:01,  1.32s/it]                                                                             Writing logs to results_10_8_folder_32/inv_result_4_fuzz_spec.txt
-avg reward so far : -0.65650:   8%|▊         | 8/100 [00:20<02:01,  1.32s/it]avg reward so far : -0.65650:   8%|▊         | 8/100 [00:20<03:55,  2.56s/it]
