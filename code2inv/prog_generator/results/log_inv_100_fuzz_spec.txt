@@ -1,0 +1,14 @@
+best_root :  ( x <= n ) 
+simplify : [x <= n]
+best_reward : 0
+epoch: 0, average reward: -0.5175, 
+Random: ( x < ( n * x ) ), result_r: -1.9873 
+stats : Counter({'ce-F:': 4085, 'ce-T:': 2984, 'ce-I:': 1987, 'boogie_result': 999, 'actual_z3': 10})
+best_root :  ( y < ( 1 * x ) || ( n > ( 0 * 0 ) && n == ( n * n ) ) || ( y >= ( x - y ) && y <= ( 1 - n ) ) ) 
+simplify : [Or(Not(x <= y),
+    And(Not(n <= 0), n == n*n),
+    And(2*y >= x, y <= 1 + -1*n))]
+best_reward : 0
+epoch: 1, average reward: -0.5600, 
+Random: ( ( x == 10000 && x <= ( n - x ) ) || x == 1 || x >= ( 0 * 0 ) ), result_r: -1.8567 
+stats : Counter({'ce-F:': 9418, 'ce-T:': 5978, 'ce-I:': 3983, 'boogie_result': 1997, 'actual_z3': 11})

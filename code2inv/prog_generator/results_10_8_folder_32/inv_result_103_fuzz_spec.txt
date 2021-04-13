@@ -1,0 +1,2 @@
+( ( x < ( 1 - 1 ) || x == ( x - 0 ) ) && ( x == ( x * 0 ) || x > ( 1 * 1 ) ) && x >= ( x + 100 ) )
+z3_report time: 2.68 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-I:': 1})

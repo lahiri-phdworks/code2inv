@@ -1,0 +1,69 @@
+OP_FILE results_10_8_folder_32/inv_result_83_fuzz_spec.txt
+Running with 10 -- 8
+{'S': [['S1'], ['S2']], 'S1': [['(', 'C1', ')'], ['(', 'C1', '||', 'C1', ')'], ['(', 'C1', '||', 'C1', '||', 'C1', ')']], 'C1': [['p'], ['(', 'p', '&&', 'p', ')']], 'S2': [['(', 'C2', ')'], ['(', 'C2', '&&', 'C2', ')'], ['(', 'C2', '&&', 'C2', '&&', 'C2', ')']], 'C2': [['p'], ['(', 'p', '||', 'p', ')']], 'p': [['var', 'cmp', 'expr']], 'expr': [['(', 'var', 'op', 'var', ')'], ['(', 'var', 'op', 'const', ')'], ['(', 'const', 'op', 'var', ')'], ['(', 'const', 'op', 'const', ')'], ['var'], ['const']], 'cmp': [['<'], ['>'], ['=='], ['<='], ['>=']], 'op': [['+'], ['-'], ['*']]}
+MAX CHILD 7
+VAR FORMAT ssa
+====== begin of s2v configuration ======
+| msg_average = 0
+======   end of s2v configuration ======
+a Linear inited
+a GRUCell inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Parameter inited
+a Parameter inited
+a Linear inited
+a GRUCell inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Parameter inited
+a Parameter inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Parameter inited
+a Linear inited
+a GRUCell inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Linear inited
+a Parameter inited
+a Parameter inited
+a Parameter inited
+  0%|          | 0/100 [00:00<?, ?it/s]/usr/local/lib/python3.8/dist-packages/torch/nn/functional.py:1709: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/usr/local/lib/python3.8/dist-packages/torch/nn/functional.py:1698: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
+  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
+avg reward so far : -0.02500:   0%|          | 0/100 [00:13<?, ?it/s]avg reward so far : -0.02500:   1%|          | 1/100 [00:13<22:52, 13.86s/it]avg reward so far : -0.14192:   1%|          | 1/100 [00:14<22:52, 13.86s/it]avg reward so far : -0.14192:   2%|▏         | 2/100 [00:14<10:09,  6.22s/it]                                                                             found a solution for 0 , sol: ( x > ( x * -5000 ) )
+avg reward so far : -0.14192:   2%|▏         | 2/100 [00:17<10:09,  6.22s/it]                                                                             z3_report time: 17.56 pid: 0 stats: Counter({'ce-F:': 65, 'ce-T:': 45, 'boogie_result': 28, 'ce-I:': 27, 'actual_z3': 12})
+avg reward so far : -0.14192:   2%|▏         | 2/100 [00:17<10:09,  6.22s/it]                                                                             Writing logs to results_10_8_folder_32/inv_result_83_fuzz_spec.txt
+avg reward so far : -0.14192:   2%|▏         | 2/100 [00:17<10:09,  6.22s/it]avg reward so far : -0.14192:   2%|▏         | 2/100 [00:17<14:18,  8.76s/it]

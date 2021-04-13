@@ -1,0 +1,2 @@
+( c > ( 1 + c ) || ( n < ( c - n ) && n < 1 ) )
+z3_report time: 2.72 pid: 0 stats: Counter({'boogie_result': 2, 'actual_z3': 2, 'ce-T:': 1})

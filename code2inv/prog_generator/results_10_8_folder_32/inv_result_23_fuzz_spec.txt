@@ -1,0 +1,2 @@
+( ( j > 2 || j < j ) && ( j > ( j + 1 ) || i >= ( j - j ) ) && ( i == ( i - 20 ) || i <= ( 20 - j ) ) )
+z3_report time: 1.39 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

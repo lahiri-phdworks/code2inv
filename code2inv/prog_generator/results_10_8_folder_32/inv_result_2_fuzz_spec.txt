@@ -1,0 +1,2 @@
+( y < 1000 )
+z3_report time: 28.19 pid: 0 stats: Counter({'ce-I:': 1049, 'boogie_result': 146, 'ce-T:': 144, 'ce-F:': 139, 'actual_z3': 15})

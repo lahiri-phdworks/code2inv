@@ -1,0 +1,2 @@
+( x <= ( x * 1 ) && ( n > ( x - 1 ) || x <= ( 1 * n ) ) && y == ( x - n ) )
+z3_report time: 189.37 pid: 0 stats: Counter({'ce-F:': 13348, 'ce-T:': 7943, 'ce-I:': 5299, 'boogie_result': 2652, 'actual_z3': 13})

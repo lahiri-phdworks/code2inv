@@ -1,0 +1,2 @@
+( ( out < n || i > 2 ) && n <= ( 5 * 5 ) )
+z3_report time: 1.33 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

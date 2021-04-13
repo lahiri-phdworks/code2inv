@@ -1,0 +1,2 @@
+( ( q > 0 || n > ( 0 * q ) ) && ( r < ( d + d ) || r >= ( 0 + q ) ) && ( n < ( q * q ) || n < ( q - 0 ) ) )
+z3_report time: 10.42 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

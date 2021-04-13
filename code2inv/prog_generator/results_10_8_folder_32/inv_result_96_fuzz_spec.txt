@@ -1,0 +1,2 @@
+( y <= ( 1 + j ) || ( i < ( 0 + 1 ) && j == ( 0 + 1 ) ) )
+z3_report time: 5.41 pid: 0 stats: Counter({'boogie_result': 4, 'actual_z3': 4, 'ce-I:': 4, 'ce-T:': 2})

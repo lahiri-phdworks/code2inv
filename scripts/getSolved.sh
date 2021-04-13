@@ -8,7 +8,7 @@ EPOCHS=$2
 
 mkdir -p CSVs
 rm -rf ../code2inv/prog_generator/results/*_fuzz_spec.txt
-cp -r $HOME/DUMP/results_${TIMEOUT}_${EPOCHS}_folder/* ../code2inv/prog_generator/results/
+cp -r ../code2inv/prog_generator/results_${TIMEOUT}_${EPOCHS}_folder_32/* ../code2inv/prog_generator/results/
 
 echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time" > CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv
 for files in ../code2inv/prog_generator/results/*.txt;

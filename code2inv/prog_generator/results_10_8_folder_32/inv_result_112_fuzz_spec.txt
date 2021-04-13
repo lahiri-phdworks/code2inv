@@ -1,0 +1,2 @@
+( ( n < ( 0 + i ) && sn < sn ) || ( n < 0 && sn == ( 0 * 1 ) ) || ( n < 0 && i == ( i * 0 ) ) )
+z3_report time: 3.97 pid: 0 stats: Counter({'boogie_result': 3, 'actual_z3': 3, 'ce-F:': 2, 'ce-T:': 1})

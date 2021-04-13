@@ -1,0 +1,2 @@
+( y > ( y * x ) && ( x < ( 10 + x ) || y >= ( y + 20 ) ) )
+z3_report time: 1.34 pid: 0 stats: Counter({'boogie_result': 1, 'actual_z3': 1})

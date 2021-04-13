@@ -1,0 +1,2 @@
+( x == 1 && ( x <= ( 100 * x ) || x < ( 0 - 1 ) ) )
+z3_report time: 5.44 pid: 0 stats: Counter({'boogie_result': 4, 'actual_z3': 4, 'ce-I:': 3, 'ce-T:': 2})

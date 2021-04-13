@@ -1,0 +1,2 @@
+( x > ( x * -5000 ) )
+z3_report time: 17.56 pid: 0 stats: Counter({'ce-F:': 65, 'ce-T:': 45, 'boogie_result': 28, 'ce-I:': 27, 'actual_z3': 12})

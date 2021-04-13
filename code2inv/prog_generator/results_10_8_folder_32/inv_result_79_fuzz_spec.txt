@@ -1,0 +1,2 @@
+( x > ( 0 + 1 ) )
+z3_report time: 6.68 pid: 0 stats: Counter({'boogie_result': 5, 'actual_z3': 5, 'ce-F:': 4, 'ce-T:': 3, 'ce-I:': 1})
