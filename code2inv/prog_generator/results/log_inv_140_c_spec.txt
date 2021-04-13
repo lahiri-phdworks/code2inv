@@ -1,94 +1,48 @@
-best_root :  ( ( sum >= 500000 || n >= ( 2 - 1 ) ) ) 
-simplify : [Or(sum >= 500000, n >= 1)]
+best_root :  ( ( n > 2 || n >= ( 0 + 1 ) ) ) 
+simplify : [Or(Not(n <= 2), n >= 1)]
 best_reward : 0
-epoch: 0, average reward: -0.5706, 
-Random: ( ( i > ( i + n ) || i <= ( y - 1 ) ) && ( i2 > ( y - 1 ) ) ), result_r: -2.0690 
-stats : Counter({'ce-I:': 8930, 'ce-T:': 6071, 'ce-F:': 1763, 'boogie_result': 997, 'actual_z3': 19})
-best_root :  ( ( i2 >= ( 6 + n ) || i <= ( 1 - i2 ) ) ) 
-simplify : [Or(i2 >= 6 + n, i <= 1 + -1*i2)]
+epoch: 0, average reward: -0.5306, 
+Random: ( ( i < ( i + 1 ) || n < ( 6 - 2 ) ) && ( n < ( 6 - sum ) || sum > 5000 ) && ( n > i || n >= ( 1 - 5000 ) ) ), result_r: -2.3178 
+stats : Counter({'ce-I:': 10336, 'ce-T:': 4953, 'ce-F:': 1923, 'boogie_result': 998, 'actual_z3': 21})
+best_root :  ( ( sum == ( sum - sum ) ) && ( sum == ( sum + sum ) ) && ( i == ( sum - sum ) || n > ( 5000 + 5000 ) ) ) 
+simplify : [Or(Not(n <= 10000), i == 0)]
 best_reward : -1
-epoch: 1, average reward: -0.5167, 
-Random: ( ( y == ( 1 - 2 ) || i >= 0 ) && ( i < 2 || i2 < ( i - i2 ) ) && ( i >= ( 6 + i2 ) ) ), result_r: -2.0608 
-stats : Counter({'ce-I:': 19124, 'ce-T:': 13064, 'ce-F:': 3761, 'boogie_result': 1996, 'actual_z3': 21})
-best_root :  ( ( sum == ( 500000 + 6 ) || i <= ( 1 + i2 ) ) && ( i2 <= ( 1 + sum ) ) ) 
-simplify : [Or(sum == 500006, i <= 1 + i2), i2 <= 1 + sum]
+epoch: 1, average reward: -0.5266, 
+Random: ( ( sum >= ( 6 - sum ) ) && ( n >= ( 5000 + 2 ) || sum < ( 6 - 2 ) ) ), result_r: -2.0954 
+stats : Counter({'ce-I:': 23284, 'ce-T:': 9933, 'ce-F:': 3915, 'boogie_result': 1994, 'actual_z3': 21})
+best_root :  ( ( sum == ( sum + i ) ) && ( n < ( 5000 - 6 ) || n == ( sum - sum ) ) && ( i == ( sum + i ) ) ) 
+simplify : [Or(Not(4994 <= n), n == 0)]
 best_reward : -1
-epoch: 2, average reward: -0.5261, 
-Random: ( ( sum >= ( 6 + i2 ) ) && ( i2 <= 6 || i < ( n - n ) ) && ( i2 <= ( 1 + n ) ) ), result_r: -2.0550 
-stats : Counter({'ce-I:': 32453, 'ce-T:': 20008, 'ce-F:': 5745, 'boogie_result': 2988, 'actual_z3': 23})
-best_root :  ( ( i2 == ( i - 1 ) ) && ( i2 < 500000 ) ) 
-simplify : [Not(500001 <= i)]
+epoch: 2, average reward: -0.5143, 
+Random: ( ( n > ( i - 2 ) || i > ( 5000 + 2 ) ) && ( sum == ( sum + i ) ) ), result_r: -1.6054 
+stats : Counter({'ce-I:': 36180, 'ce-T:': 14893, 'ce-F:': 5899, 'boogie_result': 2986, 'actual_z3': 21})
+best_root :  ( ( sum == ( sum + i ) ) && ( sum == ( sum + i ) || i < ( 1 + 5000 ) ) && ( sum <= ( 1 - 1 ) ) ) 
+simplify : [sum <= 0]
 best_reward : -1
-epoch: 3, average reward: -0.4848, 
-Random: ( ( sum > ( 2 + 6 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 46327, 'ce-T:': 26945, 'ce-F:': 7727, 'boogie_result': 3979, 'actual_z3': 23})
-best_root :  ( ( i2 >= ( i - 1 ) || sum == ( i - 1 ) ) && ( i < ( n + i ) || sum > ( 500000 + 6 ) ) && ( y <= ( 1 + n ) || sum < ( n + i ) ) ) 
-simplify : [Or(i2 >= -1 + i, sum == -1 + i),
- Or(Not(n <= 0), Not(sum <= 500006)),
- Or(y <= 1 + n, Not(n + i <= sum))]
+epoch: 3, average reward: -0.5283, 
+Random: ( ( sum == ( sum + sum ) ) ), result_r: -1.6054 
+stats : Counter({'ce-I:': 49050, 'ce-T:': 19843, 'ce-F:': 7879, 'boogie_result': 3976, 'actual_z3': 21})
+best_root :  ( ( i >= ( sum + sum ) ) && ( sum == ( sum + sum ) ) && ( n == ( sum + sum ) || i == ( sum + sum ) ) ) 
+simplify : [i >= 0, Or(i == 0, n == 0)]
 best_reward : -1
-epoch: 4, average reward: -0.4801, 
-Random: ( ( y >= ( 6 + i ) || i >= ( y - 1 ) ) ), result_r: -2.0900 
-stats : Counter({'ce-I:': 60508, 'ce-T:': 33896, 'ce-F:': 9713, 'boogie_result': 4972, 'actual_z3': 25})
-best_root :  ( ( sum == ( i - 1 ) ) && ( n < ( n + i ) ) && ( sum > ( 2 + 0 ) || sum == ( i - 1 ) ) ) 
-simplify : [Not(i <= 0)]
+epoch: 4, average reward: -0.5466, 
+Random: ( ( n == ( i + sum ) ) && ( n >= ( sum + sum ) ) && ( n >= ( sum + i ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 61712, 'ce-T:': 24713, 'ce-F:': 9827, 'boogie_result': 4950, 'actual_z3': 21})
+best_root :  ( ( i == sum ) && ( n > ( n - 2 ) ) ) 
+simplify : []
 best_reward : -1
-epoch: 5, average reward: -0.5502, 
-Random: ( ( i2 == ( sum - 2 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 77081, 'ce-T:': 40812, 'ce-F:': 11689, 'boogie_result': 5960, 'actual_z3': 26})
-best_root :  ( ( i <= ( 1 + i2 ) ) && ( n > ( 0 + 0 ) || i == ( i2 + 0 ) ) ) 
-simplify : [i <= 1 + i2, Or(Not(n <= 0), i == i2)]
+epoch: 5, average reward: -0.3776, 
+Random: ( ( i == ( sum + sum ) ) && ( n == ( sum + sum ) || i <= ( 5000 - 5000 ) ) ), result_r: -1.6054 
+stats : Counter({'ce-I:': 74543, 'ce-T:': 29648, 'ce-F:': 11801, 'boogie_result': 5937, 'actual_z3': 21})
+best_root :  ( ( n == ( sum + sum ) || n > ( sum + sum ) ) && ( n > ( 5000 - 5000 ) ) && ( i == ( sum - sum ) ) ) 
+simplify : [Or(n == 2*sum, Not(n <= 2*sum)), Not(n <= 0)]
 best_reward : -1
-epoch: 6, average reward: -0.5121, 
-Random: ( ( i2 >= ( i2 - 1 ) || y < ( n + n ) ) && ( y < ( n + n ) ) && ( y == ( 6 + 0 ) || i2 == ( i2 - 1 ) ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 93996, 'ce-T:': 47777, 'ce-F:': 13679, 'boogie_result': 6955, 'actual_z3': 26})
-best_root :  ( ( i2 <= ( 1 + i2 ) ) && ( i <= ( 1 + i2 ) || i <= ( 1 + sum ) ) && ( i < ( n + i ) ) ) 
-simplify : [Or(i <= 1 + i2, i <= 1 + sum), Not(n <= 0)]
-best_reward : 0
-epoch: 7, average reward: -0.5288, 
-Random: ( ( sum <= ( 1 + n ) ) && ( y < ( n + n ) || y < ( n + sum ) ) && ( i < ( n + n ) || i == ( 500000 + 500000 ) ) ), result_r: -1.6000 
-stats : Counter({'ce-I:': 112283, 'ce-T:': 54693, 'ce-F:': 15990, 'boogie_result': 7943, 'actual_z3': 30})
-best_root :  ( ( i == ( i - i2 ) ) && ( n < 500000 || sum == ( sum - 1 ) ) && ( i2 == ( i - 1 ) ) ) 
-simplify : [Not(500000 <= n)]
+epoch: 6, average reward: -0.4114, 
+Random: ( ( i >= ( sum + sum ) || n > ( sum + 0 ) ) ), result_r: -1.7562 
+stats : Counter({'ce-I:': 87270, 'ce-T:': 34543, 'ce-F:': 13759, 'boogie_result': 6916, 'actual_z3': 21})
+best_root :  ( ( i == ( sum + sum ) ) && ( n >= ( sum - sum ) ) && ( sum == ( sum + sum ) ) ) 
+simplify : [n >= 0]
 best_reward : -1
-epoch: 8, average reward: -0.4521, 
-Random: ( ( n < ( 500000 + 500000 ) || n > ( 500000 + 2 ) ) && ( n == ( sum - 1 ) ) ), result_r: -2.1833 
-stats : Counter({'ce-I:': 132243, 'ce-T:': 61679, 'ce-F:': 18984, 'boogie_result': 8941, 'actual_z3': 30})
-best_root :  ( ( sum == ( i - 1 ) ) && ( i2 < ( n + i ) || i2 >= ( y - 1 ) ) ) 
-simplify : [Or(Not(n + i <= i2), i2 >= -1 + y)]
-best_reward : -1
-epoch: 9, average reward: -0.5355, 
-Random: ( ( n >= ( 6 + i ) || sum < ( n + i ) ) && ( i2 <= ( 1 + y ) || i2 < 500000 ) && ( i2 < 500000 || i >= ( 6 + i ) ) ), result_r: -1.7913 
-stats : Counter({'ce-I:': 152103, 'ce-T:': 68630, 'ce-F:': 21963, 'boogie_result': 9934, 'actual_z3': 30})
-best_root :  ( ( n >= ( i2 + 6 ) || i2 <= ( 1 + i ) ) && ( n >= sum ) && ( i <= ( 1 + y ) || y > ( 0 + 500000 ) ) ) 
-simplify : [Or(i2 <= 1 + i, n >= 6 + i2),
- n >= sum,
- Or(i <= 1 + y, Not(y <= 500000))]
-best_reward : -1
-epoch: 10, average reward: -0.5115, 
-Random: ( ( i2 == sum || sum <= ( 1 + y ) ) && ( y <= ( 6 + y ) ) && ( y <= ( 1 + n ) || i < ( 1 + 6 ) ) ), result_r: -1.8812 
-stats : Counter({'ce-I:': 171963, 'ce-T:': 75581, 'ce-F:': 24942, 'boogie_result': 10927, 'actual_z3': 30})
-best_root :  ( ( sum <= ( 1 + n ) ) && ( n > i2 ) && ( i <= ( 1 + i2 ) ) ) 
-simplify : [sum <= 1 + n, Not(n <= i2), i <= 1 + i2]
-best_reward : -1
-epoch: 11, average reward: -0.5104, 
-Random: ( ( n > ( sum + 6 ) ) && ( i2 <= ( 0 + n ) ) ), result_r: -1.7400 
-stats : Counter({'ce-I:': 191923, 'ce-T:': 82567, 'ce-F:': 27936, 'boogie_result': 11925, 'actual_z3': 30})
-best_root :  ( ( i <= ( y + n ) ) && ( sum == i2 ) && ( n == i2 || n >= sum ) ) 
-simplify : [i <= y + n, Or(n == i2, n >= i2)]
-best_reward : -1
-epoch: 12, average reward: -0.5247, 
-Random: ( ( y == sum ) && ( y <= ( 0 + y ) || y == y ) && ( y < ( n - n ) ) ), result_r: -2.0200 
-stats : Counter({'ce-I:': 211783, 'ce-T:': 89518, 'ce-F:': 30915, 'boogie_result': 12918, 'actual_z3': 30})
-best_root :  ( ( sum == ( i - 1 ) || i <= ( 0 + y ) ) && ( n >= i2 ) && ( y <= ( y + 500000 ) || y < ( n - 0 ) ) ) 
-simplify : [Or(sum == -1 + i, i <= y), n >= i2]
-best_reward : -1
-epoch: 13, average reward: -0.5265, 
-Random: ( ( i < ( n - 2 ) ) && ( y > ( 0 + 6 ) || n >= sum ) && ( i <= ( 0 + y ) || y >= ( 6 + i ) ) ), result_r: -1.7400 
-stats : Counter({'ce-I:': 231443, 'ce-T:': 96399, 'ce-F:': 33864, 'boogie_result': 13901, 'actual_z3': 30})
-best_root :  ( ( sum == ( sum - i2 ) ) && ( sum == ( i - 1 ) ) && ( sum >= i2 || i2 <= ( 0 + y ) ) ) 
-simplify : [Or(0 <= y, i >= 1)]
-best_reward : -1
-epoch: 14, average reward: -0.4741, 
-Random: ( ( sum == ( sum - i2 ) ) ), result_r: -1.7423 
-stats : Counter({'ce-I:': 251163, 'ce-T:': 103301, 'ce-F:': 36822, 'boogie_result': 14887, 'actual_z3': 30})
+epoch: 7, average reward: -0.2573, 
+Random: ( ( sum <= ( 5000 - 5000 ) || n > ( sum + sum ) ) && ( n > ( sum + sum ) || i == ( sum + sum ) ) ), result_r: -1.7185 
+stats : Counter({'ce-I:': 100153, 'ce-T:': 39498, 'ce-F:': 15741, 'boogie_result': 7907, 'actual_z3': 21})

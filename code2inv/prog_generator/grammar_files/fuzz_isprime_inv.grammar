@@ -1,5 +1,5 @@
 S ::= p
-p ::= ( ( n > 2 ) && ( i <= n ) )
+p ::= ( n > 2 ) && ( i <= n ) && ( isprime ( n ) && ( out == 1 * i ) "||" ! isprime( n ) && ( out == 2 * i ) )
 expr1 ::= ( var op const ) | ( var op var ) | ( const op const ) | terms
 terms ::= var | const
 cmp ::= < | > | == | <= | >=

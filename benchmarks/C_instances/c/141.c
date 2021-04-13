@@ -31,15 +31,15 @@ int main()
         }
         else
         {
-            out = out + i;
+            out = out + 2;
         }
         // temp_n, temp_i, temp_out
     }
     // loopend
     // postcheck
     // post-condition
-    if ((i % 2 == 0) && (i == 5))
+    if ((i % 2 == 0) || (i == 5))
     {
-        assert(((i % 2 == 0) && (out > (n * n) / 2) || (i == 5) && (out == 5)));
+        assert(((i % 2 == 0) && (out == 2 * n)) || ((i == 5) && (out == 5)));
     }
 }

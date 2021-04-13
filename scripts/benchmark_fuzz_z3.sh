@@ -9,13 +9,13 @@ for file_index in fuzz/src/*.c;
 do 
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
     echo $var
-    if [[ -n $var ]] && [[ $var -ne 32 ]]; then 
+    if [[ -n $var ]]; then 
         ./run_solver_file.sh \
         ../../benchmarks/C_instances/c_graph/${var}.c.json \
         ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/c_spec \
         -o results/inv_result_${var}_c_spec.txt ${var} c_spec
         
-        sleep 2 
+        sleep 1
 
         ./run_solver_file.sh \
         ../../benchmarks/C_instances/c_graph/${var}.c.json \

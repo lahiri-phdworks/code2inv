@@ -7,7 +7,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 128
 
 #define aflcrash(cond, flag) \
     if (!cond)               \
@@ -107,15 +107,15 @@ int main()
     for (;;)
     {
         size_t len;
-        const int16_t *buf;
+        const int8_t *buf;
 
         HF_ITER(&buf, &len);
         counter++;
 
         int choices = buf[0];
-        n = buf[1];
-        i = buf[2];
-        out = buf[3];
+        n = (buf[1] % 100);
+        i = (buf[2] % 100);
+        out = (buf[3] % 100);
 
         char vars[100];
         memset(vars, '\0', sizeof(vars));
@@ -161,11 +161,11 @@ int main()
                         }
                         else
                         {
-                            out = out + i;
+                            out = out + 2;
                         }
                         // temp_n, temp_i, temp_out
                     }
-                    // (n > 2) && (i <= n) && (isprime(n) && out = i || !isprime(n) && out = i*(i+1)/2)
+                    // (n > 2) && (i <= n) && (isprime(n) && out = i || !isprime(n) && out = 2 * i)
                     loopcount++;
                     loopcheck(fptr, vars, temp_n, temp_i, temp_out, i, n, out);
                 }
@@ -175,10 +175,10 @@ int main()
                 // post-check program
                 assume((postflag == 0));
                 // post-condition
-                if ((i % 2 == 0) && (i == 5))
+                if ((i % 2 == 0) || (i == 5))
                 {
                     postcount++;
-                    postcheck(fptr, vars, (((i % 2 == 0) && (out > (n * n) / 2) || (i == 5) && (out == 5))), i, n, out)
+                    postcheck(fptr, vars, ((i % 2 == 0) && (out == 2 * n)) || ((i == 5) && (out == 5)), i, n, out)
                 }
             }
         }

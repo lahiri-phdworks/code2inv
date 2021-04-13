@@ -1,2 +1,0 @@
-( x >= ( x - x ) || x == 10000 )
-z3_report time: 1.40 pid: 0 stats: Counter({'boogie_result': 18, 'actual_z3': 18, 'ce-T:': 17, 'ce-F:': 11, 'ce-I:': 10})
