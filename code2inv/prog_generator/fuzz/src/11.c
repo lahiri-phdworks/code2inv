@@ -82,9 +82,6 @@ int main()
     FILE *fptr = fopen("models.txt", "w");
     setvbuf(fptr, buff, _IOLBF, 1024);
 
-    FILE *countf = fopen("counters.txt", "w");
-    setvbuf(countf, buff, _IOLBF, 1024);
-
     for (;;)
     {
         size_t len;
@@ -156,9 +153,6 @@ int main()
             }
         }
 
-        fprintf(countf, "%s : %lld, %s : %lld, %s : %lld\n",
-                "pre", precount, "loop", loopcount, "post", postcount);
-
         if (preflag + loopflag + postflag == 0 && counter == 100)
         {
             fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
@@ -173,7 +167,6 @@ int main()
         }
     }
 
-    fclose(countf);
     fclose(fptr);
     return 0;
 }
