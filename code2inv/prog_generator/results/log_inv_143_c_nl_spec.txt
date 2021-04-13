@@ -12,3 +12,9 @@ best_reward : -1
 epoch: 4, average reward: -0.5389, 
 Random: ( ( n <= ( 1 + 1 ) || q == ( 1 + r ) ) && q > n ), result_r: -1.9220 
 stats : Counter({'ce-I:': 25056, 'ce-T:': 24657, 'ce-F:': 9851, 'boogie_result': 4944, 'actual_z3': 17})
+best_root :  ( r == ( n + q ) || ( d > ( 0 + 0 ) && q >= ( 1 + 1 ) ) || ( q >= ( 1 * 0 ) && q > q ) ) 
+simplify : [Or(r == n + q, And(Not(d <= 0), q >= 2))]
+best_reward : -1
+epoch: 5, average reward: -0.5931, 
+Random: ( q > ( d * 1 ) ), result_r: -2.1670 
+stats : Counter({'ce-I:': 31916, 'ce-T:': 29557, 'ce-F:': 11811, 'boogie_result': 5924, 'actual_z3': 17})
