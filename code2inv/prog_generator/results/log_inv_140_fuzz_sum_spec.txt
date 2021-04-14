@@ -1,0 +1,372 @@
+best_root :  ( ( i <= i ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : 0
+epoch: 0, average reward: -1.4258, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 1 ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 2998, 'ce-I:': 2960, 'ce-F:': 1922, 'boogie_result': 1002, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 1, average reward: -1.3068, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 1 ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 6007, 'ce-I:': 5969, 'ce-F:': 3928, 'boogie_result': 2005, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 2, average reward: -1.2463, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 9016, 'ce-I:': 8978, 'ce-F:': 5934, 'boogie_result': 3008, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 3, average reward: -1.2293, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 12025, 'ce-I:': 11987, 'ce-F:': 7940, 'boogie_result': 4011, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 4, average reward: -1.2340, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 15034, 'ce-I:': 14996, 'ce-F:': 9946, 'boogie_result': 5014, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( i + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(i))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 5, average reward: -1.2327, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 18043, 'ce-I:': 18005, 'ce-F:': 11952, 'boogie_result': 6017, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 6, average reward: -1.2298, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 21052, 'ce-I:': 21014, 'ce-F:': 13958, 'boogie_result': 7020, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 7, average reward: -1.2324, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 24061, 'ce-I:': 24023, 'ce-F:': 15964, 'boogie_result': 8023, 'actual_z3': 9})
+best_root :  ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [n >= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 8, average reward: -1.2250, 
+Random: ( ( n >= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ), result_r: -1.6933 
+stats : Counter({'ce-T:': 27070, 'ce-I:': 27032, 'ce-F:': 17970, 'boogie_result': 9026, 'actual_z3': 9})
+best_root :  ( ( sum <= sum ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : 0
+epoch: 0, average reward: -1.5316, 
+Random: ( ( n <= i ) && ( n == ( sum * ( sum + 1 ) * ( 2 * i + 1 )) / 2 ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 3927, 'ce-T:': 2996, 'boogie_result': 1002, 'ce-F:': 952, 'actual_z3': 8})
+best_root :  ( ( i <= n ) && ( i == ( i * ( sum + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [i <= n,
+ ToReal(i) ==
+ 1/6*ToReal(i)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 1, average reward: -1.4327, 
+Random: ( ( sum <= i ) && ( i == ( sum * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 7939, 'ce-T:': 6005, 'boogie_result': 2005, 'ce-F:': 1955, 'actual_z3': 8})
+best_root :  ( ( sum <= sum ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : 0
+epoch: 0, average reward: -1.5045, 
+Random: ( ( n <= n ) && ( n == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 1 ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 4832, 'ce-T:': 2996, 'boogie_result': 1002, 'ce-F:': 952, 'actual_z3': 9})
+best_root :  ( ( sum <= n ) && ( sum == ( i * ( sum + 1 ) * ( 2 * sum + 1 )) / 6 ) ) 
+simplify : [sum <= n,
+ ToReal(sum) ==
+ 1/6*ToReal(i)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 1, average reward: -1.3683, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( sum + 1 ) * ( 2 * sum + 1 )) / 1 ) ), result_r: -1.8240 
+stats : Counter({'ce-I:': 9847, 'ce-T:': 6005, 'boogie_result': 2005, 'ce-F:': 1955, 'actual_z3': 9})
+best_root :  ( ( n <= n ) && ( n == ( ( ( 2 * i + 6 ) * ( 1 * sum + 6 ) * ( 2 * n + 1 ) ) ) / ( 1 ) ) ) 
+simplify : [ToReal(n) ==
+ (6 + ToReal(sum))*(1 + 2*ToReal(n))*(6 + 2*ToReal(i))]
+best_reward : -2
+epoch: 0, average reward: -2.5000, 
+Random: ( ( n <= sum ) && ( i == ( ( ( 1 * n + 2 ) * ( 6 * n + 6 ) * ( 6 * n + 6 ) ) ) / ( 2 ) ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 5989, 'boogie_result': 1002, 'actual_z3': 7})
+best_root :  ( ( n <= sum ) && ( i == ( ( ( 6 * n + 6 ) * ( 6 * sum + 6 ) * ( 6 * sum + 6 ) ) ) / ( 6 ) ) ) 
+simplify : [n <= sum,
+ ToReal(i) ==
+ 1/6*
+ (6 + 6*ToReal(n))*
+ (6 + 6*ToReal(sum))*
+ (6 + 6*ToReal(sum))]
+best_reward : -2
+epoch: 1, average reward: -2.5000, 
+Random: ( ( i <= i ) && ( sum == ( ( ( 2 * i + 6 ) * ( 6 * n + 6 ) * ( 6 * n + 6 ) ) ) / ( 6 ) ) ), result_r: -3.0000 
+stats : Counter({'ce-T:': 12007, 'boogie_result': 2005, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : 0
+epoch: 0, average reward: -1.5316, 
+Random: ( ( n <= i ) && ( n == ( sum * ( sum + 1 ) * ( 2 * i + 1 )) / 2 ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 3927, 'ce-T:': 2996, 'boogie_result': 1002, 'ce-F:': 952, 'actual_z3': 8})
+best_root :  ( ( i <= n ) && ( i == ( i * ( sum + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [i <= n,
+ ToReal(i) ==
+ 1/6*ToReal(i)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 1, average reward: -1.4327, 
+Random: ( ( sum <= i ) && ( i == ( sum * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 7939, 'ce-T:': 6005, 'boogie_result': 2005, 'ce-F:': 1955, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( sum + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 2, average reward: -1.4193, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 11951, 'ce-T:': 9014, 'boogie_result': 3008, 'ce-F:': 2958, 'actual_z3': 8})
+best_root :  ( ( sum <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [sum <= i,
+ ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 3, average reward: -1.4118, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 15963, 'ce-T:': 12023, 'boogie_result': 4011, 'ce-F:': 3961, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(sum) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 4, average reward: -1.4069, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 19975, 'ce-T:': 15032, 'boogie_result': 5014, 'ce-F:': 4964, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 5, average reward: -1.4084, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 23987, 'ce-T:': 18041, 'boogie_result': 6017, 'ce-F:': 5967, 'actual_z3': 8})
+best_root :  ( ( i <= n ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [i <= n,
+ ToReal(i) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 6, average reward: -1.4074, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 27999, 'ce-T:': 21050, 'boogie_result': 7020, 'ce-F:': 6970, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 7, average reward: -1.4091, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 32011, 'ce-T:': 24059, 'boogie_result': 8023, 'ce-F:': 7973, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 8, average reward: -1.4074, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 36023, 'ce-T:': 27068, 'boogie_result': 9026, 'ce-F:': 8976, 'actual_z3': 8})
+best_root :  ( ( i <= n ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [i <= n,
+ ToReal(i) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 9, average reward: -1.4056, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 40035, 'ce-T:': 30077, 'boogie_result': 10029, 'ce-F:': 9979, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * n + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(n))]
+best_reward : -1
+epoch: 10, average reward: -1.4072, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 44047, 'ce-T:': 33086, 'boogie_result': 11032, 'ce-F:': 10982, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 11, average reward: -1.4104, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 48059, 'ce-T:': 36095, 'boogie_result': 12035, 'ce-F:': 11985, 'actual_z3': 8})
+best_root :  ( ( i <= n ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) ) 
+simplify : [i <= n,
+ ToReal(i) ==
+ 1/6*ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 12, average reward: -1.4072, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 52071, 'ce-T:': 39104, 'boogie_result': 13038, 'ce-F:': 12988, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 13, average reward: -1.4090, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 56083, 'ce-T:': 42113, 'boogie_result': 14041, 'ce-F:': 13991, 'actual_z3': 8})
+best_root :  ( ( sum <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ) 
+simplify : [sum <= i,
+ ToReal(i) == ToReal(i)*(1 + ToReal(i))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 14, average reward: -1.4077, 
+Random: ( ( i <= i ) && ( i == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 1 ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 60095, 'ce-T:': 45122, 'boogie_result': 15044, 'ce-F:': 14994, 'actual_z3': 8})
+best_root :  ( ( i <= i ) && ( i == ( i * ( 1 * sum + 1 ) * ( 2 * i + 1 ) ) / ( 1 ) ) ) 
+simplify : [ToReal(i) == ToReal(i)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : 0
+epoch: 0, average reward: -1.6174, 
+Random: ( ( sum <= i ) && ( sum == ( sum * ( 6 * sum + 2 ) * ( 6 * n + 2 ) ) / ( 6 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 2999, 'ce-T:': 1995, 'boogie_result': 1002, 'ce-F:': 997, 'actual_z3': 6})
+best_root :  ( ( i <= sum ) && ( sum == ( sum * ( 6 * n + 2 ) * ( 6 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [i <= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(2 + 6*ToReal(n))*(2 + 6*ToReal(sum))]
+best_reward : -1
+epoch: 1, average reward: -1.5269, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 6 * sum + 2 ) * ( 6 * sum + 2 ) ) / ( 6 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 6008, 'ce-T:': 4001, 'boogie_result': 2005, 'ce-F:': 2000, 'actual_z3': 6})
+best_root :  ( ( sum <= sum ) && ( i == ( sum * ( 6 * sum + 2 ) * ( 6 * sum + 6 ) ) / ( 2 ) ) ) 
+simplify : [ToReal(i) ==
+ 1/2*ToReal(sum)*(2 + 6*ToReal(sum))*(6 + 6*ToReal(sum))]
+best_reward : -1
+epoch: 2, average reward: -1.5215, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 2 * sum + 6 ) * ( 2 * sum + 2 ) ) / ( 6 ) ) ), result_r: -2.0200 
+stats : Counter({'ce-I:': 9017, 'ce-T:': 6007, 'boogie_result': 3008, 'ce-F:': 3003, 'actual_z3': 6})
+best_root :  ( ( i <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [i <= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 3, average reward: -1.4129, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ), result_r: -1.6525 
+stats : Counter({'ce-I:': 12838, 'ce-T:': 8013, 'boogie_result': 4011, 'ce-F:': 4006, 'actual_z3': 7})
+best_root :  ( ( sum <= n ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [sum <= n,
+ ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 4, average reward: -1.2213, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ), result_r: -1.6525 
+stats : Counter({'ce-I:': 16850, 'ce-T:': 10019, 'boogie_result': 5014, 'ce-F:': 5009, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 5, average reward: -1.2106, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ), result_r: -1.6525 
+stats : Counter({'ce-I:': 20862, 'ce-T:': 12025, 'boogie_result': 6017, 'ce-F:': 6012, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 6, average reward: -1.2162, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ), result_r: -1.6525 
+stats : Counter({'ce-I:': 24874, 'ce-T:': 14031, 'boogie_result': 7020, 'ce-F:': 7015, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 7, average reward: -1.3574, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 28886, 'ce-T:': 16037, 'boogie_result': 8023, 'ce-F:': 8018, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 8, average reward: -1.4037, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 32898, 'ce-T:': 18043, 'boogie_result': 9026, 'ce-F:': 9021, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ) 
+simplify : [ToReal(sum) ==
+ ToReal(sum)*(1 + ToReal(sum))*(1 + ToReal(sum))]
+best_reward : -1
+epoch: 9, average reward: -1.4035, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 36910, 'ce-T:': 20049, 'boogie_result': 10029, 'ce-F:': 10024, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 2 ) * ( 1 * sum + 1 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 10, average reward: -1.4030, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 40922, 'ce-T:': 22055, 'boogie_result': 11032, 'ce-F:': 11027, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( i == ( sum * ( 1 * sum + 2 ) * ( 1 * sum + 1 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(i) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 11, average reward: -1.4046, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 44934, 'ce-T:': 24061, 'boogie_result': 12035, 'ce-F:': 12030, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ) 
+simplify : [ToReal(sum) ==
+ ToReal(sum)*(1 + ToReal(sum))*(1 + ToReal(sum))]
+best_reward : -1
+epoch: 12, average reward: -1.4041, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 48946, 'ce-T:': 26067, 'boogie_result': 13038, 'ce-F:': 13033, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 2 * sum + 1 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 13, average reward: -1.4034, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 52958, 'ce-T:': 28073, 'boogie_result': 14041, 'ce-F:': 14036, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 2 * sum + 1 ) ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(sum))*(1 + 2*ToReal(sum))]
+best_reward : -1
+epoch: 14, average reward: -1.4035, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 1 * sum + 1 ) * ( 1 * sum + 1 ) ) / ( 1 ) ) ), result_r: -1.8975 
+stats : Counter({'ce-I:': 56970, 'ce-T:': 30079, 'boogie_result': 15044, 'ce-F:': 15039, 'actual_z3': 7})
+best_root :  ( ( sum <= i ) && ( sum == ( i * ( 6 * n + 1 ) * ( 1 * sum + 1 ) ) / ( 2 ) ) ) 
+simplify : [sum <= i,
+ ToReal(sum) ==
+ 1/2*ToReal(i)*(1 + ToReal(sum))*(1 + 6*ToReal(n))]
+best_reward : -1
+epoch: 0, average reward: -2.0089, 
+Random: ( ( sum <= i ) && ( sum == ( n * ( 6 * sum + 2 ) * ( 2 * n + 6 ) ) / ( 2 ) ) ), result_r: -2.5100 
+stats : Counter({'ce-I:': 3996, 'ce-T:': 1995, 'boogie_result': 1002, 'actual_z3': 6})
+best_root :  ( ( i <= sum ) && ( sum == ( i * ( 6 * n + 2 ) * ( 6 * sum + 2 ) ) / ( 6 ) ) ) 
+simplify : [i <= sum,
+ ToReal(sum) ==
+ 1/6*ToReal(i)*(2 + 6*ToReal(n))*(2 + 6*ToReal(sum))]
+best_reward : -2
+epoch: 1, average reward: -2.0100, 
+Random: ( ( sum <= sum ) && ( sum == ( sum * ( 2 * n + 6 ) * ( 2 * i + 2 ) ) / ( 6 ) ) ), result_r: -2.5100 
+stats : Counter({'ce-I:': 8008, 'ce-T:': 4001, 'boogie_result': 2005, 'actual_z3': 6})
+best_root :  ( ( n <= sum ) && ( i == ( sum * ( 1 * n + 6 ) * ( 1 * i + 1 ) ) / ( 1 ) ) ) 
+simplify : [n <= sum,
+ ToReal(i) == ToReal(sum)*(1 + ToReal(i))*(6 + ToReal(n))]
+best_reward : -2
+epoch: 2, average reward: -2.0100, 
+Random: ( ( sum <= sum ) && ( n == ( sum * ( 2 * i + 6 ) * ( 2 * n + 2 ) ) / ( 6 ) ) ), result_r: -2.5100 
+stats : Counter({'ce-I:': 12020, 'ce-T:': 6007, 'boogie_result': 3008, 'actual_z3': 6})
+best_root :  ( ( n <= sum ) && ( n == ( ( 1 * n + 1 ) * ( 1 * n + 6 ) * n ) / ( 6 ) ) ) 
+simplify : [n <= sum,
+ ToReal(n) == 1/6*ToReal(n)*(1 + ToReal(n))*(6 + ToReal(n))]
+best_reward : 0
+epoch: 0, average reward: -1.4947, 
+Random: ( ( sum <= sum ) && ( i == ( ( 2 * i + 6 ) * sum * ( 1 * sum + 6 ) ) / ( 6 ) ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 2999, 'ce-I:': 2394, 'boogie_result': 1002, 'ce-F:': 997, 'actual_z3': 7})
+best_root :  ( ( sum <= sum ) && ( sum == ( ( 1 * i + 1 ) * ( 1 * sum + 2 ) * sum ) / ( 6 ) ) ) 
+simplify : [ToReal(sum) ==
+ 1/6*ToReal(sum)*(1 + ToReal(i))*(2 + ToReal(sum))]
+best_reward : -1
+epoch: 1, average reward: -1.4166, 
+Random: ( ( sum <= sum ) && ( sum == ( ( 2 * i + 1 ) * i * ( 1 * sum + 6 ) ) / ( 6 ) ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 6008, 'ce-I:': 5403, 'boogie_result': 2005, 'ce-F:': 2000, 'actual_z3': 7})
+best_root :  ( ( i <= sum ) && ( i == ( ( 1 * sum + 1 ) * i * ( 2 * i + 1 ) ) / ( 6 ) ) ) 
+simplify : [i <= sum,
+ ToReal(i) ==
+ 1/6*ToReal(i)*(1 + ToReal(sum))*(1 + 2*ToReal(i))]
+best_reward : -1
+epoch: 2, average reward: -1.3836, 
+Random: ( ( sum <= i ) && ( sum == ( sum * ( 2 * i + 1 ) * i ) / ( 6 ) ) ), result_r: -1.8567 
+stats : Counter({'ce-T:': 9017, 'ce-I:': 8412, 'boogie_result': 3008, 'ce-F:': 3003, 'actual_z3': 7})

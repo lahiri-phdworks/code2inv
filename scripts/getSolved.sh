@@ -4,21 +4,21 @@ set -u
 set -o pipefail
 
 TIMEOUT=$1
-EPOCHS=$2
+EPOCH=$2
 
 mkdir -p CSVs
-rm -rf ../code2inv/prog_generator/results/*_fuzz_spec.txt
-cp -r ../code2inv/prog_generator/results_${TIMEOUT}_${EPOCHS}_folder_32/* ../code2inv/prog_generator/results/
+# rm -rf ../code2inv/prog_generator/results/*_c_spec.txt
+cp -r $HOME/RQ4_RESULTS_2/results_${TIMEOUT}_${EPOCH}_folder/* ../code2inv/prog_generator/results/
 
-echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time" > CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv
+echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time" > CSVs/compile_results_${TIMEOUT}_${EPOCH}.csv
 for files in ../code2inv/prog_generator/results/*.txt;
 do
     echo "Processing $files"
-    timeout 10 python3 csvgen.py $files >> CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv
+    timeout 10 python3 csvgen.py $files >> CSVs/compile_results_${TIMEOUT}_${EPOCH}.csv
 done
 
-correct=`cat CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv | grep "fuzz_spec" | grep "Passed" | wc -l`
-incorrect=`cat CSVs/compile_results_${TIMEOUT}_${EPOCHS}.csv | grep "fuzz_spec" | grep "Failed" | wc -l`
+correct=`cat CSVs/compile_results_${TIMEOUT}_${EPOCH}.csv | grep "Passed" | grep "Yes" | wc -l`
+incorrect=`cat CSVs/compile_results_${TIMEOUT}_${EPOCH}.csv | grep "Failed" | grep "Yes" | wc -l`
 
 echo "Correct : $correct"
 echo "Incorrect : $incorrect"

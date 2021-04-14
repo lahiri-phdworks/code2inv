@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 32
+#define UNROLL_LIMIT 128
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -20,9 +20,9 @@
 
 #define INV(i, x, y, z1, z2, z3) PHI
 
-double counter = 0;
+long long unsigned int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long unsigned int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *file_descp, char *buff, long long int i, long long int x, long long int y, long long int z1, long long int z2, long long int z3)

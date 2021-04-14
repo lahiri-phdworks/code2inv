@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 32
+#define UNROLL_LIMIT 64
 
 #define aflcrash(cond, flag) \
     if (!cond)               \
@@ -20,9 +20,9 @@
 
 #define INV(sum, n, i, y, i2) PHI
 
-double counter = 0;
+long long unsigned int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long unsigned int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int sum, long long int n, long long int i, long long int y, long long int i2)
@@ -74,7 +74,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_sum, long long int tem
     }
 long long int foo(long long int sum, long long int i)
 {
-    return sum + pow(i, 2);
+    return sum + (long long int)pow((double)i, (double)2);
 }
 
 int main()
@@ -155,7 +155,7 @@ int main()
                         i = i + 1;
                         // i2 = pow(i, 2);
                         // y = (i * (i + 1) * (2 * i + 1)) / (6);
-                        sum = sum + i * i;
+                        sum = foo(sum, i);
                     }
                     // ( ( i <= n ) && ( sum == ( i * ( i + 1 ) * ( 2 * i + 1 )) / 6 ) )
                     loopcount++;

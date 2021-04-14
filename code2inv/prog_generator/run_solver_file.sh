@@ -32,10 +32,10 @@ afl_timeout=20
 num_epochs=8
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
-export EXAMPLE=$example
-export SPEC=$specs
-export TIMEOUT=$afl_timeout
-export EPOCH=$num_epochs
+# export EXAMPLE=$example
+# export SPEC=$specs
+# export TIMEOUT=$afl_timeout
+# export EPOCH=$num_epochs
 
 if [ ! -e $save_dir ];
 then

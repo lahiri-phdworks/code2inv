@@ -5,7 +5,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplifie
 105, fuzz_spec, ( ( x <= 0 && x == ( x - 0 ) ) || ( x <= ( 1 + n ) && n >= x ) ), Passed, Yes, "[Or(x <= 0, And(x <= 1 + n, n >= x))]",  14,  101.90
 10, fuzz_spec, ( x > ( y * x ) || x <= ( x + y ) ), Failed, Yes, "[Or(Not(x <= x*y), 0 <= y)]",  3,  4.04
 116, fuzz_spec, ( sn == 1 || ( x <= ( 1 - -1 ) && sn < sn ) || ( sn == x && x >= -1 ) ), Failed, Yes, "None",  8,  11.38
-11, fuzz_spec, ( ( y == ( 0 + 10 ) && y > ( x * 10 ) ) || y > 0 || x < ( 10 + 10 ) ), Failed, Yes, "[Or(And(y == 10, Not(y <= 10*x)), Not(20 <= x), Not(y <= 0))]",  12,  18.54
+11, fuzz_spec, ( ( y == ( 0 + 10 ) && y > ( x * 10 ) ) || y > 0 || x < ( 10 + 10 ) ), Failed, Yes, "[Or(And(y == 10, Not(y <= 10*x)), Not(y <= 0), Not(20 <= x))]",  12,  18.54
 120, fuzz_spec, ( i <= ( 1 + 8 ) && sn < ( 8 + sn ) && sn == ( i - 1 ) ), Passed, Yes, "[i <= 9]",  25,  633.73
 128, fuzz_spec, ( ( x >= 1 && y < ( 1 * x ) ) || x >= 1 || y >= 1 ), Passed, Yes, "[Or(And(x >= 1, Not(x <= y)), x >= 1, y >= 1)]",  8,  12.18
 129, fuzz_spec, ( x >= 1 || ( x == ( x - y ) && x == 1 ) ), Passed, Yes, "[Or(x >= 1, And(y == 0, x == 1))]",  8,  13.97

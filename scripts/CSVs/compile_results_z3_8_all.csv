@@ -1,0 +1,154 @@
+Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time
+101, c_nl_spec, ( ( x <= ( n + 0 ) || x == ( 1 * 0 ) ) && ( x >= ( n * 0 ) || x > ( n * 0 ) ) && ( x <= ( 10000 + x ) || x == n ) ), Passed, Yes, "[Or(x <= n, x == 0), Or(Not(x <= 0), x >= 0)]",  13,  65.60
+102, c_nl_spec, ( ( n < ( 0 * x ) || x <= ( n - 0 ) ) ), Passed, Yes, "[Or(Not(0 <= n), x <= n)]",  11,  44.00
+103, c_nl_spec, ( x <= 100 || ( x == ( 100 + x ) && x > ( x - 100 ) ) ), Passed, Yes, "[x <= 100]",  37,  3.30
+104, c_nl_spec, ( ( n >= ( n + 0 ) && x < ( 1 + n ) ) || x <= 0 || ( n == ( x * 0 ) && x < 0 ) ), Passed, Yes, "[Or(Not(n <= -1 + x), x <= 0, And(n == 0, Not(0 <= x)))]",  10,  36.01
+105, c_nl_spec, ( ( x <= n || x >= ( x + x ) ) ), Passed, Yes, "[Or(x <= n, x <= 0)]",  9,  3.47
+10, c_nl_spec, ( ( y <= ( y + 0 ) && x < ( 4 + y ) ) ), Passed, Yes, "[Not(y <= -4 + x)]",  11,  2.16
+114, c_nl_spec, ( x > x || sn == ( x * 1 ) ), Passed, Yes, "[]",  15,  8.34
+115, c_nl_spec, ( ( sn == ( x - 0 ) && sn > ( x - 1 ) ) ), Passed, Yes, "[]",  14,  3.57
+116, c_nl_spec, ( sn == x ), Passed, Yes, "[]",  14,  11.36
+117, c_nl_spec, ( ( sn == ( 1 * x ) && sn >= -1 ) ), Passed, Yes, "None",  6,  0.29
+11, c_nl_spec, ( ( y <= ( y + 20 ) && x < ( 20 + y ) ) ), Passed, Yes, "[Not(y <= -20 + x)]",  11,  2.29
+128, c_nl_spec, ( x >= 1 || ( x == ( x - y ) && x == 1 ) ), Passed, Yes, "[Or(x >= 1, And(y == 0, x == 1))]",  15,  3.97
+129, c_nl_spec, ( x >= 1 || ( x == ( x - y ) && x == 1 ) ), Passed, Yes, "[Or(x >= 1, And(y == 0, x == 1))]",  15,  4.12
+12, c_nl_spec, ( ( y <= ( y + 0 ) && x < ( 20 + y ) ) ), Passed, Yes, "[Not(y <= -20 + x)]",  11,  2.39
+132, c_nl_spec, ( i >= 0 || ( i <= ( 48 - 57 ) && j >= ( 57 + j ) ) ), Passed, Yes, "[i >= 0]",  9,  4.06
+133, c_nl_spec, ( ( x > ( 1 + 0 ) && x < 0 ) || ( x <= ( x + 0 ) && n >= ( x + 0 ) ) ), Passed, Yes, "[Or(And(Not(x <= 1), Not(0 <= x)), n >= x)]",  10,  0.78
+13, c_nl_spec, ( ( y < ( y * 2 ) || x <= ( y + 2 ) ) ), Passed, Yes, "[Or(Not(y <= 0), x <= 2 + y)]",  11,  176.13
+14, c_nl_spec, ( ( y == ( 0 * x ) && y < ( 0 - y ) ) || y > ( x - 4 ) ), Passed, Yes, "[Or(And(y == 0, Not(y >= 0)), Not(y <= -4 + x))]",  10,  5.91
+15, c_nl_spec, ( ( n <= ( n + n ) || n >= ( 0 + n ) ) && ( m <= ( 0 - 0 ) || m < ( n * 1 ) ) ), Passed, Yes, "[Or(Not(n <= m), m <= 0)]",  18,  52.66
+16, c_nl_spec, ( x <= ( x + x ) && ( m == 0 || m >= 0 ) ), Passed, Yes, "[x >= 0, Or(m == 0, m >= 0)]",  15,  85.70
+17, c_nl_spec, ( x <= x && ( n <= ( 1 * 1 ) || n > ( m * 1 ) ) ), Passed, Yes, "[Or(n <= 1, Not(n <= m))]",  21,  181.51
+18, c_nl_spec, ( ( m >= ( -10000 - -10000 ) || x > ( n * 1 ) ) && x >= 1 && ( n < ( 10000 * m ) || n < ( n + m ) ) ), Passed, Yes, "None",  21,  214.05
+19, c_nl_spec, ( n <= ( m * 0 ) || ( n < ( 1 + 1 ) && m == 0 ) || ( n > ( m + 0 ) && x >= x ) ), Passed, Yes, "[Or(n <= 0, Not(n <= m), And(Not(2 <= n), m == 0))]",  23,  57.22
+20, c_nl_spec, ( ( m >= ( x * 0 ) && x >= 0 ) ), Passed, Yes, "[m >= 0, x >= 0]",  21,  76.51
+21, c_nl_spec, ( m <= ( n - 1 ) || m <= ( 1 * 1 ) ), Passed, Yes, "[Or(m <= -1 + n, m <= 1)]",  22,  301.41
+22, c_nl_spec, ( m >= 1 && n > ( n - x ) ), Passed, Yes, "[m >= 1, Not(x <= 0)]",  21,  124.40
+25, c_nl_spec, ( x >= ( x - x ) || x == 10000 ), Passed, Yes, "[Or(x >= 0, x == 10000)]",  18,  1.54
+28, c_nl_spec, ( ( x == ( n - 0 ) || x >= 0 ) ), Passed, Yes, "[Or(x == n, x >= 0)]",  11,  1.85
+29, c_nl_spec, ( ( x == ( n - 0 ) || x >= 0 ) ), Passed, Yes, "[Or(x == n, x >= 0)]",  11,  1.89
+30, c_nl_spec, ( x >= ( x - x ) || x == 100 ), Passed, Yes, "[Or(x >= 0, x == 100)]",  18,  1.61
+33, c_nl_spec, ( ( n == n && x >= 1 ) || x >= ( 0 * n ) || ( n < ( 1 + x ) && x == x ) ), Passed, Yes, "[Or(x >= 0, x >= 1, Not(x <= -1 + n))]",  13,  2.43
+34, c_nl_spec, ( ( x == ( n - 0 ) || x >= 0 ) ), Passed, Yes, "[Or(x == n, x >= 0)]",  11,  1.84
+35, c_nl_spec, ( c >= ( c - c ) || c == 1 ), Passed, Yes, "[Or(c == 1, c >= 0)]",  18,  1.54
+36, c_nl_spec, ( c <= 40 || ( c == ( 40 + c ) && c > ( c - 40 ) ) ), Passed, Yes, "[c <= 40]",  37,  3.24
+37, c_nl_spec, ( ( c < c && c == ( c - 40 ) ) || c <= ( c - c ) || c > 0 ), Passed, Yes, "[]",  7,  0.44
+38, c_nl_spec, ( c >= ( n * 0 ) && n > ( 0 * c ) ), Passed, Yes, "[c >= 0, Not(n <= 0)]",  7,  0.67
+39, c_nl_spec, ( n <= n || ( n >= ( n + 1 ) && c < ( c * 1 ) ) || c <= ( 1 + c ) ), Passed, Yes, "[]",  8,  0.36
+3, c_nl_spec, ( x <= 1 || y <= z ), Passed, Yes, "[Or(x <= 1, y <= z)]",  19,  112.56
+40, c_nl_spec, ( c == 0 && n >= 1 && ( c >= ( n + c ) || c <= c ) ), Passed, Yes, "[n >= 1]",  9,  10.66
+41, c_nl_spec, ( ( c >= 0 && c < ( 1 * n ) ) ), Passed, Yes, "[c >= 0, Not(n <= c)]",  8,  0.69
+42, c_nl_spec, ( ( c > ( 0 + 1 ) && c < 1 ) || ( c <= ( c + 1 ) && n >= ( c + 1 ) ) ), Passed, Yes, "[Or(And(Not(c <= 1), Not(1 <= c)), n >= 1 + c)]",  7,  0.67
+43, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]",  3,  0.17
+44, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]",  3,  0.16
+45, c_nl_spec, ( c >= ( n * 0 ) && n > ( 0 * c ) ), Passed, Yes, "[c >= 0, Not(n <= 0)]",  7,  0.66
+46, c_nl_spec, ( c <= n && ( n == 0 || c < ( c + 1 ) ) && n >= 1 ), Passed, Yes, "[c <= n, n >= 1]",  10,  17.55
+47, c_nl_spec, ( n >= 0 || ( c == n && n < n ) ), Passed, Yes, "[n >= 0]",  10,  0.98
+48, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]",  3,  0.18
+49, c_nl_spec, ( c > ( n * c ) || c <= ( c + n ) ), Passed, Yes, "[Or(Not(c <= c*n), 0 <= n)]",  3,  0.19
+4, c_nl_spec, ( x >= ( 10000 * x ) || y < ( 1 + z ) ), Passed, Yes, "[Or(x <= 0, Not(z <= -1 + y))]",  22,  219.39
+50, c_nl_spec, ( c >= ( c - c ) || c == 0 ), Passed, Yes, "[Or(c == 0, c >= 0)]",  18,  1.46
+51, c_nl_spec, ( ( c <= ( 4 + 0 ) || c < 1 ) ), Passed, Yes, "[Or(c <= 4, Not(1 <= c))]",  33,  15.95
+52, c_nl_spec, ( c > c || ( c == c && c == ( c * 1 ) ) || c <= ( 0 - 0 ) ), Passed, Yes, "[]",  1,  0.08
+53, c_nl_spec, ( c == 0 && n >= 1 && ( c >= ( n + c ) || c <= c ) ), Passed, Yes, "[n >= 1]",  9,  10.53
+54, c_nl_spec, ( ( n > c && c >= 0 ) ), Passed, Yes, "[Not(n <= c), c >= 0]",  5,  0.32
+55, c_nl_spec, ( ( n > ( 1 - 0 ) || c > ( 0 - 1 ) ) ), Passed, Yes, "[Or(Not(c <= -1), Not(n <= 1))]",  10,  1.07
+56, c_nl_spec, ( n > c ), Passed, Yes, "[Not(n <= c)]",  20,  6.77
+57, c_nl_spec, ( ( c <= ( n + -1 ) && c < ( n + 0 ) ) ), Passed, Yes, "None",  24,  3.23
+58, c_nl_spec, ( c >= 0 || ( c > ( 1 + 1 ) && c <= ( c * n ) ) || ( n >= 1 && n == ( 0 * n ) ) ), Passed, Yes, "[Or(c >= 0, And(Not(c <= 2), c <= c*n), And(n >= 1, n == 0))]",  10,  3.22
+59, c_nl_spec, ( ( c <= ( 1 * 1 ) && n > 0 ) || n > ( 0 + n ) || ( n >= ( c + 0 ) && n > ( 1 - n ) ) ), Passed, Yes, "[Or(c <= 1, n >= c), Not(n <= 0)]",  12,  17.03
+60, c_nl_spec, ( n >= 1 ), Passed, Yes, "[n >= 1]",  7,  0.86
+63, c_nl_spec, ( ( y >= ( 1 - 1 ) && y >= y ) || ( x >= 10 && y == ( 0 + x ) ) || x <= 1 ), Passed, Yes, "[Or(x <= 1, y >= 0, And(x >= 10, y == x))]",  14,  13.74
+64, c_nl_spec, ( ( y == ( y * y ) && x == ( y * 10 ) ) || y < 10 || x < 10 ), Passed, Yes, "[Or(And(y == y*y, x == 10*y), Not(10 <= y), Not(10 <= x))]",  17,  59.04
+65, c_nl_spec, ( y >= y && ( y == ( y + y ) || x <= 100 ) ), Passed, Yes, "[Or(x <= 100, y == 0)]",  16,  34.88
+66, c_nl_spec, ( ( y == ( 100 - 100 ) && x <= ( 1 + x ) ) || ( x >= ( x * 1 ) && x <= 100 ) ), Passed, Yes, "[Or(x <= 100, y == 0)]",  13,  29.67
+67, c_nl_spec, ( ( y >= 0 || x <= ( 1 * 1 ) ) ), Passed, Yes, "[Or(x <= 1, y >= 0)]",  14,  72.21
+68, c_nl_spec, ( x <= n || y < ( 1 + 0 ) || ( x <= 1 && n <= ( 1 + 1 ) ) ), Passed, Yes, "[Or(x <= n, Not(1 <= y), And(x <= 1, n <= 2))]",  18,  209.49
+69, c_nl_spec, ( ( n > ( y * 1 ) && x <= ( y + x ) ) || x == 1 || x <= ( y - x ) ), Passed, Yes, "[Or(And(Not(n <= y), 0 <= y), 2*x <= y, x == 1)]",  15,  98.78
+71, c_nl_spec, ( ( z > 1 && c >= ( 0 * 0 ) ) ), Passed, Yes, "[Not(z <= 1), c >= 0]",  13,  2.85
+73, c_nl_spec, ( ( c <= z || c >= 1 ) ), Passed, Yes, "[Or(c <= z, c >= 1)]",  7,  0.32
+74, c_nl_spec, ( ( z > ( 36 * 0 ) && c <= z ) ), Passed, Yes, "[Not(z <= 0), c <= z]",  17,  1.86
+76, c_nl_spec, ( c <= 36 && y >= ( 36 - 1 ) ), Passed, Yes, "[c <= 36, y >= 35]",  1,  0.07
+77, c_nl_spec, ( x >= ( 1 * y ) ), Passed, Yes, "[x >= y]",  19,  8.39
+78, c_nl_spec, ( i >= 0 ), Passed, Yes, "[i >= 0]",  24,  3.86
+79, c_nl_spec, ( x >= ( x - x ) || ( y < ( 1 * y ) && y <= ( x - x ) ) ), Passed, Yes, "[x >= 0]",  23,  9.02
+7, c_nl_spec, ( y > ( x - 20 ) || y > ( 0 + y ) ), Passed, Yes, "[Not(y <= -20 + x)]",  11,  17.50
+80, c_nl_spec, ( y <= x ), Passed, Yes, "[y <= x]",  4,  0.23
+81, c_nl_spec, ( ( x >= y && i > ( x * x ) ) || ( i > ( x - x ) && i < ( 1 - 1 ) ) || i >= 0 ), Passed, Yes, "[Or(And(x >= y, Not(i <= x*x)),
+    And(Not(i <= 0), Not(0 <= i)),
+    i >= 0)]",  23,  16.63
+82, c_nl_spec, ( x >= ( x - x ) || ( y < ( 1 * y ) && y <= ( x - x ) ) ), Passed, Yes, "[x >= 0]",  23,  9.00
+83, c_nl_spec, ( y > ( 0 - y ) || x <= ( 1 + -5000 ) || ( y < ( 0 + x ) && y > ( 0 - y ) ) ), Passed, Yes, "None",  15,  35.40
+84, c_nl_spec, ( ( x < y || x < ( -50 * 0 ) ) ), Passed, Yes, "None",  7,  0.33
+85, c_nl_spec, ( ( y > ( x + 10000 ) && x <= ( 10000 - y ) ) || x < ( y - 1 ) ), Passed, Yes, "[Or(Not(y <= 1 + x),
+    And(Not(y <= 10000 + x), x <= 10000 + -1*y))]",  10,  4.89
+86, c_nl_spec, ( ( x < y || x < ( -50 * 0 ) ) ), Passed, Yes, "None",  7,  0.33
+87, c_nl_spec, ( ( lock == 1 && y >= ( 1 * y ) ) || ( y >= ( x + 1 ) && y >= ( x - lock ) ) ), Passed, Yes, "[Or(lock == 1, And(y >= 1 + x, y >= x + -1*lock))]",  41,  285.94
+8, c_nl_spec, ( ( y <= ( y + 0 ) && x < ( 20 + y ) ) ), Passed, Yes, "[Not(y <= -20 + x)]",  11,  2.91
+91, c_nl_spec, ( x >= 0 && ( y > ( 0 * 0 ) || y >= 0 ) && ( y == 0 || x == x ) ), Passed, Yes, "[x >= 0, Or(Not(y <= 0), y >= 0)]",  3,  0.26
+92, c_nl_spec, ( x >= 0 && ( y > ( 0 * 0 ) || y >= 0 ) && ( y == 0 || x == x ) ), Passed, Yes, "[x >= 0, Or(Not(y <= 0), y >= 0)]",  3,  0.29
+97, c_nl_spec, ( y >= 2 ), Passed, Yes, "[y >= 2]",  14,  15.19
+98, c_nl_spec, ( y >= 2 || ( j == ( 0 - j ) && j < ( 0 - 1 ) ) ), Passed, Yes, "[Or(y >= 2, And(j == 0, Not(-1 <= j)))]",  10,  3.43
+99, c_nl_spec, ( n > ( n * 1 ) || n == ( y + x ) ), Passed, Yes, "[]",  10,  19.00
+9, c_nl_spec, ( ( x < ( x * x ) && x >= ( x * x ) ) || x < x || ( x <= ( y + 2 ) && x >= ( x - y ) ) ), Passed, Yes, "[Or(And(Not(x*x <= x), x >= x*x), And(x <= 2 + y, y >= 0))]",  11,  144.84
+100, c_nl_spec, ( x == ( -10000 * y ) || y < ( 10000 * n ) || ( y >= ( 10000 * y ) && n >= ( x * 1 ) ) ), Failed, No, "None",  13, 0.0
+106, c_nl_spec, ( ( m >= ( 10000 + k ) || k == ( k + k ) ) ), Failed, No, "[Or(m >= 10000 + k, k == 0)]",  10, 0.0
+107, c_nl_spec, ( k < ( 1 + m ) || m <= ( a * 1 ) || a <= 1 ), Failed, No, "[Or(m <= a, a <= 1, Not(m <= -1 + k))]",  13, 0.0
+108, c_nl_spec, ( j > -10000 || ( m >= ( -10000 * a ) && k >= ( -10000 * a ) ) ), Failed, No, "None",  12, 0.0
+109, c_nl_spec, ( j < ( m * m ) ), Failed, No, "[Not(m*m <= j)]",  11, 0.0
+110, c_nl_spec, ( ( sn == ( 0 - sn ) && i > ( 1 - 1 ) ) || ( sn < ( sn * 0 ) && sn >= ( 1 - sn ) ) || ( n > ( 1 - sn ) && n > ( sn - sn ) ) ), Failed, No, "[Or(And(Not(0 <= sn), sn >= 1),
+    And(sn == 0, Not(i <= 0)),
+    And(Not(n <= 1 + -1*sn), Not(n <= 0)))]",  15, 0.0
+111, c_nl_spec, ( ( n < ( sn - sn ) && i > ( 0 * sn ) ) || ( sn < ( 1 + n ) && n < ( 1 * n ) ) || n > ( 1 * sn ) ), Failed, No, "[Or(And(Not(0 <= n), Not(i <= 0)), Not(n <= sn))]",  27, 0.0
+112, c_nl_spec, ( ( sn == ( 0 - sn ) && i > ( 1 - 1 ) ) || ( sn < ( sn * 0 ) && sn >= ( 1 - sn ) ) || ( n > ( 1 - sn ) && n > ( sn - sn ) ) ), Failed, No, "[Or(And(Not(0 <= sn), sn >= 1),
+    And(sn == 0, Not(i <= 0)),
+    And(Not(n <= 1 + -1*sn), Not(n <= 0)))]",  15, 0.0
+113, c_nl_spec, ( i == ( 1 - n ) || ( sn == ( sn * n ) && i >= ( sn * sn ) ) ), Failed, No, "[Or(i == 1 + -1*n, And(sn == n*sn, i >= sn*sn))]",  23, 0.0
+118, c_nl_spec, ( ( i > ( sn * 0 ) || i > ( 0 * sn ) ) && sn == 0 ), Failed, No, "[Not(i <= 0)]",  19, 0.0
+119, c_nl_spec, ( ( size > ( i * 0 ) && sn < ( size + 1 ) ) || ( sn == ( sn * i ) && sn == ( sn * sn ) ) ), Failed, No, "[Or(And(sn == i*sn, sn == sn*sn),
+    And(Not(size <= 0), Not(size <= -1 + sn)))]",  25, 0.0
+120, c_nl_spec, ( ( sn > ( i - 8 ) && i <= ( 0 - 0 ) ) || i == ( sn * 1 ) || ( i < ( 8 - i ) && i <= ( 1 + sn ) ) ), Failed, No, "[Or(And(Not(sn <= -8 + i), i <= 0),
+    And(Not(i >= 4), i <= 1 + sn),
+    i == sn)]",  27, 0.0
+121, c_nl_spec, ( ( sn <= ( sn + -10000 ) && i > ( sn - -10000 ) ) || ( i == ( 1 + -10000 ) && sn == ( 0 + -10000 ) ) || ( i < ( 8 - i ) && i >= ( sn + -10000 ) ) ), Failed, No, "None",  23, 0.0
+122, c_nl_spec, ( ( i == ( sn + i ) && i > ( 0 * i ) ) || ( size > ( sn * i ) && sn >= ( i * 0 ) ) || ( sn >= ( 0 * size ) && size > ( 0 - size ) ) ), Failed, No, "[Or(And(Not(size <= i*sn), sn >= 0),
+    And(0 == sn, Not(i <= 0)),
+    And(sn >= 0, Not(size <= 0)))]",  21, 0.0
+123, c_nl_spec, ( ( size > ( 0 * i ) || i > ( 0 * size ) ) && ( sn == ( size * sn ) || i <= ( 0 * i ) ) && ( size < size || sn <= ( i * i ) ) ), Failed, No, "[Or(Not(size <= 0), Not(i <= 0)),
+ Or(sn == size*sn, i <= 0),
+ sn <= i*i]",  21, 0.0
+124, c_nl_spec, ( i > -10000 && ( i > y || y == x ) && ( i >= ( x + -10000 ) || y < ( j + -10000 ) ) ), Failed, No, "None",  19, 0.0
+125, c_nl_spec, ( y < ( j * 1 ) || ( j >= ( y * 1 ) && i < ( x + 1 ) ) ), Failed, No, "[Or(Not(j <= y), And(j >= y, Not(x <= -1 + i)))]",  17, 0.0
+126, c_nl_spec, ( ( j < ( i + i ) || x < ( j * j ) ) ), Failed, No, "[Or(Not(2*i <= j), Not(j*j <= x))]",  16, 0.0
+127, c_nl_spec, ( j < ( i * i ) || j > ( j * 0 ) || ( i > ( 0 * 1 ) && x > ( 0 * i ) ) ), Failed, No, "[Or(Not(i*i <= j),
+    Not(j <= 0),
+    And(Not(i <= 0), Not(x <= 0)))]",  13, 0.0
+130, c_nl_spec, ( d3 > ( 0 * 0 ) && ( x3 > ( 1 * d2 ) || d2 > ( 1 - d1 ) ) ), Failed, No, "[Not(d3 <= 0), Or(Not(x3 <= d2), Not(d2 <= 1 + -1*d1))]",  27, 0.0
+131, c_nl_spec, ( d3 > ( 0 - 0 ) && ( x1 > ( 0 * 0 ) || x1 < ( x3 + 1 ) ) ), Failed, No, "[Not(d3 <= 0), Or(Not(x1 <= 0), Not(x3 <= -1 + x1))]",  28, 0.0
+132, fuzz_spec, ( ( i == ( j * c ) && j < ( 57 + j ) ) || ( j < ( 57 - j ) && t > ( t * 57 ) ) ), Failed, No, "[Or(i == c*j, And(Not(j >= 29), Not(t >= 0)))]",  22, 0.0
+140, c_nl_spec, ( ( i == ( i2 + 1 ) && i2 <= ( i + 6 ) ) || ( y > ( 1 * y ) && y <= ( 500000 + i ) ) ), Failed, No, "[]",  35, 0.0
+1, c_nl_spec, ( ( y <= 1 || x >= ( y * 1 ) ) ), Failed, No, "[Or(y <= 1, x >= y)]",  29, 0.0
+23, c_nl_spec, ( j >= ( 13 + i ) && i == 1 && ( j >= ( 2 + i ) || j > ( 2 - j ) ) ), Failed, No, "[j >= 14, Or(j >= 3, Not(j <= 1))]",  43, 0.0
+24, c_nl_spec, ( ( i <= ( j - 2 ) && j >= ( 6 - 1 ) ) || ( j > i && j >= ( 10 + j ) ) ), Failed, No, "[i <= -2 + j, j >= 5]",  33, 0.0
+26, c_nl_spec, ( ( n < ( n * x ) || x < ( x - x ) ) ), Failed, No, "[Or(Not(n*x <= n), Not(0 <= x))]",  9, 0.0
+27, c_nl_spec, ( ( x > 0 && x <= ( x * n ) ) || x < ( x - x ) || ( x >= ( 1 + 1 ) && n < ( x - x ) ) ), Failed, No, "[Or(And(Not(x <= 0), x <= n*x),
+    Not(0 <= x),
+    And(x >= 2, Not(0 <= n)))]",  9, 0.0
+2, c_nl_spec, ( x > ( -10000 * y ) && x >= y && y >= ( 1 * y ) ), Failed, No, "None",  34, 0.0
+31, c_nl_spec, ( ( n >= ( 1 * 1 ) || x < ( x - n ) ) ), Failed, No, "[Or(Not(n >= 0), n >= 1)]",  12, 0.0
+32, c_nl_spec, ( ( x < ( x * 10000 ) || x < ( 0 - 0 ) ) ), Failed, No, "[Or(Not(0 <= x), Not(x <= 0))]",  12, 0.0
+5, c_nl_spec, ( ( y > 1 && z <= ( y + 1 ) ) || x <= ( size * size ) ), Failed, No, "[Or(x <= size*size, And(Not(y <= 1), z <= 1 + y))]",  12, 0.0
+61, c_nl_spec, ( ( n >= 1 && n >= ( c * c ) ) ), Failed, No, "[n >= 1, n >= c*c]",  23, 0.0
+62, c_nl_spec, ( c >= ( c * c ) && ( n > ( 1 - n ) || n > n ) ), Failed, No, "[c >= c*c, Not(n <= 0)]",  27, 0.0
+6, c_nl_spec, ( z >= ( y - 0 ) || x < 1 || ( y >= ( x - 0 ) && y == ( size * size ) ) ), Failed, No, "[Or(z >= y, Not(1 <= x), And(y >= x, y == size*size))]",  13, 0.0
+70, c_nl_spec, ( ( y <= 0 && y <= y ) || n > ( x - 1 ) ), Failed, No, "[Or(Not(n <= -1 + x), y <= 0)]",  17, 0.0
+72, c_nl_spec, ( c >= 36 || z == ( z * z ) || ( y >= ( 1 * 127 ) && z >= 0 ) ), Failed, No, "[Or(c >= 36, z == z*z, And(y >= 127, z >= 0))]",  15, 0.0
+75, c_nl_spec, ( ( y > ( 4608 + 0 ) || y > ( 36 - 1 ) ) ), Failed, No, "[Or(Not(y <= 35), Not(y <= 4608))]",  18, 0.0
+88, c_nl_spec, ( ( y < 0 || y > ( 0 - y ) ) ), Failed, No, "[Or(Not(0 <= y), Not(y <= 0))]",  20, 0.0
+89, c_nl_spec, ( ( x > ( 0 - y ) && y >= y ) || ( lock >= ( 1 - 10000 ) && lock == ( 1 - y ) ) ), Failed, No, "[Or(Not(x <= -1*y), And(lock >= -9999, lock == 1 + -1*y))]",  12, 0.0
+90, c_nl_spec, ( ( lock <= ( 1 * 1 ) || y < ( 0 * y ) ) && lock >= ( x - 1 ) ), Failed, No, "[Or(Not(0 <= y), lock <= 1), lock >= -1 + x]",  23, 0.0
+93, c_nl_spec, ( y == ( x - i ) && x >= ( 0 - n ) && x >= ( 0 - i ) ), Failed, No, "[x >= -1*n, x >= -1*i]",  30, 0.0
+94, c_nl_spec, ( n >= ( n + -10000 ) && ( j >= ( 10000 - -10000 ) || j >= ( -10000 * n ) ) ), Failed, No, "None",  20, 0.0
+95, c_nl_spec, ( ( j == ( 0 * i ) && i >= ( 1 - 1 ) ) || x >= ( j - i ) || x >= ( 1 - 1 ) ), Failed, No, "[Or(x >= 0, x >= j + -1*i, And(j == 0, i >= 0))]",  25, 0.0
+96, c_nl_spec, ( ( x < 1 || i == ( 1 * i ) ) && ( j == ( 1 * i ) || x >= ( 0 + 0 ) ) && ( x >= ( 0 * j ) || i < ( y - j ) ) ), Failed, No, "[Or(j == i, x >= 0), Or(Not(y + -1*j <= i), x >= 0)]",  26, 0.0

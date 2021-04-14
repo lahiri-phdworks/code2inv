@@ -16,11 +16,11 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplifie
 15, fuzz_spec, ( ( m == 1 || m < 1 ) && ( n <= ( x + x ) || m >= ( x - n ) ) && ( n >= 0 || m <= x ) ), Failed, Yes, "[Or(m == 1, Not(1 <= m)),
  Or(n <= 2*x, m >= x + -1*n),
  Or(n >= 0, m <= x)]",  22,  38.18
-16, fuzz_spec, ( n >= ( 0 * x ) || m >= 0 ), Failed, Yes, "[Or(m >= 0, n >= 0)]",  1,  1.33
+16, fuzz_spec, ( n >= ( 0 * x ) || m >= 0 ), Failed, Yes, "[Or(n >= 0, m >= 0)]",  1,  1.33
 17, fuzz_spec, ( ( m < n && n >= n ) || n <= 1 ), Passed, Yes, "[Or(Not(n <= m), n <= 1)]",  15,  36.85
 18, fuzz_spec, ( ( x > ( n - n ) && m < ( m * 10000 ) ) ), Passed, Yes, "[Not(x <= 0), Not(m <= 0)]",  10,  21.39
-19, fuzz_spec, ( ( x <= ( n + 0 ) && n < ( n - m ) ) || ( x > ( n - m ) && m <= 1 ) || ( m == ( n + x ) && x == m ) ), Failed, Yes, "[Or(And(x <= n, Not(m >= 0)),
-    And(m == n + x, x == m),
+19, fuzz_spec, ( ( x <= ( n + 0 ) && n < ( n - m ) ) || ( x > ( n - m ) && m <= 1 ) || ( m == ( n + x ) && x == m ) ), Failed, Yes, "[Or(And(m == n + x, x == m),
+    And(x <= n, Not(m >= 0)),
     And(Not(x <= n + -1*m), m <= 1))]",  7,  9.61
 20, fuzz_spec, ( n < ( 0 * 0 ) || ( m <= x && m >= ( x * 0 ) ) ), Passed, Yes, "[Or(Not(0 <= n), And(m <= x, m >= 0))]",  22,  265.31
 21, fuzz_spec, ( m > ( 1 - 10000 ) || n > ( -10000 + 10000 ) ), Failed, Yes, "None",  2,  2.68

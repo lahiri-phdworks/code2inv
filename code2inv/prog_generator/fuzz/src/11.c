@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 32
+#define UNROLL_LIMIT 128
 
 #define aflcrash(cond, flag) \
     if (!cond)               \
@@ -20,9 +20,9 @@
 
 #define INV(x, y) PHI
 
-double counter = 0;
+long long unsigned int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long unsigned int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *file_descp, char *buff, long long int x, long long int y)
@@ -90,9 +90,9 @@ int main()
         HF_ITER(&buf, &len);
         counter++;
 
-        long long int choices = buf[0];
-        y = buf[1];
-        x = buf[2];
+        long long int choices = buf[1];
+        y = buf[3];
+        x = buf[7];
 
         char vars[128];
         memset(vars, '\0', sizeof(vars));
@@ -120,11 +120,11 @@ int main()
             assume(INV(x, y));
 
             // Loop Condition
-            if (choices > 2500)
+            if (choices > 0)
             {
                 // Bounded Unrolling
                 int k = UNROLL_LIMIT;
-                while ((choices > 2500) && k--)
+                while ((choices > 0) && k--)
                 {
                     assume((loopflag == 0));
                     // loop body

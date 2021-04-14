@@ -13,7 +13,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplifie
 133, fuzz_spec, ( x == ( n * 1 ) || ( x <= x && n > ( x * 1 ) ) || ( n == ( 1 - 1 ) && x == ( x + 1 ) ) ), Passed, Yes, "[Or(x == n, Not(n <= x))]",  11,  44.60
 13, fuzz_spec, ( y == y ), Failed, Yes, "[]",  4,  5.41
 14, fuzz_spec, ( x > ( y * x ) || x <= ( x + y ) ), Failed, Yes, "[Or(Not(x <= x*y), 0 <= y)]",  3,  4.04
-15, fuzz_spec, ( n >= ( 0 * x ) || m >= 0 ), Failed, Yes, "[Or(m >= 0, n >= 0)]",  1,  1.32
+15, fuzz_spec, ( n >= ( 0 * x ) || m >= 0 ), Failed, Yes, "[Or(n >= 0, m >= 0)]",  1,  1.32
 16, fuzz_spec, ( ( x < ( 1 + x ) && m >= 0 ) || ( n < ( x * 0 ) && x >= 0 ) ), Failed, Yes, "[Or(m >= 0, And(Not(0 <= n), x >= 0))]",  17,  25.19
 17, fuzz_spec, ( x >= ( m - 1 ) || n <= 1 || ( m > ( 1 * x ) && x == x ) ), Failed, Yes, "[Or(n <= 1, x >= -1 + m, Not(m <= x))]",  2,  2.67
 18, fuzz_spec, ( m == 1 && m < 10000 ), Failed, Yes, "[]",  16,  104.17
@@ -33,7 +33,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplifie
 38, fuzz_spec, ( c < ( n * n ) ), Failed, Yes, "[Not(n*n <= c)]",  2,  2.67
 39, fuzz_spec, ( n <= n || ( n >= ( n + 1 ) && c < ( c * 1 ) ) || c <= ( 1 + c ) ), Passed, Yes, "[]",  7,  9.43
 3, fuzz_spec, ( z >= ( 1 * y ) || ( x < ( 1 - x ) && z <= ( z * z ) ) ), Passed, Yes, "[Or(z >= y, And(Not(x >= 1), z <= z*z))]",  9,  17.29
-40, fuzz_spec, ( ( c > ( 0 + 1 ) && c < 1 ) || ( c <= ( c + 1 ) && n >= ( c + 1 ) ) ), Failed, Yes, "[Or(And(Not(c <= 1), Not(1 <= c)), n >= 1 + c)]",  7,  38.77
+40, fuzz_spec, ( ( c > ( 0 + 1 ) && c < 1 ) || ( c <= ( c + 1 ) && n >= ( c + 1 ) ) ), Passed, Yes, "[Or(And(Not(c <= 1), Not(1 <= c)), n >= 1 + c)]",  7,  38.77
 41, fuzz_spec, ( n >= ( c * n ) && ( c < 1 || c <= ( 0 * n ) ) ), Failed, Yes, "[n >= c*n, Or(Not(1 <= c), c <= 0)]",  7,  9.45
 4, fuzz_spec, ( y <= 500 ), Failed, Yes, "[y <= 500]",  7,  9.71
 51, fuzz_spec, ( ( c <= ( c + 4 ) || c <= c ) && ( c >= ( c - c ) || c > ( c - c ) ) && ( c <= ( 4 + 0 ) || c == 1 ) ), Passed, Yes, "[Or(c >= 0, Not(c <= 0)), Or(c <= 4, c == 1)]",  20,  151.74
@@ -50,7 +50,7 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplifie
 85, fuzz_spec, ( ( y < ( y - x ) && x >= ( x - x ) ) || x < 0 || y >= ( 1 * 1 ) ), Passed, Yes, "[Or(Not(0 <= x), y >= 1)]",  9,  44.06
 88, fuzz_spec, ( ( x < 0 && y > x ) || y > x || ( lock == ( 0 + 1 ) && lock <= ( lock + 1 ) ) ), Passed, Yes, "[Or(And(Not(0 <= x), Not(y <= x)), lock == 1, Not(y <= x))]",  14,  759.89
 8, fuzz_spec, ( y <= ( y - y ) || x >= ( 0 * x ) ), Failed, Yes, "[Or(y <= 0, x >= 0)]",  2,  2.66
-96, fuzz_spec, ( ( x > ( 0 * x ) && i > ( i - 0 ) ) || j >= ( i - 0 ) || y <= x ), Failed, Yes, "[Or(j >= i, y <= x)]",  13,  24.84
+96, fuzz_spec, ( ( x > ( 0 * x ) && i > ( i - 0 ) ) || j >= ( i - 0 ) || y <= x ), Failed, Yes, "[Or(y <= x, j >= i)]",  13,  24.84
 98, fuzz_spec, ( j < 0 || ( y >= ( y + 2 ) && i > ( x + 0 ) ) || y == y ), Failed, Yes, "[]",  7,  9.57
 99, fuzz_spec, ( x < x || y == ( n - x ) ), Passed, Yes, "[]",  11,  87.63
 9, fuzz_spec, ( y > ( x * y ) || y <= ( y + x ) ), Failed, Yes, "[Or(Not(y <= x*y), 0 <= x)]",  3,  4.04

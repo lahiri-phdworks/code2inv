@@ -7,14 +7,14 @@ do
     percents=()
     for TIMEOUT in 5 10 20 30;
     do
-        folder=$HOME/DUMP/results_${TIMEOUT}_${EPOCH}_folder
+        folder=$HOME/RQ4_RESULTS_2/results_${TIMEOUT}_${EPOCH}_folder
         echo Processing "$folder"
         echo "Timeout : ${TIMEOUT}, EPOCH : ${EPOCH}" >> results_final.txt
         
         rm -rf ../code2inv/prog_generator/results/*_fuzz_spec.txt
         # rm -rf ../code2inv/prog_generator/results/*_c_*
 
-        cp -r $HOME/DUMP/results_${TIMEOUT}_${EPOCH}_folder/* ../code2inv/prog_generator/results/
+        cp -r $HOME/RQ4_RESULTS_2/results_${TIMEOUT}_${EPOCH}_folder/* ../code2inv/prog_generator/results/
         ../code2inv/prog_generator/results/removeRedundent.sh
 
         echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time" > CSVs/compile_results_${TIMEOUT}_${EPOCH}.csv

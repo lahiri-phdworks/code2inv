@@ -1,0 +1,2 @@
+( ( i > 2 ) && ( out <= i ) && ( isprime ( out ) && ( i == 1 * i ) || ! isprime( out ) && ( out == 2 * i ) ) )
+z3_report time: 34.50 pid: 0 stats: Counter({'ce-I:': 24, 'boogie_result': 8, 'actual_z3': 8, 'ce-F:': 4})
