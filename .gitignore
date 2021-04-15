@@ -158,3 +158,11 @@ code2inv/prog_generator/fuzz/tests/
 
 models.txt
 
+
+code2inv/prog_generator/RUNNER_TIME_LOGS_Z3/
+
+code2inv/prog_generator/results/
+
+code2inv/prog_generator/results_Z3/
+
+code2inv/prog_generator/models/

@@ -1,4 +1,4 @@
-#include <122.h>
+#include <126.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -17,68 +17,68 @@
   if (!cond)         \
     continue;
 
-#define INV(i, size, sn) PHI
+#define INV(i, j, x, y) PHI
 
 long long unsigned int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long unsigned int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int i, long long int size, long long int sn)
+void precheck(FILE *fptr, char *buff, long long int i, long long int j, long long int x, long long int y)
 {
   int f = preflag;
-  aflcrash(INV(i, size, sn), preflag);
+  aflcrash(INV(i, j, x, y), preflag);
   if (f == 0 && preflag == 1)
   {
-    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n",
-            "i", i, "size", size, "sn", sn);
-
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "j", j, "x", x, "y", y);
     assert(0);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *fptr, char *buff, long long int temp_i, long long int temp_size, long long int temp_sn, long long int i, long long int size, long long int sn)
+void loopcheck(FILE *fptr, char *buff, long long int temp_i, long long int temp_j, long long int temp_x, long long int temp_y,
+               long long int i, long long int j, long long int x, long long int y)
 {
   int f = loopflag;
-  aflcrash(INV(i, size, sn), loopflag);
+  aflcrash(INV(i, j, x, y), loopflag);
   if (f == 0 && loopflag == 1)
   {
-    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
-            "i", temp_i, "size", temp_size, "sn", temp_sn);
-    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
-            "i", i, "size", size, "sn", sn);
-
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", temp_i, "j", temp_j, "x", temp_x, "y", temp_y);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "i", i, "j", j, "x", x, "y", y);
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, i, size, sn) \
+#define postcheck(fptr, buff, cond, i, j, x, y) \
   \ 
-{                                             \
+{                                            \
     \ 
-    int f = postflag;                            \
+    int f = postflag;                           \
     \ 
-   aflcrash(cond, postflag);                     \
+   aflcrash(cond, postflag);                    \
     \ 
-    if (f == 0 && postflag == 1)                 \
-    {                                            \
+    if (f == 0 && postflag == 1)                \
+    {                                           \
       \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
- "i",                                            \
-                i, "size", size, "sn", sn);      \
-      assert(0);                                 \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "i",                                           \
+                i, "j", j, "x", x, "y", y);     \
+      assert(0);                                \
     \ 
-}                                           \
+}                                          \
   }
 
 int main()
 {
   // variable declarations
   long long int i;
-  long long int size;
-  long long int sn;
+  long long int j;
+  long long int x;
+  long long int y;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -97,55 +97,57 @@ int main()
     counter++;
 
     long long int choices = buf[0];
-    i = buf[1];
-    size = buf[2];
-    sn = buf[3];
+    x = buf[1];
+    y = buf[2];
+    i = buf[3];
+    j = buf[4];
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n",
-             "i", i, "size", size, "sn", sn);
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+             "i", i, "j", j, "x", x, "y", y);
 
     // pre-conditions
     // precheck
-    // loopcond : (i <= size)
+    // loopcond : (x != 0)
 
-    if (choices > 15000)
+    if (choices > 10000)
     {
       //pre-conditions
       assume((preflag == 0));
-      (sn = 0);
-      (i = 1);
+      (i = x);
+      (j = y);
       precount++;
-      precheck(fptr, vars, i, size, sn);
+      precheck(fptr, vars, i, j, x, y);
     }
     else
     {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(i, size, sn));
+      assume(INV(i, j, x, y));
 
       // Loop Condition
-      if ((i <= size))
+      if ((x != 0))
       {
         // Bounded Unrolling
-        int unroll = UNROLL_LIMIT;
-        while ((i <= size) && unroll--)
+        int k = UNROLL_LIMIT;
+        while ((x != 0) && k--)
         {
           assume((loopflag == 0));
           // loop body
+          long long int temp_x = x;
+          long long int temp_y = y;
           long long int temp_i = i;
-          long long int temp_sn = sn;
-          long long int temp_size = size;
+          long long int temp_j = j;
           {
             {
-              (i = (i + 1));
-              (sn = (sn + 1));
+              (x = (x - 1));
+              (y = (y - 1));
             }
           }
 
           loopcount++;
-          loopcheck(fptr, vars, temp_i, temp_size, temp_sn, i, size, sn);
+          loopcheck(fptr, vars, temp_i, temp_j, temp_x, temp_y, i, j, x, y);
         }
       }
       else
@@ -153,10 +155,10 @@ int main()
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((sn != size))
+        if (i == j)
         {
           postcount++;
-          postcheck(fptr, vars, ((sn == 0)), i, size, sn)
+          postcheck(fptr, vars, (y == 0), i, j, x, y)
         }
       }
     }

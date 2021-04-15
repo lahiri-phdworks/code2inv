@@ -1,4 +1,4 @@
-#include <125.h>
+#include <127.h>
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
@@ -108,6 +108,8 @@ int main()
              "i", i, "j", j, "x", x, "y", y);
 
     // pre-conditions
+    assume((-10000 <= y && y <= 10000));
+    assume((-10000 <= x && x <= 10000));
     // precheck
     // loopcond : (x != 0)
 
