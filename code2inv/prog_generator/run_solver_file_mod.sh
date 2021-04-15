@@ -30,6 +30,7 @@ ac=0
 ce=1
 afl_timeout=$8
 num_epochs=$9
+k_induction=64
 save_dir=$HOME/scratch/results/code2inv/benchmarks/
 
 export EXAMPLE=$example

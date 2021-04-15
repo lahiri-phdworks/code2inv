@@ -9,21 +9,25 @@ export CC=$(which hfuzz-clang)
 export CXX=$(which hfuzz-clang++)
 export AFL=$(which honggfuzz)
 
-for TIMEOUT in 10 20;
+#  101 103 104 105 10 116 11 120 128 129 12 133 13 14 15 16 17 19 20 51 54 63 4 41 70 74 77 79 80 83;
+# ls -al | awk '{ print $9 }' | tr ".c" " " | tr "\n" " "
+
+for TIMEOUT in 10;
 do
     for EPOCH in 8;
     do
         echo $TIMEOUT -- $EPOCH
 
         mkdir -p RUNNER_TIME_LOGS RUNNER_LOGS_${TIMEOUT}_${EPOCH}
-        mkdir -p results_${TIMEOUT}_${EPOCH}_folder_128
+        mkdir -p results_${TIMEOUT}_${EPOCH}_folder_extra
         
         export TIMEOUT=$TIMEOUT
         export EPOCHS=$EPOCH
         
-        for file_index in 101 103 104 105 10 116 11 120 128 129 12 133 13 14 15 16 17 19 20 51 54 63 4 41 70 74 77 79 80 83;
+        for file_index in 25 31 33 34 42 43 44 46 47 48 49 50 52 53 55 56 57 58 59 60 64 66 67 69 71 72 73 76 78 81 82 84 86 87 90 97; 
         do
             var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
+            echo  ==== Processing ${var}.c file ====  
             # if [[ ! ${del_cases[*]} =~ (^|[[:space:]])${var}($|[[:space:]]) ]]; then
             if [[ -n $var ]]; then 
 
@@ -32,7 +36,7 @@ do
                 (time ./run_solver_file_mod.sh \
                 ../../benchmarks/C_instances/c_graph/${var}.c.json \
                 ../../benchmarks/C_instances/c_smt2/${var}.c.smt specs/fuzz_spec \
-                -o results_${TIMEOUT}_${EPOCH}_folder_128/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec  \
+                -o results_${TIMEOUT}_${EPOCH}_folder_extra/inv_result_${var}_fuzz_spec.txt ${var} fuzz_spec  \
                 $TIMEOUT $EPOCH > RUNNER_LOGS_${TIMEOUT}_${EPOCH}/fuzz_${var}_${TIMEOUT}_${EPOCH}.txt )   \
                 2> RUNNER_TIME_LOGS/time_${var}_${TIMEOUT}_${EPOCH}_fuzz_spec.txt
             

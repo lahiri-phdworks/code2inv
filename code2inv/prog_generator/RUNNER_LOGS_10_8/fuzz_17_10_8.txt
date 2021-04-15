@@ -1,69 +1,0 @@
-OP_FILE results_10_8_folder_128/inv_result_17_fuzz_spec.txt
-Running with 10 -- 8
-{'S': [['S1'], ['S2']], 'S1': [['(', 'C1', ')'], ['(', 'C1', '||', 'C1', ')'], ['(', 'C1', '||', 'C1', '||', 'C1', ')']], 'C1': [['p'], ['(', 'p', '&&', 'p', ')']], 'S2': [['(', 'C2', ')'], ['(', 'C2', '&&', 'C2', ')'], ['(', 'C2', '&&', 'C2', '&&', 'C2', ')']], 'C2': [['p'], ['(', 'p', '||', 'p', ')']], 'p': [['var', 'cmp', 'expr']], 'expr': [['(', 'var', 'op', 'var', ')'], ['(', 'var', 'op', 'const', ')'], ['(', 'const', 'op', 'var', ')'], ['(', 'const', 'op', 'const', ')'], ['var'], ['const']], 'cmp': [['<'], ['>'], ['=='], ['<='], ['>=']], 'op': [['+'], ['-'], ['*']]}
-MAX CHILD 7
-VAR FORMAT ssa
-====== begin of s2v configuration ======
-| msg_average = 0
-======   end of s2v configuration ======
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Parameter inited
-  0%|          | 0/100 [00:00<?, ?it/s]/home/ha-useast-service/anaconda3/lib/python3.8/site-packages/torch/nn/functional.py:1709: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
-  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
-/home/ha-useast-service/anaconda3/lib/python3.8/site-packages/torch/nn/functional.py:1698: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
-  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
-avg reward so far : -0.94683:   0%|          | 0/100 [00:15<?, ?it/s]avg reward so far : -0.94683:   1%|          | 1/100 [00:15<24:59, 15.15s/it]avg reward so far : -1.01150:   1%|          | 1/100 [00:15<24:59, 15.15s/it]avg reward so far : -1.01150:   2%|▏         | 2/100 [00:15<10:33,  6.47s/it]avg reward so far : -0.74256:   2%|▏         | 2/100 [00:16<10:33,  6.47s/it]avg reward so far : -0.74256:   3%|▎         | 3/100 [00:16<06:26,  3.98s/it]avg reward so far : -0.69433:   3%|▎         | 3/100 [00:20<06:26,  3.98s/it]avg reward so far : -0.69433:   4%|▍         | 4/100 [00:20<06:07,  3.83s/it]avg reward so far : -0.65233:   4%|▍         | 4/100 [00:21<06:07,  3.83s/it]avg reward so far : -0.65233:   5%|▌         | 5/100 [00:21<04:32,  2.87s/it]avg reward so far : -0.60936:   5%|▌         | 5/100 [00:23<04:32,  2.87s/it]avg reward so far : -0.60936:   6%|▌         | 6/100 [00:23<03:59,  2.55s/it]avg reward so far : -0.58552:   6%|▌         | 6/100 [00:25<03:59,  2.55s/it]avg reward so far : -0.58552:   7%|▋         | 7/100 [00:25<03:53,  2.51s/it]avg reward so far : -0.59469:   7%|▋         | 7/100 [00:26<03:53,  2.51s/it]avg reward so far : -0.59469:   8%|▊         | 8/100 [00:26<02:56,  1.92s/it]avg reward so far : -0.60646:   8%|▊         | 8/100 [00:28<02:56,  1.92s/it]avg reward so far : -0.60646:   9%|▉         | 9/100 [00:28<03:11,  2.10s/it]avg reward so far : -0.64170:   9%|▉         | 9/100 [00:29<03:11,  2.10s/it]avg reward so far : -0.64170:  10%|█         | 10/100 [00:29<02:28,  1.64s/it]avg reward so far : -0.64131:  10%|█         | 10/100 [00:32<02:28,  1.64s/it]avg reward so far : -0.64131:  11%|█         | 11/100 [00:32<02:51,  1.92s/it]avg reward so far : -0.66769:  11%|█         | 11/100 [00:36<02:51,  1.92s/it]avg reward so far : -0.66769:  12%|█▏        | 12/100 [00:36<03:47,  2.58s/it]avg reward so far : -0.66593:  12%|█▏        | 12/100 [00:39<03:47,  2.58s/it]avg reward so far : -0.66593:  13%|█▎        | 13/100 [00:39<04:13,  2.91s/it]avg reward so far : -0.63785:  13%|█▎        | 13/100 [00:41<04:13,  2.91s/it]avg reward so far : -0.63785:  14%|█▍        | 14/100 [00:41<03:35,  2.51s/it]avg reward so far : -0.63075:  14%|█▍        | 14/100 [00:42<03:35,  2.51s/it]avg reward so far : -0.63075:  15%|█▌        | 15/100 [00:42<03:01,  2.14s/it]avg reward so far : -0.63373:  15%|█▌        | 15/100 [00:43<03:01,  2.14s/it]avg reward so far : -0.63373:  16%|█▌        | 16/100 [00:43<02:32,  1.81s/it]avg reward so far : -0.63382:  16%|█▌        | 16/100 [00:44<02:32,  1.81s/it]avg reward so far : -0.63382:  17%|█▋        | 17/100 [00:44<02:05,  1.51s/it]avg reward so far : -0.68982:  17%|█▋        | 17/100 [00:45<02:05,  1.51s/it]avg reward so far : -0.68982:  18%|█▊        | 18/100 [00:45<01:53,  1.38s/it]avg reward so far : -0.68260:  18%|█▊        | 18/100 [00:46<01:53,  1.38s/it]avg reward so far : -0.68260:  19%|█▉        | 19/100 [00:46<01:50,  1.36s/it]avg reward so far : -0.67128:  19%|█▉        | 19/100 [00:47<01:50,  1.36s/it]avg reward so far : -0.67128:  20%|██        | 20/100 [00:47<01:35,  1.19s/it]avg reward so far : -0.65470:  20%|██        | 20/100 [00:48<01:35,  1.19s/it]avg reward so far : -0.65470:  21%|██        | 21/100 [00:48<01:27,  1.10s/it]avg reward so far : -0.65212:  21%|██        | 21/100 [00:49<01:27,  1.10s/it]avg reward so far : -0.65212:  22%|██▏       | 22/100 [00:49<01:18,  1.01s/it]avg reward so far : -0.65189:  22%|██▏       | 22/100 [00:49<01:18,  1.01s/it]avg reward so far : -0.65189:  23%|██▎       | 23/100 [00:49<01:08,  1.13it/s]avg reward so far : -0.64830:  23%|██▎       | 23/100 [00:50<01:08,  1.13it/s]avg reward so far : -0.64830:  24%|██▍       | 24/100 [00:50<00:58,  1.30it/s]avg reward so far : -0.62149:  24%|██▍       | 24/100 [00:51<00:58,  1.30it/s]avg reward so far : -0.62149:  25%|██▌       | 25/100 [00:51<01:04,  1.16it/s]avg reward so far : -0.60323:  25%|██▌       | 25/100 [00:52<01:04,  1.16it/s]avg reward so far : -0.60323:  26%|██▌       | 26/100 [00:52<01:05,  1.13it/s]avg reward so far : -0.59256:  26%|██▌       | 26/100 [00:53<01:05,  1.13it/s]avg reward so far : -0.59256:  27%|██▋       | 27/100 [00:53<01:05,  1.12it/s]avg reward so far : -0.58822:  27%|██▋       | 27/100 [00:54<01:05,  1.12it/s]avg reward so far : -0.58822:  28%|██▊       | 28/100 [00:54<00:58,  1.22it/s]avg reward so far : -0.58183:  28%|██▊       | 28/100 [00:56<00:58,  1.22it/s]avg reward so far : -0.58183:  29%|██▉       | 29/100 [00:56<01:35,  1.34s/it]avg reward so far : -0.58517:  29%|██▉       | 29/100 [00:57<01:35,  1.34s/it]avg reward so far : -0.58517:  30%|███       | 30/100 [00:57<01:23,  1.20s/it]avg reward so far : -0.59095:  30%|███       | 30/100 [00:57<01:23,  1.20s/it]avg reward so far : -0.59095:  31%|███       | 31/100 [00:57<01:08,  1.00it/s]avg reward so far : -0.58321:  31%|███       | 31/100 [00:58<01:08,  1.00it/s]avg reward so far : -0.58321:  32%|███▏      | 32/100 [00:58<01:05,  1.04it/s]avg reward so far : -0.56638:  32%|███▏      | 32/100 [00:59<01:05,  1.04it/s]avg reward so far : -0.56638:  33%|███▎      | 33/100 [00:59<01:02,  1.07it/s]avg reward so far : -0.55677:  33%|███▎      | 33/100 [01:00<01:02,  1.07it/s]avg reward so far : -0.55677:  34%|███▍      | 34/100 [01:00<00:57,  1.16it/s]                                                                              found a solution for 0 , sol: ( ( x > 1 && m == ( 1 + 1 ) ) || m < n || ( n <= 1 && m <= ( x * m ) ) )
-avg reward so far : -0.55677:  34%|███▍      | 34/100 [01:11<00:57,  1.16it/s]                                                                              z3_report time: 71.48 pid: 0 stats: Counter({'ce-T:': 2265, 'ce-I:': 1683, 'ce-F:': 680, 'boogie_result': 345, 'actual_z3': 18})
-avg reward so far : -0.55677:  34%|███▍      | 34/100 [01:11<00:57,  1.16it/s]                                                                              Writing logs to results_10_8_folder_128/inv_result_17_fuzz_spec.txt
-avg reward so far : -0.55677:  34%|███▍      | 34/100 [01:11<00:57,  1.16it/s]avg reward so far : -0.55677:  34%|███▍      | 34/100 [01:11<02:18,  2.10s/it]

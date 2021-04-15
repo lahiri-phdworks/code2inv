@@ -8,7 +8,7 @@
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
 
-#define UNROLL_LIMIT 128
+#define UNROLL_LIMIT 64
 
 #define aflcrash(cond, flag) \
   if (!cond)                 \
@@ -165,8 +165,8 @@ int main()
 
     if (preflag + loopflag + postflag == 0 && counter == 100)
     {
-      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount, "loopcount", loopcount, "postcount", postcount);
-      assert(0);
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
+              "precount", precount, "loopcount", loopcount, "postcount", postcount);
       counter = 0;
     }
 

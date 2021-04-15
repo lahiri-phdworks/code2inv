@@ -1,69 +1,0 @@
-OP_FILE results_10_8_folder_128/inv_result_104_fuzz_spec.txt
-Running with 10 -- 8
-{'S': [['S1'], ['S2']], 'S1': [['(', 'C1', ')'], ['(', 'C1', '||', 'C1', ')'], ['(', 'C1', '||', 'C1', '||', 'C1', ')']], 'C1': [['p'], ['(', 'p', '&&', 'p', ')']], 'S2': [['(', 'C2', ')'], ['(', 'C2', '&&', 'C2', ')'], ['(', 'C2', '&&', 'C2', '&&', 'C2', ')']], 'C2': [['p'], ['(', 'p', '||', 'p', ')']], 'p': [['var', 'cmp', 'expr']], 'expr': [['(', 'var', 'op', 'var', ')'], ['(', 'var', 'op', 'const', ')'], ['(', 'const', 'op', 'var', ')'], ['(', 'const', 'op', 'const', ')'], ['var'], ['const']], 'cmp': [['<'], ['>'], ['=='], ['<='], ['>=']], 'op': [['+'], ['-'], ['*']]}
-MAX CHILD 7
-VAR FORMAT ssa
-====== begin of s2v configuration ======
-| msg_average = 0
-======   end of s2v configuration ======
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Linear inited
-a GRUCell inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Linear inited
-a Parameter inited
-a Parameter inited
-a Parameter inited
-  0%|          | 0/100 [00:00<?, ?it/s]/home/ha-useast-service/anaconda3/lib/python3.8/site-packages/torch/nn/functional.py:1709: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
-  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
-/home/ha-useast-service/anaconda3/lib/python3.8/site-packages/torch/nn/functional.py:1698: UserWarning: nn.functional.tanh is deprecated. Use torch.tanh instead.
-  warnings.warn("nn.functional.tanh is deprecated. Use torch.tanh instead.")
-avg reward so far : -0.90842:   0%|          | 0/100 [00:11<?, ?it/s]avg reward so far : -0.90842:   1%|          | 1/100 [00:11<19:04, 11.56s/it]avg reward so far : -0.93721:   1%|          | 1/100 [00:13<19:04, 11.56s/it]avg reward so far : -0.93721:   2%|▏         | 2/100 [00:13<09:50,  6.02s/it]avg reward so far : -1.07264:   2%|▏         | 2/100 [00:14<09:50,  6.02s/it]avg reward so far : -1.07264:   3%|▎         | 3/100 [00:14<05:45,  3.56s/it]avg reward so far : -0.95642:   3%|▎         | 3/100 [00:16<05:45,  3.56s/it]avg reward so far : -0.95642:   4%|▍         | 4/100 [00:16<04:44,  2.97s/it]avg reward so far : -0.90893:   4%|▍         | 4/100 [00:17<04:44,  2.97s/it]avg reward so far : -0.90893:   5%|▌         | 5/100 [00:17<03:33,  2.25s/it]avg reward so far : -0.86589:   5%|▌         | 5/100 [00:20<03:33,  2.25s/it]avg reward so far : -0.86589:   6%|▌         | 6/100 [00:20<03:45,  2.40s/it]avg reward so far : -0.77217:   6%|▌         | 6/100 [00:22<03:45,  2.40s/it]avg reward so far : -0.77217:   7%|▋         | 7/100 [00:22<03:54,  2.52s/it]avg reward so far : -0.80110:   7%|▋         | 7/100 [00:23<03:54,  2.52s/it]avg reward so far : -0.80110:   8%|▊         | 8/100 [00:23<02:54,  1.89s/it]avg reward so far : -0.78359:   8%|▊         | 8/100 [00:24<02:54,  1.89s/it]avg reward so far : -0.78359:   9%|▉         | 9/100 [00:24<02:32,  1.67s/it]avg reward so far : -0.75485:   9%|▉         | 9/100 [00:25<02:32,  1.67s/it]avg reward so far : -0.75485:  10%|█         | 10/100 [00:25<02:16,  1.51s/it]avg reward so far : -0.75768:  10%|█         | 10/100 [00:26<02:16,  1.51s/it]avg reward so far : -0.75768:  11%|█         | 11/100 [00:26<02:02,  1.38s/it]avg reward so far : -0.73561:  11%|█         | 11/100 [00:27<02:02,  1.38s/it]avg reward so far : -0.73561:  12%|█▏        | 12/100 [00:27<01:56,  1.32s/it]avg reward so far : -0.71832:  12%|█▏        | 12/100 [00:29<01:56,  1.32s/it]avg reward so far : -0.71832:  13%|█▎        | 13/100 [00:29<02:00,  1.39s/it]avg reward so far : -0.72493:  13%|█▎        | 13/100 [00:30<02:00,  1.39s/it]avg reward so far : -0.72493:  14%|█▍        | 14/100 [00:30<01:38,  1.14s/it]avg reward so far : -0.73342:  14%|█▍        | 14/100 [00:30<01:38,  1.14s/it]avg reward so far : -0.73342:  15%|█▌        | 15/100 [00:30<01:20,  1.06it/s]avg reward so far : -0.75290:  15%|█▌        | 15/100 [00:31<01:20,  1.06it/s]avg reward so far : -0.75290:  16%|█▌        | 16/100 [00:31<01:10,  1.19it/s]avg reward so far : -0.72021:  16%|█▌        | 16/100 [00:32<01:10,  1.19it/s]avg reward so far : -0.72021:  17%|█▋        | 17/100 [00:32<01:32,  1.11s/it]avg reward so far : -0.71764:  17%|█▋        | 17/100 [00:33<01:32,  1.11s/it]avg reward so far : -0.71764:  18%|█▊        | 18/100 [00:33<01:16,  1.08it/s]                                                                              found a solution for 0 , sol: ( n >= x || n < ( n * 0 ) )
-avg reward so far : -0.71764:  18%|█▊        | 18/100 [00:44<01:16,  1.08it/s]                                                                              z3_report time: 44.20 pid: 0 stats: Counter({'ce-I:': 829, 'ce-T:': 496, 'ce-F:': 347, 'boogie_result': 183, 'actual_z3': 11})
-avg reward so far : -0.71764:  18%|█▊        | 18/100 [00:44<01:16,  1.08it/s]                                                                              Writing logs to results_10_8_folder_128/inv_result_104_fuzz_spec.txt
-avg reward so far : -0.71764:  18%|█▊        | 18/100 [00:44<01:16,  1.08it/s]avg reward so far : -0.71764:  18%|█▊        | 18/100 [00:44<03:21,  2.45s/it]
