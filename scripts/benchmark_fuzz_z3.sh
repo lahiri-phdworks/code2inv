@@ -6,7 +6,7 @@ set -o pipefail
 cd ../code2inv/prog_generator
 mkdir -p RUNNER_TIME_LOGS_Z3 results_Z3
 
-for file_index in 25 31 33 34 42 43 44 46 47 48 49 50 52 53 55 56 57 58 59 60 64 66 67 69 71 72 73 76 78 81 82 84 86 87 90 97 107 111 113 117 118 119 122 123 121 125 131 132; 
+for file_index in 91 92 102 107 114 115; 
 do 
     var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
     echo $var

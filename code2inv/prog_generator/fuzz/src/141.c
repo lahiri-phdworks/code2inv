@@ -77,7 +77,7 @@ int isprime(int n)
         return 0;
 
     int flag = 1;
-    for (auto i = 2; i <= sqrt(n); i++)
+    for (auto i = 2; i * i <= n; i++)
     {
         if (n % i == 0)
         {
@@ -113,9 +113,9 @@ int main()
         counter++;
 
         int choices = buf[0];
-        n = (buf[1] % 100);
-        i = (buf[2] % 100);
-        out = (buf[3] % 100);
+        n = buf[1];
+        i = buf[2];
+        out = buf[3];
 
         char vars[100];
         memset(vars, '\0', sizeof(vars));

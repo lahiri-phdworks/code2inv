@@ -12,7 +12,7 @@ export AFL=$(which honggfuzz)
 #  101 103 104 105 10 116 11 120 128 129 12 133 13 14 15 16 17 19 20 51 54 63 4 41 70 74 77 79 80 83;
 # ls -al | awk '{ print $9 }' | tr ".c" " " | tr "\n" " "
 
-for TIMEOUT in 10;
+for TIMEOUT in 10 20;
 do
     for EPOCH in 8;
     do
@@ -24,7 +24,7 @@ do
         export TIMEOUT=$TIMEOUT
         export EPOCHS=$EPOCH
         
-        for file_index in 25 31 33 34 42 43 44 46 47 48 49 50 52 53 55 56 57 58 59 60 64 66 67 69 71 72 73 76 78 81 82 84 86 87 90 97 111 113 117 118 119 122 123 125 126 127 131; 
+        for file_index in 91 92 102 107 114 115; 
         do
             var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
             echo  ==== Processing ${var}.c file ====  
