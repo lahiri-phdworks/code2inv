@@ -10,6 +10,7 @@ export CXX=$(which hfuzz-clang++)
 export AFL=$(which honggfuzz)
 
 #  101 103 104 105 10 116 11 120 128 129 12 133 13 14 15 16 17 19 20 51 54 63 4 41 70 74 77 79 80 83;
+# 101 103 104 105 10 116 11 120 128 129 12 133 13 14 15 16 17 19 20 51 54 63 4 41 70 74 77 79 80 83;
 # ls -al | awk '{ print $9 }' | tr ".c" " " | tr "\n" " "
 
 for TIMEOUT in 10 20;
@@ -24,7 +25,7 @@ do
         export TIMEOUT=$TIMEOUT
         export EPOCHS=$EPOCH
         
-        for file_index in 91 92 102 107 114 115; 
+        for file_index in 83 70;
         do
             var=`echo $file_index |  tr "/" "\n" | tr "." "\n" | grep ^[0-9]`
             echo  ==== Processing ${var}.c file ====  

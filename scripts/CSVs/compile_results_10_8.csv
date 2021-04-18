@@ -1,6 +1,0 @@
-Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time
-45, fuzz_spec, ( c < ( 0 * 1 ) || n >= ( c + 1 ) ), Failed, Yes, "[Or(Not(0 <= c), n >= 1 + c)]",  1,  0.46
-65, fuzz_spec, ( ( y >= ( x + y ) && x < ( 1 + y ) ) || x <= 100 || ( y >= 0 && y == ( 0 * 100 ) ) ), Passed, Yes, "[Or(x <= 100,
-    And(0 >= x, Not(y <= -1 + x)),
-    And(y >= 0, y == 0))]",  16,  35.70
-88, fuzz_spec, ( ( lock < ( 0 - 1 ) || y >= x ) && ( lock == ( 1 * 1 ) || x == ( y - 1 ) ) ), Passed, Yes, "[Or(Not(-1 <= lock), y >= x), Or(lock == 1, x == -1 + y)]",  14,  406.97
