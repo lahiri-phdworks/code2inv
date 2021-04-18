@@ -32,7 +32,7 @@ void precheck(FILE *fptr, char *buff, long long int n, long long int v1, long lo
   {
     fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
-    /* assert(0); */
+    assert(0);
   }
 }
 
@@ -48,7 +48,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_
             "n", temp_n, "v1", v1, "v2", v2, "v3", v3, "x", temp_x, "y", temp_y);
     fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
             "n", n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y);
-    /* assert(0); */
+    assert(0);
   }
 }
 
@@ -67,7 +67,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n, long long int temp_
         fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
  "n",                                                             \
                 n, "v1", v1, "v2", v2, "v3", v3, "x", x, "y", y); \
-      /* assert(0); */                                            \
+      assert(0);                                                  \
     \ 
 }                                                            \
   }
@@ -82,11 +82,11 @@ int main()
   long long int x;
   long long int y;
 
-  char buff[1024];
+  char buff[2048];
   memset(buff, '\0', sizeof(buff));
 
   FILE *fptr = fopen("models.txt", "w");
-  setvbuf(fptr, buff, _IOLBF, 1024);
+  setvbuf(fptr, buff, _IOLBF, 2048);
 
   // freopen("models.txt", "w", stderr);
 

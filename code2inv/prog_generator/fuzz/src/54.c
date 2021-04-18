@@ -79,12 +79,12 @@ int main()
   long long int v2;
   long long int v3;
 
-  char buff[1024];
+  char buff[2048];
   memset(buff, '\0', sizeof(buff));
   FILE *fptr = fopen("models.txt", "w");
 
   // COMMENT : This must be line buffered.
-  setvbuf(fptr, buff, _IOLBF, 1024);
+  setvbuf(fptr, buff, _IOLBF, 2048);
 
   for (;;)
   {

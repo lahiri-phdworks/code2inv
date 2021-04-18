@@ -76,11 +76,11 @@ int main()
   long long int n;
   long long int x;
 
-  char buff[1024];
+  char buff[2048];
   memset(buff, '\0', sizeof(buff));
 
   FILE *fptr = fopen("models.txt", "w");
-  setvbuf(fptr, buff, _IOLBF, 1024);
+  setvbuf(fptr, buff, _IOLBF, 2048);
 
   for (;;)
   {

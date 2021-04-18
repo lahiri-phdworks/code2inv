@@ -216,10 +216,10 @@ def inv_solver(vc_file: str, inv: str):
                 res.append(ce)
                 # COMMENT : Is [Model, None, None] better then [None, Model, None]?
                 # Any weightage to pre model, loop model over post model and vice-versa?
-                # t = 3 - len(res)
-                # for k in range(t):
-                #     res.append(None)
-                # # COMMENT : Now len(res) == 3 always
+                t = 3 - len(res)
+                for k in range(t):
+                    res.append(None)
+                # COMMENT : Now len(res) == 3 always
                 # break
             elif z3.unknown == r:
                 if i == 0:
