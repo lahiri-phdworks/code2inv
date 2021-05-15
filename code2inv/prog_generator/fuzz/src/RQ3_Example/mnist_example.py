@@ -66,10 +66,6 @@ def test(model, device, test_loader):
         for data, target in test_loader:
             data, target = data.to(device), target.to(device)
 
-            # TorchScript
-            global traced_script_module
-            traced_script_module = torch.jit.trace(model, data)
-
             output = model(data)
             test_loss += F.nll_loss(
                 output, target, reduction='sum').item()  # sum up batch loss
@@ -135,7 +131,7 @@ def main():
         help='how many batches to wait before logging training status')
     parser.add_argument('--save-model',
                         action='store_true',
-                        default=False,
+                        default=True,
                         help='For Saving the current Model')
 
     args = parser.parse_args()
@@ -172,7 +168,7 @@ def main():
 
     if args.save_model:
         torch.save(model.state_dict(), "mnist_cnn.pt")
-        traced_script_module.save("traced_mnist_model.pt")
+        sm.save("mnist_model_cpp.pt")
 
 
 if __name__ == '__main__':

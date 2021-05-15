@@ -1,6 +1,4 @@
-set -e
-set -u
-set -o pipefail
+#!/bin/bash
 
 cd code2inv/prog_generator
 
@@ -10,7 +8,7 @@ export AFL=$(which honggfuzz)
 
 mkdir -p RUNNER_TIME_LOGS
 
-if [ -z $1 ]; 
+if [ -z $1 ];
 then
     echo "Specify index of file to process"
     echo "Usage ./runner.sh <file_index_to_process> <spec_type>"
@@ -20,7 +18,7 @@ else
     var=$1
 fi
 
-if [ -z $2 ]; 
+if [ -z $2 ];
 then
     echo "Specify SPEC"
     echo "Usage ./runner.sh <file_index_to_process> <spec_type>"
