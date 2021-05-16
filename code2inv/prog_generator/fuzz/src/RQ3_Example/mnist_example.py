@@ -9,7 +9,7 @@ from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 
 
-class Net(nn.Module):
+class Net(torch.jit.ScriptModule):
     def __init__(self):
         super(Net, self).__init__()
         self.conv1 = nn.Conv2d(1, 10, 5, 1)
@@ -19,6 +19,7 @@ class Net(nn.Module):
         self.fc1 = nn.Linear(320, 50)
         self.fc2 = nn.Linear(50, 10)
 
+    @torch.jit.script_method
     def forward(self, x):
 
         #  x = torch::relu(torch::max_pool2d(conv1->forward(x), 2));
@@ -43,10 +44,6 @@ class Net(nn.Module):
 
         output = F.log_softmax(x, dim=1)
         return output
-
-
-my_module = Net()
-sm = torch.jit.script(my_module)
 
 
 def train(args, model, device, train_loader, optimizer, epoch):
@@ -166,17 +163,19 @@ def main():
     test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
 
     model = Net().to(device)
+    scripted_model = torch.jit.script(model)  # scripting the model
     optimizer = optim.Adadelta(model.parameters(), lr=args.lr)
 
     scheduler = StepLR(optimizer, step_size=1, gamma=args.gamma)
     for epoch in range(1, args.epochs + 1):
-        train(args, model, device, train_loader, optimizer, epoch)
-        test(model, device, test_loader)
+        train(args, scripted_model, device, train_loader, optimizer, epoch)
+        test(scripted_model, device, test_loader)
         scheduler.step()
 
     if args.save_model:
-        # torch.save(model.state_dict(), "mnist_cnn.pt")
-        sm.save("mnist_model_cpp.pt")
+        device2 = torch.device("cpu")
+        scripted_model.to(device2)
+        scripted_model.save("mnist_model_cpp.pt")
 
 
 if __name__ == '__main__':
