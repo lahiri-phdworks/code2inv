@@ -50,7 +50,7 @@ mkdir -p "$buildDir"
 # Start Build
 cd "$buildDir"
 CC=$CC CXX=$CXX cmake -DCMAKE_CXX_FLAGS="-w" -DCMAKE_PREFIX_PATH=$HOME/libtorch ../
-make -j 12
+make -j6
 cd ../
 
 # Some random seeds
