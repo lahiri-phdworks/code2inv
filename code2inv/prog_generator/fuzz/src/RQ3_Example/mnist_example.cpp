@@ -1,6 +1,6 @@
 
 #include <torch/torch.h>
-#include <torch/script.h> // One-stop header.
+#include <torch/script.h>
 // https://github.com/pytorch/examples/blob/master/cpp/mnist/mnist.cpp
 
 #include <memory>
@@ -17,13 +17,7 @@ const char *kDataRoot = "../data/MNIST/raw";
 const int64_t kTrainBatchSize = 64;
 
 // The batch size for testing.
-const int64_t kTestBatchSize = 1000;
-
-// The number of epochs to train.
-const int64_t kNumberOfEpochs = 10;
-
-// After how many batches to log a new update with the loss value.
-const int64_t kLogInterval = 10;
+const int64_t kTestBatchSize = 1;
 
 template <typename DataLoader>
 void test(
@@ -60,12 +54,20 @@ void test(
                          .template item<float>();
 
         auto pred = output.argmax(1);
-        std::cout << pred << std::endl;
+
+        // To get the scalar out from a 1-D tensor at::Tensor Type.
+        int target_number = targets.template item<int64_t>();
+        int pred_number = pred.template item<int64_t>();
+
+        std::printf(
+            "\nPrediction : %d | Target : %d",
+            pred_number, target_number);
+
         correct += pred.eq(targets).sum().template item<int64_t>();
     }
 
     std::printf(
-        "\nStats : Correct : %d | Loss : %lf | DataSet Size : %ld | Total : %d\n",
+        "\nStats : Correct : %d | Loss : %lf | DataSet Size : %ld | Total : %d",
         correct, test_loss, dataset_size, total);
 
     test_loss /= dataset_size;
