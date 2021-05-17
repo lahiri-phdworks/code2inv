@@ -6,8 +6,6 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
 #include <math.h>
 #include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
@@ -30,60 +28,63 @@
     if (!cond)       \
         continue;
 
-#define INV(sum, n, i) PHI
+#define INV(sum, n, i, index) PHI
 
 long long unsigned int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long unsigned int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int sum, long long int n, long long int i)
+void precheck(FILE *fptr, char *buff, long long int sum,
+              long long int n, long long int i, long long int index)
 {
     int f = preflag;
-    aflcrash(INV(sum, n, i), preflag);
+    aflcrash(INV(sum, n, i, index), preflag);
     if (f == 0 && preflag == 1)
     {
-        fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n",
-                "sum", sum, "n", n, "i", i);
+        fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "sum", sum, "n", n, "i", i, "index", index);
         assert(0);
     }
 }
 
 // COMMENT : Loopcheck template
 void loopcheck(FILE *fptr, char *buff, long long int temp_sum, long long int temp_n, long long int temp_i,
-               long long int sum, long long int n, long long int i)
+               long long int temp_index, long long int sum, long long int n, long long int i, long long int index)
 {
     int f = loopflag;
-    aflcrash(INV(sum, n, i), loopflag);
+    aflcrash(INV(sum, n, i, index), loopflag);
     if (f == 0 && loopflag == 1)
     {
-        fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n",
-                "sum", temp_sum, "n", temp_n, "i", temp_i);
-        fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n",
-                "sum", sum, "n", n, "i", i);
+        fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "sum", temp_sum, "n", temp_n, "i", temp_i, "index", temp_index);
+        fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                "sum", sum, "n", n, "i", i, "index", index);
         assert(0);
     }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, sum, n, i) \
+#define postcheck(fptr, buff, cond, sum, n, i, index) \
     \ 
-{                                         \
+{                                                \
         \ 
-    int f = postflag;                          \
+    int f = postflag;                                 \
         \ 
-   aflcrash(cond, postflag);                   \
+   aflcrash(cond, postflag);                          \
         \ 
-    if (f == 0 && postflag == 1)               \
-        {                                      \
+    if (f == 0 && postflag == 1)                      \
+        {                                             \
             \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
- "sum",                                        \
-                sum, "n", n, "i", i);          \
-            assert(0);                         \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "sum",                                               \
+                sum, "n", n, "i", i, "index", index); \
+            assert(0);                                \
         \ 
-}                                     \
+}                                            \
     }
+
+FILE *fptr;
 
 // Where to find the MNIST dataset.
 const char *kDataRoot = "./data/MNIST/raw";
@@ -94,13 +95,22 @@ const int64_t kTrainBatchSize = 64;
 // The batch size for testing.
 const int64_t kTestBatchSize = 1;
 
-template <typename DataLoader>
-int32_t predict_single(FILE *fptr,
-                       torch::jit::Module &module,
-                       torch::Device device,
-                       DataLoader &data_loader,
-                       size_t dataset_size, int image_index)
+auto test_dataset = torch::data::datasets::MNIST(
+                        kDataRoot, torch::data::datasets::MNIST::Mode::kTest)
+                        .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
+                        .map(torch::data::transforms::Stack<>());
+
+const size_t dataset_size = test_dataset.size().value();
+
+auto data_loader =
+    torch::data::make_data_loader(std::move(test_dataset), kTestBatchSize);
+
+int32_t predict(int image_index)
 {
+    // Deserialize the ScriptModule from a file using torch::jit::load().
+    // ./mnist_example ../<model.pt>
+    torch::jit::Module module = torch::jit::load("./mnist_model_cpp.pt");
+
     torch::NoGradGuard no_grad;
     module.eval();
 
@@ -110,10 +120,10 @@ int32_t predict_single(FILE *fptr,
     // COMMENT : Can we do better than iteration?
     // COMMENT : Currently we pick the first image, this is not intended.
     // Must pick different "image" data everytime.
-    for (const auto &batch : data_loader)
+    for (const auto &batch : *(data_loader))
     {
-        auto data = batch.data.to(device);
-        auto targets = batch.target.to(device);
+        auto data = batch.data;
+        auto targets = batch.target;
 
         int target_number = targets.template item<int64_t>();
 
@@ -138,9 +148,9 @@ int32_t predict_single(FILE *fptr,
             auto pred = output.argmax(1);
             pred_number = pred.template item<int64_t>();
 
-            // std::fprintf(fptr,
-            //              "Prediction : %d | Target : %d | Input Index : %d\n",
-            //              pred_number, target_number, image_index);
+            std::fprintf(fptr,
+                         "Prediction : %d | Target : %d | Input Index : %d\n",
+                         pred_number, target_number, image_index);
 
             break;
         }
@@ -156,40 +166,13 @@ int main(int argc, const char *argv[])
     long long int sum;
     long long int n;
     long long int i;
+    long long int index;
 
     char buff[2048];
     memset(buff, '\0', sizeof(buff));
 
-    FILE *fptr = fopen("models.txt", "w");
+    fptr = fopen("models.txt", "w");
     setvbuf(fptr, buff, _IOLBF, 2048);
-
-    // Deserialize the ScriptModule from a file using torch::jit::load().
-    // ./mnist_example ../<model.pt>
-    torch::jit::Module module = torch::jit::load("./mnist_model_cpp.pt");
-
-    torch::DeviceType device_type;
-    device_type = torch::kCPU;
-    torch::Device device(device_type);
-
-    module.to(device);
-
-    auto train_dataset = torch::data::datasets::MNIST(kDataRoot)
-                             .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
-                             .map(torch::data::transforms::Stack<>());
-    const size_t train_dataset_size = train_dataset.size().value();
-    auto train_loader =
-        torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(
-            std::move(train_dataset), kTrainBatchSize);
-
-    auto test_dataset = torch::data::datasets::MNIST(
-                            kDataRoot, torch::data::datasets::MNIST::Mode::kTest)
-                            .map(torch::data::transforms::Normalize<>(0.1307, 0.3081))
-                            .map(torch::data::transforms::Stack<>());
-    const size_t test_dataset_size = test_dataset.size().value();
-    auto test_loader =
-        torch::data::make_data_loader(std::move(test_dataset), kTestBatchSize);
-
-    // predict_single(fptr, module, device, *test_loader, test_dataset_size, 55);
 
     for (;;)
     {
@@ -201,58 +184,60 @@ int main(int argc, const char *argv[])
 
         long long int choices = buf[0];
         sum = buf[1];
-        i = buf[2];
+        index = buf[2];
         n = buf[3];
+        i = buf[4];
 
-        // COMMENT : What can be done with the length of this arr[]?
-        int arr[n];
-        memset(arr, 0, sizeof(arr));
-        for (auto j = 0; j < sizeof(arr); j++)
+        std::vector<int> arr;
+        arr.push_back(0);
+        for (auto j = 1; j < n; j++)
         {
-            arr[j] = buf[j + 4] % 100;
+            arr.push_back((buf[j + 4] + buf[j + 8]) % 100);
         }
 
         char vars[100];
         memset(vars, '\0', sizeof(vars));
-        snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n",
-                 "sum", sum, "n", n, "i", i);
+        snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+                 "sum", sum, "n", n, "i", i, "index", index);
 
         if (choices > 100)
         {
             //pre-conditions
             assume((preflag == 0));
             sum = 0;
-            i = 0;
+            index = 0;
+            i = arr[index];
             precount++;
-            precheck(fptr, vars, sum, n, i);
+            precheck(fptr, vars, sum, n, i, index);
         }
         else
         {
             // loop-check program
             assume((loopflag + postflag < 2));
-            assume(INV(sum, n, i));
+            assume(INV(sum, n, i, index));
 
             // Loop Condition
-            if (i < n)
+            if (index < n)
             {
                 // Bounded Unrolling
                 int k = UNROLL_LIMIT;
-                while ((i < n) && k--)
+                while ((index < n) && k--)
                 {
                     assume((loopflag == 0));
                     // loop body
                     long long int temp_sum = sum;
                     long long int temp_n = n;
-                    long long int temp_i = i;
+                    long long int temp_i = arr[index];
+                    long long int temp_index = index;
 
                     // COMMENT : Is the formulation correct for the invariant expression?
-                    // sum == (((i / 10) * ((i / 10) + 1)) / 2);
 
-                    i = i + 1;
-                    sum += predict_single(fptr, module, device, *test_loader, test_dataset_size, arr[i]);
+                    index += 1;
+                    i = arr[index];
+                    sum += predict(i);
 
                     loopcount++;
-                    loopcheck(fptr, vars, temp_sum, temp_n, temp_i, sum, n, i);
+                    loopcheck(fptr, vars, temp_sum, temp_n, temp_i, temp_index, sum, n, i, index);
                 }
             }
             else
@@ -261,7 +246,8 @@ int main(int argc, const char *argv[])
                 assume((postflag == 0));
                 // post-condition
                 postcount++;
-                postcheck(fptr, vars, (sum == (((i / 10) * ((i / 10) + 1)) / 2)), sum, n, i)
+                postcheck(fptr, vars, (sum >= 0), sum, n, arr[index], index)
+                // (sum == (((i / 10) * ((i / 10) + 1)) / 2))
             }
         }
 
@@ -282,7 +268,3 @@ int main(int argc, const char *argv[])
     fclose(fptr);
     return 0;
 }
-
-/**
- * sum = (((i/10)*((i/10)+1))/2), where i=0..9 are images of 0, i=10..19 are images of 1 and so on... 
-*/
