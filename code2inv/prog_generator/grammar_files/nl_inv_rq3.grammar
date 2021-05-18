@@ -1,0 +1,8 @@
+S ::= p
+p ::= ( sum == ( expr1 op expr2 ) )
+expr1 ::= ( 5 * ( ( ( var / 10 ) op const ) * ( var / 10 ) ) )  
+expr2 ::= ( ( var / 10 ) * ( var op const * ( var / 10 ) ) )
+const ::= 10 | 1
+var ::= index 
+cmp ::= == | >=
+op ::= + | -

@@ -88,7 +88,7 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_sum, long long int tem
 FILE *fptr;
 
 // Where to find the MNIST dataset.
-const char *kDataRoot = "./data/MNIST/raw";
+const char *kDataRoot = "RQ3_Example/data/MNIST/raw";
 
 // The batch size for training.
 const int64_t kTrainBatchSize = 64;
@@ -110,7 +110,7 @@ int32_t predict(int image_index)
 {
     // Deserialize the ScriptModule from a file using torch::jit::load().
     // ./mnist_example ../<model.pt>
-    torch::jit::Module module = torch::jit::load("./mnist_model_cpp.pt");
+    torch::jit::Module module = torch::jit::load("RQ3_Example/mnist_model_cpp.pt");
 
     torch::NoGradGuard no_grad;
     module.eval();
@@ -275,3 +275,8 @@ int main(int argc, const char *argv[])
     fclose(fptr);
     return 0;
 }
+
+/**
+ * @brief Invariant
+ * (sum == (5 * ((index / 10) - 1) * (index / 10)) + ((index / 10) * (index - 10 * ((index / 10)))))
+ */
