@@ -10,8 +10,8 @@ export AFL=$(which honggfuzz)
 example=$1
 timeout=$2
 
-echo  ======== Compiling RQ3 $example ========
+echo  ======== Compiling RQ2 $example ========
 ./start.sh -b bin -o output -t tests -e $example
 
-echo  ======== Executing RQ3 $example ========
+echo  ======== Executing RQ2 $example ========
 timeout $timeout ./fuzz.sh -b bin -o output -t tests -e $example

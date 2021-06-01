@@ -1,0 +1,1 @@
+// sin(x) computation with Taylor expansion

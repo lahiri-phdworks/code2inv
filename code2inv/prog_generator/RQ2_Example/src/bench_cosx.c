@@ -1,0 +1,1 @@
+// cos(x) computation with Taylor expansion
