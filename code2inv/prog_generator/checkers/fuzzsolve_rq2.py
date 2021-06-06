@@ -30,8 +30,8 @@ else:
     timeout = 20
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
-filepath = os.path.join(pwd, os.pardir, f"RQ3_Example/include/{example}.h")
-fuzzbase = os.path.join(pwd, os.pardir, f"RQ3_Example")
+filepath = os.path.join(pwd, os.pardir, f"RQ2_Example/include/{example}.h")
+fuzzbase = os.path.join(pwd, os.pardir, f"RQ2_Example")
 outputFile = os.path.join(pwd, os.pardir, "models.txt")
 collection_semantic = [None, None, None, None]
 
