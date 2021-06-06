@@ -1,7 +1,6 @@
 #include "assert.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   int n, l, r, i, j;
 
   n = __VERIFIER_nondet_int();
@@ -10,22 +9,16 @@ int main(int argc, char *argv[])
 
   l = n / 2 + 1;
   r = n;
-  if (l > 1)
-  {
+  if (l > 1) {
     l--;
-  }
-  else
-  {
+  } else {
     r--;
   }
-  while (r > 1)
-  {
+  while (r > 1) {
     i = l;
     j = 2 * l;
-    while (j <= r)
-    {
-      if (j < r)
-      {
+    while (j <= r) {
+      if (j < r) {
         __VERIFIER_assert(1 <= j);
         __VERIFIER_assert(j <= n);
         __VERIFIER_assert(1 <= j + 1);
@@ -35,8 +28,7 @@ int main(int argc, char *argv[])
       }
       __VERIFIER_assert(1 <= j);
       __VERIFIER_assert(j <= n);
-      if (__VERIFIER_nondet_int())
-      {
+      if (__VERIFIER_nondet_int()) {
         break;
       }
       __VERIFIER_assert(1 <= i);
@@ -46,14 +38,11 @@ int main(int argc, char *argv[])
       i = j;
       j = 2 * j;
     }
-    if (l > 1)
-    {
+    if (l > 1) {
       __VERIFIER_assert(1 <= l);
       __VERIFIER_assert(l <= n);
       l--;
-    }
-    else
-    {
+    } else {
       __VERIFIER_assert(1 <= r);
       __VERIFIER_assert(r <= n);
       r--;

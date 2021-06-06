@@ -1,10 +1,6 @@
-int incr1(int a, int b)
-{
-  return b + a;
-}
+int incr1(int a, int b) { return b + a; }
 
-int main()
-{
+int main() {
   // variable declarations
   int i;
   int j;

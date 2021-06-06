@@ -12,13 +12,11 @@ int main() {
   // loop body
   while ((i <= size)) {
     {
-    (i  = (i + 1));
-    (sn  = (sn + 1));
+      (i = (i + 1));
+      (sn = (sn + 1));
     }
-
   }
   // post-condition
-if ( (sn != 0) )
-assert( (sn == size) );
-
+  if ((sn != 0))
+    assert((sn == size));
 }

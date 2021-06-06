@@ -8,13 +8,11 @@ int main() {
   // loop body
   while (unknown()) {
     {
-    (x  = (x + 1));
-    (sn  = (sn + 1));
+      (x = (x + 1));
+      (sn = (sn + 1));
     }
-
   }
   // post-condition
-if ( (sn != x) )
-assert( (sn == -1) );
-
+  if ((sn != x))
+    assert((sn == -1));
 }

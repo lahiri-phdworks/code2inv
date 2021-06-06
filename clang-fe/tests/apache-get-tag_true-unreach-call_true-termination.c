@@ -1,11 +1,13 @@
 #include "assert.h"
-int main()
-{
+int main() {
   int tagbuf_len;
   int t;
-  
+
   tagbuf_len = __VERIFIER_nondet_int();
-  if(tagbuf_len >= 1); else goto END;
+  if (tagbuf_len >= 1)
+    ;
+  else
+    goto END;
 
   t = 0;
 
@@ -21,13 +23,13 @@ int main()
     if (__VERIFIER_nondet_int()) {
       break;
     }
-     __VERIFIER_assert(0 <= t);
-     __VERIFIER_assert(t <= tagbuf_len);
+    __VERIFIER_assert(0 <= t);
+    __VERIFIER_assert(t <= tagbuf_len);
     t++;
   }
 
-   __VERIFIER_assert(0 <= t);
-   __VERIFIER_assert(t <= tagbuf_len);
+  __VERIFIER_assert(0 <= t);
+  __VERIFIER_assert(t <= tagbuf_len);
   t++;
 
   while (1) {
@@ -39,31 +41,30 @@ int main()
     }
 
     if (__VERIFIER_nondet_int()) {
-      if ( __VERIFIER_nondet_int()) {
-	 __VERIFIER_assert(0 <= t);
-	__VERIFIER_assert(t <= tagbuf_len);
+      if (__VERIFIER_nondet_int()) {
+        __VERIFIER_assert(0 <= t);
+        __VERIFIER_assert(t <= tagbuf_len);
         t++;
         if (t == tagbuf_len) {
-	  __VERIFIER_assert(0 <= t);
-	  __VERIFIER_assert(t <= tagbuf_len);
+          __VERIFIER_assert(0 <= t);
+          __VERIFIER_assert(t <= tagbuf_len);
           goto END;
         }
       }
-    }
-    else if ( __VERIFIER_nondet_int()) {
+    } else if (__VERIFIER_nondet_int()) {
       break;
     }
 
     /* OK */
     __VERIFIER_assert(0 <= t);
     __VERIFIER_assert(t <= tagbuf_len);
-    t++;                /* Now t == tagbuf_len + 1 
-                         * So the bounds check (t == tagbuf_len) will fail */
+    t++; /* Now t == tagbuf_len + 1
+          * So the bounds check (t == tagbuf_len) will fail */
   }
-  /* OK */ 
+  /* OK */
   __VERIFIER_assert(0 <= t);
   __VERIFIER_assert(t <= tagbuf_len);
 
- END:
+END:
   return 0;
 }

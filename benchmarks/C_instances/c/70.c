@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int n;
   int v1;
@@ -23,8 +22,7 @@ int main()
   // loopend
   // postcheck
   // post-condition
-  if (n > 0)
-  {
+  if (n > 0) {
     // assert (y >= 0);
     assert(y < n);
   }

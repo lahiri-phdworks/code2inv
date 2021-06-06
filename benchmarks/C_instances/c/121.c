@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int i;
   int sn;

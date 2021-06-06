@@ -9,13 +9,11 @@ int main() {
   // loop body
   while ((i <= size)) {
     {
-    (i  = (i + 1));
-    (sn  = (sn + 1));
+      (i = (i + 1));
+      (sn = (sn + 1));
     }
-
   }
   // post-condition
-if ( (sn != size) )
-assert( (sn == 0) );
-
+  if ((sn != size))
+    assert((sn == 0));
 }

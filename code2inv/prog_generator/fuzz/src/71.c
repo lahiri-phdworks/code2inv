@@ -1,21 +1,20 @@
 #include <71.h>
-#include <stdio.h>
 #include <assert.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include <sys/file.h>
-#include <libhfuzz/libhfuzz.h>
 #include <inttypes.h>
+#include <libhfuzz/libhfuzz.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/file.h>
 
 #define UNROLL_LIMIT 64
 
-#define aflcrash(cond, flag) \
-  if (!cond)                 \
+#define aflcrash(cond, flag)                                                   \
+  if (!cond)                                                                   \
     flag = 1;
 
-#define assume(cond) \
-  if (!cond)         \
+#define assume(cond)                                                           \
+  if (!cond)                                                                   \
     continue;
 
 #define INV(c, x1, x2, x3, y, z) PHI
@@ -25,55 +24,62 @@ int preflag = 0, loopflag = 0, postflag = 0;
 long long unsigned int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *file_descp, char *buff, long long int c, long long int x1, long long int x2, long long int x3, long long int y, long long int z)
-{
+void precheck(FILE *file_descp, char *buff, long long int c, long long int x1,
+              long long int x2, long long int x3, long long int y,
+              long long int z) {
   int f = preflag;
   aflcrash(INV(c, x1, x2, x3, y, z), preflag);
-  if (f == 0 && preflag == 1)
-  {
-    fprintf(file_descp, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+  if (f == 0 && preflag == 1) {
+    fprintf(file_descp,
+            "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : "
+            "%lld\n",
             "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
     assert(0);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *file_descp, char *buff, long long int temp_c, long long int temp_y, long long int temp_z,
-               long long int c, long long int x1, long long int x2, long long int x3, long long int y, long long int z)
-{
+void loopcheck(FILE *file_descp, char *buff, long long int temp_c,
+               long long int temp_y, long long int temp_z, long long int c,
+               long long int x1, long long int x2, long long int x3,
+               long long int y, long long int z) {
   int f = loopflag;
   aflcrash(INV(c, x1, x2, x3, y, z), loopflag);
-  if (f == 0 && loopflag == 1)
-  {
-    fprintf(file_descp, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "c", temp_c, "x1", x1, "x2", x2, "x3", x3, "y", temp_y, "z", temp_z);
-    fprintf(file_descp, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+  if (f == 0 && loopflag == 1) {
+    fprintf(file_descp,
+            "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : "
+            "%lld, %s : %lld\n",
+            "c", temp_c, "x1", x1, "x2", x2, "x3", x3, "y", temp_y, "z",
+            temp_z);
+    fprintf(file_descp,
+            "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, "
+            "%s : %lld\n",
             "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(file_descp, buff, cond, c, x1, x2, x3, y, z)                                           \
+#define postcheck(file_descp, buff, cond, c, x1, x2, x3, y, z)                 \
   \ 
-{                                                                                                     \
+{                                                                           \
     \ 
-    int f = postflag;                                                                                    \
+    int f = postflag;                                                          \
     \ 
-   aflcrash(cond, postflag);                                                                             \
+   aflcrash(cond, postflag);                                                   \
     \ 
-    if (f == 0 && postflag == 1)                                                                         \
-    {                                                                                                    \
+    if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(file_descp, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \
-                "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);                                   \
-      assert(0);                                                                                         \
+        fprintf(file_descp,                                                    \
+                "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : "     \
+                "%lld, %s : %lld\n",                                           \
+                "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);         \
+      assert(0);                                                               \
     \ 
-}                                                                                                   \
+}                                                                         \
   }
 
-int main()
-{
+int main() {
   // variable declarations
   long long int c;
   long long int x1;
@@ -88,8 +94,7 @@ int main()
   FILE *fptr = fopen("models.txt", "w");
   setvbuf(fptr, buff, _IOLBF, 2048);
 
-  for (;;)
-  {
+  for (;;) {
     size_t len;
     const int16_t *buf;
 
@@ -103,16 +108,17 @@ int main()
 
     char vars[128];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 128, "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-             "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
+    snprintf(
+        vars, 128,
+        "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+        "c", c, "x1", x1, "x2", x2, "x3", x3, "y", y, "z", z);
 
     // pre-conditions
     // precheck
     // loopcond : (unknown())
 
-    if (choices > 10000)
-    {
-      //pre-conditions
+    if (choices > 10000) {
+      // pre-conditions
       assume((preflag == 0));
       assume((y >= 0));
       assume((y >= 127));
@@ -120,28 +126,23 @@ int main()
       (z = (36 * y));
       precount++;
       precheck(fptr, vars, c, x1, x2, x3, y, z);
-    }
-    else
-    {
+    } else {
       // loop-check program
       assume((loopflag + postflag < 2));
       assume(INV(c, x1, x2, x3, y, z));
 
       // Loop Condition
-      if ((choices > 2500))
-      {
+      if ((choices > 2500)) {
         // Bounded Unrolling
         int k = UNROLL_LIMIT;
-        while ((choices > 2500) && k--)
-        {
+        while ((choices > 2500) && k--) {
           assume((loopflag == 0));
           // loop body
           long long int temp_c = c;
           long long int temp_y = y;
           long long int temp_z = z;
           {
-            if ((c < 36))
-            {
+            if ((c < 36)) {
               (z = (z + 1));
               (c = (c + 1));
             }
@@ -149,29 +150,24 @@ int main()
           loopcount++;
           loopcheck(fptr, vars, temp_c, temp_y, temp_z, c, x1, x2, x3, y, z);
         }
-      }
-      else
-      {
+      } else {
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if ((c < 36))
-        {
+        if ((c < 36)) {
           postcount++;
           postcheck(fptr, vars, (z >= 0), c, x1, x2, x3, y, z)
         }
       }
     }
 
-    if (preflag + loopflag + postflag == 0 && counter == 100)
-    {
-      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n",
-              "precount", precount, "loopcount", loopcount, "postcount", postcount);
+    if (preflag + loopflag + postflag == 0 && counter == 100) {
+      fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount", precount,
+              "loopcount", loopcount, "postcount", postcount);
       counter = 0;
     }
 
-    if (preflag + loopflag + postflag >= 3)
-    {
+    if (preflag + loopflag + postflag >= 3) {
       fclose(fptr);
       assert(0);
     }

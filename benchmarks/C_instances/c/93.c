@@ -12,22 +12,20 @@ int main() {
   // loop body
   while ((i < n)) {
     {
-    (i  = (i + 1));
-      if ( unknown() ) {
+      (i = (i + 1));
+      if (unknown()) {
         {
-        (x  = (x + 1));
-        (y  = (y + 2));
+          (x = (x + 1));
+          (y = (y + 2));
         }
       } else {
         {
-        (x  = (x + 2));
-        (y  = (y + 1));
+          (x = (x + 2));
+          (y = (y + 1));
         }
       }
-
     }
-
   }
   // post-condition
-assert( ((3 * n) == (x + y)) );
+  assert(((3 * n) == (x + y)));
 }

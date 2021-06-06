@@ -12,22 +12,20 @@ int main() {
   // loop body
   while ((x != y)) {
     {
-      if ( unknown() ) {
+      if (unknown()) {
         {
-        (lock  = 1);
-        (x  = y);
+          (lock = 1);
+          (x = y);
         }
       } else {
         {
-        (lock  = 0);
-        (x  = y);
-        (y  = (y + 1));
+          (lock = 0);
+          (x = y);
+          (y = (y + 1));
         }
       }
-
     }
-
   }
   // post-condition
-assert( (lock == 1) );
+  assert((lock == 1));
 }

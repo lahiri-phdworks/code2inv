@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int x;
   int y;
@@ -13,11 +12,8 @@ int main()
   // precheck
   // loopcond : (x < y)
   // loopstart
-  while ((x < y))
-  {
-    {
-      (x = (x + x));
-    }
+  while ((x < y)) {
+    { (x = (x + x)); }
   }
   // loopend
   // postcheck

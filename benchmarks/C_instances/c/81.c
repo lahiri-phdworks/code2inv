@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int i;
   int x;
@@ -13,10 +12,8 @@ int main()
   assume((y >= 0));
   assume((x >= y));
   // loop body
-  while (unknown())
-  {
-    if ((i < y))
-    {
+  while (unknown()) {
+    if ((i < y)) {
       (i = (i + 1));
     }
   }

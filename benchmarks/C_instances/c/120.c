@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int i;
   int sn;
@@ -11,8 +10,7 @@ int main()
   // precheck
   // loopcond : (i <= 8)
   // loopstart
-  while ((i <= 8))
-  {
+  while ((i <= 8)) {
     {
       (i = (i + 1));
       (sn = (sn + 1));

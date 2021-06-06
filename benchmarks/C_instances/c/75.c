@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int c;
   int x1;
@@ -19,8 +18,7 @@ int main()
   while (unknown())
   // loop body
   {
-    if ((c < 36))
-    {
+    if ((c < 36)) {
       (z = (z + 1));
       (c = (c + 1));
     }

@@ -10,13 +10,11 @@ int main() {
   assume((x >= y));
   // loop body
   while (unknown()) {
-    if ( (i < y) )
-    {
-    (i  = (i + 1));
+    if ((i < y)) {
+      (i = (i + 1));
     }
-
   }
   // post-condition
-if ( (i < y) )
-assert( (0 <= i) );
+  if ((i < y))
+    assert((0 <= i));
 }

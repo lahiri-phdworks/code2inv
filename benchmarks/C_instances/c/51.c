@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int c;
   // scanf("%d", &c);
@@ -12,17 +11,12 @@ int main()
   // loop body
   {
     {
-      if (unknown())
-      {
-        if ((c != 4))
-        {
+      if (unknown()) {
+        if ((c != 4)) {
           (c = (c + 1));
         }
-      }
-      else
-      {
-        if ((c == 4))
-        {
+      } else {
+        if ((c == 4)) {
           (c = 1);
         }
       }

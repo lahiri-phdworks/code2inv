@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int i;
   int x;
@@ -21,8 +20,7 @@ int main()
   while (unknown())
   // loop body
   {
-    if ((i < y))
-    {
+    if ((i < y)) {
       (i = (i + 1));
     }
   }

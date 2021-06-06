@@ -13,13 +13,11 @@ int main() {
   // loop body
   while (unknown()) {
     {
-    (x  = (x + 2));
-    (y  = (y + 2));
+      (x = (x + 2));
+      (y = (y + 2));
     }
-
   }
   // post-condition
-if ( (y == 0) )
-assert( (x != 4) );
-
+  if ((y == 0))
+    assert((x != 4));
 }

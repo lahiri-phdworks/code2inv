@@ -10,13 +10,11 @@ int main() {
   // loop body
   while ((x != 0)) {
     {
-    (x  = (x - 1));
-    (y  = (y - 1));
+      (x = (x - 1));
+      (y = (y - 1));
     }
-
   }
   // post-condition
-if ( (y != 0) )
-assert( (i != j) );
-
+  if ((y != 0))
+    assert((i != j));
 }

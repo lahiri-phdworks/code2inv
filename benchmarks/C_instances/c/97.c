@@ -11,13 +11,11 @@ int main() {
   // loop body
   while ((i <= x)) {
     {
-    (i  = (i + 1));
-    (j  = (j + y));
+      (i = (i + 1));
+      (j = (j + y));
     }
-
   }
   // post-condition
-if ( (y == 1) )
-assert( (i == j) );
-
+  if ((y == 1))
+    assert((i == j));
 }

@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int x;
   int y;
@@ -13,9 +12,7 @@ int main()
   while ((x < y))
   // loop body
   {
-    {
-      (x = (x + x));
-    }
+    { (x = (x + x)); }
   }
   // loopend
   // postcheck

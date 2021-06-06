@@ -1,5 +1,4 @@
-int main()
-{
+int main() {
   // variable declarations
   int lock;
   int v1;
@@ -20,15 +19,12 @@ int main()
   // loop body
   {
     {
-      if (unknown())
-      {
+      if (unknown()) {
         {
           (lock = 1);
           (x = y);
         }
-      }
-      else
-      {
+      } else {
         {
           (lock = 0);
           (x = y);
