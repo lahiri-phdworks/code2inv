@@ -1,11 +1,35 @@
-// Fibonacci Series (Small Numbers)
+int fib(int n) {
+  double phi = (1 + sqrt(5)) / 2;
+  return round(pow(phi, n) / sqrt(5));
+}
+
 int main() {
-
-  long long int x;
-
-  while ((x > 0)) {
-    x = 0;
+  // variable declarations
+  int x;
+  int y;
+  int i;
+  int n;
+  // pre-conditions
+  // scanf("%d", &x);
+  // scanf("%d", &y);
+  // scanf("%d", &n);
+  // scanf("%d", &i);
+  (x = 0);
+  (y = 1);
+  (n = 20);
+  (i = 0);
+  // precheck
+  // loopcond : (i < n)
+  // loopstart
+  while (i < n) {
+    // loop body
+    int temp = x + y;
+    x = y;
+    y = temp;
+    i = i + 1;
   }
-
-  assert((x == 0));
+  // loopend
+  // postcheck
+  // post-condition
+  assert((0 <= i < n) && (x == fib(i)) && (y == fib(i + 1)));
 }
