@@ -121,6 +121,9 @@ int main() {
     b = buf[2];
     x = a;
     y = b;
+
+    assume((a > 0));
+    assume((b > 0));
     // precheck
     // loopcond : (a != b)
 
@@ -130,6 +133,9 @@ int main() {
       b = 7;
       x = a;
       y = b;
+
+      assume((a > 0));
+      assume((b > 0));
 
       assume((preflag == 0));
       precount++;
@@ -150,9 +156,8 @@ int main() {
 
           // loop body
           if (a > b)
-            a -= b;
-          else
-            b -= a;
+            swap(&a, &b);
+          b -= a;
 
           loopcount++;
           loopcheck(fptr, vars, temp_a, temp_b, a, b);

@@ -1,27 +1,13 @@
 #include <assert.h>
-#include <bench_factmodulo.h>
+#include <bench_gcd.h>
 #include <inttypes.h>
 #include <libhfuzz/libhfuzz.h>
+#include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #define UNROLL_LIMIT 32
-#define PRIME 100003
-static int f[PRIME];
-
-int factmod(int n, int p) {
-  if (n >= p)
-    return 0;
-  int res = 1;
-  while (n > 1) {
-    if ((n / p) % 2)
-      res = p - res;
-    res = res * f[n % p] % p;
-    n /= p;
-  }
-  return res;
-}
 
 #define aflcrash(cond, flag)                                                   \
   if (!cond)                                                                   \
@@ -31,44 +17,39 @@ int factmod(int n, int p) {
   if (!cond)                                                                   \
     continue;
 
-#define INV(n, k, r, p) PHI
+#define INV(a, b) PHI
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 double precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int n, long long int k,
-              long long int r, long long int p) {
+void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
   int f = preflag;
-  aflcrash(INV(n, k, r, p), preflag);
+  aflcrash(INV(a, b), preflag);
   if (f == 0 && preflag == 1) {
-    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "n", n,
-            "k", k, "r", r, "p", p);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld\n", "a", a, "b", b);
 
     assert(0);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *fptr, char *buff, long long int temp_n,
-               long long int temp_k, long long int temp_r, long long int temp_p,
-               long long int n, long long int k, long long int r,
-               long long int p) {
+void loopcheck(FILE *fptr, char *buff, long long int temp_a,
+               long long int temp_b, long long int a, long long int b) {
   int f = loopflag;
-  aflcrash(INV(n, k, r, p), loopflag);
+  aflcrash(INV(a, b), loopflag);
   if (f == 0 && loopflag == 1) {
-    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "n", temp_n, "k", temp_k, "r", temp_r, "p", temp_p);
-    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "n",
-            n, "k", k, "r", r, "p", p);
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld\n", "a", temp_a, "b",
+            temp_b);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld\n", "a", a, "b", b);
 
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, n, k, r, p)                                \
+#define postcheck(fptr, buff, cond, a, b)                                      \
   \ 
 {                                                                           \
     \ 
@@ -78,20 +59,43 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n,
     \ 
     if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
- "n",                                                                          \
-                n, "k", k, "r", r, "p", p);                                    \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld\n", \ 
+ "a",                                                                          \
+                a, "b", b);                                                    \
       assert(0);                                                               \
     \ 
 }                                                                         \
   }
 
+void swap(int *xp, int *yp) {
+  int temp = *xp;
+  *xp = *yp;
+  *yp = temp;
+}
+
+int asmgcd(int a, int b) {
+  int result;
+  __asm__ __volatile__("movl %1, %%eax;"
+                       "movl %2, %%ebx;"
+                       "CONTD: cmpl $0, %%ebx;"
+                       "je DONE;"
+                       "xorl %%edx, %%edx;"
+                       "idivl %%ebx;"
+                       "movl %%ebx, %%eax;"
+                       "movl %%edx, %%ebx;"
+                       "jmp CONTD;"
+                       "DONE: movl %%eax, %0;"
+                       : "=g"(result)
+                       : "g"(a), "g"(b));
+  return result;
+}
+
 int main() {
   // variable declarations
-  int n;
-  int p;
-  long long int r;
-  int k;
+  int a;
+  int b;
+  int x;
+  int y;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -112,59 +116,57 @@ int main() {
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "n", n,
-             "k", k, "r", r, "p", p);
+    snprintf(vars, 100, "%s : %lld, %s : %lld\n", "a", a, "b", b);
 
     // pre-conditions
-    n = buf[1];
-    p = PRIME;
-
-    f[0] = 1;
-    for (int i = 1; i < p; i++)
-      f[i] = f[i - 1] * i % p;
+    a = buf[1];
+    b = buf[2];
+    x = a;
+    y = b;
+    // Invariant using the GCD function.
     // precheck
-    // loopcond : (k != n)
+    // loopcond : (a != b)
 
     if (choices > 15000) {
       // pre-conditions
-      r = 1;
-      k = 0;
-      n = 10;
-      p = PRIME;
-
+      a = 514231;
+      b = 236569;
+      x = a;
+      y = b;
+      assume((a >= 0));
+      assume((b >= 0));
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, n, k, r, p);
+      precheck(fptr, vars, a, b);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(n, k, r, p));
+      assume(INV(a, b));
 
       // Loop Condition
-      if ((k != n)) {
+      if ((a != b)) {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
-        while ((k != n) && unroll--) {
+        while ((a != b) && unroll--) {
           assume((loopflag == 0));
-          int temp_n = n, temp_k = k, temp_r = r, temp_p = p;
+          int temp_a = a, temp_b = b;
 
-          // loopbody
-          k = k + 1;
-          r = (r * k) % PRIME;
+          // loop body
+          if (a > b)
+            swap(&a, &b);
+          b -= a;
 
           loopcount++;
-          loopcheck(fptr, vars, temp_n, temp_k, temp_r, temp_p, n, k, r, p);
+          loopcheck(fptr, vars, temp_a, temp_b, a, b);
         }
-
       } else {
         // post-check program
         assume((postflag == 0));
         // post-condition
         postcount++;
-        postcheck(fptr, vars,
-                  ((n >= 0) && (k >= 0) && (r == factmod(n, PRIME))), n, k, r,
-                  p)
+        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (a == asmgcd(x, y))), a,
+                  b)
       }
     }
 

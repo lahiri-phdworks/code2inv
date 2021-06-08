@@ -33,14 +33,15 @@ int main() {
   (b = 7);
   (x = a);
   (y = b);
+  assume((a > 0));
+  assume((b > 0));
   // precheck
   // loopcond : (a != b)
   // loopstart
   while (a != b) {
     if (a > b)
-      a -= b;
-    else
-      b -= a;
+      swap(&a, &b);
+    b -= a;
   }
   // loopend
   // postcheck

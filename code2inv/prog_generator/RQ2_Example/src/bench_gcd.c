@@ -126,10 +126,12 @@ int main() {
 
     if (choices > 15000) {
       // pre-conditions
-      a = 5;
-      b = 7;
+      a = 514231;
+      b = 236569;
       x = a;
       y = b;
+      assume((a >= 0));
+      assume((b >= 0));
       assume((preflag == 0));
       precount++;
       precheck(fptr, vars, a, b);
@@ -149,9 +151,8 @@ int main() {
 
           // loop body
           if (a > b)
-            a -= b;
-          else
-            b -= a;
+            swap(&a, &b);
+          b -= a;
 
           loopcount++;
           loopcheck(fptr, vars, temp_a, temp_b, a, b);

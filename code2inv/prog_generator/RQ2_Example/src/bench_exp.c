@@ -131,6 +131,7 @@ int main() {
           int temp_a = a, temp_b = b;
 
           // loop body
+          // exponentiation by squaring
           if (b & 1)
             res = res * a;
           a = a * a;

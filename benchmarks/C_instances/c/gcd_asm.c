@@ -4,18 +4,22 @@ void swap(int *xp, int *yp) {
   *yp = temp;
 }
 
-int gcd(int a, int b) {
-  if (!a || !b)
-    return a | b;
-  unsigned shift = __builtin_ctz(a | b);
-  a >>= __builtin_ctz(a);
-  do {
-    b >>= __builtin_ctz(b);
-    if (a > b)
-      swap(&a, &b);
-    b -= a;
-  } while (b);
-  return a << shift;
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
+int asmgcd(int a, int b) {
+  int result;
+  __asm__ __volatile__("movl %1, %%eax;"
+                       "movl %2, %%ebx;"
+                       "CONTD: cmpl $0, %%ebx;"
+                       "je DONE;"
+                       "xorl %%edx, %%edx;"
+                       "idivl %%ebx;"
+                       "movl %%ebx, %%eax;"
+                       "movl %%edx, %%ebx;"
+                       "jmp CONTD;"
+                       "DONE: movl %%eax, %0;"
+                       : "=g"(result)
+                       : "g"(a), "g"(b));
+  return result;
 }
 
 int main() {
@@ -32,25 +36,20 @@ int main() {
   (b = 236569);
   (x = a);
   (y = b);
+  assume((a >= 0));
+  assume((b >= 0));
   // Invariant using the GCD function.
   // precheck
   // loopcond : (a != b)
   // loopstart
   /* Compute Greatest Common Divisor using Euclid's Algorithm */
-  __asm__ __volatile__("movl %1, %%eax;"
-                       "movl %2, %%ebx;"
-                       "CONTD: cmpl $0, %%ebx;"
-                       "je DONE;"
-                       "xorl %%edx, %%edx;"
-                       "idivl %%ebx;"
-                       "movl %%ebx, %%eax;"
-                       "movl %%edx, %%ebx;"
-                       "jmp CONTD;"
-                       "DONE: movl %%eax, %0;"
-                       : "=g"(result)
-                       : "g"(a), "g"(b));
+  while (a != b) {
+    if (a > b)
+      swap(&a, &b);
+    b -= a;
+  }
   // loopend
   // postcheck
   // post-condition
-  assert((a >= 0) && (b >= 0) && (result == gcd(x, y)));
+  assert((a >= 0) && (b >= 0) && (result == asmgcd(x, y)));
 }

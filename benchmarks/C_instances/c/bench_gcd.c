@@ -18,6 +18,7 @@ int gcd(int a, int b) {
   return a << shift;
 }
 
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int main() {
   // variable declarations
   int a;
@@ -27,10 +28,12 @@ int main() {
   // pre-conditions
   // scanf("%d", &a);
   // scanf("%d", &b);
-  (a = 5);
-  (b = 7);
+  (a = 514231);
+  (b = 236569);
   (x = a);
   (y = b);
+  assume((a >= 0));
+  assume((b >= 0));
   // Invariant using the GCD function.
   // precheck
   // loopcond : (a != b)

@@ -54,6 +54,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			( = d_1 13 )
 			( = x_1 a_1 )
 			( = y_1 d_1 )
+			( not ( = d_1 0 ) )
 			( = power_1 31 )
 			( = result_1 0 )
 			( = y_power_1 ( << y_1 power_1 ) )

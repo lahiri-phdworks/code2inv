@@ -13,6 +13,7 @@ int main() {
   (d = 13);
   (r = a);
   (q = 0);
+  assume((d != 0));
   // precheck
   // loopcond : (r >= d)
   // loopstart

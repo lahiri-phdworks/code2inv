@@ -113,6 +113,7 @@ int main() {
       d = 13;
       r = a;
       q = 0;
+      assume((d != 0));
       assume((preflag == 0));
       precount++;
       precheck(fptr, vars, r, q, d);

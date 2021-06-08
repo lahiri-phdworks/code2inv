@@ -78,6 +78,7 @@ int main() {
   int high;
   int mid;
   int item;
+  int SIZE;
   int arr[] = {5,  6,  11,  18,  23,  28,  29,  30,
                35, 33, 105, 225, 445, 569, 885, 1025};
 
@@ -105,9 +106,10 @@ int main() {
 
     // pre-conditions
     low = buf[1];
-    high = (int)(sizeof(arr) / sizeof(arr[0]));
     item = buf[3];
     mid = buf[4];
+    high = (int)(sizeof(arr) / sizeof(arr[0]));
+    SIZE = (int)(sizeof(arr) / sizeof(arr[0]));
     // precheck
     // loopcond : (low < high)
 
@@ -160,7 +162,7 @@ int main() {
         postcheck(fptr, vars,
                   ((0 <= low <= mid <= high) &&
                    (((0 <= mid) && (mid < low) && (arr[mid] != item)) ||
-                    ((high <= mid) && (mid <= 16) && (arr[mid] != item)) ||
+                    ((high <= mid) && (mid <= SIZE) && (arr[mid] != item)) ||
                     (arr[mid] == item))),
                   low, mid, high, item)
       }

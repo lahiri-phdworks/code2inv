@@ -1,4 +1,4 @@
-// static int f[100003];
+static int f[100003];
 
 int factmod(int n, int p) {
   if (n >= p)
@@ -15,6 +15,7 @@ int factmod(int n, int p) {
 
 int main() {
   // variable declarations
+  int f[100003];
   int n;
   int p;
   long long int r;
@@ -24,6 +25,8 @@ int main() {
   (r = 1LL);
   (k = 0);
   (n = 586);
+  (p = 100003);
+
   f[0] = 1;
   for (int i = 1; i < p; i++)
     f[i] = f[i - 1] * i % p;

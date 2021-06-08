@@ -36,6 +36,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = d_1 13 )
 		( = r_1 a_1 )
 		( = q_1 0 )
+		( not ( = d_1 0 ) )
 	)
 )
 

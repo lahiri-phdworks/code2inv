@@ -1,3 +1,4 @@
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 double square_root(double x) {
   __asm__("fsqrt" : "+t"(x));
   return x;

@@ -11,7 +11,7 @@ int main() {
   int pivot;
   int high;
 
-  int arr[] = {2, 3, 14, 9, 6, 7, 18, 10, 15, 11};
+  int arr[] = {2, 3, 90, 78, 1, 0, 67, 14, 9, 6, 7, 18, 10, 15, 11};
   // pre-conditions
   // scanf("%d", &i);
   // scanf("%d", &j);

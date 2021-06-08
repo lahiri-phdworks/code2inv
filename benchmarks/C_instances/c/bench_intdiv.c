@@ -16,7 +16,7 @@ int main() {
   (d = 13);
   (x = a);
   (y = d);
-
+  assume((d != 0));
   (power = 31);
   (result = 0);
   (y_power = y << power);

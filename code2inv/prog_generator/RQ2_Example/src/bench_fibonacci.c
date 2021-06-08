@@ -137,9 +137,12 @@ int main() {
           assume((loopflag == 0));
           int temp_x = x, temp_y = y, temp_i = i, temp_n = n;
           // loop body
-          int temp = x + y;
-          x = y;
-          y = temp;
+          // in-place output use in addition.
+          asm("   movl    %2,%0;"
+              "   addl    %1,%0;"
+              : "=&r"(y)
+              : "r"(x), "r"(y));
+          x = y - x;
           i = i + 1;
 
           loopcount++;
