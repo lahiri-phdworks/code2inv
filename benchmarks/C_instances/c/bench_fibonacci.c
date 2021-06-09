@@ -1,14 +1,14 @@
-int fib(int n) {
+double fib(double n) {
   double phi = (1 + sqrt(5)) / 2;
   return round(pow(phi, n) / sqrt(5));
 }
 
 int main() {
   // variable declarations
-  int x;
-  int y;
-  int i;
-  int n;
+  unsigned int x;
+  unsigned int y;
+  unsigned int i;
+  double n;
   // pre-conditions
   // scanf("%d", &x);
   // scanf("%d", &y);
@@ -16,7 +16,7 @@ int main() {
   // scanf("%d", &i);
   (x = 0);
   (y = 1);
-  (n = 20);
+  (n = 10);
   (i = 0);
   // precheck
   // loopcond : (i < n)
@@ -34,5 +34,6 @@ int main() {
   // loopend
   // postcheck
   // post-condition
-  assert((0 <= i < n) && (x == fib(i)) && (y == fib(i + 1)));
+  assert((0 <= i) && (i <= n) && (n >= 0) && (x == (int)fib(i)) &&
+         (y == (int)fib(i + 1)));
 }

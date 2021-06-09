@@ -36,7 +36,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = d_1 13 )
 		( = r_1 a_1 )
 		( = q_1 0 )
-		( not ( = d_1 0 ) )
+		( >= a_1 0 )
+		( > d_1 0 )
 	)
 )
 
@@ -83,7 +84,26 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 				( and
 					( not ( >= r_2 d_1 ) )
 					( <= ( <= 0 r_2 ) d_1 )
-					( not ( and ( <= ( <= 0 r_2 ) d_1 ) ( = ( / a_1 d_1 ) q_2 ) ) )
+					( = ( / a_1 d_1 ) q_2 )
+					( not ( and ( and ( <= ( <= 0 r_2 ) d_1 ) ( = ( / a_1 d_1 ) q_2 ) ) ( = r_2  ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = a a_1)
+					( = d d_1)
+					( = q q_2)
+					( = r r_2)
+				)
+			)
+			( not
+				( and
+					( not ( >= r_2 d_1 ) )
+					( <= ( <= 0 r_2 ) d_1 )
+					( not ( = ( / a_1 d_1 ) q_2 ) )
+					( not ( and ( and ( <= ( <= 0 r_2 ) d_1 ) ( = ( / a_1 d_1 ) q_2 ) ) ( = r_2  ) ) )
 				)
 			)
 		)
@@ -100,7 +120,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 				( and
 					( not ( >= r_2 d_1 ) )
 					( not ( <= ( <= 0 r_2 ) d_1 ) )
-					( not ( and ( <= ( <= 0 r_2 ) d_1 ) ( = ( / a_1 d_1 ) q_2 ) ) )
+					( not ( and ( and ( <= ( <= 0 r_2 ) d_1 ) ( = ( / a_1 d_1 ) q_2 ) ) ( = r_2  ) ) )
 				)
 			)
 		)

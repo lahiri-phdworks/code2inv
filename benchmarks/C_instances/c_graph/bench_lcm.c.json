@@ -88,9 +88,18 @@
 				"arg1": {
 					"OP": "==",
 					"arg0": {
-						"OP": "/",
+						"OP": "*",
 						"arg0": {
-							"OP": "*",
+							"Var": "x_1"
+						},
+						"arg1": {
+							"Var": "y_1"
+						}
+					},
+					"arg1": {
+						"OP": "*",
+						"arg0": {
+							"func_call": "gcd",
 							"arg0": {
 								"Var": "x_1"
 							},
@@ -99,16 +108,13 @@
 							}
 						},
 						"arg1": {
-							"Var": "a_1"
-						}
-					},
-					"arg1": {
-						"func_call": "lcm",
-						"arg0": {
-							"Var": "x_1"
-						},
-						"arg1": {
-							"Var": "y_1"
+							"func_call": "lcm",
+							"arg0": {
+								"Var": "x_1"
+							},
+							"arg1": {
+								"Var": "y_1"
+							}
 						}
 					}
 				}
@@ -119,9 +125,18 @@
 			"rval": {
 				"OP": "==",
 				"arg0": {
-					"OP": "/",
+					"OP": "*",
 					"arg0": {
-						"OP": "*",
+						"Var": "x_1"
+					},
+					"arg1": {
+						"Var": "y_1"
+					}
+				},
+				"arg1": {
+					"OP": "*",
+					"arg0": {
+						"func_call": "gcd",
 						"arg0": {
 							"Var": "x_1"
 						},
@@ -130,16 +145,13 @@
 						}
 					},
 					"arg1": {
-						"Var": "a_1"
-					}
-				},
-				"arg1": {
-					"func_call": "lcm",
-					"arg0": {
-						"Var": "x_1"
-					},
-					"arg1": {
-						"Var": "y_1"
+						"func_call": "lcm",
+						"arg0": {
+							"Var": "x_1"
+						},
+						"arg1": {
+							"Var": "y_1"
+						}
 					}
 				}
 			}

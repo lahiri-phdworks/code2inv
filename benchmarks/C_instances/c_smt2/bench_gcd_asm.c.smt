@@ -79,6 +79,61 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
 ( define-fun post-f ( ( a Int )( b Int )( x Int )( y Int )( a_0 Int )( a_1 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( x_0 Int )( x_1 Int )( y_0 Int )( y_1 Int ) ) Bool
+	( and
+		( or
+			( not
+				( and
+					( = a a_1)
+					( = b b_2)
+					( = x x_1)
+					( = y y_1)
+				)
+			)
+			( not
+				( and
+					( not ( not ( = a_1 b_2 ) ) )
+					( >= a_1 0 )
+					( >= b_2 0 )
+					( not ( and ( and ( >= a_1 0 ) ( >= b_2 0 ) ) ( = a_1  ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = a a_1)
+					( = b b_2)
+					( = x x_1)
+					( = y y_1)
+				)
+			)
+			( not
+				( and
+					( not ( not ( = a_1 b_2 ) ) )
+					( >= a_1 0 )
+					( not ( >= b_2 0 ) )
+					( not ( and ( and ( >= a_1 0 ) ( >= b_2 0 ) ) ( = a_1  ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = a a_1)
+					( = b b_2)
+					( = x x_1)
+					( = y y_1)
+				)
+			)
+			( not
+				( and
+					( not ( not ( = a_1 b_2 ) ) )
+					( not ( >= a_1 0 ) )
+					( not ( and ( and ( >= a_1 0 ) ( >= b_2 0 ) ) ( = a_1  ) ) )
+				)
+			)
+		)
+	)
 )
 SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 ( assert ( not

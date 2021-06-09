@@ -20,7 +20,7 @@
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int r, long long int q,
@@ -83,10 +83,10 @@ int remainder(int a, int d) {
 
 int main() {
   // variable declarations
-  int q;
-  int r;
-  int a;
-  int d;
+  unsigned int q;
+  unsigned int r;
+  unsigned int a;
+  unsigned int d;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));

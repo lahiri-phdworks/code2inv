@@ -1,8 +1,8 @@
-void swap(int *xp, int *yp) {
-  int temp = *xp;
-  *xp = *yp;
-  *yp = temp;
-}
+// void swap(int *xp, int *yp) {
+//   int temp = *xp;
+//   *xp = *yp;
+//   *yp = temp;
+// }
 
 int gcd(int a, int b) {
   if (!a || !b)
@@ -21,10 +21,10 @@ int gcd(int a, int b) {
 // https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int main() {
   // variable declarations
-  int a;
-  int b;
-  int x;
-  int y;
+  unsigned int a;
+  unsigned int b;
+  unsigned int x;
+  unsigned int y;
   // pre-conditions
   // scanf("%d", &a);
   // scanf("%d", &b);

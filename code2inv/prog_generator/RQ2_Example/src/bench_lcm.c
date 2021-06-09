@@ -20,7 +20,7 @@
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
@@ -73,27 +73,30 @@ void swap(int *xp, int *yp) {
 }
 
 int gcd(int a, int b) {
-  if (!a || !b)
-    return a | b;
-  unsigned shift = __builtin_ctz(a | b);
-  a >>= __builtin_ctz(a);
-  do {
-    b >>= __builtin_ctz(b);
-    if (a > b)
-      swap(&a, &b);
-    b -= a;
-  } while (b);
-  return a << shift;
+  int result;
+  __asm__ __volatile__("movl %1, %%eax;"
+                       "movl %2, %%ebx;"
+                       "CONTD: cmpl $0, %%ebx;"
+                       "je DONE;"
+                       "xorl %%edx, %%edx;"
+                       "idivl %%ebx;"
+                       "movl %%ebx, %%eax;"
+                       "movl %%edx, %%ebx;"
+                       "jmp CONTD;"
+                       "DONE: movl %%eax, %0;"
+                       : "=g"(result)
+                       : "g"(a), "g"(b));
+  return result;
 }
 
 int lcm(int a, int b) { return a / gcd(a, b) * b; }
 
 int main() {
   // variable declarations
-  int a;
-  int b;
-  int x;
-  int y;
+  unsigned int a;
+  unsigned int b;
+  unsigned int x;
+  unsigned int y;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -105,7 +108,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const int16_t *buf;
+    const uint8_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -127,7 +130,7 @@ int main() {
     // precheck
     // loopcond : (a != b)
 
-    if (choices > 15000) {
+    if (choices > 100) {
       // pre-conditions
       a = 5;
       b = 7;
@@ -159,6 +162,9 @@ int main() {
             swap(&a, &b);
           b -= a;
 
+          // fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount",
+          //         precount, "loopcount", loopcount, "postcount", postcount);
+
           loopcount++;
           loopcheck(fptr, vars, temp_a, temp_b, a, b);
         }
@@ -168,7 +174,8 @@ int main() {
         // post-condition
         postcount++;
         postcheck(fptr, vars,
-                  ((a >= 0) && (b >= 0) && (((x * y) / a) == lcm(x, y))), a, b)
+                  ((a >= 0) && (b >= 0) && ((x * y) == gcd(x, y) * lcm(x, y))),
+                  a, b)
       }
     }
 

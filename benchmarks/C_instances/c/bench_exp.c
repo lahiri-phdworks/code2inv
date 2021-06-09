@@ -1,10 +1,10 @@
 int main() {
   // variable declarations
-  long long int a;
-  long long int b;
+  unsigned long long int a;
+  unsigned long long int b;
   double x;
   double y;
-  long long res;
+  unsigned long long res;
   // pre-conditions
   (a = 5);
   (b = 3);

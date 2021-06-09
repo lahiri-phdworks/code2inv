@@ -21,7 +21,7 @@
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
@@ -69,11 +69,11 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
 
 int main() {
   // variable declarations
-  long long int a;
-  long long int b;
+  unsigned long long int a;
+  unsigned long long int b;
   double x;
   double y;
-  long long res;
+  unsigned long long int res;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -85,7 +85,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const uint16_t *buf;
+    const uint8_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -105,13 +105,13 @@ int main() {
     // precheck
     // loopcond : (b > 0)
 
-    if (choices > 15000) {
+    if (choices > 100) {
       // pre-conditions
-      a = 0;
-      b = 0;
+      a = 5;
+      b = 3;
       x = a;
       y = b;
-      res = 1;
+      res = 1LL;
 
       assume((preflag == 0));
       precount++;

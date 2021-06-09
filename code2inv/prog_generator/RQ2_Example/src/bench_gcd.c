@@ -21,7 +21,7 @@
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
@@ -89,10 +89,10 @@ int gcd(int a, int b) {
 
 int main() {
   // variable declarations
-  int a;
-  int b;
-  int x;
-  int y;
+  unsigned int a;
+  unsigned int b;
+  unsigned int x;
+  unsigned int y;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -104,7 +104,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const uint16_t *buf;
+    const uint8_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -124,7 +124,7 @@ int main() {
     // precheck
     // loopcond : (a != b)
 
-    if (choices > 15000) {
+    if (choices > 100) {
       // pre-conditions
       a = 514231;
       b = 236569;

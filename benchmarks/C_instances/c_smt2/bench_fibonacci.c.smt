@@ -34,7 +34,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = y y_1 )
 		( = x_1 0 )
 		( = y_1 1 )
-		( = n_1 20 )
+		( = n_1 10 )
 		( = i_1 0 )
 	)
 )
@@ -81,9 +81,11 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			( not
 				( and
 					( not ( < i_2 n_1 ) )
-					( < ( <= 0 i_2 ) n_1 )
+					( <= 0 i_2 )
+					( <= i_2 n_1 )
+					( >= n_1 0 )
 					( = x_2  )
-					( not ( and ( and ( < ( <= 0 i_2 ) n_1 ) ( = x_2  ) ) ( = y_1  ) ) )
+					( not ( and ( and ( and ( and ( <= 0 i_2 ) ( <= i_2 n_1 ) ) ( >= n_1 0 ) ) ( = x_2  ) ) ( = y_1  ) ) )
 				)
 			)
 		)
@@ -99,9 +101,11 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			( not
 				( and
 					( not ( < i_2 n_1 ) )
-					( < ( <= 0 i_2 ) n_1 )
+					( <= 0 i_2 )
+					( <= i_2 n_1 )
+					( >= n_1 0 )
 					( not ( = x_2  ) )
-					( not ( and ( and ( < ( <= 0 i_2 ) n_1 ) ( = x_2  ) ) ( = y_1  ) ) )
+					( not ( and ( and ( and ( and ( <= 0 i_2 ) ( <= i_2 n_1 ) ) ( >= n_1 0 ) ) ( = x_2  ) ) ( = y_1  ) ) )
 				)
 			)
 		)
@@ -117,8 +121,45 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			( not
 				( and
 					( not ( < i_2 n_1 ) )
-					( not ( < ( <= 0 i_2 ) n_1 ) )
-					( not ( and ( and ( < ( <= 0 i_2 ) n_1 ) ( = x_2  ) ) ( = y_1  ) ) )
+					( <= 0 i_2 )
+					( <= i_2 n_1 )
+					( not ( >= n_1 0 ) )
+					( not ( and ( and ( and ( and ( <= 0 i_2 ) ( <= i_2 n_1 ) ) ( >= n_1 0 ) ) ( = x_2  ) ) ( = y_1  ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = i i_2)
+					( = n n_1)
+					( = x x_2)
+					( = y y_1)
+				)
+			)
+			( not
+				( and
+					( not ( < i_2 n_1 ) )
+					( <= 0 i_2 )
+					( not ( <= i_2 n_1 ) )
+					( not ( and ( and ( and ( and ( <= 0 i_2 ) ( <= i_2 n_1 ) ) ( >= n_1 0 ) ) ( = x_2  ) ) ( = y_1  ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = i i_2)
+					( = n n_1)
+					( = x x_2)
+					( = y y_1)
+				)
+			)
+			( not
+				( and
+					( not ( < i_2 n_1 ) )
+					( not ( <= 0 i_2 ) )
+					( not ( and ( and ( and ( and ( <= 0 i_2 ) ( <= i_2 n_1 ) ) ( >= n_1 0 ) ) ( = x_2  ) ) ( = y_1  ) ) )
 				)
 			)
 		)

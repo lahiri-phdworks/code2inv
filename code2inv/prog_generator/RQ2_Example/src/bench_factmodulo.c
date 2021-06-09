@@ -35,7 +35,7 @@ int factmod(int n, int p) {
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int n, long long int k,
@@ -88,10 +88,10 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_n,
 
 int main() {
   // variable declarations
-  int n;
-  int p;
-  long long int r;
-  int k;
+  unsigned int n;
+  unsigned int p;
+  unsigned long long int r;
+  unsigned int k;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -103,7 +103,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const uint16_t *buf;
+    const uint8_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -117,19 +117,23 @@ int main() {
 
     // pre-conditions
     n = buf[1];
+    k = buff[2];
     p = PRIME;
+    r = 1LL;
 
+    // Not a prebody code section
+    // needed only for factmodulo()
     f[0] = 1;
     for (int i = 1; i < p; i++)
       f[i] = f[i - 1] * i % p;
+
     // precheck
     // loopcond : (k != n)
-
-    if (choices > 15000) {
+    if (choices > 100) {
       // pre-conditions
-      r = 1;
+      r = 1LL;
       k = 0;
-      n = 10;
+      n = 32;
       p = PRIME;
 
       assume((preflag == 0));
@@ -156,7 +160,6 @@ int main() {
           loopcount++;
           loopcheck(fptr, vars, temp_n, temp_k, temp_r, temp_p, n, k, r, p);
         }
-
       } else {
         // post-check program
         assume((postflag == 0));

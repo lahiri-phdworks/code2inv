@@ -21,7 +21,7 @@
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int x, long long int y,
@@ -72,17 +72,17 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x,
 }                                                                         \
   }
 
-int fib(int n) {
-  double phi = (1 + sqrt(5)) / 2;
-  return round(pow(phi, n) / sqrt(5));
+double fib(double n) {
+  double phi = (1 + sqrt(5.0)) / 2;
+  return round(pow(phi, n) / sqrt(5.0));
 }
 
 int main() {
   // variable declarations
-  int x;
-  int y;
-  int i;
-  int n;
+  unsigned int x;
+  unsigned int y;
+  unsigned int i;
+  double n;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -94,7 +94,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const uint16_t *buf;
+    const uint8_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -104,7 +104,7 @@ int main() {
     char vars[100];
     memset(vars, '\0', sizeof(vars));
     snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "x", x,
-             "y", y, "i", i, "n", n);
+             "y", y, "i", i, "n", (int)n);
 
     // pre-conditions
     x = buf[1];
@@ -114,20 +114,20 @@ int main() {
     // precheck
     // loopcond : (i < n)
 
-    if (choices > 15000) {
+    if (choices > 100) {
       // pre-conditions
       x = 0;
       y = 1;
-      n = 20;
+      n = 10;
       i = 0;
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, x, y, i, n);
+      precheck(fptr, vars, x, y, i, (int)n);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(x, y, i, n));
+      assume(INV(x, y, i, (int)n));
 
       // Loop Condition
       if (i < n) {
@@ -135,7 +135,9 @@ int main() {
         int unroll = UNROLL_LIMIT;
         while ((i < n) && unroll--) {
           assume((loopflag == 0));
-          int temp_x = x, temp_y = y, temp_i = i, temp_n = n;
+          int temp_x = x, temp_y = y, temp_i = i;
+          double temp_n = n;
+
           // loop body
           // in-place output use in addition.
           asm("   movl    %2,%0;"
@@ -146,7 +148,8 @@ int main() {
           i = i + 1;
 
           loopcount++;
-          loopcheck(fptr, vars, temp_x, temp_y, temp_i, temp_n, x, y, i, n);
+          loopcheck(fptr, vars, temp_x, temp_y, temp_i, (int)temp_n, x, y, i,
+                    (int)n);
         }
       } else {
         // post-check program
@@ -154,8 +157,9 @@ int main() {
         // post-condition
         postcount++;
         postcheck(fptr, vars,
-                  ((0 <= i < n) && (x == fib(i)) && (y == fib(i + 1))), x, y, i,
-                  n)
+                  ((0 <= i) && (i <= n) && (n >= 0) && (x == (int)fib(i)) &&
+                   (y == (int)fib(i + 1))),
+                  x, y, i, (int)n)
       }
     }
 

@@ -4,28 +4,28 @@
 //   *yp = temp;
 // }
 
-// int gcd(int a, int b) {
-//   if (!a || !b)
-//     return a | b;
-//   unsigned shift = __builtin_ctz(a | b);
-//   a >>= __builtin_ctz(a);
-//   do {
-//     b >>= __builtin_ctz(b);
-//     if (a > b)
-//       swap(&a, &b);
-//     b -= a;
-//   } while (b);
-//   return a << shift;
-// }
+int gcd(int a, int b) {
+  if (!a || !b)
+    return a | b;
+  unsigned shift = __builtin_ctz(a | b);
+  a >>= __builtin_ctz(a);
+  do {
+    b >>= __builtin_ctz(b);
+    if (a > b)
+      swap(&a, &b);
+    b -= a;
+  } while (b);
+  return a << shift;
+}
 
 int lcm(int a, int b) { return a / gcd(a, b) * b; }
 
 int main() {
   // variable declarations
-  int a;
-  int b;
-  int x;
-  int y;
+  unsigned int a;
+  unsigned int b;
+  unsigned int x;
+  unsigned int y;
   // pre-conditions
   // scanf("%d", &a);
   // scanf("%d", &b);
@@ -47,5 +47,5 @@ int main() {
   // loopend
   // postcheck
   // post-condition
-  assert((a >= 0) && (b >= 0) && (((x * y) / a) == lcm(x, y)));
+  assert((a >= 0) && (b >= 0) && ((x * y) == gcd(x, y) * lcm(x, y)));
 }

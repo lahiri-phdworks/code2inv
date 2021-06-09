@@ -9,14 +9,15 @@ int main() {
   int left;
   int right;
   int mid;
-  int n;
+  unsigned int n;
   // pre-conditions
   // scanf("%d", &n);
   // scanf("%d", &left);
   // scanf("%d", &right);
-  (n = 154);
+  (n = 745);
   (left = 0);
   (right = n);
+  assume((n > 0));
   // precheck
   // loopcond : (left <= right)
   // loopstart

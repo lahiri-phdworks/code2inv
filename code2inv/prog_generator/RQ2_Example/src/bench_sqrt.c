@@ -21,7 +21,7 @@
 
 double counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
-double precount = 0, loopcount = 0, postcount = 0;
+long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int n, long long int left,
@@ -83,7 +83,7 @@ int main() {
   int left;
   int right;
   int mid;
-  int n;
+  unsigned int n;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -95,7 +95,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const int16_t *buf;
+    const uint16_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -109,7 +109,7 @@ int main() {
 
     // pre-conditions
     n = buf[1];
-    left = 0;
+    left = buff[2];
     right = n;
     // precheck
     // loopcond : (left <= right)
@@ -119,6 +119,7 @@ int main() {
       n = 745;
       left = 0;
       right = n;
+      assume((n > 0));
 
       assume((preflag == 0));
       precount++;

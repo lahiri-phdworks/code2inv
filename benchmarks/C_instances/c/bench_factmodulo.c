@@ -16,15 +16,15 @@ int factmod(int n, int p) {
 int main() {
   // variable declarations
   int f[100003];
-  int n;
-  int p;
-  long long int r;
-  int k;
+  unsigned int n;
+  unsigned int p;
+  unsigned long long int r;
+  unsigned int k;
   // pre-conditions
   // scanf("%d", &n);
   (r = 1LL);
   (k = 0);
-  (n = 586);
+  (n = 32);
   (p = 100003);
 
   f[0] = 1;

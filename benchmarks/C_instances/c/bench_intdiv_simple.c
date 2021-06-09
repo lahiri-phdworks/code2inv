@@ -11,10 +11,10 @@ int remainder(int a, int d) {
 
 int main() {
   // variable declarations
-  int q;
-  int r;
-  int a;
-  int d;
+  unsigned int q;
+  unsigned int r;
+  unsigned int a;
+  unsigned int d;
   // pre-conditions
   // scanf("%d", &a);
   // scanf("%d", &d);
