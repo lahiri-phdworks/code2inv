@@ -69,10 +69,10 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
 
 int main() {
   // variable declarations
-  int a;
-  int b;
-  int x;
-  int y;
+  long long int a;
+  long long int b;
+  double x;
+  double y;
   long long res;
 
   char buff[1024];
@@ -85,7 +85,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const int16_t *buf;
+    const uint16_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -99,7 +99,7 @@ int main() {
     // pre-conditions
     a = buf[1];
     b = buf[2];
-    res = buf[3];
+    res = 1LL;
     x = a;
     y = b;
     // precheck
@@ -123,7 +123,7 @@ int main() {
       assume(INV(a, b));
 
       // Loop Condition
-      if ((b > 0)) {
+      if (b > 0) {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
         while ((b > 0) && unroll--) {
@@ -145,8 +145,9 @@ int main() {
         assume((postflag == 0));
         // post-condition
         postcount++;
-        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (res == pow(x, y))), a,
-                  b)
+        // fprintf(fptr, "%d, %d, %d, %d\n", res, (int)pow(x, y), a, b);
+        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (res == (int)pow(x, y))),
+                  a, b)
       }
     }
 

@@ -104,7 +104,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const int16_t *buf;
+    const uint16_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -150,9 +150,10 @@ int main() {
           int temp_a = a, temp_b = b;
 
           // loop body
-          if (a > b)
+          if (a > b) {
             swap(&a, &b);
-          b -= a;
+          }
+          b = b - a;
 
           loopcount++;
           loopcheck(fptr, vars, temp_a, temp_b, a, b);

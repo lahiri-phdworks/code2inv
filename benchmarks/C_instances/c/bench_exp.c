@@ -1,14 +1,11 @@
 int main() {
   // variable declarations
-  int a;
-  int b;
-  int x;
-  int y;
+  long long int a;
+  long long int b;
+  double x;
+  double y;
   long long res;
   // pre-conditions
-  // scanf("%d", &a);
-  // scanf("%d", &b);
-  // scanf("%d", &res);
   (a = 5);
   (b = 3);
   (x = a);
@@ -27,5 +24,6 @@ int main() {
   // loopend
   // postcheck
   // post-condition
-  assert((a >= 0) && (b >= 0) && (res == pow(x, y)));
+  // printf("%d, %d, %d, %d\n", res, (int)pow(x, y), a, b);
+  assert((a >= 0) && (b >= 0) && (res == (int)pow(x, y)));
 }

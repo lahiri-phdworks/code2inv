@@ -103,7 +103,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const int16_t *buf;
+    const uint16_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -142,7 +142,7 @@ int main() {
       assume(INV(n, k, r, p));
 
       // Loop Condition
-      if ((k != n)) {
+      if (k != n) {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
         while ((k != n) && unroll--) {

@@ -70,6 +70,17 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_r,
 }                                                                         \
   }
 
+int remainder(int a, int d) {
+  int quo, rem;
+  __asm__("movl $0x0, %%edx;"
+          "movl %2, %%eax;"
+          "movl %3, %%ebx;"
+          "idivl %%ebx;"
+          : "=a"(quo), "=d"(rem)
+          : "g"(a), "g"(d));
+  return rem;
+}
+
 int main() {
   // variable declarations
   int q;
@@ -87,7 +98,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const int16_t *buf;
+    const uint16_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -113,7 +124,8 @@ int main() {
       d = 13;
       r = a;
       q = 0;
-      assume((d != 0));
+      assume((a >= 0));
+      assume((d > 0));
       assume((preflag == 0));
       precount++;
       precheck(fptr, vars, r, q, d);

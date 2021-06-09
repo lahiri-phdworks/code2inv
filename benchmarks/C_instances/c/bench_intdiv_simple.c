@@ -1,3 +1,14 @@
+int remainder(int a, int d) {
+  int quo, rem;
+  __asm__("movl $0x0, %%edx;"
+          "movl %2, %%eax;"
+          "movl %3, %%ebx;"
+          "idivl %%ebx;"
+          : "=a"(quo), "=d"(rem)
+          : "g"(a), "g"(d));
+  return rem;
+}
+
 int main() {
   // variable declarations
   int q;
@@ -13,7 +24,8 @@ int main() {
   (d = 13);
   (r = a);
   (q = 0);
-  assume((d != 0));
+  assume((a >= 0));
+  assume((d > 0));
   // precheck
   // loopcond : (r >= d)
   // loopstart
@@ -24,5 +36,5 @@ int main() {
   // loopend
   // postcheck
   // post-condition
-  assert((0 <= r <= d) && (a / d == q));
+  assert((0 <= r <= d) && (a / d == q) && (r == remainder(a, d)));
 }
