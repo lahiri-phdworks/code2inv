@@ -38,9 +38,9 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = j j_1 )
 		( = pivot pivot_1 )
 		( = arr_0  )
-		( = high_1 ( /   ) )
+		( = high_1 ( - ( /   ) 1 ) )
 		( = pivot_1  )
-		( = i_1 -1 )
+		( = i_1 0 )
 		( = j_1 0 )
 	)
 )
@@ -61,7 +61,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( and
 			( = i_2 i )
 			( = j_2 j )
-			( <= j_2 ( - high_1 2 ) )
+			( <= j_2 ( - high_1 1 ) )
 			( <  pivot_1 )
 			( = i_3 ( + i_2 1 ) )
 			( = i_4 i_3 )
@@ -78,7 +78,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( and
 			( = i_2 i )
 			( = j_2 j )
-			( <= j_2 ( - high_1 2 ) )
+			( <= j_2 ( - high_1 1 ) )
 			( not ( <  pivot_1 ) )
 			( = i_4 i_2 )
 			( = j_3 ( + j_2 1 ) )
@@ -108,29 +108,11 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			)
 			( not
 				( and
-					( not ( <= j_2 ( - high_1 2 ) ) )
-					( =  pivot_1 )
+					( not ( <= j_2 ( - high_1 1 ) ) )
+					( <= ( <= 0 i_2 ) high_1 )
 					( <  pivot_1 )
-					( not ( and ( and ( =  pivot_1 ) ( <  pivot_1 ) ) ( >  pivot_1 ) ) )
-				)
-			)
-		)
-		( or
-			( not
-				( and
-					( = arr arr_0)
-					( = high high_1)
-					( = i i_2)
-					( = j j_2)
-					( = pivot pivot_1)
-				)
-			)
-			( not
-				( and
-					( not ( <= j_2 ( - high_1 2 ) ) )
 					( =  pivot_1 )
-					( not ( <  pivot_1 ) )
-					( not ( and ( and ( =  pivot_1 ) ( <  pivot_1 ) ) ( >  pivot_1 ) ) )
+					( not ( and ( and ( and ( <= ( <= 0 i_2 ) high_1 ) ( <  pivot_1 ) ) ( =  pivot_1 ) ) ( >  pivot_1 ) ) )
 				)
 			)
 		)
@@ -146,9 +128,48 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			)
 			( not
 				( and
-					( not ( <= j_2 ( - high_1 2 ) ) )
+					( not ( <= j_2 ( - high_1 1 ) ) )
+					( <= ( <= 0 i_2 ) high_1 )
+					( <  pivot_1 )
 					( not ( =  pivot_1 ) )
-					( not ( and ( and ( =  pivot_1 ) ( <  pivot_1 ) ) ( >  pivot_1 ) ) )
+					( not ( and ( and ( and ( <= ( <= 0 i_2 ) high_1 ) ( <  pivot_1 ) ) ( =  pivot_1 ) ) ( >  pivot_1 ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = arr arr_0)
+					( = high high_1)
+					( = i i_2)
+					( = j j_2)
+					( = pivot pivot_1)
+				)
+			)
+			( not
+				( and
+					( not ( <= j_2 ( - high_1 1 ) ) )
+					( <= ( <= 0 i_2 ) high_1 )
+					( not ( <  pivot_1 ) )
+					( not ( and ( and ( and ( <= ( <= 0 i_2 ) high_1 ) ( <  pivot_1 ) ) ( =  pivot_1 ) ) ( >  pivot_1 ) ) )
+				)
+			)
+		)
+		( or
+			( not
+				( and
+					( = arr arr_0)
+					( = high high_1)
+					( = i i_2)
+					( = j j_2)
+					( = pivot pivot_1)
+				)
+			)
+			( not
+				( and
+					( not ( <= j_2 ( - high_1 1 ) ) )
+					( not ( <= ( <= 0 i_2 ) high_1 ) )
+					( not ( and ( and ( and ( <= ( <= 0 i_2 ) high_1 ) ( <  pivot_1 ) ) ( =  pivot_1 ) ) ( >  pivot_1 ) ) )
 				)
 			)
 		)

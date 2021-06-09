@@ -79,8 +79,9 @@ int main() {
   int mid;
   int item;
   int SIZE;
-  int arr[] = {5,  6,  11,  18,  23,  28,  29,  30,
-               35, 33, 105, 225, 445, 569, 885, 1025};
+  int arr[] = {5,   6,   11,  18,  23,  28,  29,  30,  35,  33,  88,
+               89,  90,  95,  105, 115, 125, 162, 189, 196, 225, 345,
+               382, 412, 430, 445, 500, 505, 519, 569, 725, 885, 1025};
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -117,9 +118,9 @@ int main() {
       // pre-conditions
       low = 0;
       mid = 0;
-      item = 225;
+      item = 0;
       high = (int)(sizeof(arr) / sizeof(arr[0]));
-
+      SIZE = (int)(sizeof(arr) / sizeof(arr[0]));
       assume((preflag == 0));
       precount++;
       precheck(fptr, vars, low, mid, high, item);

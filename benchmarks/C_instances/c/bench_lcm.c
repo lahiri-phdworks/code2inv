@@ -1,22 +1,22 @@
-void swap(int *xp, int *yp) {
-  int temp = *xp;
-  *xp = *yp;
-  *yp = temp;
-}
+// void swap(int *xp, int *yp) {
+//   int temp = *xp;
+//   *xp = *yp;
+//   *yp = temp;
+// }
 
-int gcd(int a, int b) {
-  if (!a || !b)
-    return a | b;
-  unsigned shift = __builtin_ctz(a | b);
-  a >>= __builtin_ctz(a);
-  do {
-    b >>= __builtin_ctz(b);
-    if (a > b)
-      swap(&a, &b);
-    b -= a;
-  } while (b);
-  return a << shift;
-}
+// int gcd(int a, int b) {
+//   if (!a || !b)
+//     return a | b;
+//   unsigned shift = __builtin_ctz(a | b);
+//   a >>= __builtin_ctz(a);
+//   do {
+//     b >>= __builtin_ctz(b);
+//     if (a > b)
+//       swap(&a, &b);
+//     b -= a;
+//   } while (b);
+//   return a << shift;
+// }
 
 int lcm(int a, int b) { return a / gcd(a, b) * b; }
 
@@ -39,9 +39,10 @@ int main() {
   // loopcond : (a != b)
   // loopstart
   while (a != b) {
-    if (a > b)
+    if (a > b) {
       swap(&a, &b);
-    b -= a;
+    }
+    b = b - a;
   }
   // loopend
   // postcheck

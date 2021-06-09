@@ -83,6 +83,7 @@ int main() {
   int pivot;
   int high;
 
+  // partition over a static array.
   int arr[] = {2, 3, 90, 78, 1, 0, 67, 14, 9, 6, 7, 18, 10, 15, 11};
 
   char buff[1024];
@@ -110,17 +111,17 @@ int main() {
     // pre-conditions
     i = buf[1];
     j = buf[2];
-    pivot = buf[3];
-    high = (int)(sizeof(arr) / sizeof(arr[0]));
+    high = (int)((sizeof(arr) / sizeof(arr[0])) - 1);
+    pivot = arr[high];
     // precheck
-    // loopcond : (j <= high - 2)
+    // loopcond : (j <= high - 1)
 
     if (choices > 15000) {
       // pre-conditions
-      (pivot = arr[high - 1]);
-      (i = -1);
-      (j = 0);
-
+      select_pivot(arr, 0, high);
+      pivot = arr[high];
+      i = 0;
+      j = 0;
       assume((preflag == 0));
       precount++;
       precheck(fptr, vars, i, j, high);
@@ -131,19 +132,19 @@ int main() {
       assume(INV(i, j, high));
 
       // Loop Condition
-      if ((j <= high - 2)) {
+      if (j <= high - 1) {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
-        while ((j <= high - 2) && unroll--) {
+        while ((j <= high - 1) && unroll--) {
           assume((loopflag == 0));
           int temp_i = i, temp_j = j, temp_high = high;
 
           // loop body
           if (arr[j] < pivot) {
-            i++;
             swap(&arr[i], &arr[j]);
+            i = i + 1;
           }
-          j++;
+          j = j + 1;
 
           loopcount++;
           loopcheck(fptr, vars, temp_i, temp_j, temp_high, i, j, high);
@@ -151,14 +152,14 @@ int main() {
       } else {
         // post-check program
         assume((postflag == 0));
-        swap(&arr[i + 1], &arr[high - 1]);
+        swap(&arr[i], &arr[high]);
 
         // post-condition
         postcount++;
-        postcheck(
-            fptr, vars,
-            ((arr[i + 1] == pivot) && (arr[i] < pivot) && (arr[i + 2] > pivot)),
-            i, j, high)
+        postcheck(fptr, vars,
+                  ((0 <= i <= high) && (arr[i - 1] < pivot) &&
+                   (arr[i] == pivot) && (arr[i + 1] > pivot)),
+                  i, j, high)
       }
     }
 
