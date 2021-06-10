@@ -2,6 +2,7 @@
 #include <bench_lcm.h>
 #include <inttypes.h>
 #include <libhfuzz/libhfuzz.h>
+#include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,39 +17,43 @@
   if (!cond)                                                                   \
     continue;
 
-#define INV(a, b) PHI
+#define INV(start, a, b) PHI
 
-double counter = 0;
+long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
+void precheck(FILE *fptr, char *buff, long long int start, long long int a,
+              long long int b) {
   int f = preflag;
-  aflcrash(INV(a, b), preflag);
+  aflcrash(INV(start, a, b), preflag);
   if (f == 0 && preflag == 1) {
-    fprintf(fptr, "Pre : %s : %lld, %s : %lld\n", "a", a, "b", b);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n", "start", start,
+            "a", a, "b", b);
 
     assert(0);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *fptr, char *buff, long long int temp_a,
-               long long int temp_b, long long int a, long long int b) {
+void loopcheck(FILE *fptr, char *buff, long long int temp_start,
+               long long int temp_a, long long int temp_b, long long int start,
+               long long int a, long long int b) {
   int f = loopflag;
-  aflcrash(INV(a, b), loopflag);
+  aflcrash(INV(start, a, b), loopflag);
   if (f == 0 && loopflag == 1) {
-    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld\n", "a", temp_a, "b",
-            temp_b);
-    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld\n", "a", a, "b", b);
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n", "start",
+            temp_start, "a", temp_a, "b", temp_b);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n", "start", start,
+            "a", a, "b", b);
 
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, a, b)                                      \
+#define postcheck(fptr, buff, cond, start, a, b)                               \
   \ 
 {                                                                           \
     \ 
@@ -58,9 +63,9 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
     \ 
     if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld\n", \ 
- "a",                                                                          \
-                a, "b", b);                                                    \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "start",                                                                      \
+                start, "a", a, "b", b);                                        \
       assert(0);                                                               \
     \ 
 }                                                                         \
@@ -93,10 +98,11 @@ int lcm(int a, int b) { return a / gcd(a, b) * b; }
 
 int main() {
   // variable declarations
-  unsigned int a;
-  unsigned int b;
-  unsigned int x;
-  unsigned int y;
+  int a;
+  int b;
+  int x;
+  int y;
+  int start;
 
   char buff[1024];
   memset(buff, '\0', sizeof(buff));
@@ -117,65 +123,60 @@ int main() {
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld\n", "a", a, "b", b);
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n", "start", start,
+             "a", a, "b", b);
 
     // pre-conditions
-    a = buf[1];
-    b = buf[2];
+    a = buf[1] + 1;
+    b = buf[2] + 1;
+    start = a;
     x = a;
     y = b;
-
-    assume((a > 0));
-    assume((b > 0));
+    // Invariant using the GCD function.
     // precheck
     // loopcond : (a != b)
 
     if (choices > 100) {
       // pre-conditions
-      a = 5;
-      b = 7;
+      a = 514231;
+      b = 236569;
       x = a;
       y = b;
-
-      assume((a > 0));
-      assume((b > 0));
-
+      start = a;
+      assume((a >= 0));
+      assume((b >= 0));
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, a, b);
+      precheck(fptr, vars, start, a, b);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(a, b));
+      assume(INV(start, a, b));
+      /* Compute Greatest Common Divisor using Euclid's Algorithm */
 
       // Loop Condition
-      if ((a != b)) {
+      if (start % b != 0) {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
         while ((a != b) && unroll--) {
           assume((loopflag == 0));
-          int temp_a = a, temp_b = b;
+          int temp_a = a, temp_b = b, temp_start = start;
 
           // loop body
-          if (a > b)
-            swap(&a, &b);
-          b -= a;
-
-          // fprintf(fptr, "%s : %lld, %s : %lld, %s : %lld\n", "precount",
-          //         precount, "loopcount", loopcount, "postcount", postcount);
+          start += a;
 
           loopcount++;
-          loopcheck(fptr, vars, temp_a, temp_b, a, b);
+          loopcheck(fptr, vars, temp_start, temp_a, temp_b, start, a, b);
         }
       } else {
         // post-check program
         assume((postflag == 0));
         // post-condition
+        // printf("%d\n", start);
         postcount++;
-        postcheck(fptr, vars,
-                  ((a >= 0) && (b >= 0) && ((x * y) == gcd(x, y) * lcm(x, y))),
-                  a, b)
+        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (start == lcm(x, y))),
+                  start, a, b)
       }
     }
 

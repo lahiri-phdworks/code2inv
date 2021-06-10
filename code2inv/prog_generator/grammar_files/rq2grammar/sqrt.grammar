@@ -1,5 +1,5 @@
 S ::= p
-p ::= var cmp expr
+p ::= (n >= 0) && ( pow ( mid, 2 ) <= n )
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
 op ::= + | - | *

@@ -4,6 +4,8 @@
 //   *yp = temp;
 // }
 
+// https://cp-algorithms.com/
+
 int gcd(int a, int b) {
   if (!a || !b)
     return a | b;
@@ -22,30 +24,30 @@ int lcm(int a, int b) { return a / gcd(a, b) * b; }
 
 int main() {
   // variable declarations
-  unsigned int a;
-  unsigned int b;
-  unsigned int x;
-  unsigned int y;
+  int a;
+  int b;
+  int x;
+  int y;
+  int start;
   // pre-conditions
   // scanf("%d", &a);
   // scanf("%d", &b);
-  (a = 5);
-  (b = 7);
+  (a = 10);
+  (b = 15);
   (x = a);
   (y = b);
-  assume((a > 0));
-  assume((b > 0));
+  (start = a);
+  // assume((a > 0));
+  // assume((b > 0));
   // precheck
   // loopcond : (a != b)
   // loopstart
-  while (a != b) {
-    if (a > b) {
-      swap(&a, &b);
-    }
-    b = b - a;
+  while (start % b != 0) {
+    start += a;
   }
   // loopend
   // postcheck
   // post-condition
-  assert((a >= 0) && (b >= 0) && ((x * y) == gcd(x, y) * lcm(x, y)));
+  printf("%d\n", start);
+  assert((a >= 0) && (b >= 0) && (start == lcm(x, y)));
 }

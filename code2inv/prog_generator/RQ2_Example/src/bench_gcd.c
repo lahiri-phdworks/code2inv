@@ -2,7 +2,6 @@
 #include <bench_gcd.h>
 #include <inttypes.h>
 #include <libhfuzz/libhfuzz.h>
-#include <math.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,18 +16,20 @@
   if (!cond)                                                                   \
     continue;
 
-#define INV(a, b) PHI
+#define INV(a, b, x, y) PHI
 
-double counter = 0;
+long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
+void precheck(FILE *fptr, char *buff, long long int a, long long int b,
+              long long int x, long long int y) {
   int f = preflag;
-  aflcrash(INV(a, b), preflag);
+  aflcrash(INV(a, b, x, y), preflag);
   if (f == 0 && preflag == 1) {
-    fprintf(fptr, "Pre : %s : %lld, %s : %lld\n", "a", a, "b", b);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a", a,
+            "b", b, "x", x, "y", y);
 
     assert(0);
   }
@@ -36,20 +37,23 @@ void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
 
 // COMMENT : Loopcheck template
 void loopcheck(FILE *fptr, char *buff, long long int temp_a,
-               long long int temp_b, long long int a, long long int b) {
+               long long int temp_b, long long int temp_x, long long int temp_y,
+               long long int a, long long int b, long long int x,
+               long long int y) {
   int f = loopflag;
-  aflcrash(INV(a, b), loopflag);
+  aflcrash(INV(a, b, x, y), loopflag);
   if (f == 0 && loopflag == 1) {
-    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld\n", "a", temp_a, "b",
-            temp_b);
-    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld\n", "a", a, "b", b);
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "a", temp_a, "b", temp_b, "x", temp_x, "y", temp_y);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a",
+            a, "b", b, "x", x, "y", y);
 
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, a, b)                                      \
+#define postcheck(fptr, buff, cond, a, b, x, y)                                \
   \ 
 {                                                                           \
     \ 
@@ -59,9 +63,9 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
     \ 
     if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld\n", \ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
  "a",                                                                          \
-                a, "b", b);                                                    \
+                a, "b", b, "x", x, "y", y);                                    \
       assert(0);                                                               \
     \ 
 }                                                                         \
@@ -113,7 +117,8 @@ int main() {
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld\n", "a", a, "b", b);
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a", a,
+             "b", b, "x", x, "y", y);
 
     // pre-conditions
     a = buf[1];
@@ -134,12 +139,13 @@ int main() {
       assume((b >= 0));
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, a, b);
+      precheck(fptr, vars, a, b, x, y);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(a, b));
+      assume(INV(a, b, x, y));
+      /* Compute Greatest Common Divisor using Euclid's Algorithm */
 
       // Loop Condition
       if ((a != b)) {
@@ -147,7 +153,7 @@ int main() {
         int unroll = UNROLL_LIMIT;
         while ((a != b) && unroll--) {
           assume((loopflag == 0));
-          int temp_a = a, temp_b = b;
+          int temp_a = a, temp_b = b, temp_x = x, temp_y = y;
 
           // loop body
           if (a > b) {
@@ -156,14 +162,15 @@ int main() {
           b = b - a;
 
           loopcount++;
-          loopcheck(fptr, vars, temp_a, temp_b, a, b);
+          loopcheck(fptr, vars, temp_a, temp_b, temp_x, temp_y, a, b, x, y);
         }
       } else {
         // post-check program
         assume((postflag == 0));
         // post-condition
         postcount++;
-        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (a == gcd(x, y))), a, b)
+        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (a == asmgcd(x, y))), a,
+                  b, x, y)
       }
     }
 

@@ -17,39 +17,47 @@
   if (!cond)                                                                   \
     continue;
 
-#define INV(a, b) PHI
+#define INV(res, a, b, x, y) PHI
 
-double counter = 0;
+long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int a, long long int b) {
+void precheck(FILE *fptr, char *buff, long long int res, long long int a,
+              long long int b, double x, double y) {
   int f = preflag;
-  aflcrash(INV(a, b), preflag);
+  aflcrash(INV(res, a, b, x, y), preflag);
   if (f == 0 && preflag == 1) {
-    fprintf(fptr, "Pre : %s : %lld, %s : %lld\n", "a", a, "b", b);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %d, %s : %d\n",
+            "res", res, "a", a, "b", b, "x", (int)x, "y", (int)y);
 
     assert(0);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *fptr, char *buff, long long int temp_a,
-               long long int temp_b, long long int a, long long int b) {
+void loopcheck(FILE *fptr, char *buff, long long int temp_res,
+               long long int temp_a, long long int temp_b, double temp_x,
+               double temp_y, long long int res, long long int a,
+               long long int b, double x, double y) {
   int f = loopflag;
-  aflcrash(INV(a, b), loopflag);
+  aflcrash(INV(res, a, b, x, y), loopflag);
   if (f == 0 && loopflag == 1) {
-    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld\n", "a", temp_a, "b",
-            temp_b);
-    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld\n", "a", a, "b", b);
+    fprintf(fptr,
+            "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %d, %s : %d\n",
+            "res", temp_res, "a", temp_a, "b", temp_b, "x", (int)temp_x, "y",
+            (int)temp_y);
+    fprintf(fptr,
+            "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %d, %s : %d\n",
+            "res", res, "a", a, "b", b, "x", (int)x, "y", (int)y);
 
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, a, b)                                      \
+#define postcheck(fptr, buff, cond, res, a, b, x, y)                           \
   \ 
 {                                                                           \
     \ 
@@ -59,13 +67,16 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
     \ 
     if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld\n", \ 
- "a",                                                                          \
-                a, "b", b);                                                    \
+        fprintf(                                                               \
+          fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %d, %s : %d\n", \ 
+ "res",                                                                        \
+          res, "a", a, "b", b, "x", (int)x, "y", (int)y);                      \
       assert(0);                                                               \
     \ 
 }                                                                         \
   }
+
+// (a >= 0) && (b >= 0) && (res * pow (a, b) == pow (x, y))
 
 int main() {
   // variable declarations
@@ -94,14 +105,18 @@ int main() {
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld\n", "a", a, "b", b);
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %d, %s : %d\n",
+             "res", res, "a", a, "b", b, "x", (int)x, "y", (int)y);
 
-    // pre-conditions
-    a = buf[1];
-    b = buf[2];
+    // restricted since the range is huge
+    // and the computation otherwise would
+    // overflow.
+    a = buf[1] % 13 + 1;
+    b = buf[2] % 13;
     res = 1LL;
     x = a;
     y = b;
+
     // precheck
     // loopcond : (b > 0)
 
@@ -115,12 +130,12 @@ int main() {
 
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, a, b);
+      precheck(fptr, vars, res, a, b, x, y);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(a, b));
+      assume(INV(res, a, b, x, y));
 
       // Loop Condition
       if (b > 0) {
@@ -128,17 +143,18 @@ int main() {
         int unroll = UNROLL_LIMIT;
         while ((b > 0) && unroll--) {
           assume((loopflag == 0));
-          int temp_a = a, temp_b = b;
+          int temp_a = a, temp_b = b, temp_res = res;
 
           // loop body
           // exponentiation by squaring
           if (b & 1)
-            res = res * a;
-          a = a * a;
+            res *= a;
           b >>= 1;
+          a *= a;
 
           loopcount++;
-          loopcheck(fptr, vars, temp_a, temp_b, a, b);
+          loopcheck(fptr, vars, temp_res, temp_a, temp_b, x, y, res, a, b, x,
+                    y);
         }
       } else {
         // post-check program
@@ -147,7 +163,7 @@ int main() {
         postcount++;
         // fprintf(fptr, "%d, %d, %d, %d\n", res, (int)pow(x, y), a, b);
         postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (res == (int)pow(x, y))),
-                  a, b)
+                  res, a, b, x, y)
       }
     }
 

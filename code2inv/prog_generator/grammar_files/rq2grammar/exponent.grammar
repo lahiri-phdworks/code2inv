@@ -1,5 +1,6 @@
 S ::= p
-p ::= var cmp expr
-expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
-cmp ::= < | > | == | <= | >=
+p ::= ( a cmp const ) && ( b cmp const ) && ( res * pow ( a , varC ) == pow ( x , varC ))
+expr ::= var | const
+varC ::= a | b | x | y
+cmp ::= == | >=
 op ::= + | - | *

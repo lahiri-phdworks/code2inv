@@ -1,5 +1,6 @@
-S ::= p
-p ::= var cmp expr
-expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
+S ::= ((i > 0) && (i < high) && (arr[i - 1] <= pivot)) "||" ((i == 0) && (arr[i] <= pivot "||" arr[i] >= pivot))
+p ::= var cmp expr | arr[i op const] cmp expr | arr[i] cmp expr
+expr ::= ( var op const ) | var | const
+var ::= i | j | high | pivot
 cmp ::= < | > | == | <= | >=
-op ::= + | - | *
+op ::= + | -
