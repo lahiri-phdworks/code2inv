@@ -1,5 +1,5 @@
 S ::= p
-p ::= (n >= 0) && ( pow ( mid, 2 ) <= n )
+p ::= ( ( n >= 0 ) && ( pow ( ( left - 1 ) , 2 ) <= n ) )
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
 op ::= + | - | *

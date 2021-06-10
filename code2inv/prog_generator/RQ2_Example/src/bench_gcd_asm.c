@@ -22,6 +22,35 @@ long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long int precount = 0, loopcount = 0, postcount = 0;
 
+void swap(int *xp, int *yp) {
+  int temp = *xp;
+  *xp = *yp;
+  *yp = temp;
+}
+
+int asmgcd(int a, int b) {
+  if (a == 0 || a == 0)
+    return 0;
+
+  if (a == b)
+    return a;
+
+  int result;
+  __asm__ __volatile__("movl %1, %%eax;"
+                       "movl %2, %%ebx;"
+                       "CONTD: cmpl $0, %%ebx;"
+                       "je DONE;"
+                       "xorl %%edx, %%edx;"
+                       "idivl %%ebx;"
+                       "movl %%ebx, %%eax;"
+                       "movl %%edx, %%ebx;"
+                       "jmp CONTD;"
+                       "DONE: movl %%eax, %0;"
+                       : "=g"(result)
+                       : "g"(a), "g"(b));
+  return result;
+}
+
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int a, long long int b,
               long long int x, long long int y) {
@@ -70,29 +99,6 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
     \ 
 }                                                                         \
   }
-
-void swap(int *xp, int *yp) {
-  int temp = *xp;
-  *xp = *yp;
-  *yp = temp;
-}
-
-int asmgcd(int a, int b) {
-  int result;
-  __asm__ __volatile__("movl %1, %%eax;"
-                       "movl %2, %%ebx;"
-                       "CONTD: cmpl $0, %%ebx;"
-                       "je DONE;"
-                       "xorl %%edx, %%edx;"
-                       "idivl %%ebx;"
-                       "movl %%ebx, %%eax;"
-                       "movl %%edx, %%ebx;"
-                       "jmp CONTD;"
-                       "DONE: movl %%eax, %0;"
-                       : "=g"(result)
-                       : "g"(a), "g"(b));
-  return result;
-}
 
 int main() {
   // variable declarations

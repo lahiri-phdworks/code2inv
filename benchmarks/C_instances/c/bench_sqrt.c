@@ -17,7 +17,7 @@ int main() {
   (n = 745);
   (left = 0);
   (right = n);
-  assume((n > 0));
+  assume((n >= 0));
   // precheck
   // loopcond : (left <= right)
   // loopstart

@@ -41,5 +41,5 @@ int main() {
   // loopend
   // postcheck
   // post-condition
-  assert((n >= 0) && (k >= 0) && (r == factmod(n, p)));
+  assert((n >= 0) && (k >= 0) && (r == factmod(n, 100003)));
 }

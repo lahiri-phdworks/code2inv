@@ -1,5 +1,5 @@
 S ::= p
-p ::= (a >= 0) && (b >= 0) && ( asmgcd( a , b ) == asmgcd( x , y ) )
+p ::= (a >= 0) && (b >= 0) && (asmgcd( a , b ) == asmgcd( x , y ))
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
 op ::= + | - | *

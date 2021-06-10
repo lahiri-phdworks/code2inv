@@ -1,5 +1,5 @@
 S ::= p
-p ::= ( a cmp const ) && ( b cmp const ) && ( res * pow ( a , varC ) == pow ( x , varC ))
+p ::= ( a cmp const ) && ( b cmp const ) && ( res * pow ( a , y ) == pow ( x , y ))
 expr ::= var | const
 varC ::= a | b | x | y
 cmp ::= == | >=

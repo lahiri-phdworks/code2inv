@@ -169,8 +169,8 @@ int main() {
         assume((postflag == 0));
         // post-condition
         postcount++;
-        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (a == asmgcd(x, y))), a,
-                  b, x, y)
+        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (a == gcd(x, y))), a, b,
+                  x, y)
       }
     }
 

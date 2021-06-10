@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define UNROLL_LIMIT 512
+#define UNROLL_LIMIT 32
 
 #define aflcrash(cond, flag)                                                   \
   if (!cond)                                                                   \
@@ -95,7 +95,7 @@ int main() {
 
   for (;;) {
     size_t len;
-    const uint16_t *buf;
+    const uint8_t *buf;
 
     HF_ITER(&buf, &len);
     counter++;
@@ -114,12 +114,12 @@ int main() {
     // precheck
     // loopcond : (left <= right)
 
-    if (choices > 15000) {
+    if (choices > 100) {
       // pre-conditions
       n = 745;
       left = 0;
       right = n;
-      assume((n > 0));
+      assume((n >= 0));
 
       assume((preflag == 0));
       precount++;

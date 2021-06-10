@@ -37,8 +37,8 @@ int main() {
   (x = a);
   (y = b);
   (start = a);
-  // assume((a > 0));
-  // assume((b > 0));
+  assume((a > 0));
+  assume((b > 0));
   // precheck
   // loopcond : (a != b)
   // loopstart

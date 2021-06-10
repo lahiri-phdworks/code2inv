@@ -47,6 +47,8 @@ int arr[] = {
     62827, 62940, 63015, 63397, 63522, 63740, 63878, 64168, 64767, 64827, 65201,
     65260, 65266};
 
+unsigned int SIZE = (int)(sizeof(arr) / sizeof(arr[0]));
+
 #define INV(low, mid, high, item) PHI
 
 double counter = 0;

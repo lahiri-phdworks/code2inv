@@ -16,43 +16,44 @@
   if (!cond)                                                                   \
     continue;
 
-#define INV(r, q, d) PHI
+#define INV(a, q, r, d) PHI
 
-double counter = 0;
+long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
-void precheck(FILE *fptr, char *buff, long long int r, long long int q,
-              long long int d) {
+void precheck(FILE *fptr, char *buff, long long int a, long long int q,
+              long long int r, long long int d) {
   int f = preflag;
-  aflcrash(INV(r, q, d), preflag);
+  aflcrash(INV(a, q, r, d), preflag);
   if (f == 0 && preflag == 1) {
-    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n", "r", r, "q", q,
-            "d", d);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a", a,
+            "q", q, "r", r, "d", d);
 
     assert(0);
   }
 }
 
 // COMMENT : Loopcheck template
-void loopcheck(FILE *fptr, char *buff, long long int temp_r,
-               long long int temp_q, long long int temp_d, long long int r,
-               long long int q, long long int d) {
+void loopcheck(FILE *fptr, char *buff, long long int temp_a,
+               long long int temp_q, long long int temp_r, long long int temp_d,
+               long long int a, long long int q, long long int r,
+               long long int d) {
   int f = loopflag;
-  aflcrash(INV(r, q, d), loopflag);
+  aflcrash(INV(a, q, r, d), loopflag);
   if (f == 0 && loopflag == 1) {
-    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n", "r", temp_r,
-            "q", temp_q, "d", temp_d);
-    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n", "r", r, "q", q,
-            "d", d);
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
+            "a", temp_a, "q", temp_q, "r", temp_r, "d", temp_d);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a",
+            a, "q", q, "r", r, "d", d);
 
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, r, q, d)                                   \
+#define postcheck(fptr, buff, cond, a, q, r, d)                                \
   \ 
 {                                                                           \
     \ 
@@ -62,14 +63,16 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_r,
     \ 
     if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
- "r",                                                                          \
-                r, "q", q, "d", d);                                            \
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+ "a",                                                                          \
+                a, "q", q, "r", r, "d", d);                                    \
       assert(0);                                                               \
     \ 
 }                                                                         \
   }
 
+// Reference :
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int remainder(int a, int d) {
   int quo, rem;
   __asm__("movl $0x0, %%edx;"
@@ -107,8 +110,8 @@ int main() {
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n", "r", r, "q", q,
-             "d", d);
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a", a,
+             "q", q, "r", r, "d", d);
 
     // pre-conditions
     a = buf[1];
@@ -128,12 +131,12 @@ int main() {
       assume((d > 0));
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, r, q, d);
+      precheck(fptr, vars, a, q, r, d);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(r, q, d));
+      assume(INV(a, q, r, d));
 
       // Loop Condition
       if ((r >= d)) {
@@ -141,21 +144,23 @@ int main() {
         int unroll = UNROLL_LIMIT;
         while ((r >= d) && unroll--) {
           assume((loopflag == 0));
-          int temp_r = r, temp_q = q, temp_d = d;
+          int temp_r = r, temp_q = q, temp_d = d, temp_a = a;
 
           // loop body
           q = q + 1;
           r = r - d;
 
           loopcount++;
-          loopcheck(fptr, vars, temp_r, temp_q, temp_d, r, q, d);
+          loopcheck(fptr, vars, temp_a, temp_q, temp_r, temp_d, a, q, r, d);
         }
       } else {
         // post-check program
         assume((postflag == 0));
         // post-condition
         postcount++;
-        postcheck(fptr, vars, ((0 <= r <= d) && (a / d == q)), r, q, d)
+        postcheck(fptr, vars,
+                  ((0 <= r <= d) && (a / d == q) && (r == remainder(a, d))), a,
+                  q, r, d)
       }
     }
 

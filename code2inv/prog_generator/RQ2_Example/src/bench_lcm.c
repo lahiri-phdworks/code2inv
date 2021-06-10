@@ -78,6 +78,10 @@ void swap(int *xp, int *yp) {
 }
 
 int gcd(int a, int b) {
+
+  if (a == 0 || b == 0)
+    return 0;
+
   int result;
   __asm__ __volatile__("movl %1, %%eax;"
                        "movl %2, %%ebx;"
@@ -94,7 +98,13 @@ int gcd(int a, int b) {
   return result;
 }
 
-int lcm(int a, int b) { return a / gcd(a, b) * b; }
+int lcm(int a, int b) {
+
+  if (a == 0 || b == 0)
+    return 0;
+
+  return a / gcd(a, b) * b;
+}
 
 int main() {
   // variable declarations
@@ -134,7 +144,8 @@ int main() {
     y = b;
     // Invariant using the GCD function.
     // precheck
-    // loopcond : (a != b)
+    // loopcond : (start % b != 0)
+    // fprintf(fptr, "%d, %d, %d, %d, %d\n", a, b, x, y, choices);
 
     if (choices > 100) {
       // pre-conditions
@@ -143,8 +154,8 @@ int main() {
       x = a;
       y = b;
       start = a;
-      assume((a >= 0));
-      assume((b >= 0));
+      assume((a > 0));
+      assume((b > 0));
       assume((preflag == 0));
       precount++;
       precheck(fptr, vars, start, a, b);
@@ -159,11 +170,12 @@ int main() {
       if (start % b != 0) {
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
-        while ((a != b) && unroll--) {
+        while ((start % b != 0) && unroll--) {
           assume((loopflag == 0));
           int temp_a = a, temp_b = b, temp_start = start;
 
           // loop body
+          // (start % a == 0)
           start += a;
 
           loopcount++;
@@ -175,8 +187,7 @@ int main() {
         // post-condition
         // printf("%d\n", start);
         postcount++;
-        postcheck(fptr, vars, ((a >= 0) && (b >= 0) && (start == lcm(x, y))),
-                  start, a, b)
+        postcheck(fptr, vars, (start == lcm(x, y)), start, a, b)
       }
     }
 
