@@ -4,7 +4,7 @@
 //   *yp = temp;
 // }
 
-// https : // www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int asmgcd(int a, int b) {
   int result;
   __asm__ __volatile__("movl %1, %%eax;"

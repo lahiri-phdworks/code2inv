@@ -4,6 +4,7 @@
 //   *yp = temp;
 // }
 
+// https://cp-algorithms.com/algebra/euclid-algorithm.html
 int gcd(int a, int b) {
   if (!a || !b)
     return a | b;
@@ -18,7 +19,6 @@ int gcd(int a, int b) {
   return a << shift;
 }
 
-// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int main() {
   // variable declarations
   unsigned int a;

@@ -1,3 +1,4 @@
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int remainder(int a, int d) {
   int quo, rem;
   __asm__("movl $0x0, %%edx;"

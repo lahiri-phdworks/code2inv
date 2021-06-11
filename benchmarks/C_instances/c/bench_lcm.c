@@ -4,20 +4,22 @@
 //   *yp = temp;
 // }
 
-// https://cp-algorithms.com/
-
+// https://www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int gcd(int a, int b) {
-  if (!a || !b)
-    return a | b;
-  unsigned shift = __builtin_ctz(a | b);
-  a >>= __builtin_ctz(a);
-  do {
-    b >>= __builtin_ctz(b);
-    if (a > b)
-      swap(&a, &b);
-    b -= a;
-  } while (b);
-  return a << shift;
+  int result;
+  __asm__ __volatile__("movl %1, %%eax;"
+                       "movl %2, %%ebx;"
+                       "CONTD: cmpl $0, %%ebx;"
+                       "je DONE;"
+                       "xorl %%edx, %%edx;"
+                       "idivl %%ebx;"
+                       "movl %%ebx, %%eax;"
+                       "movl %%edx, %%ebx;"
+                       "jmp CONTD;"
+                       "DONE: movl %%eax, %0;"
+                       : "=g"(result)
+                       : "g"(a), "g"(b));
+  return result;
 }
 
 int lcm(int a, int b) { return a / gcd(a, b) * b; }

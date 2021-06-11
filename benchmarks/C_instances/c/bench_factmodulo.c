@@ -1,5 +1,6 @@
 static int f[100003];
 
+// Reference : https://cp-algorithms.com/algebra/factorial-modulo.html
 int factmod(int n, int p) {
   if (n >= p)
     return 0;
