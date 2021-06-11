@@ -1,5 +1,5 @@
 S ::= p
-p ::= (a >= 0) && (b >= 0) && (gcd( a , b ) == gcd( x , y ))
+p ::= ((a >= 0) && (b >= 0) && (gcd( a , b ) == gcd( x , y )))
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
 op ::= + | - | *

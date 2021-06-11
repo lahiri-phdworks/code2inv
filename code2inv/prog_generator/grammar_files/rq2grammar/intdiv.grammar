@@ -1,5 +1,5 @@
 S ::= p
-p ::=  ( (a >= 0) && (var > 0) && (a == ( q op d ) + r) ) 
+p ::=  ( (a >= 0) && ( d > 0 ) && (a == ( q * d ) + r) ) 
 expr ::= ( var op var ) | var | const
 cmp ::= > | == | >=
 op ::= + | *

@@ -1,5 +1,5 @@
 S ::= p
-p ::= ( 0 <= i < n ) && ( x == fib ( i ) ) && ( y == fib ( i + 1 ) )
+p ::= ( ( 0 <= i <= n ) && ( x == fib ( i ) ) && ( y == fib ( i + 1 ) ) )
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
 op ::= + | - | *
