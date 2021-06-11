@@ -1,5 +1,6 @@
 S ::= p
-p ::= ( ( n >= 0 ) && ( pow ( ( left - 1 ) , 2 ) <= n ) )
-expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
-cmp ::= < | > | == | <= | >=
-op ::= + | - | *
+p ::= ( ( expr1 ) && ( pow ( expr2 , 2 ) <= n ) )
+expr1 ::= ( var cmp const )
+expr2 ::= ( var op 1 )
+cmp ::= >= | ==
+op ::= + | -

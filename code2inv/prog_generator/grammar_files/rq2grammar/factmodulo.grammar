@@ -1,5 +1,6 @@
 S ::= p
-p ::= ( (n >= 0) && (k >= 0) && ( r == factmod( k , 100003 ) ) )
-expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
-cmp ::= < | > | == | <= | >=
+p ::= (( var >= const ) && ( var >= const ) && ( var == factmod ( var , 100003 )))
+expr ::= var cmp const
+var ::= r | k | n
+cmp ::= == | >=
 op ::= + | - | *
