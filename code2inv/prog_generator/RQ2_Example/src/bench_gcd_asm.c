@@ -28,8 +28,9 @@ void swap(int *xp, int *yp) {
   *yp = temp;
 }
 
+// https : // www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
 int asmgcd(int a, int b) {
-  if (a == 0 || a == 0)
+  if (a == 0 || b == 0)
     return 0;
 
   if (a == b)

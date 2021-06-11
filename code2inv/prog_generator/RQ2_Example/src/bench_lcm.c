@@ -137,11 +137,16 @@ int main() {
              "a", a, "b", b);
 
     // pre-conditions
-    a = buf[1] + 1;
-    b = buf[2] + 1;
+    a = buf[1];
+    b = buf[2];
     start = a;
     x = a;
     y = b;
+
+    // HonggFuzz Specific Assume
+    assume(a > 0);
+    assume(b > 0);
+
     // Invariant using the GCD function.
     // precheck
     // loopcond : (start % b != 0)

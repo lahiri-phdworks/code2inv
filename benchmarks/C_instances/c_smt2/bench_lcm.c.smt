@@ -40,6 +40,8 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = x_1 a_1 )
 		( = y_1 b_1 )
 		( = start_1 a_1 )
+		( > a_1 0 )
+		( > b_1 0 )
 	)
 )
 

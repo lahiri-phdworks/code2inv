@@ -17,6 +17,11 @@
   if (!cond)                                                                   \
     continue;
 
+double fib(double n) {
+  double phi = (1 + sqrt(5.0)) / 2;
+  return round(pow(phi, n) / sqrt(5.0));
+}
+
 #define INV(x, y, i, n) PHI
 
 double counter = 0;
@@ -71,11 +76,6 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_x,
     \ 
 }                                                                         \
   }
-
-double fib(double n) {
-  double phi = (1 + sqrt(5.0)) / 2;
-  return round(pow(phi, n) / sqrt(5.0));
-}
 
 int main() {
   // variable declarations

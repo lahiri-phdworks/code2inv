@@ -10,7 +10,7 @@ int main() {
   (b = 3);
   (x = a);
   (y = b);
-  (res = 1);
+  (res = 1LL);
   // precheck
   // loopcond : (b > 0)
   // loopstart

@@ -22,12 +22,12 @@ pwd = os.path.dirname(__file__)
 if cmd_args.example:
     example = cmd_args.example
 else:
-    example = "10"
+    example = "bench_gcd_asm"
 
 if cmd_args.example:
     timeout = cmd_args.afl_timeout
 else:
-    timeout = 20
+    timeout = 10
 
 dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"RQ2_Example/include/{example}.h")

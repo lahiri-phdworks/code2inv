@@ -37,7 +37,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( = n_1 745 )
 		( = left_1 0 )
 		( = right_1 n_1 )
-		( > n_1 0 )
+		( >= n_1 0 )
 	)
 )
 
