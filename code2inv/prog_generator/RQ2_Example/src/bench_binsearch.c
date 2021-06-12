@@ -151,9 +151,10 @@ int main() {
     key = -1;
     mid = (low + high) >> 1;
 
+    fprintf(fptr, "%d, %d, %d, %d, %d\n", low, mid, high, key, choices);
     // precheck
     // loopcond : (low < high)
-    if (choices > 200) {
+    if (choices > 90) {
       // pre-conditions
       low = 0;
       mid = 0;
@@ -185,7 +186,6 @@ int main() {
           int temp_key = key;
 
           // loop body
-          key = -1;
           mid = (low + high) >> 1;
           if ((item < arr[mid])) {
             high = mid;
@@ -196,6 +196,7 @@ int main() {
             break;
           }
 
+          assert((arr[key] == item) && (key != mid));
           loopcount++;
           loopcheck(fptr, vars, temp_low, temp_mid, temp_high, temp_item,
                     temp_key, low, mid, high, item, key);

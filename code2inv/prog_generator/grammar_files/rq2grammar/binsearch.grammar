@@ -1,5 +1,6 @@
 S ::= p
-p ::= (((arr[ var ] != item ) && ( key cmp -1 ) && ( var cmp var )) "||" (( key cmp mid ) && (arr[ var ] == item )) )
-var ::= mid | key
-cmp ::= == | != | >
+p ::= ((( arrExpr ) && ( mid cmp var ) && ( key cmp mid )) "||" ( arr[ var ] == item ))
+arrExpr ::= arr[ var ] != item | arr[ var ] == item
+var ::= low | mid | high
+cmp ::= == | !=
 op ::= + | - | *
