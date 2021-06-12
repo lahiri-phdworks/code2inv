@@ -5,6 +5,7 @@ int main() {
   int mid;
   int item;
   int SIZE;
+  int key;
   int arr[] = {
       0,     0,     0,     7,     7,     13,    16,    18,    24,    25,
       25,    405,   688,   1095,  1370,  1429,  1845,  1879,  2261,  2540,
@@ -45,6 +46,7 @@ int main() {
   (low = 0);
   (mid = 0);
   (item = 0);
+  (key = -1);
   (high = (int)(sizeof(arr) / sizeof(arr[0])));
   (SIZE = (int)(sizeof(arr) / sizeof(arr[0])));
   // precheck
@@ -55,9 +57,10 @@ int main() {
     mid = (low + high) >> 1;
     if ((item < arr[mid])) {
       high = mid;
-    } else if ((arr[mid] < item)) {
+    } else if ((item > arr[mid])) {
       low = mid + 1;
     } else {
+      key = mid;
       break;
     }
   }
@@ -65,8 +68,5 @@ int main() {
   // postcheck
   // post-condition
   // printf("%d", arr[mid]);
-  assert((0 <= low <= mid <= high) &&
-         (((0 <= mid) && (mid < low) && (arr[mid] != item)) ||
-          ((high <= mid) && (mid <= SIZE) && (arr[mid] != item)) ||
-          (arr[mid] == item)));
+  assert((arr[key] == item && key == mid) || (key == -1));
 }
