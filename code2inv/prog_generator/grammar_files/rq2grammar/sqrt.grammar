@@ -3,4 +3,4 @@ p ::= ( ( expr1 ) && ( pow ( expr2 , 2 ) <= n ) )
 expr1 ::= ( var cmp const )
 expr2 ::= ( var op 1 )
 cmp ::= >= | ==
-op ::= + | -
+op ::= + | - | *

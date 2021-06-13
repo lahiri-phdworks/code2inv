@@ -16,7 +16,7 @@ int main() {
   unsigned int j;
   unsigned int pivot;
   unsigned int high;
-
+  unsigned int right;
   int arr[] = {
       5635,  23603, 14648, 38589, 32615, 21232, 30243, 38129, 37528, 29670,
       29608, 30578, 18009, 6714,  13134, 16255, 7272,  33956, 49616, 22017,
@@ -56,6 +56,7 @@ int main() {
   (high = (int)((sizeof(arr) / sizeof(arr[0]) - 1)));
   select_pivot(arr, 0, high);
   (pivot = arr[high]);
+  (right = 0);
   (i = 0);
   (j = 0);
   // precheck
@@ -65,6 +66,7 @@ int main() {
     if (arr[j] < pivot) {
       swap(&arr[i], &arr[j]);
       i = i + 1;
+      right++;
     }
     j = j + 1;
   }
@@ -72,6 +74,5 @@ int main() {
   // loopend
   // postcheck
   // post-condition
-  assert((0 <= i <= high) && (arr[i - 1] < pivot) && (arr[i] == pivot) &&
-         (arr[i + 1] > pivot));
+  assert((0 < i <= right) && (arr[i - 1] <= pivot));
 }

@@ -1,5 +1,5 @@
 S ::= p
-p ::= (( a cmp const ) && ( b cmp const ) && ( var % a  == const ))
+p ::= (( var cmp const ) && ( var cmp const ) && ( start % var  == const ))
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= > | >= | == 
 op ::= + | - | *

@@ -1,6 +1,7 @@
 S ::= p
-p ::= ( ( var cmp const ) && ( var cmp high ) && ( arr[ indexExpr ] <= pivot ) )
-indexExpr ::= var op const
+p ::= ( ( expr ) && ( i cmp var ) && ( expr ) && ( arr[ indexExpr ] <= var ) )
+expr ::= var cmp const | var cmp var 
+indexExpr ::= i op const
 cmp ::= >= | <=
-var ::= i | high
-op ::= + | -
+var ::= i | high | pivot
+op ::= + | - | *

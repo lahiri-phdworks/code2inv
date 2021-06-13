@@ -3,7 +3,7 @@
 
 # AFL/fuzzsolver module.
 from code2inv.prog_generator.checkers.c_inv_checker import inv_solver as c_inv_solver
-from code2inv.prog_generator.checkers.c_inv_checker import inv_checker as c_inv_checker
+from code2inv.prog_generator.checkers.c_inv_checker import rq2_inv_checker as rq2_inv_checker
 from code2inv.common.constants import AFL_CALLS
 from subprocess import run, CalledProcessError
 from code2inv.common.cmd_args import cmd_args
@@ -37,9 +37,9 @@ collection_semantic = [None, None, None, None]
 
 
 def inv_checker(vc_file: str, inv: str, assignments):
-    # tqdm.write(f"Checking {inv}")
-    ret_vals = c_inv_checker(vc_file, inv, assignments)
-    # tqdm.write(f'{valse}')
+    tqdm.write(f"Checking {inv}")
+    ret_vals = rq2_inv_checker(vc_file, inv, assignments)
+    # tqdm.write(f'{false}')
     return ret_vals
 
 

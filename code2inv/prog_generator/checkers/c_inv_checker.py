@@ -105,6 +105,55 @@ def stringify_prefix_stack(prefix_stack):
     return s
 
 
+def rq2_inv_checker(vc_file: str, inv: str, assignments):
+    inv = inv.replace("&&", "and", -1)
+    inv = inv.replace("||", "or", -1)
+    b = io.StringIO(inv)
+    t = tokenize.generate_tokens(b.readline)
+    inv_tokenized = []
+    for a in t:
+        if a.string != "":
+            inv_tokenized.append(a.string)
+
+    var_list = set()
+    for token in inv_tokenized:
+        if token[
+            0
+        ] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in (
+            "and",
+            "or",
+        ):
+            var_list.add(token)
+
+    for assignment in assignments:
+        v = assignment[0]
+        val = assignment[1]
+        if v in var_list:
+            exec(v + "=" + val)
+            var_list.discard(v)
+
+    for var in var_list:
+        exec(var + "=1")
+
+    if not os.path.isdir("candidates"):
+        os.mkdir("candidates")
+
+    # COMMENT : Print Fuzz Model
+    with open(
+        os.path.join(
+            "candidates", f"candidates_{cmd_args.example}_{cmd_args.spec_type}_{cmd_args.afl_timeout}_{cmd_args.num_epochs}.log"
+        ),
+        mode="a",
+    ) as file:
+        file.write(f"{inv}\n")
+
+    # COMMENT : Forced to call the fuzzer for a counter-example (if it exsists)
+    try:
+        return True
+    except:
+        return False
+
+
 def inv_checker(vc_file: str, inv: str, assignments):
     inv = inv.replace("&&", "and", -1)
     inv = inv.replace("||", "or", -1)
