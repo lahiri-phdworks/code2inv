@@ -131,6 +131,9 @@ int main() {
   // freopen("models.txt", "w", stderr);
 
   for (;;) {
+
+    srand(time(0));
+
     size_t len;
     const uint8_t *buf;
 
@@ -156,8 +159,13 @@ int main() {
     // Honggfuzz Specific Assume for sanity
     assume((i > 0));
 
-    if (buff[0] > 90) {
+    // fprintf(fptr, "__BEGIN__ : %d, %d, %d, %d. %d\n", i, j, high, pivot,
+    //         choices);
+
+    if (choices > 95) {
       // pre-conditions
+      // fprintf(fptr, "__PRE__ : %d, %d, %d, %d. %d\n", i, j, high, pivot,
+      //         choices);
       high = (int)((sizeof(arr) / sizeof(arr[0])) - 1);
       select_pivot(arr, 0, high);
       pivot = arr[high];
@@ -175,7 +183,7 @@ int main() {
 
       // Loop Condition
       if (j <= high - 1) {
-        // fprintf(fptr, "LOP : %d, %d, %d, %d. %d\n", i, j, high, pivot,
+        // fprintf(fptr, "__LOOP__ : %d, %d, %d, %d. %d\n", i, j, high, pivot,
         //         choices);
         // Bounded Unrolling
         int unroll = UNROLL_LIMIT;
@@ -198,7 +206,7 @@ int main() {
         // post-check program
         assume((postflag == 0));
         swap(&arr[i], &arr[high]);
-        // fprintf(fptr, "__POTSL__ : %d, %d, %d, %d. %d\n", i, j, high, pivot,
+        // fprintf(fptr, "__POST__ : %d, %d, %d, %d. %d\n", i, j, high, pivot,
         //         choices);
         // post-condition
         postcount++;
@@ -220,5 +228,6 @@ int main() {
   }
 
   fclose(fptr);
+  assert(0);
   return 0;
 }
