@@ -135,7 +135,7 @@ int main() {
     HF_ITER(&buf, &len);
     counter++;
 
-    long long int choices = buf[0];
+    long long int choices = buf[len - 1];
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
@@ -147,7 +147,7 @@ int main() {
     item = arr[buf[1]];
     high = buf[2];
     SIZE = (int)(sizeof(arr) / sizeof(arr[0]));
-    low = buff[4];
+    low = buf[4];
     key = -1;
     mid = (low + high) >> 1;
 

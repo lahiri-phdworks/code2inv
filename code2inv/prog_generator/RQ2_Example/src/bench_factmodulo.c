@@ -117,7 +117,7 @@ int main() {
 
     // pre-conditions
     n = buf[1];
-    k = buff[2];
+    k = buf[2];
     p = PRIME;
     r = 1LL;
 

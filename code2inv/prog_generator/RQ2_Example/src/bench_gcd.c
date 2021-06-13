@@ -71,10 +71,10 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
 }                                                                         \
   }
 
-void swap(int *xp, int *yp) {
-  int temp = *xp;
-  *xp = *yp;
-  *yp = temp;
+void swap(int *term1, int *term2) {
+  int temp = *term1;
+  *term1 = *term2;
+  *term2 = temp;
 }
 
 int gcd(int a, int b) {

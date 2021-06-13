@@ -100,7 +100,7 @@ int main() {
     HF_ITER(&buf, &len);
     counter++;
 
-    long long int choices = buf[0];
+    long long int choices = buf[len - 1];
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
@@ -109,7 +109,7 @@ int main() {
 
     // pre-conditions
     n = buf[1];
-    left = buff[2];
+    left = buf[2];
     right = n;
     // precheck
     // loopcond : (left <= right)

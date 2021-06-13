@@ -22,10 +22,10 @@ long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
 long long int precount = 0, loopcount = 0, postcount = 0;
 
-void swap(int *xp, int *yp) {
-  int temp = *xp;
-  *xp = *yp;
-  *yp = temp;
+void swap(int *term1, int *term2) {
+  int temp = *term1;
+  *term1 = *term2;
+  *term2 = temp;
 }
 
 // https : // www.codeproject.com/Articles/15971/Using-Inline-Assembly-in-C-C
