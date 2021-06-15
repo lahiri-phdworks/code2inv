@@ -1,0 +1,20 @@
+Timeout : 10, EPOCH : 8
+Correct : 75
+Incorrect : 12
+Converged : 87
+Percent Correct : 86.20
+
+[75, ]
+    ----    
+[86.20, ]
+    ----    
+Timeout : 10, EPOCH : 8
+Correct : 76
+Incorrect : 13
+Converged : 89
+Percent Correct : 85.39
+
+[76, ]
+    ----    
+[85.39, ]
+    ----    

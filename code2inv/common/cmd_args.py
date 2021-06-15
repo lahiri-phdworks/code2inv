@@ -13,6 +13,8 @@ cmd_opt.add_argument('-inv_grammar', default=None,
                      help='path to invariant grammar file')
 cmd_opt.add_argument('-inv_checker', default=None,
                      help='path to solver module')
+cmd_opt.add_argument('-hybrid_check', default=0, type=bool,
+                     help='format of invariant variables')
 cmd_opt.add_argument('-var_format', default=None,
                      help='format of invariant variables')
 cmd_opt.add_argument('-init_model_dump', default=None, help='init model dump')

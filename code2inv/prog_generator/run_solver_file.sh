@@ -9,6 +9,7 @@
 #     echo "Usage- run_solver.sh <input_graph> <input_vcs> <grammar_file> [ -o <output file> ]"
 #     exit
 # fi
+>call_logs.logs
 
 data_folder=../../benchmarks
 file_list=names.txt

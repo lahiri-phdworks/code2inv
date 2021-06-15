@@ -84,9 +84,10 @@ int main() {
     HF_ITER(&buf, &len);
     counter++;
 
-    long long int choices = buf[0];
-    n = buf[1];
-    x = buf[2];
+    assume(len > 6);
+    long long int choices = buf[len - 1];
+    n = buf[len - 2];
+    x = buf[len - 4];
 
     char vars[100];
     memset(vars, '\0', sizeof(vars));
@@ -117,9 +118,8 @@ int main() {
           // loop body
           long long int temp_x = x;
           long long int temp_n = n;
-          {
-            { (x = (x + 1)); }
-          }
+
+          x = x + 1;
 
           loopcount++;
           loopcheck(fptr, vars, temp_n, temp_x, n, x);
@@ -130,7 +130,7 @@ int main() {
         // post-condition
         if ((x != n)) {
           postcount++;
-          postcheck(fptr, vars, ((n < 0)), n, x)
+          postcheck(fptr, vars, (n < 0), n, x)
         }
       }
     }
@@ -148,5 +148,6 @@ int main() {
   }
 
   fclose(fptr);
+  assert(0);
   return 0;
 }

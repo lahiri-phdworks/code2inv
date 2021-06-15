@@ -214,6 +214,7 @@ def inv_solver(vc_file: str, inv: str):
     inv = stringify_prefix_stack(postfix_prefix(
         infix_postfix(condense(inv_tokenized))))
     inv = inv.replace("==", "=", -1)
+    inv = inv.replace("%", "mod", -1)
 
     sol = z3.Solver()
     sol.set(auto_config=False)
@@ -315,18 +316,14 @@ def is_trivial(vc_file: str, pred: str):
     for tmp_token_exclusive__a in tmp_token_exclusive__t:
         if tmp_token_exclusive__a.string != "":
             inv_tokenized.append(tmp_token_exclusive__a.string)
-
     var_list = set()
     for token in inv_tokenized:
         if token[0] in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" and token not in ("and", "or"):
             var_list.add(str(token))
-
     # inv = stringify_prefix_stack(postfix_prefix(infix_postfix(inv_tokenized)))
     # inv = inv.replace("==", "=", -1)
-
     for v in var_list:
         exec("%s = z3.Int('%s')" % (v, v))
-
     try:
         __tmp_x_for_eval__ = eval(inv)
         if __tmp_x_for_eval__ == True or __tmp_x_for_eval__ == False:
@@ -335,7 +332,6 @@ def is_trivial(vc_file: str, pred: str):
     except Exception as e:
         # print("Exception", e, inv)
         return False
-
     if res == 'True' or res == 'False':
         return True
     else:

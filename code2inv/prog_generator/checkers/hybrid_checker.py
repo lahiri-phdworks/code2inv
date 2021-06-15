@@ -29,7 +29,8 @@ if cmd_args.example:
 else:
     timeout = 20
 
-dump_results = os.path.join(pwd, os.pardir, f"results/log_inv_{example}.txt")
+dump_results = os.path.join(
+    pwd, os.pardir, f"results/log_inv_{example}.txt")
 filepath = os.path.join(pwd, os.pardir, f"fuzz/include/{example}.h")
 fuzzbase = os.path.join(pwd, os.pardir, f"fuzz")
 outputFile = os.path.join(pwd, os.pardir, "models.txt")
@@ -167,29 +168,42 @@ def inv_solver(vc_file: str, inv: str):
     # COMMENT : None of these functions must fail here.
     # tqdm.write(f"fuzz-inv solver called : {inv}")
 
-    for i in range(len(collection_semantic)):
-        collection_semantic[i] = None
+    tqdm.write(f"Checking {inv}")
+    with open("call_logs.logs", mode="a") as call_logger:
+        call_logger.write("Z3 Called, z3_inv_solver()\n")
 
-    open(outputFile, mode="w").close()
+    z3_res = z3_inv_solver(vc_file, inv)
 
-    dump_template(filepath, inv)
+    if all(x is None for x in z3_res):
+        for i in range(len(collection_semantic)):
+            collection_semantic[i] = None
 
-    init_fuzzbase()
-    call_fuzzsolver(timeout)
+        tqdm.write("Z3 is UNSAT, Calling fuzzer \n")
+        with open("call_logs.logs", mode="a") as call_logger:
+            call_logger.write("Fuzzer Called, fuzz_inv_solver()\n")
 
-    time.sleep(0.1)
+        open(outputFile, mode="w").close()
 
-    process_crashes(outputFile)
-    res = mergeModels()
+        dump_template(filepath, inv)
 
-    if not os.path.isdir("models"):
-        os.mkdir("models")
+        init_fuzzbase()
+        call_fuzzsolver(timeout)
 
-    # COMMENT : Print Fuzz Model
-    with open(
-        os.path.join("models", f"{cmd_args.spec_type}_model_{cmd_args.example}_{cmd_args.afl_timeout}_{cmd_args.num_epochs}.log"), mode="a"
-    ) as file:
-        file.write(f"{res}\n")
+        time.sleep(0.1)
 
-    # tqdm.write(f"{res}")
-    return res
+        process_crashes(outputFile)
+        res = mergeModels()
+
+        if not os.path.isdir("models"):
+            os.mkdir("models")
+
+        # COMMENT : Print Fuzz Model
+        with open(
+            os.path.join("models", f"{cmd_args.spec_type}_model_{cmd_args.example}_{cmd_args.afl_timeout}_{cmd_args.num_epochs}.log"), mode="a"
+        ) as file:
+            file.write(f"{res}\n")
+
+        # tqdm.write(f"{res}")
+        return res
+    else:
+        return z3_res

@@ -46,7 +46,7 @@ if [[ ! -d $testDir ]]; then
     echo "Test : $testDir not found !!" 1>&2
 fi
 
-> models.txt
-$AFL -i $testDir -o $outputDir -n 1 --exit_upon_crash --mutations_per_run 1000 -P -- $buildDir/$RUNNER
+>models.txt
+$AFL -i $testDir -o $outputDir -n 1 --exit_upon_crash --mutations_per_run 200 -P -- $buildDir/$RUNNER
 
 # COMMENT : We can use --exit_upon_crash (exits on first crash) & --linux_perf_bts_edge 

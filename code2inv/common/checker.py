@@ -4,6 +4,7 @@ from code2inv.common.constants import AC_CODE, INVALID_CODE, ENTRY_FAIL_CODE, IN
 
 from code2inv.common.cmd_args import cmd_args, toc
 from code2inv.processing.simplifier import getExpr
+
 import random
 from collections import Counter
 import z3
@@ -348,6 +349,7 @@ def get_z3_ice(tpl, expr_root):
 
     # COMMENT : Counter Examples used here
     # tqdm.write("----------- Checker -----------")
+
     cexs = checker_module.inv_solver(input_vcs, inv)
 
     res = []
