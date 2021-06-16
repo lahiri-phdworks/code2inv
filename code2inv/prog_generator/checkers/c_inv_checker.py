@@ -270,7 +270,7 @@ def inv_solver(vc_file: str, inv: str):
                 for k in range(t):
                     res.append(None)
                 # COMMENT : Now len(res) == 3 always
-                # break
+                break
             elif z3.unknown == r:
                 if i == 0:
                     w = "pre"

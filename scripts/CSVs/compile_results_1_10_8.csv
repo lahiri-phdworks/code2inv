@@ -26,7 +26,6 @@ Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplifie
 18, fuzz_spec, ( n <= 1 || ( x >= m && m >= 1 ) ), Passed, Yes, "[Or(n <= 1, And(x >= m, m >= 1))]",  11,  37.11
 19, fuzz_spec, ( ( x < 1 || n > m ) && m <= ( x - 0 ) ), Passed, Yes, "[Or(Not(1 <= x), Not(n <= m)), m <= x]",  17,  74.68
 1, fuzz_spec, ( x == x ), Failed, Yes, "[]",  4,  14.86
-20, fuzz_spec, ( ( m >= ( 0 + 0 ) && x >= 0 ) ), Passed, Yes, "[m >= 0, x >= 0]",  23,  101.96
 21, fuzz_spec, ( ( n == ( m * n ) || n < ( x - 10000 ) ) ), Failed, Yes, "[Or(n == m*n, Not(x <= 10000 + n))]",  16,  206.66
 22, fuzz_spec, ( ( n < n || m > ( 1 - 1 ) ) && ( x > ( x + 1 ) || x > ( n - n ) ) ), Passed, Yes, "[Not(m <= 0), Not(x <= 0)]",  23,  103.08
 25, fuzz_spec, ( x >= ( x - x ) || x == 10000 ), Passed, Yes, "[Or(x >= 0, x == 10000)]",  13,  27.28

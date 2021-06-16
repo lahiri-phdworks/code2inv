@@ -138,11 +138,12 @@ int main() {
     fast_gcd = 1;
     x = a;
     y = b;
-    assume((a > 0));
-    assume((b > 0));
     assume((x > 0));
     assume((y > 0));
+    assume((a > 0));
+    assume((b > 0));
     assume((r > 0));
+    assume((x >= y));
     // Invariant using the GCD function.
     // precheck
     // loopcond : (b != a)
@@ -152,11 +153,12 @@ int main() {
       x = a;
       y = b;
       // fprintf(fptr, "BEGIN : %d, %d, %d, %d, %d\n", a, b, x, y, r);
-      assume((a > 0));
-      assume((b > 0));
       assume((x > 0));
       assume((y > 0));
+      assume((a > 0));
+      assume((b > 0));
       assume((r > 0));
+      assume((x >= y));
       if (fast_gcd) {
         shift = __builtin_ctz(a | b);
         a >>= __builtin_ctz(a);
