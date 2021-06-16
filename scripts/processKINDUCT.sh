@@ -10,7 +10,7 @@ do
         do
             echo "Timeout : ${TIMEOUT}, EPOCH : ${EPOCH}" >> results_${KINDUCTION}_${TIMEOUT}_${EPOCH}_final.txt
             echo "Benchmark Example, Type, Invariant, Z3 Check Pass, Code2Inv Converged, Simplified Expression, CE-s Count, Solve-Time" > CSVs/compile_results_${KINDUCTION}_${TIMEOUT}_${EPOCH}.csv
-            for files in KINDUCT/results_${KINDUCTION}_${TIMEOUT}_${EPOCH}_folder_extra/*;
+            for files in data/results_${KINDUCTION}_${TIMEOUT}_${EPOCH}_folder_extra/*;
             do
                 echo "Processing $files"
                 python3 csvgen.py $files >> CSVs/compile_results_${KINDUCTION}_${TIMEOUT}_${EPOCH}.csv

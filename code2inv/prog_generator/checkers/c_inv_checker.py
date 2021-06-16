@@ -220,6 +220,9 @@ def inv_solver(vc_file: str, inv: str):
     sol.set(auto_config=False)
     res = []
 
+    # with open("query.smt2", mode="w") as smt_writer:
+    #     smt_writer.write(sol.to_smt2())
+
     vc_sections = [""]
     with open(vc_file, "r") as vc:
         for vc_line in vc.readlines():
@@ -236,11 +239,19 @@ def inv_solver(vc_file: str, inv: str):
     res = []
     for i in range(3):
         s = tpl[0] + inv + tpl[i + 1]
+        # with open("query.smt2", mode="w") as smt_writer:
+        #     smt_writer.write(s)
         sol.reset()
         try:
             sol.set("timeout", 10000)
             decl = z3.parse_smt2_string(s)
             sol.add(decl)
+
+            with open("query.smt2", mode="w") as smt_writer:
+                smt_writer.write(sol.to_smt2())
+
+            # sol.to_smt2()
+
             r = sol.check()
             if z3.sat == r:
                 m = sol.model()
@@ -285,6 +296,7 @@ def inv_solver(vc_file: str, inv: str):
         except Exception as e:
             # print("Encountered Exception in solver", e)
             res.append("EXCEPT")
+            # sys.exit("Solver Exception")
 
     if not os.path.isdir("models"):
         os.mkdir("models")

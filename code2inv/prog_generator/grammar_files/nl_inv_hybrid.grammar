@@ -1,5 +1,5 @@
 S ::= p
-p ::= ( ( x % r == 0 ) && ( y % r == 0 ) && ( ( x - y ) % r == 0 ) )
+p ::= ( ( a >= 0 ) && ( b >= 0 ) && ( r == a * i ) )
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
 op ::= + | - | * | %

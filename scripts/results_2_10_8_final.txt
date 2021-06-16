@@ -1,6 +1,0 @@
-Timeout : 10, EPOCH : 8
-Correct : 27
-Incorrect : 0
-Converged : 27
-Percent Correct : 100.00
-
