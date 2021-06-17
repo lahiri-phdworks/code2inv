@@ -247,9 +247,8 @@ def inv_solver(vc_file: str, inv: str):
             decl = z3.parse_smt2_string(s)
             sol.add(decl)
 
-            with open("query.smt2", mode="w") as smt_writer:
-                smt_writer.write(sol.to_smt2())
-
+            # with open("query.smt2", mode="w") as smt_writer:
+            #     smt_writer.write(sol.to_smt2())
             # sol.to_smt2()
 
             r = sol.check()

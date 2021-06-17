@@ -4,7 +4,6 @@ int main() {
   int b;
   int x;
   int y;
-  int i;
   long long int r;
   // pre-conditions
   assume((a >= 0));
@@ -12,7 +11,6 @@ int main() {
   (x = a);
   (y = b);
   (r = 0);
-  (i = 0);
   // precheck
   // loopcond : (b != 0)
   // loopstart
@@ -20,7 +18,6 @@ int main() {
     // loop body
     r = r + a;
     b = b - 1;
-    i = i + 1;
   }
   // loopend
   // postcheck

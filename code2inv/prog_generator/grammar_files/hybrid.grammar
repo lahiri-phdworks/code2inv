@@ -1,6 +1,6 @@
 S ::= p
-p ::= ( ( var % r == 0 ) && ( var % r == 0 ) )
+p ::= ( ( var == a ) && ( var >= 0 ) && ( a >= 0 ) && ( b >= 0 ) && ( ( y - b ) * a + b * a == a * y ) && ( r == (y - b) * a ) )
 expr ::= ( var op var ) | ( var op const ) | ( const op var ) | ( const op const ) | var | const
 cmp ::= < | > | == | <= | >=
-var ::= a | b
+var ::= x | y
 op ::= + | - | *
