@@ -1,4 +1,4 @@
-(set-logic LIA)
+(set-logic NIA)
 
 ( declare-const a Int )
 ( declare-const a! Int )
@@ -16,13 +16,12 @@
 ( declare-const b_2 Int )
 ( declare-const b_3 Int )
 ( declare-const r_0 Int )
-( declare-const r_1 Int )
 
 ( define-fun inv-f( ( a Int )( b Int )( r Int ) ) Bool
 SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 )
 
-( define-fun pre-f ( ( a Int )( b Int )( r Int )( a_0 Int )( a_1 Int )( a_2 Int )( a_3 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( r_0 Int )( r_1 Int ) ) Bool
+( define-fun pre-f ( ( a Int )( b Int )( r Int )( a_0 Int )( a_1 Int )( a_2 Int )( a_3 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( r_0 Int ) ) Bool
 	( and
 		( = a a_0 )
 		( = b b_0 )
@@ -35,20 +34,19 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	)
 )
 
-( define-fun trans-f ( ( a Int )( b Int )( r Int )( a! Int )( b! Int )( r! Int )( a_0 Int )( a_1 Int )( a_2 Int )( a_3 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( r_0 Int )( r_1 Int ) ) Bool
+( define-fun trans-f ( ( a Int )( b Int )( r Int )( a! Int )( b! Int )( r! Int )( a_0 Int )( a_1 Int )( a_2 Int )( a_3 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( r_0 Int ) ) Bool
 	( or
 		( and
 			( = a_1 a )
 			( = b_1 b )
 			( = a_1 a! )
 			( = b_1 b! )
-			( = a a! )
 			( = r r! )
 		)
 		( and
 			( = a_1 a )
 			( = b_1 b )
-			( not ( = b_1 0 ) )
+			( not ( = a_1 b_1 ) )
 			( > a_1 b_1 )
 			( = a_2 ( - a_1 b_1 ) )
 			( = a_3 a_2 )
@@ -61,7 +59,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 		( and
 			( = a_1 a )
 			( = b_1 b )
-			( not ( = b_1 0 ) )
+			( not ( = a_1 b_1 ) )
 			( not ( > a_1 b_1 ) )
 			( = b_3 ( - b_1 a_1 ) )
 			( = a_3 a_1 )
@@ -74,7 +72,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	)
 )
 
-( define-fun post-f ( ( a Int )( b Int )( r Int )( a_0 Int )( a_1 Int )( a_2 Int )( a_3 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( r_0 Int )( r_1 Int ) ) Bool
+( define-fun post-f ( ( a Int )( b Int )( r Int )( a_0 Int )( a_1 Int )( a_2 Int )( a_3 Int )( b_0 Int )( b_1 Int )( b_2 Int )( b_3 Int )( r_0 Int ) ) Bool
 	( and
 		( or
 			( not
@@ -86,10 +84,9 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			)
 			( not
 				( and
-					( not ( not ( = b_1 0 ) ) )
-					( = r_1 a_1 )
-					( = ( mod a_1 r_1 ) 0 )
-					( not ( and ( = ( mod a_1 r_1 ) 0 ) ( > r_1 0 ) ) )
+					( not ( not ( = a_1 b_1 ) ) )
+					( = ( mod a_1 r_0 ) 0 )
+					( not ( and ( = ( mod a_1 r_0 ) 0 ) ( = ( mod b_1 r_0 ) 0 ) ) )
 				)
 			)
 		)
@@ -103,10 +100,9 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 			)
 			( not
 				( and
-					( not ( not ( = b_1 0 ) ) )
-					( = r_1 a_1 )
-					( not ( = ( mod a_1 r_1 ) 0 ) )
-					( not ( and ( = ( mod a_1 r_1 ) 0 ) ( > r_1 0 ) ) )
+					( not ( not ( = a_1 b_1 ) ) )
+					( not ( = ( mod a_1 r_0 ) 0 ) )
+					( not ( and ( = ( mod a_1 r_0 ) 0 ) ( = ( mod b_1 r_0 ) 0 ) ) )
 				)
 			)
 		)
@@ -115,7 +111,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 ( assert ( not
 	( =>
-		( pre-f a b r a_0 a_1 a_2 a_3 b_0 b_1 b_2 b_3 r_0 r_1  )
+		( pre-f a b r a_0 a_1 a_2 a_3 b_0 b_1 b_2 b_3 r_0  )
 		( inv-f a b r )
 	)
 ))
@@ -125,7 +121,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 	( =>
 		( and
 			( inv-f a b r )
-			( trans-f a b r a! b! r! a_0 a_1 a_2 a_3 b_0 b_1 b_2 b_3 r_0 r_1 )
+			( trans-f a b r a! b! r! a_0 a_1 a_2 a_3 b_0 b_1 b_2 b_3 r_0 )
 		)
 		( inv-f a! b! r! )
 	)
@@ -135,7 +131,7 @@ SPLIT_HERE_asdfghjklzxcvbnmqwertyuiop
 ( assert ( not
 	( =>
 		( inv-f a b r  )
-		( post-f a b r a_0 a_1 a_2 a_3 b_0 b_1 b_2 b_3 r_0 r_1 )
+		( post-f a b r a_0 a_1 a_2 a_3 b_0 b_1 b_2 b_3 r_0 )
 	)
 ))
 

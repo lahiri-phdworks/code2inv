@@ -16,7 +16,7 @@
   if (!cond)                                                                   \
     continue;
 
-#define INV(a, b, x, y, r) PHI
+#define INV(a, b, r) PHI
 
 long long int counter = 0;
 int preflag = 0, loopflag = 0, postflag = 0;
@@ -24,13 +24,12 @@ long long int precount = 0, loopcount = 0, postcount = 0;
 
 // COMMENT : Precheck template
 void precheck(FILE *fptr, char *buff, long long int a, long long int b,
-              long long int x, long long int y, long long int r) {
+              long long int r) {
   int f = preflag;
-  aflcrash(INV(a, b, x, y, r), preflag);
+  aflcrash(INV(a, b, r), preflag);
   if (f == 0 && preflag == 1) {
-    fprintf(fptr,
-            "Pre : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "a", a, "b", b, "x", x, "y", y, "r", r);
+    fprintf(fptr, "Pre : %s : %lld, %s : %lld, %s : %lld\n", "a", a, "b", b,
+            "r", r);
 
     assert(0);
   }
@@ -38,26 +37,22 @@ void precheck(FILE *fptr, char *buff, long long int a, long long int b,
 
 // COMMENT : Loopcheck template
 void loopcheck(FILE *fptr, char *buff, long long int temp_a,
-               long long int temp_b, long long int temp_x, long long int temp_y,
-               long long int temp_r, long long int a, long long int b,
-               long long int x, long long int y, long long int r) {
+               long long int temp_b, long long int temp_r, long long int a,
+               long long int b, long long int r) {
   int f = loopflag;
-  aflcrash(INV(a, b, x, y, r), loopflag);
+  aflcrash(INV(a, b, r), loopflag);
   if (f == 0 && loopflag == 1) {
-    fprintf(
-        fptr,
-        "LoopStart : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-        "a", temp_a, "b", temp_b, "x", temp_x, "y", temp_y, "r", temp_r);
-    fprintf(fptr,
-            "LoopEnd : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n",
-            "a", a, "b", b, "x", x, "y", y, "r", r);
+    fprintf(fptr, "LoopStart : %s : %lld, %s : %lld, %s : %lld\n", "a", temp_a,
+            "b", temp_b, "r", temp_r);
+    fprintf(fptr, "LoopEnd : %s : %lld, %s : %lld, %s : %lld\n", "a", a, "b", b,
+            "r", r);
 
     assert(0);
   }
 }
 
 // COMMENT : Postcheck template
-#define postcheck(fptr, buff, cond, a, b, x, y, r)                             \
+#define postcheck(fptr, buff, cond, a, b, r)                                   \
   \ 
 {                                                                           \
     \ 
@@ -67,11 +62,9 @@ void loopcheck(FILE *fptr, char *buff, long long int temp_a,
     \ 
     if (f == 0 && postflag == 1) {                                             \
       \ 
-        fprintf(                                                               \
-          fptr,                                                                \
-          "Post : %s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", \ 
+        fprintf(fptr, "Post : %s : %lld, %s : %lld, %s : %lld\n", \ 
  "a",                                                                          \
-          a, "b", b, "x", x, "y", y, "r", r);                                  \
+                a, "b", b, "r", r);                                            \
       assert(0);                                                               \
     \ 
 }                                                                         \
@@ -101,17 +94,17 @@ int main() {
   // variable declarations
   unsigned int fast_gcd;
   unsigned int shift;
+  unsigned int r;
   unsigned int a;
   unsigned int b;
-  unsigned int x;
-  unsigned int y;
-  unsigned int r;
+  // unsigned int x;
+  // unsigned int y;
 
-  char buff[2048];
+  char buff[1024];
   memset(buff, '\0', sizeof(buff));
 
   FILE *fptr = fopen("models.txt", "w");
-  setvbuf(fptr, buff, _IOLBF, 2048);
+  setvbuf(fptr, buff, _IOLBF, 1024);
 
   // freopen("models.txt", "w", stderr);
 
@@ -122,13 +115,12 @@ int main() {
     HF_ITER(&buf, &len);
     counter++;
 
-    int choices = buf[0];
+    long long int choices = buf[0];
 
-    char vars[150];
+    char vars[100];
     memset(vars, '\0', sizeof(vars));
-    snprintf(vars, 150,
-             "%s : %lld, %s : %lld, %s : %lld, %s : %lld, %s : %lld\n", "a", a,
-             "b", b, "x", x, "y", y, "r", r);
+    snprintf(vars, 100, "%s : %lld, %s : %lld, %s : %lld\n", "a", a, "b", b,
+             "r", r);
 
     // pre-conditions
     a = buf[1];
@@ -136,14 +128,9 @@ int main() {
     shift = 0;
     r = 1;
     fast_gcd = 1;
-    x = a;
-    y = b;
-    assume((x > 0));
-    assume((y > 0));
     assume((a > 0));
     assume((b > 0));
     assume((r > 0));
-    assume((x >= y));
     assume((a % r == 0));
     assume((b % r == 0));
     // Invariant using the GCD function.
@@ -152,15 +139,10 @@ int main() {
 
     if (choices > 105) {
       // pre-conditions
-      x = a;
-      y = b;
       // fprintf(fptr, "BEGIN : %d, %d, %d, %d, %d\n", a, b, x, y, r);
-      assume((x > 0));
-      assume((y > 0));
       assume((a > 0));
       assume((b > 0));
       assume((r > 0));
-      assume((x >= y));
       assume((a % r == 0));
       assume((b % r == 0));
       if (fast_gcd) {
@@ -169,12 +151,12 @@ int main() {
       }
       assume((preflag == 0));
       precount++;
-      precheck(fptr, vars, a, b, x, y, r);
+      precheck(fptr, vars, a, b, r);
 
     } else {
       // loop-check program
       assume((loopflag + postflag < 2));
-      assume(INV(a, b, x, y, r));
+      assume(INV(a, b, r));
 
       // Loop Condition
       if ((b != a)) {
@@ -185,8 +167,6 @@ int main() {
           assume((loopflag == 0));
           unsigned int temp_a = a;
           unsigned int temp_b = b;
-          unsigned int temp_x = x;
-          unsigned int temp_y = y;
           unsigned int temp_r = r;
           // loop-body
           if (fast_gcd) {
@@ -198,21 +178,17 @@ int main() {
             b = b - a;
           }
           loopcount++;
-          loopcheck(fptr, vars, temp_a, temp_b, temp_x, temp_y, temp_r, a, b, x,
-                    y, r);
+          loopcheck(fptr, vars, temp_a, temp_b, temp_r, a, b, r);
         }
       } else {
         // post-check program
         assume((postflag == 0));
         // post-condition
-        if (fast_gcd) {
-          r = a << shift;
-        } else {
-          r = a;
-        }
+        if (fast_gcd)
+          a = a << shift;
         // fprintf(fptr, "POST : %d, %d, %d, %d, %d\n", a, b, x, y, r);
         postcount++;
-        postcheck(fptr, vars, ((a % r == 0)), a, b, x, y, r)
+        postcheck(fptr, vars, ((a % r == 0) && (b % r == 0)), a, b, r)
       }
     }
 
