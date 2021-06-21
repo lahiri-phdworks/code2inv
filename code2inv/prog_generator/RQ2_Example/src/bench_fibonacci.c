@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define UNROLL_LIMIT 32
+#define UNROLL_LIMIT 64
 
 #define aflcrash(cond, flag)                                                   \
   if (!cond)                                                                   \
@@ -156,10 +156,7 @@ int main() {
         assume((postflag == 0));
         // post-condition
         postcount++;
-        postcheck(fptr, vars,
-                  ((0 <= i) && (i <= n) && (n >= 0) && (x == (int)fib(i)) &&
-                   (y == (int)fib(i + 1))),
-                  x, y, i, (int)n)
+        postcheck(fptr, vars, (y == (int)fib(n)), x, y, i, (int)n)
       }
     }
 
