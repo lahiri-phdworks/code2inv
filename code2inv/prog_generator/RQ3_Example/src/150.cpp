@@ -262,4 +262,8 @@ int main(int argc, const char *argv[]) {
  * @brief Invariant
  * (sum == (5 * ((index / 10) - 1) * (index / 10)) + ((index / 10) * (index - 10
  * * ((index / 10)))))
+ *
+ * TODO : 
+ * Add -9 to the invariant expression. Maximum 9 lost due to one misprediction so the value of
+ * sum lies between correct - 9 <= sum <= correct value.
  */
